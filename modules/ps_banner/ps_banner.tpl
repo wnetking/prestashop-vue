@@ -22,23 +22,14 @@
  * @license   https://opensource.org/licenses/AFL-3.0 Academic Free License 3.0 (AFL-3.0)
  * International Registered Trademark & Property of PrestaShop SA
  *}
-
-<div data-module-name="homeslider" data-module-data="{$homeslider|@json_encode}" v-if="modules.homeslider.slides">
-  <b-carousel id="carousel"
-                style="text-shadow: 1px 1px 2px #333;"
-                controls
-                indicators
-                background="#ababab"
-                img-blank
-                :interval="4000"
-                img-width="1024"
-                img-height="480"
-                label-next="{l s='Next' d='Shop.Theme.Global'}"
-                label-prev="{l s='Previous' d='Shop.Theme.Global'}" >
-      <b-carousel-slide v-for="slide in modules.homeslider.slides" :caption="slide.title" :key="slide.id_slide"
-                        :text="slide.description"
-                        :img-src="slide.image_url" 
-                        img-height="480"
-      ></b-carousel-slide>          
-    </b-carousel>            
-</div>
+<a class="banner" href="{$banner_link}" title="{$banner_desc}">
+  {if isset($banner_img)}
+    <b-img-lazy 
+          src="{$banner_img}"
+          alt="{$banner_desc}"
+          title="{$banner_desc}"
+          fluid center blank-color="#ccc" />
+  {else}
+    <span>{$banner_desc}</span>
+  {/if}
+</a>

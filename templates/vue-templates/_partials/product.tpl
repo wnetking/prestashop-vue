@@ -4,11 +4,12 @@
     :data-id-product-attribute="product.id_product_attribute" 
     itemscope itemtype="http://schema.org/Product">
       <a :href="product.url" class="thumbnail product-thumbnail">
-        <img
-          :src = "product.cover.medium.url"
-          :alt = "product.cover.legend"
-          :data-full-size-image-url = "product.cover.large.url"
-        >
+        <b-img-lazy 
+          :src="product.cover.medium.url"
+          :alt="product.cover.legend"
+          :width="product.cover.medium.width"
+          :height="product.cover.medium.height"
+          fluid center blank-color="#ccc" />
       </a>
 
       <h2 class="h2" itemprop="name">
