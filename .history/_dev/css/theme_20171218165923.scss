@@ -1,0 +1,24 @@
+$body-background-color: #fefefe;
+
+body {
+  background: $body-background-color;
+}
+
+.product-list-thumb{
+  top: 0;
+  left: 0;
+  height: 100%;
+
+
+  img{
+    max-width: 50px;
+    margin-bottom: 10px;
+  }
+}
+
+.product-thumbnail{
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-color: white;
+  transition: all ease-out .3s;
+}

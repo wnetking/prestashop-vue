@@ -1,0 +1,11 @@
+$body-background-color: #fefefe;
+
+body {
+  background: $body-background-color;
+}
+
+.product-list-thumb{
+  top: 0;
+  left:-100%;
+  height: 100%;
+}

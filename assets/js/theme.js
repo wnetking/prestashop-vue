@@ -97,28 +97,29 @@
 
 	var _bootstrapVue2 = _interopRequireDefault(_bootstrapVue);
 
-	var _prestashop = __webpack_require__(21);
+	var _prestashop = __webpack_require__(17);
 
 	var _prestashop2 = _interopRequireDefault(_prestashop);
 
-	__webpack_require__(17);
+	var _componentsProductMiniature = __webpack_require__(22);
 
-	__webpack_require__(19);
+	var _componentsProductMiniature2 = _interopRequireDefault(_componentsProductMiniature);
+
+	__webpack_require__(18);
+
+	__webpack_require__(20);
 
 	$('[data-module-name]').each(function () {
-	    _prestashop2['default'].modules[$(this).data('module-name')] = $(this).data('module-data');
+	  _prestashop2['default'].modules[$(this).data('module-name')] = $(this).data('module-data');
 	});
 
 	_vue2['default'].use(_bootstrapVue2['default']);
 
-	_vue2['default'].component('product-miniature', {
-	    template: '#product-miniature-template',
-	    props: ['product']
-	});
+	_vue2['default'].component('product-miniature', _componentsProductMiniature2['default']);
 
 	new _vue2['default']({
-	    el: '#wrapper',
-	    data: _prestashop2['default']
+	  el: '#wrapper',
+	  data: _prestashop2['default']
 	});
 
 /***/ }),
@@ -3939,21 +3940,90 @@
 /* 17 */
 /***/ (function(module, exports) {
 
-	// removed by extract-text-webpack-plugin
-
-/***/ }),
-/* 18 */,
-/* 19 */
-/***/ (function(module, exports) {
-
-	// removed by extract-text-webpack-plugin
-
-/***/ }),
-/* 20 */,
-/* 21 */
-/***/ (function(module, exports) {
-
 	module.exports = prestashop;
+
+/***/ }),
+/* 18 */
+/***/ (function(module, exports) {
+
+	// removed by extract-text-webpack-plugin
+
+/***/ }),
+/* 19 */,
+/* 20 */
+/***/ (function(module, exports) {
+
+	// removed by extract-text-webpack-plugin
+
+/***/ }),
+/* 21 */,
+/* 22 */
+/***/ (function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	Object.defineProperty(exports, '__esModule', {
+	  value: true
+	});
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
+
+	var _vue = __webpack_require__(12);
+
+	var _vue2 = _interopRequireDefault(_vue);
+
+	var productMiniature = _vue2['default'].extend({
+	  template: '#product-miniature-template',
+	  props: ['product'],
+	  data: function data() {
+	    return {
+	      imgBig: this.product.cover.bySize.medium_default.url,
+	      imgLarge: this.product.cover.large.url,
+	      onHover: false
+	    };
+	  },
+	  methods: {
+	    changeImg: function changeImg(event) {
+	      if (event) {
+	        this.imgBig = event.target.dataset.bigImg;
+	        this.imgLarge = event.target.dataset.largeImg;
+	      }
+	    },
+
+	    zoomBg: function zoomBg(event) {
+	      var container = event.target.parentNode;
+	      var elementZoom = event.target;
+	      var x = event.offsetX == undefined ? event.layerX : event.offsetX;
+	      var y = event.offsetY == undefined ? event.layerY : event.offsetY;
+
+	      var e = {
+	        w: elementZoom.offsetWidth,
+	        h: elementZoom.offsetHeight
+	      };
+
+	      var c = {
+	        x: x / (e.w / 70),
+	        y: y / (e.h / 100)
+	      };
+
+	      elementZoom.style.opacity = 0;
+	      container.style.backgroundImage = 'url(' + elementZoom.dataset.largeImg + ')';
+	      container.style.backgroundPosition = c.x + '% ' + c.y + '%';
+	    },
+
+	    zoomLeave: function zoomLeave(event) {
+	      var container = event.target.parentNode;
+	      var elementZoom = event.target;
+
+	      elementZoom.style.opacity = 1;
+	      container.style.backgroundImage = '';
+	      container.style.backgroundPosition = '';
+	    }
+	  }
+	});
+
+	exports['default'] = productMiniature;
+	module.exports = exports['default'];
 
 /***/ })
 /******/ ]);
