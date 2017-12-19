@@ -1,5 +1,6 @@
 
 <script type="text/x-template" id="product-miniature-template">
+{strip}
   <article class="product-miniature"
     @mouseover="onHover = true" @mouseleave="onHover = false"
     :data-id-product="product.id_product"
@@ -96,4 +97,5 @@
         {literal}{{product.availability_message}}{/literal}
       </span>
   </article>
+{/strip}
 </script>

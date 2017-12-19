@@ -97,7 +97,6 @@
         {/block}
       </footer>
     </main>
-
     {include file="vue-templates/_partials/product.tpl"}
 
     {block name='javascript_bottom'}

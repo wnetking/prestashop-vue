@@ -10,7 +10,6 @@ body {
   height: 100%;
   overflow: hidden;
   overflow-y: auto;
-  background-color: #fff;
 
   &::-webkit-scrollbar-button {
     width: 2px;
@@ -37,13 +36,9 @@ body {
 
 
   img{
-    max-width: 47px;
+    max-width: 50px;
     margin-bottom: 0.25rem;
     border: 1px solid #ccc;
-
-    &.active{
-      border-color: black;
-    }
   }
 }
 

@@ -56,10 +56,11 @@
 
 {block name='javascript_head'}
   {include file="_partials/javascript.tpl" javascript=$javascript.head vars=$js_custom_vars}
-
   {literal}
-  <script>prestashop.modules = {}</script>
-  {/literal}
+    <script>
+      prestashop.modules = {}
+    </script>
+  {/literal}  
 {/block}
 
 

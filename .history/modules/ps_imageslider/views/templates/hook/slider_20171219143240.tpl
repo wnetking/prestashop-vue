@@ -40,7 +40,7 @@
                         img-height="480"
       >
         <b-button size="lg" variant="primary" :href="slide.url">
-          {l s='See more' d='Shop.Theme.Catalog'}
+
         </b-button>
       </b-carousel-slide>
     </b-carousel>

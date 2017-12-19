@@ -1,4 +1,3 @@
-
 <script type="text/x-template" id="product-miniature-template">
   <article class="product-miniature"
     @mouseover="onHover = true" @mouseleave="onHover = false"

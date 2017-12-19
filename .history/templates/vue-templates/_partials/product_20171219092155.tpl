@@ -1,4 +1,3 @@
-
 <script type="text/x-template" id="product-miniature-template">
   <article class="product-miniature"
     @mouseover="onHover = true" @mouseleave="onHover = false"
@@ -32,14 +31,13 @@
             fluid
             :data-big-img="thumb.medium.url"
             :data-large-img="thumb.large.url"
-            @mouseover.native="changeImg"
-            blank-color="#ccc"
-            v-bind:class="{ active: (thumb.medium.url === imgBig)}" />
+            @click.native="changeImg"
+            blank-color="#ccc" />
         </div>
       </transition>
     </div>
 
-      <h2 class="h5 mt-2" itemprop="name">
+      <h2 class="h5" itemprop="name">
         <a :href="product.url">
           {literal}{{product.name}}{/literal}
         </a>

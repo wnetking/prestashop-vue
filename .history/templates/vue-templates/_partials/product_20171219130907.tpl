@@ -1,4 +1,3 @@
-
 <script type="text/x-template" id="product-miniature-template">
   <article class="product-miniature"
     @mouseover="onHover = true" @mouseleave="onHover = false"
@@ -39,7 +38,7 @@
       </transition>
     </div>
 
-      <h2 class="h5 mt-2" itemprop="name">
+      <h2 class="h5" itemprop="name">
         <a :href="product.url">
           {literal}{{product.name}}{/literal}
         </a>
