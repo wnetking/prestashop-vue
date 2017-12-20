@@ -75,7 +75,7 @@
         <b-popover
             ref="popover"
             :target="sharePopOverId"
-            :title="product.name"
+            title="product.name"
             placement="auto"
             >
           <social-sharing :url="product.canonical_url" inline-template>

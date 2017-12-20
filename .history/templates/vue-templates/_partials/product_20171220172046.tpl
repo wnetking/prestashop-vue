@@ -41,7 +41,7 @@
 
       <h2 class="h5 mt-2" itemprop="name">
         <a :href="product.url">
-          {literal}{{product.name}}{/literal}
+          {literal}{{product.name | truncate(10)}}{/literal}
         </a>
       </h2>
 
@@ -52,13 +52,11 @@
       </div>
 
       <div class="product-description-short" itemprop="description" v-html="product.description_short">
-        {literal}{{product.description_short | truncate(10)}}{/literal}
+        {literal}{{product.description_short}}{/literal}
       </div>
 
       <div class="product-list-actions">
-        <b-button
-          size="lg"
-          variant="primary"
+        <a
           v-if="product.add_to_cart_url"
           class = "add-to-cart"
           :href  = "product.add_to_cart_url"
@@ -66,50 +64,15 @@
           :data-id-product="product.id_product"
           :data-id-product-attribute="product.id_product_attribute"
           data-button-action="add-to-cart"
-        >{l s='Add to cart' d='Shop.Theme.Actions'}</b-button>
+        >{l s='Add to cart' d='Shop.Theme.Actions'}</a>
+      </div>
 
-        <b-btn :id="sharePopOverId" variant="primary">
-          {l s='Share' d='Shop.Theme.Actions'}
-        </b-btn>
-
-        <b-popover
-            ref="popover"
-            :target="sharePopOverId"
-            :title="product.name"
-            placement="auto"
-            >
-          <social-sharing :url="product.canonical_url" inline-template>
-            <div>
-              <network network="facebook">
-                <i class="fa fa-fw fa-facebook"></i> Facebook
-              </network>
-              <network network="googleplus">
-                <i class="fa fa-fw fa-google-plus"></i> Google +
-              </network>
-              <network network="linkedin">
-                <i class="fa fa-fw fa-linkedin"></i> LinkedIn
-              </network>
-              <network network="pinterest">
-                <i class="fa fa-fw fa-pinterest"></i> Pinterest
-              </network>
-              <network network="reddit">
-                <i class="fa fa-fw fa-reddit"></i> Reddit
-              </network>
-              <network network="twitter">
-                <i class="fa fa-fw fa-twitter"></i> Twitter
-              </network>
-              <network network="vk">
-                <i class="fa fa-vk"></i> VKontakte
-              </network>
-              <network network="weibo">
-                <i class="fa fa-weibo"></i> Weibo
-              </network>
-              <network network="whatsapp">
-                <i class="fa fa-fw fa-whatsapp"></i> Whatsapp
-              </network>
-            </div>
-          </social-sharing>
-        </b-popover>
+      <div class="variant-links">
+        <a v-for="variant in product.main_variants" :href="variant.url"
+          :class="variant.type" v-bind:style="{literal}{backgroundColor: variant.html_color_code}{/literal}"
+        >
+          {literal}{{variant.name}}{/literal}
+        </a>
       </div>
 
       <div v-if="product.show_price" class="product-price-and-shipping">
@@ -129,13 +92,7 @@
         </span>
       </div>
 
-      <div class="variant-links">
-        <a v-for="variant in product.main_variants" :href="variant.url"
-          :class="variant.type" v-bind:style="{literal}{backgroundColor: variant.html_color_code}{/literal}"
-        >
-          {literal}{{variant.name}}{/literal}
-        </a>
-      </div>
+
 
       <b-badge v-if="product.show_availability" :class='product.availability' variant="info">
         {literal}{{product.availability_message}}{/literal}

@@ -848,12 +848,6 @@ a.add-to-cart,
 a.add-to-cart:hover {
   display: inline-block;
   margin: 5px;
-  text-decoration: none;
-  color: #000;
-  border: 1px solid #000;
-  padding: 5px;
-  background-color: #90ee90;
-  font-weight: bold;
 }
 .category-cover img {
   width: 100%;

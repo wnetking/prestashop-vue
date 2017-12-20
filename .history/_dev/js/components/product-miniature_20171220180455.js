@@ -8,7 +8,7 @@ var productMiniature = Vue.extend({
       imgBig: this.product.cover.bySize.medium_default.url,
       imgLarge: this.product.cover.large.url,
       onHover: false,
-      sharePopOverId: `share-popover-${this.product.id_product}-${this.product.id_category_default}`
+      sharePopOverId: `share-popover-${this.product.id_product}-${this.product}`
     }
   },
   methods: {

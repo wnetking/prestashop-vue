@@ -68,16 +68,11 @@
           data-button-action="add-to-cart"
         >{l s='Add to cart' d='Shop.Theme.Actions'}</b-button>
 
-        <b-btn :id="sharePopOverId" variant="primary">
+        <b-btn id="popoverButton-event" variant="primary">
           {l s='Share' d='Shop.Theme.Actions'}
         </b-btn>
 
-        <b-popover
-            ref="popover"
-            :target="sharePopOverId"
-            :title="product.name"
-            placement="auto"
-            >
+        <b-popover ref="popover" target="popoverButton-event" title="Popover">
           <social-sharing :url="product.canonical_url" inline-template>
             <div>
               <network network="facebook">

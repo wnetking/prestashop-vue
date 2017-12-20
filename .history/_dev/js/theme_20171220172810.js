@@ -14,7 +14,6 @@ $('[data-module-name]').each(function () {
 
 Vue.use(BootstrapVue)
 Vue.use(VueStringFilter)
-Vue.use(SocialSharing)
 
 Vue.component('product-miniature', productMiniature)
 
