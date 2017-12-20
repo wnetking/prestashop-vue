@@ -109,13 +109,13 @@
 
 	var _vueStringFilter2 = _interopRequireDefault(_vueStringFilter);
 
-	var _vueSocialSharing = __webpack_require__(25);
+	var _vueSocialSharing = __webpack_require__(20);
 
 	var _vueSocialSharing2 = _interopRequireDefault(_vueSocialSharing);
 
-	__webpack_require__(20);
+	__webpack_require__(21);
 
-	__webpack_require__(22);
+	__webpack_require__(23);
 
 	$('[data-module-name]').each(function () {
 	  _prestashop2['default'].modules[$(this).data('module-name')] = $(this).data('module-data');
@@ -124,6 +124,13 @@
 	_vue2['default'].use(_bootstrapVue2['default']);
 	_vue2['default'].use(_vueStringFilter2['default']);
 	_vue2['default'].use(_vueSocialSharing2['default']);
+
+	_vue2['default'].filter('striphtml', function (value) {
+	  var div = document.createElement('div');
+	  div.innerHTML = value;
+	  var text = div.textContent || div.innerText || '';
+	  return text;
+	});
 
 	_vue2['default'].component('product-miniature', _componentsProductMiniature2['default']);
 
@@ -4072,21 +4079,6 @@
 
 /***/ }),
 /* 20 */
-/***/ (function(module, exports) {
-
-	// removed by extract-text-webpack-plugin
-
-/***/ }),
-/* 21 */,
-/* 22 */
-/***/ (function(module, exports) {
-
-	// removed by extract-text-webpack-plugin
-
-/***/ }),
-/* 23 */,
-/* 24 */,
-/* 25 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	/*!
@@ -4431,6 +4423,19 @@
 	}
 
 	module.exports = SocialSharing;
+
+/***/ }),
+/* 21 */
+/***/ (function(module, exports) {
+
+	// removed by extract-text-webpack-plugin
+
+/***/ }),
+/* 22 */,
+/* 23 */
+/***/ (function(module, exports) {
+
+	// removed by extract-text-webpack-plugin
 
 /***/ })
 /******/ ]);

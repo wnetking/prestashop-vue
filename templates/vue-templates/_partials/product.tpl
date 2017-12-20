@@ -51,8 +51,8 @@
         </b-badge>
       </div>
 
-      <div class="product-description-short" itemprop="description" v-html="product.description_short">
-        {literal}{{product.description_short | truncate(10)}}{/literal}
+      <div class="product-description-short" itemprop="description">
+        {literal}{{product.description_short | striphtml | truncate(60)}}{/literal}
       </div>
 
       <div class="product-list-actions">

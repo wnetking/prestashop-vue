@@ -16,6 +16,13 @@ Vue.use(BootstrapVue)
 Vue.use(VueStringFilter)
 Vue.use(SocialSharing)
 
+Vue.filter('striphtml', function (value) {
+  var div = document.createElement('div')
+  div.innerHTML = value
+  var text = div.textContent || div.innerText || ''
+  return text
+})
+
 Vue.component('product-miniature', productMiniature)
 
 new Vue({
