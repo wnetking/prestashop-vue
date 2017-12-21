@@ -1,0 +1,10 @@
+.product-share-btns{
+  display: flex;
+  flex-wrap: wrap;
+
+  span{
+    display: block;
+    padding: 10px 5px;
+    width: 50%;
+  }
+}

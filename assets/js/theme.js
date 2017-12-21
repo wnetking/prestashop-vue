@@ -89,33 +89,41 @@
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
 
-	var _vue = __webpack_require__(12);
-
-	var _vue2 = _interopRequireDefault(_vue);
-
-	var _bootstrapVue = __webpack_require__(16);
-
-	var _bootstrapVue2 = _interopRequireDefault(_bootstrapVue);
-
-	var _prestashop = __webpack_require__(17);
+	var _prestashop = __webpack_require__(12);
 
 	var _prestashop2 = _interopRequireDefault(_prestashop);
 
-	var _componentsProductMiniature = __webpack_require__(18);
+	var _vue = __webpack_require__(13);
 
-	var _componentsProductMiniature2 = _interopRequireDefault(_componentsProductMiniature);
+	var _vue2 = _interopRequireDefault(_vue);
 
-	var _vueStringFilter = __webpack_require__(19);
+	var _bootstrapVue = __webpack_require__(17);
 
-	var _vueStringFilter2 = _interopRequireDefault(_vueStringFilter);
+	var _bootstrapVue2 = _interopRequireDefault(_bootstrapVue);
 
-	var _vueSocialSharing = __webpack_require__(20);
+	var _vueSocialSharing = __webpack_require__(18);
 
 	var _vueSocialSharing2 = _interopRequireDefault(_vueSocialSharing);
 
-	__webpack_require__(21);
+	var _vueAvatar = __webpack_require__(33);
 
-	__webpack_require__(23);
+	var _vueAvatar2 = _interopRequireDefault(_vueAvatar);
+
+	var _vueStringFilter = __webpack_require__(20);
+
+	var _vueStringFilter2 = _interopRequireDefault(_vueStringFilter);
+
+	var _filters = __webpack_require__(21);
+
+	var _filters2 = _interopRequireDefault(_filters);
+
+	var _components = __webpack_require__(23);
+
+	var _components2 = _interopRequireDefault(_components);
+
+	__webpack_require__(29);
+
+	__webpack_require__(31);
 
 	$('[data-module-name]').each(function () {
 	  _prestashop2['default'].modules[$(this).data('module-name')] = $(this).data('module-data');
@@ -125,22 +133,25 @@
 	_vue2['default'].use(_vueStringFilter2['default']);
 	_vue2['default'].use(_vueSocialSharing2['default']);
 
-	_vue2['default'].filter('striphtml', function (value) {
-	  var div = document.createElement('div');
-	  div.innerHTML = value;
-	  var text = div.textContent || div.innerText || '';
-	  return text;
-	});
-
-	_vue2['default'].component('product-miniature', _componentsProductMiniature2['default']);
+	(0, _filters2['default'])();
+	(0, _components2['default'])();
 
 	new _vue2['default']({
 	  el: '#app',
-	  data: _prestashop2['default']
+	  data: _prestashop2['default'],
+	  components: {
+	    'avatar': _vueAvatar2['default']
+	  }
 	});
 
 /***/ }),
 /* 12 */
+/***/ (function(module, exports) {
+
+	module.exports = prestashop;
+
+/***/ }),
+/* 13 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(global, setImmediate) {/*!
@@ -1223,10 +1234,10 @@
 	 * Get outerHTML of elements, taking care
 	 * of SVG elements in IE as well.
 	 */function getOuterHTML(el){if(el.outerHTML){return el.outerHTML;}else {var container=document.createElement('div');container.appendChild(el.cloneNode(true));return container.innerHTML;}}Vue$3.compile = compileToFunctions;exports['default'] = Vue$3;module.exports = exports['default'];
-	/* WEBPACK VAR INJECTION */}.call(exports, (function() { return this; }()), __webpack_require__(13).setImmediate))
+	/* WEBPACK VAR INJECTION */}.call(exports, (function() { return this; }()), __webpack_require__(14).setImmediate))
 
 /***/ }),
-/* 13 */
+/* 14 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -1279,12 +1290,12 @@
 	};
 
 	// setimmediate attaches itself to the global object
-	__webpack_require__(14);
+	__webpack_require__(15);
 	exports.setImmediate = setImmediate;
 	exports.clearImmediate = clearImmediate;
 
 /***/ }),
-/* 14 */
+/* 15 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(global, process) {"use strict";
@@ -1471,10 +1482,10 @@
 	    attachTo.setImmediate = setImmediate;
 	    attachTo.clearImmediate = clearImmediate;
 	})(typeof self === "undefined" ? typeof global === "undefined" ? undefined : global : self);
-	/* WEBPACK VAR INJECTION */}.call(exports, (function() { return this; }()), __webpack_require__(15)))
+	/* WEBPACK VAR INJECTION */}.call(exports, (function() { return this; }()), __webpack_require__(16)))
 
 /***/ }),
-/* 15 */
+/* 16 */
 /***/ (function(module, exports) {
 
 	// shim for using process in browser
@@ -1666,7 +1677,7 @@
 	};
 
 /***/ }),
-/* 16 */
+/* 17 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(global) {'use strict';(function(global,factory){ true?module.exports = factory():typeof define === 'function' && define.amd?define(factory):global['bootstrap-vue'] = factory();})(undefined,function(){'use strict'; /**
@@ -3954,131 +3965,7 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, (function() { return this; }())))
 
 /***/ }),
-/* 17 */
-/***/ (function(module, exports) {
-
-	module.exports = prestashop;
-
-/***/ }),
 /* 18 */
-/***/ (function(module, exports, __webpack_require__) {
-
-	'use strict';
-
-	Object.defineProperty(exports, '__esModule', {
-	  value: true
-	});
-
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
-
-	var _vue = __webpack_require__(12);
-
-	var _vue2 = _interopRequireDefault(_vue);
-
-	var productMiniature = _vue2['default'].extend({
-	  template: '#product-miniature-template',
-	  props: ['product'],
-	  data: function data() {
-	    return {
-	      imgBig: this.product.cover.bySize.medium_default.url,
-	      imgLarge: this.product.cover.large.url,
-	      onHover: false,
-	      sharePopOverId: 'share-popover-' + this.product.id_product + '-' + this.product.id_category_default
-	    };
-	  },
-	  methods: {
-	    changeImg: function changeImg(event) {
-	      if (event) {
-	        this.imgBig = event.target.dataset.bigImg;
-	        this.imgLarge = event.target.dataset.largeImg;
-	      }
-	    },
-
-	    zoomBg: function zoomBg(event) {
-	      var container = event.target.parentNode;
-	      var elementZoom = event.target;
-	      var x = event.offsetX == undefined ? event.layerX : event.offsetX;
-	      var y = event.offsetY == undefined ? event.layerY : event.offsetY;
-
-	      var e = {
-	        w: elementZoom.offsetWidth,
-	        h: elementZoom.offsetHeight
-	      };
-
-	      var c = {
-	        x: x / (e.w / 70),
-	        y: y / (e.h / 100)
-	      };
-
-	      elementZoom.style.opacity = 0;
-	      container.style.backgroundImage = 'url(' + elementZoom.dataset.largeImg + ')';
-	      container.style.backgroundPosition = c.x + '% ' + c.y + '%';
-	    },
-
-	    zoomLeave: function zoomLeave(event) {
-	      var container = event.target.parentNode;
-	      var elementZoom = event.target;
-
-	      elementZoom.style.opacity = 1;
-	      container.style.backgroundImage = '';
-	      container.style.backgroundPosition = '';
-	    }
-	  }
-	});
-
-	exports['default'] = productMiniature;
-	module.exports = exports['default'];
-
-/***/ }),
-/* 19 */
-/***/ (function(module, exports, __webpack_require__) {
-
-	/*! VueStringFilter v.1.2.1 */
-	"use strict";
-
-	!(function (e, t) {
-	   true ? module.exports = t() : "function" == typeof define && define.amd ? define("VueStringFilter", [], t) : "object" == typeof exports ? exports.VueStringFilter = t() : e.VueStringFilter = t();
-	})(undefined, function () {
-	  return (function (e) {
-	    function t(n) {
-	      if (r[n]) return r[n].exports;var o = r[n] = { i: n, l: !1, exports: {} };return e[n].call(o.exports, o, o.exports, t), o.l = !0, o.exports;
-	    }var r = {};return t.m = e, t.c = r, t.d = function (e, r, n) {
-	      t.o(e, r) || Object.defineProperty(e, r, { configurable: !1, enumerable: !0, get: n });
-	    }, t.n = function (e) {
-	      var r = e && e.__esModule ? function () {
-	        return e["default"];
-	      } : function () {
-	        return e;
-	      };return t.d(r, "a", r), r;
-	    }, t.o = function (e, t) {
-	      return Object.prototype.hasOwnProperty.call(e, t);
-	    }, t.p = "/dist", t(t.s = 0);
-	  })([function (e, t, r) {
-	    "use strict";Object.defineProperty(t, "__esModule", { value: !0 });var n = { install: function install(e) {
-	        e.filter("lowercase", function (e) {
-	          return e.toString().toLowerCase();
-	        }), e.filter("uppercase", function (e) {
-	          return e.toString().toUpperCase();
-	        }), e.filter("capitalize", function (e) {
-	          return e.charAt(0).toUpperCase() + e.slice(1);
-	        }), e.filter("titlecase", function (e) {
-	          return e.replace(/\w\S*/g, function (e) {
-	            return e.charAt(0).toUpperCase() + e.substr(1).toLowerCase();
-	          });
-	        }), e.filter("slug", function (e) {
-	          return e.toString().toLowerCase().trim().replace(/&/g, "-and-").replace(/[\s\W-]+/g, "-").replace(/--+/g, "-").replace(/^-+|-+$/g, "");
-	        }), e.filter("truncate", function (e, t) {
-	          return e.length < t ? e : e.slice(0, t) + "...";
-	        }), e.filter("cut", function (e, t) {
-	          return e.length < t ? e : e.slice(0, t);
-	        });
-	      } };t["default"] = n;
-	  }]);
-	});
-	//# sourceMappingURL=VueStringFilter.bundle.js.map
-
-/***/ }),
-/* 20 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	/*!
@@ -4092,7 +3979,7 @@
 	  return ex && typeof ex === 'object' && 'default' in ex ? ex['default'] : ex;
 	}
 
-	var Vue = _interopDefault(__webpack_require__(12));
+	var Vue = _interopDefault(__webpack_require__(13));
 
 	var SocialSharingNetwork = {
 	  functional: true,
@@ -4425,17 +4312,590 @@
 	module.exports = SocialSharing;
 
 /***/ }),
+/* 19 */,
+/* 20 */
+/***/ (function(module, exports, __webpack_require__) {
+
+	/*! VueStringFilter v.1.2.1 */
+	"use strict";
+
+	!(function (e, t) {
+	   true ? module.exports = t() : "function" == typeof define && define.amd ? define("VueStringFilter", [], t) : "object" == typeof exports ? exports.VueStringFilter = t() : e.VueStringFilter = t();
+	})(undefined, function () {
+	  return (function (e) {
+	    function t(n) {
+	      if (r[n]) return r[n].exports;var o = r[n] = { i: n, l: !1, exports: {} };return e[n].call(o.exports, o, o.exports, t), o.l = !0, o.exports;
+	    }var r = {};return t.m = e, t.c = r, t.d = function (e, r, n) {
+	      t.o(e, r) || Object.defineProperty(e, r, { configurable: !1, enumerable: !0, get: n });
+	    }, t.n = function (e) {
+	      var r = e && e.__esModule ? function () {
+	        return e["default"];
+	      } : function () {
+	        return e;
+	      };return t.d(r, "a", r), r;
+	    }, t.o = function (e, t) {
+	      return Object.prototype.hasOwnProperty.call(e, t);
+	    }, t.p = "/dist", t(t.s = 0);
+	  })([function (e, t, r) {
+	    "use strict";Object.defineProperty(t, "__esModule", { value: !0 });var n = { install: function install(e) {
+	        e.filter("lowercase", function (e) {
+	          return e.toString().toLowerCase();
+	        }), e.filter("uppercase", function (e) {
+	          return e.toString().toUpperCase();
+	        }), e.filter("capitalize", function (e) {
+	          return e.charAt(0).toUpperCase() + e.slice(1);
+	        }), e.filter("titlecase", function (e) {
+	          return e.replace(/\w\S*/g, function (e) {
+	            return e.charAt(0).toUpperCase() + e.substr(1).toLowerCase();
+	          });
+	        }), e.filter("slug", function (e) {
+	          return e.toString().toLowerCase().trim().replace(/&/g, "-and-").replace(/[\s\W-]+/g, "-").replace(/--+/g, "-").replace(/^-+|-+$/g, "");
+	        }), e.filter("truncate", function (e, t) {
+	          return e.length < t ? e : e.slice(0, t) + "...";
+	        }), e.filter("cut", function (e, t) {
+	          return e.length < t ? e : e.slice(0, t);
+	        });
+	      } };t["default"] = n;
+	  }]);
+	});
+	//# sourceMappingURL=VueStringFilter.bundle.js.map
+
+/***/ }),
 /* 21 */
+/***/ (function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	Object.defineProperty(exports, '__esModule', {
+	  value: true
+	});
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
+
+	var _vue = __webpack_require__(13);
+
+	var _vue2 = _interopRequireDefault(_vue);
+
+	var _striphtml = __webpack_require__(22);
+
+	var _striphtml2 = _interopRequireDefault(_striphtml);
+
+	exports['default'] = function () {
+	  _vue2['default'].filter('striphtml', _striphtml2['default']);
+	};
+
+	module.exports = exports['default'];
+
+/***/ }),
+/* 22 */
+/***/ (function(module, exports) {
+
+	'use strict';
+
+	Object.defineProperty(exports, '__esModule', {
+	  value: true
+	});
+
+	exports['default'] = function (value) {
+	  var div = document.createElement('div');
+	  div.innerHTML = value;
+	  var text = div.textContent || div.innerText || '';
+	  return text;
+	};
+
+	module.exports = exports['default'];
+
+/***/ }),
+/* 23 */
+/***/ (function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	Object.defineProperty(exports, '__esModule', {
+	  value: true
+	});
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
+
+	var _vue = __webpack_require__(13);
+
+	var _vue2 = _interopRequireDefault(_vue);
+
+	var _productMiniature = __webpack_require__(24);
+
+	var _productMiniature2 = _interopRequireDefault(_productMiniature);
+
+	exports['default'] = function () {
+	  _vue2['default'].component('product-miniature', _productMiniature2['default']);
+	};
+
+	module.exports = exports['default'];
+
+/***/ }),
+/* 24 */
+/***/ (function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	Object.defineProperty(exports, '__esModule', {
+	  value: true
+	});
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
+
+	var _vue = __webpack_require__(13);
+
+	var _vue2 = _interopRequireDefault(_vue);
+
+	var _data = __webpack_require__(25);
+
+	var _data2 = _interopRequireDefault(_data);
+
+	var _methodsZoomBg = __webpack_require__(26);
+
+	var _methodsZoomBg2 = _interopRequireDefault(_methodsZoomBg);
+
+	var _methodsChangeImg = __webpack_require__(27);
+
+	var _methodsChangeImg2 = _interopRequireDefault(_methodsChangeImg);
+
+	var _methodsZoomLeave = __webpack_require__(28);
+
+	var _methodsZoomLeave2 = _interopRequireDefault(_methodsZoomLeave);
+
+	var productMiniature = _vue2['default'].extend({
+	  template: '#product-miniature-template',
+	  props: ['product'],
+	  data: _data2['default'],
+	  methods: {
+	    changeImg: _methodsChangeImg2['default'],
+	    zoomBg: _methodsZoomBg2['default'],
+	    zoomLeave: _methodsZoomLeave2['default']
+	  }
+	});
+
+	exports['default'] = productMiniature;
+	module.exports = exports['default'];
+
+/***/ }),
+/* 25 */
+/***/ (function(module, exports) {
+
+	"use strict";
+
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+
+	exports["default"] = function () {
+	  return {
+	    imgBig: this.product.cover.bySize.medium_default.url,
+	    imgLarge: this.product.cover.large.url,
+	    isHover: document.documentElement.clientWidth > 992 ? false : true,
+	    static_token: prestashop.static_token,
+	    urls: prestashop.urls,
+	    document: document,
+	    configuration: prestashop.configuration,
+	    sharePopOverId: "share-popover-" + this.product.id_product + "-" + this.product.id_category_default
+	  };
+	};
+
+	module.exports = exports["default"];
+
+/***/ }),
+/* 26 */
+/***/ (function(module, exports) {
+
+	'use strict';
+
+	Object.defineProperty(exports, '__esModule', {
+	  value: true
+	});
+
+	exports['default'] = function (event) {
+	  var container = event.target.parentNode;
+	  var elementZoom = event.target;
+	  var x = event.offsetX == undefined ? event.layerX : event.offsetX;
+	  var y = event.offsetY == undefined ? event.layerY : event.offsetY;
+
+	  var e = {
+	    w: elementZoom.offsetWidth,
+	    h: elementZoom.offsetHeight
+	  };
+
+	  var c = {
+	    x: x / (e.w / 70),
+	    y: y / (e.h / 100)
+	  };
+
+	  elementZoom.style.opacity = 0;
+	  container.style.backgroundImage = 'url(' + elementZoom.dataset.largeImg + ')';
+	  container.style.backgroundPosition = c.x + '% ' + c.y + '%';
+	};
+
+	module.exports = exports['default'];
+
+/***/ }),
+/* 27 */
+/***/ (function(module, exports) {
+
+	"use strict";
+
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+
+	exports["default"] = function (event) {
+	  if (event) {
+	    this.imgBig = event.target.dataset.bigImg;
+	    this.imgLarge = event.target.dataset.largeImg;
+	  }
+	};
+
+	module.exports = exports["default"];
+
+/***/ }),
+/* 28 */
+/***/ (function(module, exports) {
+
+	'use strict';
+
+	Object.defineProperty(exports, '__esModule', {
+	  value: true
+	});
+
+	exports['default'] = function (event) {
+	  var container = event.target.parentNode;
+	  var elementZoom = event.target;
+
+	  elementZoom.style.opacity = 1;
+	  container.style.backgroundImage = '';
+	  container.style.backgroundPosition = '';
+	};
+
+	module.exports = exports['default'];
+
+/***/ }),
+/* 29 */
 /***/ (function(module, exports) {
 
 	// removed by extract-text-webpack-plugin
 
 /***/ }),
-/* 22 */,
-/* 23 */
+/* 30 */,
+/* 31 */
 /***/ (function(module, exports) {
 
 	// removed by extract-text-webpack-plugin
+
+/***/ }),
+/* 32 */,
+/* 33 */
+/***/ (function(module, exports, __webpack_require__) {
+
+	"use strict";
+
+	!(function (t, n) {
+	   true ? module.exports = n() : "function" == typeof define && define.amd ? define([], n) : "object" == typeof exports ? exports.VueAvatar = n() : t.VueAvatar = n();
+	})(undefined, function () {
+	  return (function (t) {
+	    function n(r) {
+	      if (e[r]) return e[r].exports;var o = e[r] = { i: r, l: !1, exports: {} };return t[r].call(o.exports, o, o.exports, n), o.l = !0, o.exports;
+	    }var e = {};return n.m = t, n.c = e, n.d = function (t, e, r) {
+	      n.o(t, e) || Object.defineProperty(t, e, { configurable: !1, enumerable: !0, get: r });
+	    }, n.n = function (t) {
+	      var e = t && t.__esModule ? function () {
+	        return t["default"];
+	      } : function () {
+	        return t;
+	      };return n.d(e, "a", e), e;
+	    }, n.o = function (t, n) {
+	      return Object.prototype.hasOwnProperty.call(t, n);
+	    }, n.p = "/", n(n.s = 9);
+	  })([function (t, n) {
+	    var e = t.exports = "undefined" != typeof window && window.Math == Math ? window : "undefined" != typeof self && self.Math == Math ? self : Function("return this")();"number" == typeof __g && (__g = e);
+	  }, function (t, n) {
+	    t.exports = function (t) {
+	      return "object" == typeof t ? null !== t : "function" == typeof t;
+	    };
+	  }, function (t, n, e) {
+	    t.exports = !e(3)(function () {
+	      return 7 != Object.defineProperty({}, "a", { get: function get() {
+	          return 7;
+	        } }).a;
+	    });
+	  }, function (t, n) {
+	    t.exports = function (t) {
+	      try {
+	        return !!t();
+	      } catch (t) {
+	        return !0;
+	      }
+	    };
+	  }, function (t, n) {
+	    var e = t.exports = { version: "2.5.1" };"number" == typeof __e && (__e = e);
+	  }, function (t, n, e) {
+	    var r = e(6),
+	        o = e(7);t.exports = function (t) {
+	      return r(o(t));
+	    };
+	  }, function (t, n, e) {
+	    var r = e(30);t.exports = Object("z").propertyIsEnumerable(0) ? Object : function (t) {
+	      return "String" == r(t) ? t.split("") : Object(t);
+	    };
+	  }, function (t, n) {
+	    t.exports = function (t) {
+	      if (void 0 == t) throw TypeError("Can't call method on  " + t);return t;
+	    };
+	  }, function (t, n) {
+	    var e = Math.ceil,
+	        r = Math.floor;t.exports = function (t) {
+	      return isNaN(t = +t) ? 0 : (t > 0 ? r : e)(t);
+	    };
+	  }, function (t, n, e) {
+	    "use strict";Object.defineProperty(n, "__esModule", { value: !0 }), n.Avatar = void 0;var r = e(10),
+	        o = (function (t) {
+	      return t && t.__esModule ? t : { "default": t };
+	    })(r);n.Avatar = o["default"], n["default"] = o["default"];
+	  }, function (t, n, e) {
+	    "use strict";Object.defineProperty(n, "__esModule", { value: !0 });var r = e(12),
+	        o = e.n(r),
+	        i = e(41),
+	        u = e(11),
+	        c = u(o.a, i.a, !1, null, null, null);n["default"] = c.exports;
+	  }, function (t, n) {
+	    t.exports = function (t, n, e, r, o, i) {
+	      var u,
+	          c = t = t || {},
+	          a = typeof t["default"];"object" !== a && "function" !== a || (u = t, c = t["default"]);var s = "function" == typeof c ? c.options : c;n && (s.render = n.render, s.staticRenderFns = n.staticRenderFns, s._compiled = !0), e && (s.functional = !0), o && (s._scopeId = o);var f;if ((i ? (f = function (t) {
+	        t = t || this.$vnode && this.$vnode.ssrContext || this.parent && this.parent.$vnode && this.parent.$vnode.ssrContext, t || "undefined" == typeof __VUE_SSR_CONTEXT__ || (t = __VUE_SSR_CONTEXT__), r && r.call(this, t), t && t._registeredComponents && t._registeredComponents.add(i);
+	      }, s._ssrRegister = f) : r && (f = r), f)) {
+	        var l = s.functional,
+	            p = l ? s.render : s.beforeCreate;l ? (s._injectStyles = f, s.render = function (t, n) {
+	          return f.call(n), p(t, n);
+	        }) : s.beforeCreate = p ? [].concat(p, f) : [f];
+	      }return { esModule: u, exports: c, options: s };
+	    };
+	  }, function (t, n, e) {
+	    "use strict";Object.defineProperty(n, "__esModule", { value: !0 });var r = e(13),
+	        o = (function (t) {
+	      return t && t.__esModule ? t : { "default": t };
+	    })(r);n["default"] = { name: "avatar", props: { username: { type: String, required: !0 }, initials: { type: String }, backgroundColor: { type: String }, color: { type: String }, customStyle: { type: Object }, size: { type: Number, "default": 50 }, src: { type: String }, rounded: { type: Boolean, "default": !0 }, lighten: { type: Number, "default": 80 } }, data: function data() {
+	        return { backgroundColors: ["#F44336", "#FF4081", "#9C27B0", "#673AB7", "#3F51B5", "#2196F3", "#03A9F4", "#00BCD4", "#009688", "#4CAF50", "#8BC34A", "#CDDC39", "#FFC107", "#FF9800", "#FF5722", "#795548", "#9E9E9E", "#607D8B"] };
+	      }, mounted: function mounted() {
+	        this.$emit("avatar-initials", this.username, this.userInitial);
+	      }, computed: { background: function background() {
+	          return this.backgroundColor || this.randomBackgroundColor(this.username.length, this.backgroundColors);
+	        }, fontColor: function fontColor() {
+	          return this.color || this.lightenColor(this.background, this.lighten);
+	        }, isImage: function isImage() {
+	          return Boolean(this.src);
+	        }, style: function style() {
+	          var t = { width: this.size + "px", height: this.size + "px", borderRadius: this.rounded ? "50%" : 0, textAlign: "center", verticalAlign: "middle" },
+	              n = { background: "transparent url(" + this.src + ") no-repeat scroll 0% 0% / " + this.size + "px " + this.size + "px content-box border-box" },
+	              e = { backgroundColor: this.background, font: Math.floor(this.size / 2.5) + "px/100px Helvetica, Arial, sans-serif", fontWeight: "bold", color: this.fontColor, lineHeight: this.size + Math.floor(this.size / 20) + "px" },
+	              r = this.isImage ? n : e;return (0, o["default"])(t, r), t;
+	        }, userInitial: function userInitial() {
+	          return this.initials || this.initial(this.username);
+	        } }, methods: { initial: function initial(t) {
+	          for (var n = t.split(/[ -]/), e = "", r = 0; r < n.length; r++) e += n[r].charAt(0);return e.length > 3 && -1 !== e.search(/[A-Z]/) && (e = e.replace(/[a-z]+/g, "")), e = e.substr(0, 3).toUpperCase();
+	        }, randomBackgroundColor: function randomBackgroundColor(t, n) {
+	          return n[t % n.length];
+	        }, lightenColor: function lightenColor(t, n) {
+	          var e = !1;"#" === t[0] && (t = t.slice(1), e = !0);var r = parseInt(t, 16),
+	              o = (r >> 16) + n;o > 255 ? o = 255 : o < 0 && (o = 0);var i = (r >> 8 & 255) + n;i > 255 ? i = 255 : i < 0 && (i = 0);var u = (255 & r) + n;return u > 255 ? u = 255 : u < 0 && (u = 0), (e ? "#" : "") + (u | i << 8 | o << 16).toString(16);
+	        } } };
+	  }, function (t, n, e) {
+	    t.exports = { "default": e(14), __esModule: !0 };
+	  }, function (t, n, e) {
+	    e(15), t.exports = e(4).Object.assign;
+	  }, function (t, n, e) {
+	    var r = e(16);r(r.S + r.F, "Object", { assign: e(26) });
+	  }, function (t, n, e) {
+	    var r = e(0),
+	        o = e(4),
+	        i = e(17),
+	        u = e(19),
+	        c = function c(t, n, e) {
+	      var a,
+	          s,
+	          f,
+	          l = t & c.F,
+	          p = t & c.G,
+	          d = t & c.S,
+	          h = t & c.P,
+	          v = t & c.B,
+	          y = t & c.W,
+	          g = p ? o : o[n] || (o[n] = {}),
+	          b = g.prototype,
+	          x = p ? r : d ? r[n] : (r[n] || {}).prototype;p && (e = n);for (a in e) (s = !l && x && void 0 !== x[a]) && a in g || (f = s ? x[a] : e[a], g[a] = p && "function" != typeof x[a] ? e[a] : v && s ? i(f, r) : y && x[a] == f ? (function (t) {
+	        var n = function n(_n, e, r) {
+	          if (this instanceof t) {
+	            switch (arguments.length) {case 0:
+	                return new t();case 1:
+	                return new t(_n);case 2:
+	                return new t(_n, e);}return new t(_n, e, r);
+	          }return t.apply(this, arguments);
+	        };return n.prototype = t.prototype, n;
+	      })(f) : h && "function" == typeof f ? i(Function.call, f) : f, h && ((g.virtual || (g.virtual = {}))[a] = f, t & c.R && b && !b[a] && u(b, a, f)));
+	    };c.F = 1, c.G = 2, c.S = 4, c.P = 8, c.B = 16, c.W = 32, c.U = 64, c.R = 128, t.exports = c;
+	  }, function (t, n, e) {
+	    var r = e(18);t.exports = function (t, n, e) {
+	      if ((r(t), void 0 === n)) return t;switch (e) {case 1:
+	          return function (e) {
+	            return t.call(n, e);
+	          };case 2:
+	          return function (e, r) {
+	            return t.call(n, e, r);
+	          };case 3:
+	          return function (e, r, o) {
+	            return t.call(n, e, r, o);
+	          };}return function () {
+	        return t.apply(n, arguments);
+	      };
+	    };
+	  }, function (t, n) {
+	    t.exports = function (t) {
+	      if ("function" != typeof t) throw TypeError(t + " is not a function!");return t;
+	    };
+	  }, function (t, n, e) {
+	    var r = e(20),
+	        o = e(25);t.exports = e(2) ? function (t, n, e) {
+	      return r.f(t, n, o(1, e));
+	    } : function (t, n, e) {
+	      return t[n] = e, t;
+	    };
+	  }, function (t, n, e) {
+	    var r = e(21),
+	        o = e(22),
+	        i = e(24),
+	        u = Object.defineProperty;n.f = e(2) ? Object.defineProperty : function (t, n, e) {
+	      if ((r(t), n = i(n, !0), r(e), o)) try {
+	        return u(t, n, e);
+	      } catch (t) {}if ("get" in e || "set" in e) throw TypeError("Accessors not supported!");return "value" in e && (t[n] = e.value), t;
+	    };
+	  }, function (t, n, e) {
+	    var r = e(1);t.exports = function (t) {
+	      if (!r(t)) throw TypeError(t + " is not an object!");return t;
+	    };
+	  }, function (t, n, e) {
+	    t.exports = !e(2) && !e(3)(function () {
+	      return 7 != Object.defineProperty(e(23)("div"), "a", { get: function get() {
+	          return 7;
+	        } }).a;
+	    });
+	  }, function (t, n, e) {
+	    var r = e(1),
+	        o = e(0).document,
+	        i = r(o) && r(o.createElement);t.exports = function (t) {
+	      return i ? o.createElement(t) : {};
+	    };
+	  }, function (t, n, e) {
+	    var r = e(1);t.exports = function (t, n) {
+	      if (!r(t)) return t;var e, o;if (n && "function" == typeof (e = t.toString) && !r(o = e.call(t))) return o;if ("function" == typeof (e = t.valueOf) && !r(o = e.call(t))) return o;if (!n && "function" == typeof (e = t.toString) && !r(o = e.call(t))) return o;throw TypeError("Can't convert object to primitive value");
+	    };
+	  }, function (t, n) {
+	    t.exports = function (t, n) {
+	      return { enumerable: !(1 & t), configurable: !(2 & t), writable: !(4 & t), value: n };
+	    };
+	  }, function (t, n, e) {
+	    "use strict";var r = e(27),
+	        o = e(38),
+	        i = e(39),
+	        u = e(40),
+	        c = e(6),
+	        a = Object.assign;t.exports = !a || e(3)(function () {
+	      var t = {},
+	          n = {},
+	          e = Symbol(),
+	          r = "abcdefghijklmnopqrst";return t[e] = 7, r.split("").forEach(function (t) {
+	        n[t] = t;
+	      }), 7 != a({}, t)[e] || Object.keys(a({}, n)).join("") != r;
+	    }) ? function (t, n) {
+	      for (var e = u(t), a = arguments.length, s = 1, f = o.f, l = i.f; a > s;) for (var p, d = c(arguments[s++]), h = f ? r(d).concat(f(d)) : r(d), v = h.length, y = 0; v > y;) l.call(d, p = h[y++]) && (e[p] = d[p]);return e;
+	    } : a;
+	  }, function (t, n, e) {
+	    var r = e(28),
+	        o = e(37);t.exports = Object.keys || function (t) {
+	      return r(t, o);
+	    };
+	  }, function (t, n, e) {
+	    var r = e(29),
+	        o = e(5),
+	        i = e(31)(!1),
+	        u = e(34)("IE_PROTO");t.exports = function (t, n) {
+	      var e,
+	          c = o(t),
+	          a = 0,
+	          s = [];for (e in c) e != u && r(c, e) && s.push(e);for (; n.length > a;) r(c, e = n[a++]) && (~i(s, e) || s.push(e));return s;
+	    };
+	  }, function (t, n) {
+	    var e = ({}).hasOwnProperty;t.exports = function (t, n) {
+	      return e.call(t, n);
+	    };
+	  }, function (t, n) {
+	    var e = ({}).toString;t.exports = function (t) {
+	      return e.call(t).slice(8, -1);
+	    };
+	  }, function (t, n, e) {
+	    var r = e(5),
+	        o = e(32),
+	        i = e(33);t.exports = function (t) {
+	      return function (n, e, u) {
+	        var c,
+	            a = r(n),
+	            s = o(a.length),
+	            f = i(u, s);if (t && e != e) {
+	          for (; s > f;) if ((c = a[f++]) != c) return !0;
+	        } else for (; s > f; f++) if ((t || f in a) && a[f] === e) return t || f || 0;return !t && -1;
+	      };
+	    };
+	  }, function (t, n, e) {
+	    var r = e(8),
+	        o = Math.min;t.exports = function (t) {
+	      return t > 0 ? o(r(t), 9007199254740991) : 0;
+	    };
+	  }, function (t, n, e) {
+	    var r = e(8),
+	        o = Math.max,
+	        i = Math.min;t.exports = function (t, n) {
+	      return t = r(t), t < 0 ? o(t + n, 0) : i(t, n);
+	    };
+	  }, function (t, n, e) {
+	    var r = e(35)("keys"),
+	        o = e(36);t.exports = function (t) {
+	      return r[t] || (r[t] = o(t));
+	    };
+	  }, function (t, n, e) {
+	    var r = e(0),
+	        o = r["__core-js_shared__"] || (r["__core-js_shared__"] = {});t.exports = function (t) {
+	      return o[t] || (o[t] = {});
+	    };
+	  }, function (t, n) {
+	    var e = 0,
+	        r = Math.random();t.exports = function (t) {
+	      return "Symbol(".concat(void 0 === t ? "" : t, ")_", (++e + r).toString(36));
+	    };
+	  }, function (t, n) {
+	    t.exports = "constructor,hasOwnProperty,isPrototypeOf,propertyIsEnumerable,toLocaleString,toString,valueOf".split(",");
+	  }, function (t, n) {
+	    n.f = Object.getOwnPropertySymbols;
+	  }, function (t, n) {
+	    n.f = ({}).propertyIsEnumerable;
+	  }, function (t, n, e) {
+	    var r = e(7);t.exports = function (t) {
+	      return Object(r(t));
+	    };
+	  }, function (t, n, e) {
+	    "use strict";var r = function r() {
+	      var t = this,
+	          n = t.$createElement,
+	          e = t._self._c || n;return e("div", { staticClass: "vue-avatar--wrapper", style: [t.style, t.customStyle] }, [this.src ? t._e() : e("span", [t._v(t._s(t.userInitial))])]);
+	    },
+	        o = [],
+	        i = { render: r, staticRenderFns: o };n.a = i;
+	  }]);
+	});
 
 /***/ })
 /******/ ]);

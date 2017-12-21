@@ -7,7 +7,9 @@ var productMiniature = Vue.extend({
     return {
       imgBig: this.product.cover.bySize.medium_default.url,
       imgLarge: this.product.cover.large.url,
-      onHover: false,
+      isHover: false,
+      static_token: prestashop.static_token,
+      static_token: prestashop.static_token,
       sharePopOverId: `share-popover-${this.product.id_product}-${this.product.id_category_default}`
     }
   },

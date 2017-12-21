@@ -31,6 +31,7 @@
         "vue": "^2.5.11",
         "vue-social-sharing": "^2.3.3",
         "vue-string-filter": "^1.2.1",
+        "vue-truncate-collapsed": "^1.2.0",
         "webpack": "^1.13.1"
     }
 }
