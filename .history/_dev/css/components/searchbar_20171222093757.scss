@@ -1,0 +1,43 @@
+.search_widget{
+  position: relative;
+
+  .form-control{
+    min-width: 320px;
+  }
+
+  .ui-widget-content{
+    width: 100%;
+    font-size: 14px;
+    max-height: calc(100vh - 60px);
+    overflow-y: auto;
+    margin-top: 12px;
+    border-radius: 0;
+
+    &::-webkit-scrollbar-button {
+      width: 2px;
+      height: 0;
+      background-color: transparent;
+    }
+
+    &::-webkit-scrollbar-track {
+      background-color: transparent;
+    }
+
+    &::-webkit-scrollbar-thumb {
+      border-radius: 0;
+      background-color: #ccc;
+    }
+
+    &::-webkit-scrollbar-thumb:hover {
+      background-color: darken(#ccc, 20%);
+    }
+
+    &::-webkit-scrollbar {
+      width: 4px;
+    }
+
+    img{
+      max-width: 70px;
+    }
+  }
+}

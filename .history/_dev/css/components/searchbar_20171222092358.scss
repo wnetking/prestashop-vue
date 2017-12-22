@@ -1,0 +1,14 @@
+.search_widget{
+  position: relative;
+
+  .form-control{
+    min-width: 320px;
+  }
+
+  .ui-widget-content{
+    //
+    max-width: 100%;
+    font-size: 14px;
+  }
+}
+

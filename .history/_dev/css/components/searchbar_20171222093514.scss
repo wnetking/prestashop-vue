@@ -1,0 +1,18 @@
+.search_widget{
+  position: relative;
+
+  .form-control{
+    min-width: 320px;
+  }
+
+  .ui-widget-content{
+    width: 100%;
+    font-size: 14px;
+    max-height: calc(100vh - 60px)
+    overflow-y: auto;
+
+    img{
+      max-width: 70px;
+    }
+  }
+}

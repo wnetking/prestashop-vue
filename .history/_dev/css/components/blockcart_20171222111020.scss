@@ -1,0 +1,14 @@
+.blockcart{
+  //
+  .cart-body{
+    width: 280px;
+  }
+
+  .nav-link{
+    &:hover{
+      & + .dropdown-menu{
+        display: block;
+      }
+    }
+  }
+}

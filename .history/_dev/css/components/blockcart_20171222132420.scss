@@ -1,0 +1,18 @@
+.blockcart{
+  //
+  flex-grow: 1;
+
+  &:hover{
+    .dropdown-menu{
+      display: block;
+    }
+  }
+
+  .cart-body{
+    width: 280px;
+  }
+
+  img{
+    max-width: 50px;
+  }
+}

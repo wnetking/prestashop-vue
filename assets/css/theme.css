@@ -490,25 +490,6 @@ label span {
   display: inline-block;
   font-size: 1rem;
 }
-.header-nav::after {
-  clear: both;
-  content: "\A0";
-  font-size: 0px;
-}
-.header-top {
-  margin-top: 10px;
-  margin-bottom: 10px;
-}
-.header-top::after {
-  clear: both;
-  content: "\A0";
-  font-size: 0px;
-}
-#header::after {
-  clear: both;
-  content: "\A0";
-  font-size: 0px;
-}
 #wrapper {
   clear: both;
 }
@@ -595,67 +576,6 @@ label.radio-block {
 .customizations label {
   font-weight: bold;
 }
-.language-selector {
-  width: 200px;
-  text-align: center;
-}
-.language-selector,
-.currency-selector {
-  display: inline-block;
-  position: relative;
-  border: 1px solid #808080;
-  padding: 5px;
-  background-color: #fff;
-  cursor: pointer;
-  z-index: 100;
-}
-.language-selector a,
-.currency-selector a,
-.language-selector a:visited,
-.currency-selector a:visited {
-  display: block;
-  text-decoration: none;
-  color: #333;
-}
-.language-selector ul,
-.currency-selector ul {
-  display: none;
-  position: absolute;
-  background-color: #fff;
-  margin: 0;
-  padding: 0;
-  width: calc(100% + 2px);
-  left: -1px;
-  top: 100%;
-}
-.language-selector:hover ul,
-.currency-selector:hover ul {
-  display: block;
-}
-.language-selector li,
-.currency-selector li {
-  cursor: pointer;
-  list-style: none;
-  display: block;
-  padding: 5px;
-  border: 1px solid #808080;
-}
-.language-selector li:not(:first-child),
-.currency-selector li:not(:first-child) {
-  border-top: 0px;
-}
-.language-selector li:hover,
-.currency-selector li:hover {
-  background-color: #666;
-}
-.language-selector li:hover a,
-.currency-selector li:hover a {
-  color: #fff;
-}
-.language-selector li.current,
-.currency-selector li.current {
-  font-style: italic;
-}
 .menu {
   float: left;
 }
@@ -668,20 +588,13 @@ label.radio-block {
   display: block;
 }
 .menu a:hover,
-.menu li.current > a {
-  background-color: #666;
-  color: #fff;
-}
+.menu li.current > a,
 .menu > ul > li {
   display: inline-block;
   vertical-align: top;
 }
-.menu > ul > li:not(:first-child) {
-  border-left: 1px solid #ccc;
-}
-.menu > ul > li > a {
-  background-color: #fff;
-}
+.menu a:hover > div,
+.menu li.current > a > div,
 .menu > ul > li > div {
   border: 1px solid #808080;
   display: none;
@@ -689,6 +602,13 @@ label.radio-block {
   z-index: 1337;
   background-color: #fff;
 }
+.menu a:hover > div:empty,
+.menu li.current > a > div:empty,
+.menu > ul > li > div:empty {
+  display: none !important;
+}
+.menu a:hover:hover > div,
+.menu li.current > a:hover > div,
 .menu > ul > li:hover > div {
   display: block;
 }
@@ -1273,18 +1193,52 @@ nav.pagination .current a {
     .product-share-btns span i {
       font-size: 20px; }
 
+.blockcart:hover .dropdown-menu {
+  display: block; }
+
 .blockcart .cart-body {
   width: 280px; }
+
+.blockcart img {
+  max-width: 50px; }
 
 .user-info-body {
   width: 280px; }
 
 .search_widget {
-  position: relative; }
+  position: relative;
+  flex-grow: 1; }
   .search_widget .form-control {
-    min-width: 320px; }
+    flex-grow: 1; }
   .search_widget .ui-widget-content {
-    max-width: 100%; }
+    top: 100% !important;
+    width: 100% !important;
+    font-size: 14px;
+    max-height: calc(100vh - 60px);
+    overflow-y: auto;
+    border-radius: 0; }
+    .search_widget .ui-widget-content::-webkit-scrollbar-button {
+      width: 2px;
+      height: 0;
+      background-color: transparent; }
+    .search_widget .ui-widget-content::-webkit-scrollbar-track {
+      background-color: transparent; }
+    .search_widget .ui-widget-content::-webkit-scrollbar-thumb {
+      border-radius: 0;
+      background-color: #ccc; }
+    .search_widget .ui-widget-content::-webkit-scrollbar-thumb:hover {
+      background-color: #999999; }
+    .search_widget .ui-widget-content::-webkit-scrollbar {
+      width: 4px; }
+    .search_widget .ui-widget-content img {
+      max-width: 70px;
+      border: 1px solid #ccc; }
+    .search_widget .ui-widget-content .ui-state-focus {
+      border-radius: 0;
+      background: #ccc; }
+    .search_widget .ui-widget-content .ui-menu-item {
+      list-style-image: none;
+      cursor: pointer; }
 
 body {
   background: #fefefe; }
