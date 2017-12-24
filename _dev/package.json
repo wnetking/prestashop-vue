@@ -11,7 +11,10 @@
     "author": "PrestaShop",
     "license": "AFL-3.0",
     "devDependencies": {
+        "babel-core": "^6.26.0",
         "babel-loader": "^5.3.2",
+        "babel-preset-env": "^1.6.1",
+        "babel-preset-es2015": "^6.24.1",
         "bootstrap": "^4.0.0-beta.2",
         "bootstrap-vue": "^1.4.0",
         "css-loader": "^0.23.1",
@@ -28,7 +31,15 @@
         "style-loader": "^0.13.0",
         "stylus": "^0.54.5",
         "stylus-loader": "^2.1.2",
-        "vue": "^2.5.11",
+        "vue": "^2.5.13",
+        "vue-avatar": "^2.1.1",
+        "vue-carousel-3d": "^0.1.19",
+        "vue-loader": "^13.6.1",
+        "vue-slick": "^1.1.12",
+        "vue-social-sharing": "^2.3.3",
+        "vue-string-filter": "^1.2.1",
+        "vue-template-compiler": "^2.5.13",
+        "vue-truncate-collapsed": "^1.2.0",
         "webpack": "^1.13.1"
     }
 }

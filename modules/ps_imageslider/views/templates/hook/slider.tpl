@@ -26,7 +26,7 @@
 <div class="mb-5" data-module-name="homeslider" data-module-data="{$homeslider|@json_encode}" v-if="modules.homeslider.slides">
   <b-carousel id="carousel"
                 style="text-shadow: 1px 1px 2px #333;"
-                indicators
+                controls
                 background="#ababab"
                 img-blank
                 :interval="4000"
@@ -38,6 +38,10 @@
                         :text="slide.description"
                         :img-src="slide.image_url"
                         img-height="480"
-      ></b-carousel-slide>
+      >
+        <b-button size="lg" variant="primary" :href="slide.url">
+          {l s='See more' d='Shop.Theme.Catalog'}
+        </b-button>
+      </b-carousel-slide>
     </b-carousel>
 </div>

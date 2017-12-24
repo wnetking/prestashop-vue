@@ -1,7 +1,12 @@
+import prestashop from 'prestashop'
 import Vue from 'vue'
 import BootstrapVue from 'bootstrap-vue'
-import prestashop from 'prestashop'
-import productMiniature from './components/product-miniature'
+import SocialSharing from 'vue-social-sharing'
+import Avatar from 'vue-avatar'
+import VueStringFilter from 'vue-string-filter'
+import filters from './filters'
+import components from './components'
+
 import 'bootstrap/dist/css/bootstrap.css'
 import 'bootstrap-vue/dist/bootstrap-vue.css'
 
@@ -10,10 +15,16 @@ $('[data-module-name]').each(function () {
 })
 
 Vue.use(BootstrapVue)
+Vue.use(VueStringFilter)
+Vue.use(SocialSharing)
 
-Vue.component('product-miniature', productMiniature)
+filters()
+components()
 
 new Vue({
-  el: '#wrapper',
-  data: prestashop
+  el: '#app',
+  data: prestashop,
+  components: {
+    'avatar': Avatar
+  }
 })

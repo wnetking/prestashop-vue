@@ -22,14 +22,14 @@
  * @license   https://opensource.org/licenses/AFL-3.0 Academic Free License 3.0 (AFL-3.0)
  * International Registered Trademark & Property of PrestaShop SA
  *}
-<a class="banner" href="{$banner_link}" title="{$banner_desc}">
+<a class="banner position-relative d-block" href="{$banner_link}" title="{$banner_desc}">
+  <div class="h2 position-absolute banner-desc d-flex align-items-center px-5">{$banner_desc}</div>
+
   {if isset($banner_img)}
     <b-img-lazy
           src="{$banner_img}"
           alt="{$banner_desc}"
           title="{$banner_desc}"
           fluid-grow blank-color="#ccc" />
-  {else}
-    <span>{$banner_desc}</span>
   {/if}
 </a>

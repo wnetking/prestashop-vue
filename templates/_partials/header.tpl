@@ -28,23 +28,53 @@
   </div>
 {/block}
 
-{block name='header_nav'}
-  <div class="header-nav">
-    {hook h='displayNav'}
-  </div>
-{/block}
+<div class="bg-dark">
+  <b-navbar toggleable type="dark" class="container">  
+    <b-navbar-nav class="w-100">
+      {block name='header_nav'}
+          {hook h='displayNav'}
+      {/block}
+    </b-navbar-nav>
+  </b-navbar>
+</div>
 
-{block name='header_logo'}
-  <a class="logo" href="{$urls.base_url}" title="{$shop.name}">
-    <img src="{$shop.logo}" alt="{$shop.name}">
-  </a>
-{/block}
+<div class="container">
+  <b-navbar toggleable="lg" type="light " variant="light">
+    <b-navbar-brand href="{$urls.base_url}" class="d-lg-none">
+      <img :src="shop.stores_icon"/>
+      <span>{literal}{{shop.name}}{/literal}</span>
+    </b-navbar-brand>
 
-{block name='header_top'}
-  <div class="header-top">
-    {hook h='displayTop'}
-  </div>
+    {block name='header_logo'}
+      <b-navbar-brand href="{$urls.base_url}" title="{$shop.name}" class="logo d-none d-lg-inline-block">
+        <img src="{$shop.logo}" alt="{$shop.name}">
+      </b-navbar-brand>
+    {/block}
+    <b-navbar-toggle target="header-top"></b-navbar-toggle>
 
-  {hook h='displayNavFullWidth'}
+    <b-collapse is-nav id="header-top" class="justify-content-end">
+      {hook h='displayTop'}
+    </b-collapse>
+  </b-navbar>
+</div>
 
-{/block}
+{hook h='displayNavFullWidth'}
+
+
+{* <b-container class="pt-5">
+  <b-row class="mt-2">
+     <b-col>
+      {block name='header_top'}
+        <div class="header-top">
+          {hook h='displayTop'}
+        </div>
+
+
+
+      {/block}
+     </b-col>
+  </b-row>
+</b-container> *}
+
+
+

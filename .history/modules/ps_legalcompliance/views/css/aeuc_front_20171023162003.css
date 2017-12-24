@@ -1,0 +1,153 @@
+/**
+ * 2007-2016 PrestaShop
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the Open Software License (OSL 3.0)
+ * that is bundled with this package in the file LICENSE.txt.
+ * It is also available through the world-wide-web at this URL:
+ * http://opensource.org/licenses/osl-3.0.php
+ * If you did not receive a copy of the license and are unable to
+ * obtain it through the world-wide-web, please send an email
+ * to license@prestashop.com so we can send you a copy immediately.
+ *
+ * DISCLAIMER
+ *
+ * Do not edit or add to this file if you wish to upgrade PrestaShop to newer
+ * versions in the future. If you wish to customize PrestaShop for your
+ * needs please refer to http://www.prestashop.com for more information.
+ *
+ *  @author 	PrestaShop SA <contact@prestashop.com>
+ *  @copyright  2007-2016 PrestaShop SA
+ *  @license    http://opensource.org/licenses/osl-3.0.php  Open Software License (OSL 3.0)
+ *  International Registered Trademark & Property of PrestaShop SA
+ */
+
+span.aeuc_from_label,
+span.aeuc_tax_label,
+div.aeuc_tax_label,
+div.aeuc_weight_label {
+    color: #554f58;
+    font-size: 11px;
+}
+
+span.aeuc_tax_label_shopping_cart {
+    color: #554f58 !important;
+    font-size: 12px !important;
+}
+
+span.aeuc_tax_label_blockcart {
+    color: #fff !important;
+}
+
+.aeuc_shipping_label, .aeuc_delivery_label {
+  color: #878787;
+  font-size: 13px;
+}
+
+.aeuc_shipping_label:before, .aeuc_delivery_label:before {
+  content: "-";
+}
+
+.aeuc_shipping_label a {
+  color: #878787;
+  text-decoration: underline;
+}
+
+.content_price > span {
+	display:inline-block;
+}
+
+span.unvisible {
+	display: none;
+}
+
+p.payment_selected > a.payment_module_adv {
+    border: 1px solid #55c65e;
+    border-radius: 4px;
+}
+
+a.payment_module_adv {
+    border: 1px solid #d6d4d4;
+    border-radius: 4px;
+}
+.cart-overview div.aeuc_unit_price_label {
+	font-size: 8px;
+	display: inline-block;
+	font-weight: normal;
+}
+#checkout-cart-summary div.aeuc_unit_price_label {
+	display: block;
+	font-size: 0.75rem;
+	color: #878787;
+}
+#order-items div.aeuc_unit_price_label {
+	display: block;
+	font-size: 0.875rem;
+	color: #878787;
+}
+.products div.aeuc_unit_price_label {
+	display: block;
+	font-size: 0.875rem;
+	color: #acaaa6;
+	font-weight: 700;
+	text-align: center;
+}
+#blockcart-modal div.aeuc_unit_price_label {
+	font-size: 9px;
+	font-weight: normal;
+	margin-bottom: 8px;
+}
+#product div.aeuc_unit_price_label {
+	padding-bottom: 16px;
+}
+
+body.tax-display-enabled #products .thumbnail-container,
+body.tax-display-enabled .featured-products .thumbnail-container,
+body.tax-display-enabled .product-accessories .thumbnail-container {
+	height: 358px;
+}
+
+body.tax-display-enabled #products .highlighted-informations,
+body.tax-display-enabled .featured-products .highlighted-informations,
+body.tax-display-enabled .product-accessories .highlighted-informations {
+	height: 4.25em;
+}
+
+body.tax-display-enabled #products .product-description,
+body.tax-display-enabled .featured-products .product-description,
+body.tax-display-enabled .product-accessories .product-description {
+	height: 90px;
+}
+
+div.condition-label label.js-terms {
+	text-align: left;
+}
+#conditions-to-approve #cta-terms-and-conditions-1 {
+	font-weight: bold;
+}
+
+div.aeuc_footer_info {
+	text-align: center;
+	font-size: 0.875rem;
+	margin-top: 10px;
+	margin-bottom: 10px;
+}
+
+body#checkout #footer {
+	padding: 0;
+}
+
+h5.aeuc_scart {
+	margin-bottom: 20px;
+}
+
+.euAboutUsCMS {
+  padding-top: 0px; }
+  .euAboutUsCMS li a {
+    color: #acaaa6;
+    cursor: pointer; }
+    .euAboutUsCMS li a:hover {
+      color: #2fb5d2; }
+  .euAboutUsCMS .cms-page-link a {
+    color: #414141; }

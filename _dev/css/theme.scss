@@ -1,19 +1,61 @@
+@import 'components/product-share-btns.scss';
+@import 'components/blockcart.scss';
+@import 'components/user-info.scss';
+@import 'components/searchbar.scss';
+@import 'components/banner';
+
 $body-background-color: #fefefe;
 
 body {
   background: $body-background-color;
 }
 
+.product-flags{
+  span{
+    margin: 0 3px;
+  }
+}
+
 .product-list-thumb{
   top: 0;
   left: 0;
   height: 100%;
+  overflow: hidden;
+  overflow-y: auto;
+  background-color: #fff;
+
+  &::-webkit-scrollbar-button {
+    width: 2px;
+    height: 0;
+    background-color: transparent;
+  }
+
+  &::-webkit-scrollbar-track {
+    background-color: transparent;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    border-radius: 0;
+    background-color: #ccc;
+  }
+
+  &::-webkit-scrollbar-thumb:hover {
+    background-color: darken(#ccc, 20%);
+  }
+
+  &::-webkit-scrollbar {
+    width: 4px;
+  }
 
 
   img{
-    max-width: 50px;
+    max-width: 46px;
     margin-bottom: 0.25rem;
     border: 1px solid #ccc;
+
+    &.active{
+      border-color: black;
+    }
   }
 }
 

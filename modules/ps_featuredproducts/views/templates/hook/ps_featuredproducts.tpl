@@ -24,13 +24,12 @@
  *}
 
 <section class="featured-products clearfix" data-module-name="featuredProduct" data-module-data="{$products|@json_encode}">
-  <h2 class="h1 products-section-title text-uppercase">
+  <h2 class="h1 products-section-title text-center mb-2 mb-xl-4">
     {l s='Popular Products' d='Shop.Theme.Catalog'}
   </h2>
-  <div class="products">  
-    <div is="product-miniature" v-for="product in modules.featuredProduct" :product='product'></div>
-  </div>
-  <a class="all-product-link float-xs-left float-md-right h4" href="{$allProductsLink}">
+  <products-limit :data="modules.featuredProduct"></products-limit>
+  
+  {* <a class="all-product-link float-xs-left float-md-right h4" href="{$allProductsLink}">
     {l s='All products' d='Shop.Theme.Catalog'}
-  </a>
+  </a> *}
 </section>

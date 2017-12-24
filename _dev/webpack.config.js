@@ -25,7 +25,7 @@
 var webpack = require('webpack');
 var ExtractTextPlugin = require("extract-text-webpack-plugin");
 
-var plugins = [ new webpack.DefinePlugin({
+var plugins = [new webpack.DefinePlugin({
   'process.env': {
     NODE_ENV: '"develop"'
   }
@@ -48,38 +48,47 @@ module.exports = [{
     filename: 'theme.js'
   },
   module: {
-    loaders: [{
-      test: /\.js/,
-      loader: 'babel-loader'
-    },
-    {
-      test: /\.scss$/,
-      loader: ExtractTextPlugin.extract(
-        "style",
-        "css-loader?sourceMap!postcss!sass-loader?sourceMap"
-      )
-    }, {
-      test: /\.styl$/,
-      loader: ExtractTextPlugin.extract(
-        "style",
-        "css-loader?sourceMap!postcss!stylus-loader?sourceMap"
-      )
-    }, {
-      test: /\.less$/,
-      loader: ExtractTextPlugin.extract(
-        "style",
-        "css-loader?sourceMap!postcss!less-loader?sourceMap"
-      )
-    }, {
-      test: /\.css$/,
-      loader: ExtractTextPlugin.extract(
-        'style',
-        'css-loader?sourceMap!postcss-loader'
-      )
-    }, {
-      test: /.(png|woff(2)?|eot|ttf|svg)(\?[a-z0-9=\.]+)?$/,
-      loader: 'file-loader?name=../css/[hash].[ext]'
-    }]
+    loaders: [
+      {
+        test: /\.vue/,
+        loader: 'vue-loader',
+        options: {
+          loaders: {
+            js: 'babel-loader'
+          }
+        }
+      }, {
+        test: /\.js/,
+        loader: 'babel-loader'
+      },
+      {
+        test: /\.scss$/,
+        loader: ExtractTextPlugin.extract(
+          "style",
+          "css-loader?sourceMap!postcss!sass-loader?sourceMap"
+        )
+      }, {
+        test: /\.styl$/,
+        loader: ExtractTextPlugin.extract(
+          "style",
+          "css-loader?sourceMap!postcss!stylus-loader?sourceMap"
+        )
+      }, {
+        test: /\.less$/,
+        loader: ExtractTextPlugin.extract(
+          "style",
+          "css-loader?sourceMap!postcss!less-loader?sourceMap"
+        )
+      }, {
+        test: /\.css$/,
+        loader: ExtractTextPlugin.extract(
+          'style',
+          'css-loader?sourceMap!postcss-loader'
+        )
+      }, {
+        test: /.(png|woff(2)?|eot|ttf|svg)(\?[a-z0-9=\.]+)?$/,
+        loader: 'file-loader?name=../css/[hash].[ext]'
+      }]
   },
   plugins: plugins,
   resolve: {

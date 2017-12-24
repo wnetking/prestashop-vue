@@ -1,0 +1,12 @@
+.blockcart{
+  //
+  &:hover{
+    .dropdown-menu{
+      display: block;
+    }
+  }
+
+  .cart-body{
+    width: 280px;
+  }
+}
