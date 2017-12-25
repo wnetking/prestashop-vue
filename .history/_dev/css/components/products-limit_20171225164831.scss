@@ -1,0 +1,29 @@
+.products-limit{
+  position: relative;
+
+  .prev, .next{
+    position: absolute;
+    top: 50%;
+    left: 0;
+    transform: translate(-100%, -50%);
+  }
+
+  .next{
+    left: auto;
+    right: 0;
+    transform: translate(100%, -50%);
+  }
+}
+
+.list-enter-active, .list-leave-active {
+  transition: opacity 0.3s;
+}
+
+.list-enter, .list-leave-to {
+  opacity: 0;
+}
+
+.list-enter-active{
+  display: none;
+  transition-delay: 0.3s;
+}

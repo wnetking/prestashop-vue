@@ -93,6 +93,10 @@
 
 	var _prestashop2 = _interopRequireDefault(_prestashop);
 
+	var _VueCarousel = __webpack_require__(38);
+
+	var _VueCarousel2 = _interopRequireDefault(_VueCarousel);
+
 	var _vue = __webpack_require__(13);
 
 	var _vue2 = _interopRequireDefault(_vue);
@@ -121,9 +125,9 @@
 
 	var _components2 = _interopRequireDefault(_components);
 
-	__webpack_require__(31);
+	__webpack_require__(34);
 
-	__webpack_require__(33);
+	__webpack_require__(36);
 
 	$('[data-module-name]').each(function () {
 	  _prestashop2['default'].modules[$(this).data('module-name')] = $(this).data('module-data');
@@ -140,7 +144,9 @@
 	  el: '#app',
 	  data: _prestashop2['default'],
 	  components: {
-	    'avatar': _vueAvatar2['default']
+	    'avatar': _vueAvatar2['default'],
+	    'carousel': window.VueCarousel.Carousel,
+	    'slide': window.VueCarousel.Slide
 	  }
 	});
 
@@ -4740,13 +4746,11 @@
 
 	var _productMiniature2 = _interopRequireDefault(_productMiniature);
 
-	var _productsLimit = __webpack_require__(29);
-
-	var _productsLimit2 = _interopRequireDefault(_productsLimit);
+	// import productsLimit from './products-limit'
 
 	exports['default'] = function () {
 	  _vue2['default'].component('product-miniature', _productMiniature2['default']);
-	  _vue2['default'].component('products-limit', _productsLimit2['default']);
+	  // Vue.component('products-limit', productsLimit)
 	};
 
 	module.exports = exports['default'];
@@ -4793,10 +4797,10 @@
 	    zoomLeave: _methodsZoomLeave2['default']
 	  },
 	  updated: function updated() {
-	    if (!this.isHover) {
-	      this.imgBig = this.product.cover.bySize.medium_default.url;
-	      this.imgLarge = this.product.cover.large.url;
-	    }
+	    // if(!this.isHover){
+	    //   this.imgBig =  this.product.cover.bySize.medium_default.url
+	    //   this.imgLarge =  this.product.cover.large.url
+	    // }
 	  }
 	});
 
@@ -4905,120 +4909,29 @@
 	module.exports = exports['default'];
 
 /***/ }),
-/* 29 */
-/***/ (function(module, exports, __webpack_require__) {
-
-	'use strict';
-
-	Object.defineProperty(exports, '__esModule', {
-		value: true
-	});
-
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
-
-	var _vue = __webpack_require__(13);
-
-	var _vue2 = _interopRequireDefault(_vue);
-
-	var _data = __webpack_require__(30);
-
-	var _data2 = _interopRequireDefault(_data);
-
-	var _methodsGetSelected = __webpack_require__(35);
-
-	var _methodsGetSelected2 = _interopRequireDefault(_methodsGetSelected);
-
-	// import changeImg from './methods/changeImg'
-	// import zoomLeave from './methods/zoomLeave'
-
-	var productsLimit = _vue2['default'].extend({
-		template: '<div>\n                <transition name="fade" mode="out-in" appear>\n                    <div class="products" v-if="animationOn">\n                        <div is="product-miniature" v-for="product in selected" :product=\'product\'></div>\n                    </div>\n                </transition>    \n                <button class="next btn btn default" @click="next">Next</button>\n                <button class="prev btn btn default" @click="prev">Prev</button>\n            </div>',
-		props: ['data'],
-		data: _data2['default'],
-		methods: {
-			getSelected: _methodsGetSelected2['default'],
-			next: function next() {
-				if (this.indexes.end < this.data.length) {
-					this.animationOn = false;
-					this.indexes.end = this.indexes.end + 1;
-					this.indexes.start = this.indexes.start + 1;
-
-					this.getSelected();
-					this.animationOn = true;
-				}
-			},
-			prev: function prev() {
-				if (this.indexes.start !== 0) {
-					this.indexes.end = this.indexes.end - 1;
-					this.indexes.start = this.indexes.start - 1;
-					this.getSelected();
-				}
-			}
-		},
-		created: function created() {
-			this.getSelected();
-		}
-	});
-
-	exports['default'] = productsLimit;
-	module.exports = exports['default'];
-
-/***/ }),
-/* 30 */
-/***/ (function(module, exports) {
-
-	"use strict";
-
-	Object.defineProperty(exports, "__esModule", {
-	    value: true
-	});
-
-	exports["default"] = function () {
-	    return {
-	        selected: [],
-	        animationOn: true,
-	        indexes: {
-	            start: 0,
-	            end: 3
-	        }
-	    };
-	};
-
-	module.exports = exports["default"];
-
-/***/ }),
-/* 31 */
-/***/ (function(module, exports) {
-
-	// removed by extract-text-webpack-plugin
-
-/***/ }),
+/* 29 */,
+/* 30 */,
+/* 31 */,
 /* 32 */,
-/* 33 */
+/* 33 */,
+/* 34 */
 /***/ (function(module, exports) {
 
 	// removed by extract-text-webpack-plugin
 
 /***/ }),
-/* 34 */,
-/* 35 */
+/* 35 */,
+/* 36 */
 /***/ (function(module, exports) {
 
-	"use strict";
+	// removed by extract-text-webpack-plugin
 
-	Object.defineProperty(exports, "__esModule", {
-	    value: true
-	});
+/***/ }),
+/* 37 */,
+/* 38 */
+/***/ (function(module, exports) {
 
-	exports["default"] = function () {
-	    var _this = this;
-
-	    this.selected = this.data.filter(function (item, index) {
-	        return index >= _this.indexes.start && index <= _this.indexes.end ? true : false;
-	    });
-	};
-
-	module.exports = exports["default"];
+	module.exports = VueCarousel;
 
 /***/ })
 /******/ ]);

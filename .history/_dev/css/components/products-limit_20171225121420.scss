@@ -1,0 +1,16 @@
+.products-limit{
+  position: relative;
+
+  .prev, .next{
+    position: absolute;
+    top: 50%;
+    left: 0;
+    transform: translate(-100%, -50%);
+  }
+
+  .next{
+    left: auto;
+    right: 0;
+    transform: translate(100%, -50%);
+  }
+}

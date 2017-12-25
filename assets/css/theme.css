@@ -669,6 +669,7 @@ a.add-to-cart:hover {
   box-shadow: 0 0 2px #ccc;
   padding: 15px;
   flex-grow: 1;
+  margin-top: 15px;
   margin-left: 15px;
   margin-right: 15px;
   margin-bottom: 25px;
@@ -1245,6 +1246,28 @@ nav.pagination .current a {
   left: 0;
   width: 100%;
   height: 100%; }
+
+.products-limit {
+  position: relative; }
+  .products-limit .prev, .products-limit .next {
+    position: absolute;
+    top: 50%;
+    left: 0;
+    transform: translate(-100%, -50%); }
+  .products-limit .next {
+    left: auto;
+    right: 0;
+    transform: translate(100%, -50%); }
+
+.list-enter-active, .list-leave-active {
+  transition: opacity 0.1s; }
+
+.list-enter, .list-leave-to {
+  opacity: 0; }
+
+.list-enter-active {
+  display: none;
+  transition-delay: 0.2s; }
 
 body {
   background: #fefefe; }

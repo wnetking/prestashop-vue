@@ -41,5 +41,8 @@
         "vue-template-compiler": "^2.5.13",
         "vue-truncate-collapsed": "^1.2.0",
         "webpack": "^1.13.1"
+    },
+    "dependencies": {
+        "vue-carousel": "^0.6.5"
     }
 }

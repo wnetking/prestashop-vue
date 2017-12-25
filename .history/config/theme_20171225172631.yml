@@ -1,0 +1,99 @@
+name: prestashop-vue
+display_name: Starter Theme
+version: 3.0.0
+author:
+  name: "PrestaShop Team"
+  email: "pub@prestashop.com"
+  url: "http://www.prestashop.com"
+
+meta:
+  compatibility:
+      from: 1.7.2.0
+      to: ~
+
+  available_layouts:
+    layout-full-width:
+      name: Full Width
+      description: No side columns, ideal for distraction-free pages such as product pages.
+    layout-both-columns:
+      name: Three Columns
+      description: One large central column and 2 side columns.
+    layout-left-side-column:
+      name: Two Columns, small left column
+      description: Two columns with a small left column
+    layout-right-side-column:
+      name: Two Columns, small right column
+      description: Two columns with a small right column
+
+assets:
+  css:
+    all:
+      - id: font-awesome
+  js:
+    all:
+      - id: vue-carousel
+        path: assets/js/swiper.min.js
+        media: all
+        priority: 10
+
+
+global_settings:
+  configuration:
+    PS_QUICK_VIEW: false
+
+  hooks:
+    custom_hooks:
+      - name: displayFooterBefore
+        title: displayFooterBefore
+        description: Add a widget area above the footer
+    modules_to_hook:
+      displayNav:
+        - ps_shoppingcart
+        - ps_languageselector
+        - ps_currencyselector
+        - ps_customersignin
+      displayTop:
+        - ps_mainmenu
+      displayHome:
+        - ps_imageslider
+        - ps_featuredproducts
+        - ps_banner
+      displayFooter:
+        - ps_contactinfo
+
+  image_types:
+    cart_default:
+      width: 80
+      height: 80
+      scope: [products]
+    small_default:
+      width: 125
+      height: 125
+      scope: [products, categories, manufacturers, suppliers]
+    medium_default:
+      width: 300
+      height: 300
+      scope: [products, categories, manufacturers, suppliers]
+    large_default:
+      width: 500
+      height: 500
+      scope: [products]
+    home_default:
+      width: 250
+      height: 250
+      scope: [products]
+    category_default:
+      width: 960
+      height: 350
+      scope: [categories]
+    stores_default:
+      width: 170
+      height: 115
+      scope: [stores]
+
+theme_settings:
+  default_layout: layout-full-width
+
+  layouts:
+    category: layout-left-side-column
+    best-sales: layout-left-side-column
