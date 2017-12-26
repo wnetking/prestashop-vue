@@ -93,41 +93,44 @@
 
 	var _prestashop2 = _interopRequireDefault(_prestashop);
 
-	var _VueCarousel = __webpack_require__(38);
+	var _VueCarousel = __webpack_require__(13);
 
 	var _VueCarousel2 = _interopRequireDefault(_VueCarousel);
 
-	var _vue = __webpack_require__(13);
+	var _vue = __webpack_require__(14);
 
 	var _vue2 = _interopRequireDefault(_vue);
 
-	var _bootstrapVue = __webpack_require__(17);
+	var _bootstrapVue = __webpack_require__(18);
 
 	var _bootstrapVue2 = _interopRequireDefault(_bootstrapVue);
 
-	var _vueSocialSharing = __webpack_require__(18);
+	var _vueSocialSharing = __webpack_require__(19);
 
 	var _vueSocialSharing2 = _interopRequireDefault(_vueSocialSharing);
 
-	var _vueAvatar = __webpack_require__(19);
+	var _vueAvatar = __webpack_require__(20);
 
 	var _vueAvatar2 = _interopRequireDefault(_vueAvatar);
 
-	var _vueStringFilter = __webpack_require__(20);
+	var _vueStringFilter = __webpack_require__(21);
 
 	var _vueStringFilter2 = _interopRequireDefault(_vueStringFilter);
 
-	var _filters = __webpack_require__(21);
+	var _filters = __webpack_require__(22);
 
 	var _filters2 = _interopRequireDefault(_filters);
 
-	var _components = __webpack_require__(23);
+	var _components = __webpack_require__(24);
 
 	var _components2 = _interopRequireDefault(_components);
 
-	__webpack_require__(34);
+	__webpack_require__(30);
 
-	__webpack_require__(36);
+	__webpack_require__(32);
+
+	_prestashop2['default'].blockcart = _prestashop2['default'].blockcart || {};
+	_prestashop2['default'].blockcart.modalData = '<h1>Hello cart</h1>';
 
 	$('[data-module-name]').each(function () {
 	  _prestashop2['default'].modules[$(this).data('module-name')] = $(this).data('module-data');
@@ -147,6 +150,44 @@
 	    'avatar': _vueAvatar2['default'],
 	    'carousel': window.VueCarousel.Carousel,
 	    'slide': window.VueCarousel.Slide
+	  },
+	  methods: {
+	    showModal: function showModal() {
+	      this.$refs.blokcart.show();
+	    },
+	    hideModal: function hideModal() {
+	      this.$refs.blokcart.hide();
+	    }
+	  },
+	  created: function created() {
+	    var _this = this;
+
+	    _prestashop2['default'].on('updateCart', function (event) {
+	      var refreshURL = $('.blockcart').data('refresh-url');
+	      var requestData = {};
+
+	      if (event && event.reason) {
+	        requestData = {
+	          id_product_attribute: event.reason.idProductAttribute,
+	          id_product: event.reason.idProduct,
+	          action: event.reason.linkAction
+	        };
+	      }
+
+	      $.post(refreshURL, requestData).then(function (resp) {
+	        $('.blockcart').replaceWith($(resp.preview).find('.blockcart'));
+
+	        if (resp.modal) {
+	          _this.showModal();
+
+	          _this.$nextTick(function () {
+	            this.blockcart.modalData = resp.modal;
+	          });
+	        }
+	      }).fail(function (resp) {
+	        _prestashop2['default'].emit('handleError', { eventType: 'updateShoppingCart', resp: resp });
+	      });
+	    });
 	  }
 	});
 
@@ -158,6 +199,12 @@
 
 /***/ }),
 /* 13 */
+/***/ (function(module, exports) {
+
+	module.exports = VueCarousel;
+
+/***/ }),
+/* 14 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(global, setImmediate) {/*!
@@ -1248,10 +1295,10 @@
 	 * Get outerHTML of elements, taking care
 	 * of SVG elements in IE as well.
 	 */function getOuterHTML(el){if(el.outerHTML){return el.outerHTML;}else {var container=document.createElement('div');container.appendChild(el.cloneNode(true));return container.innerHTML;}}Vue$3.compile = compileToFunctions;exports['default'] = Vue$3;module.exports = exports['default'];
-	/* WEBPACK VAR INJECTION */}.call(exports, (function() { return this; }()), __webpack_require__(14).setImmediate))
+	/* WEBPACK VAR INJECTION */}.call(exports, (function() { return this; }()), __webpack_require__(15).setImmediate))
 
 /***/ }),
-/* 14 */
+/* 15 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -1304,12 +1351,12 @@
 	};
 
 	// setimmediate attaches itself to the global object
-	__webpack_require__(15);
+	__webpack_require__(16);
 	exports.setImmediate = setImmediate;
 	exports.clearImmediate = clearImmediate;
 
 /***/ }),
-/* 15 */
+/* 16 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(global, process) {"use strict";
@@ -1496,10 +1543,10 @@
 	    attachTo.setImmediate = setImmediate;
 	    attachTo.clearImmediate = clearImmediate;
 	})(typeof self === "undefined" ? typeof global === "undefined" ? undefined : global : self);
-	/* WEBPACK VAR INJECTION */}.call(exports, (function() { return this; }()), __webpack_require__(16)))
+	/* WEBPACK VAR INJECTION */}.call(exports, (function() { return this; }()), __webpack_require__(17)))
 
 /***/ }),
-/* 16 */
+/* 17 */
 /***/ (function(module, exports) {
 
 	// shim for using process in browser
@@ -1691,7 +1738,7 @@
 	};
 
 /***/ }),
-/* 17 */
+/* 18 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(global) {'use strict';(function(global,factory){ true?module.exports = factory():typeof define === 'function' && define.amd?define(factory):global['bootstrap-vue'] = factory();})(undefined,function(){'use strict'; /**
@@ -3979,7 +4026,7 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, (function() { return this; }())))
 
 /***/ }),
-/* 18 */
+/* 19 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	/*!
@@ -3993,7 +4040,7 @@
 	  return ex && typeof ex === 'object' && 'default' in ex ? ex['default'] : ex;
 	}
 
-	var Vue = _interopDefault(__webpack_require__(13));
+	var Vue = _interopDefault(__webpack_require__(14));
 
 	var SocialSharingNetwork = {
 	  functional: true,
@@ -4326,7 +4373,7 @@
 	module.exports = SocialSharing;
 
 /***/ }),
-/* 19 */
+/* 20 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -4634,7 +4681,7 @@
 	});
 
 /***/ }),
-/* 20 */
+/* 21 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	/*! VueStringFilter v.1.2.1 */
@@ -4682,7 +4729,7 @@
 	//# sourceMappingURL=VueStringFilter.bundle.js.map
 
 /***/ }),
-/* 21 */
+/* 22 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -4693,11 +4740,11 @@
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
 
-	var _vue = __webpack_require__(13);
+	var _vue = __webpack_require__(14);
 
 	var _vue2 = _interopRequireDefault(_vue);
 
-	var _striphtml = __webpack_require__(22);
+	var _striphtml = __webpack_require__(23);
 
 	var _striphtml2 = _interopRequireDefault(_striphtml);
 
@@ -4708,7 +4755,7 @@
 	module.exports = exports['default'];
 
 /***/ }),
-/* 22 */
+/* 23 */
 /***/ (function(module, exports) {
 
 	'use strict';
@@ -4727,7 +4774,7 @@
 	module.exports = exports['default'];
 
 /***/ }),
-/* 23 */
+/* 24 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -4738,11 +4785,11 @@
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
 
-	var _vue = __webpack_require__(13);
+	var _vue = __webpack_require__(14);
 
 	var _vue2 = _interopRequireDefault(_vue);
 
-	var _productMiniature = __webpack_require__(24);
+	var _productMiniature = __webpack_require__(25);
 
 	var _productMiniature2 = _interopRequireDefault(_productMiniature);
 
@@ -4756,7 +4803,7 @@
 	module.exports = exports['default'];
 
 /***/ }),
-/* 24 */
+/* 25 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -4767,23 +4814,23 @@
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
 
-	var _vue = __webpack_require__(13);
+	var _vue = __webpack_require__(14);
 
 	var _vue2 = _interopRequireDefault(_vue);
 
-	var _data = __webpack_require__(25);
+	var _data = __webpack_require__(26);
 
 	var _data2 = _interopRequireDefault(_data);
 
-	var _methodsZoomBg = __webpack_require__(26);
+	var _methodsZoomBg = __webpack_require__(27);
 
 	var _methodsZoomBg2 = _interopRequireDefault(_methodsZoomBg);
 
-	var _methodsChangeImg = __webpack_require__(27);
+	var _methodsChangeImg = __webpack_require__(28);
 
 	var _methodsChangeImg2 = _interopRequireDefault(_methodsChangeImg);
 
-	var _methodsZoomLeave = __webpack_require__(28);
+	var _methodsZoomLeave = __webpack_require__(29);
 
 	var _methodsZoomLeave2 = _interopRequireDefault(_methodsZoomLeave);
 
@@ -4808,7 +4855,7 @@
 	module.exports = exports['default'];
 
 /***/ }),
-/* 25 */
+/* 26 */
 /***/ (function(module, exports) {
 
 	"use strict";
@@ -4836,7 +4883,7 @@
 	module.exports = exports["default"];
 
 /***/ }),
-/* 26 */
+/* 27 */
 /***/ (function(module, exports) {
 
 	'use strict';
@@ -4869,7 +4916,7 @@
 	module.exports = exports['default'];
 
 /***/ }),
-/* 27 */
+/* 28 */
 /***/ (function(module, exports) {
 
 	"use strict";
@@ -4888,7 +4935,7 @@
 	module.exports = exports["default"];
 
 /***/ }),
-/* 28 */
+/* 29 */
 /***/ (function(module, exports) {
 
 	'use strict';
@@ -4909,29 +4956,17 @@
 	module.exports = exports['default'];
 
 /***/ }),
-/* 29 */,
-/* 30 */,
+/* 30 */
+/***/ (function(module, exports) {
+
+	// removed by extract-text-webpack-plugin
+
+/***/ }),
 /* 31 */,
-/* 32 */,
-/* 33 */,
-/* 34 */
+/* 32 */
 /***/ (function(module, exports) {
 
 	// removed by extract-text-webpack-plugin
-
-/***/ }),
-/* 35 */,
-/* 36 */
-/***/ (function(module, exports) {
-
-	// removed by extract-text-webpack-plugin
-
-/***/ }),
-/* 37 */,
-/* 38 */
-/***/ (function(module, exports) {
-
-	module.exports = VueCarousel;
 
 /***/ })
 /******/ ]);
