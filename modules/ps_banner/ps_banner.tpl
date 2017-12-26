@@ -22,7 +22,7 @@
  * @license   https://opensource.org/licenses/AFL-3.0 Academic Free License 3.0 (AFL-3.0)
  * International Registered Trademark & Property of PrestaShop SA
  *}
-<a class="col-12 banner position-relative d-block" href="{$banner_link}" title="{$banner_desc}">
+<a class="col-12 banner position-relative d-block my-2 my-lg-4" href="{$banner_link}" title="{$banner_desc}">
   <div class="h2 position-absolute banner-desc d-flex align-items-center px-5">{$banner_desc}</div>
 
   {if isset($banner_img)}

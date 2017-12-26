@@ -27,7 +27,7 @@
   <h2 class="h1 products-section-title text-center mb-2 mb-xl-4">
     {l s='Popular Products' d='Shop.Theme.Catalog'}
   </h2>
-  <carousel class="products" :per-page-custom="[[768, 3], [1024, 4], [2560, 4]]" navigation-enabled>
+  <carousel class="products" :per-page-custom="[[768, 3], [1024, 4], [2560, 4]]" navigation-enabled :pagination-padding="5">
     <slide v-for="product in modules.featuredProduct" :key="product.id">
       <div is="product-miniature" :product='product'></div>
     </slide>
