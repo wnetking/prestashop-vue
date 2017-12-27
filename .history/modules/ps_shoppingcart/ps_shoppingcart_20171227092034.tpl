@@ -38,7 +38,7 @@
 </div>
 
 {if !isset($smarty.request.action) }
-<b-modal ref="blokcart" lazy hide-header>
+<b-modal ref="blokcart" lazy>
   <div v-html="blockcart.modalData">
   </div>
   <div slot="modal-footer" class="w-100 d-flex justify-content-end">

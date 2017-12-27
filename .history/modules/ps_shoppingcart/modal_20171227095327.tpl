@@ -1,13 +1,11 @@
 <div id="blockcart-modal" data-close-on-click="true">
   <div>
     <div class="row">
-          <div class="col-12">
-            {if $cart.products_count > 1}
-              <p class="border border-info p-2 rounded cart-products-count">{l s='There are %products_count% items in your cart.' sprintf=['%products_count%' => $cart.products_count] d='Shop.Theme.Checkout'}</p>
-            {else}
-              <p class="border border-info p-2 rounded cart-products-count">{l s='There is %product_count% item in your cart.' sprintf=['%product_count%' =>$cart.products_count] d='Shop.Theme.Checkout'}</p>
-            {/if}
-          </div>
+          {if $cart.products_count > 1}
+            <p class="col-12 bg-primary text-light p-2 rounded cart-products-count">{l s='There are %products_count% items in your cart.' sprintf=['%products_count%' => $cart.products_count] d='Shop.Theme.Checkout'}</p>
+          {else}
+            <p class="col-12 bg-primary text-light p-2 rounded cart-products-count">{l s='There is %product_count% item in your cart.' sprintf=['%product_count%' =>$cart.products_count] d='Shop.Theme.Checkout'}</p>
+          {/if}
           <div class="col-md-6 divide-right">
             <img class="img-fluid product-image" src="{$product.cover.medium.url}" alt="{$product.cover.legend}" title="{$product.cover.legend}" itemprop="image">
             <div class="mt-2">

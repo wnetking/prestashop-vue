@@ -3,9 +3,9 @@
     <div class="row">
           <div class="col-12">
             {if $cart.products_count > 1}
-              <p class="border border-info p-2 rounded cart-products-count">{l s='There are %products_count% items in your cart.' sprintf=['%products_count%' => $cart.products_count] d='Shop.Theme.Checkout'}</p>
+              <p class=" border-info p-2 rounded cart-products-count">{l s='There are %products_count% items in your cart.' sprintf=['%products_count%' => $cart.products_count] d='Shop.Theme.Checkout'}</p>
             {else}
-              <p class="border border-info p-2 rounded cart-products-count">{l s='There is %product_count% item in your cart.' sprintf=['%product_count%' =>$cart.products_count] d='Shop.Theme.Checkout'}</p>
+              <p class=" border-info p-2 rounded cart-products-count">{l s='There is %product_count% item in your cart.' sprintf=['%product_count%' =>$cart.products_count] d='Shop.Theme.Checkout'}</p>
             {/if}
           </div>
           <div class="col-md-6 divide-right">
