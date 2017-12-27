@@ -23,7 +23,7 @@
 *  International Registered Trademark & Property of PrestaShop SA
 *}
 {if $elements}
-  <div id="block-reassurance" class="bg-dark text-white">
+  <div id="block-reassurance" class="bg-white text-dark">
     <div class="container">
       <ul class="row list-unstyled">
         {foreach from=$elements item=element}

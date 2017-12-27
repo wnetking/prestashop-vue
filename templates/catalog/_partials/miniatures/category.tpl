@@ -23,15 +23,15 @@
  * International Registered Trademark & Property of PrestaShop SA
  *}
 {block name='category_miniature_item'}
-  <section class="category-miniature">
-    <a href="{$category.url}">
-      <img src="{$category.image.medium.url}" alt="{$category.image.legend}">
-    </a>
-
-    <h1 class="h2">
-      <a href="{$category.url}">{$category.name}</a>
-    </h1>
-
-    <div class="category-description">{$category.description nofilter}</div>
-  </section>
+  <div class="card ">
+    <img class="card-img-top img-fluid" src="{$category.image.medium.url}" alt="{$category.image.legend}">
+    <div class="card-body">
+      <h5 class="card-title text-center">
+        <a href="{$category.url}">{$category.name}</a>
+      </h5>
+      {* <p class="card-text">
+        {$category.description nofilter}
+      </p> *}
+    </div>
+  </div>
 {/block}

@@ -26,28 +26,25 @@
 
 {block name='product_list_header'}
 
-  <h1>{$category.name}</h1>
-  <div class="category-cover">
-    <img src="{$category.image.large.url}" alt="{$category.image.legend}">
+  <div class="category-cover py-5 px-3 mb-2" style="background-image: url({$category.image.large.url})">
+    <h3>{$category.name}</h3>
+    <div id="category-description">{$category.description nofilter}</div>
   </div>
-  <div id="category-description">{$category.description nofilter}</div>
+  
 
   {block name='category_subcategories'}
-    <aside>
+    <aside class="mb-2">
       {if $subcategories|count}
-        <nav class="subcategories">
-          <ul>
-            {foreach from=$subcategories item="subcategory"}
-              <li>
-                {block name='category_miniature'}
-                  {include file='catalog/_partials/miniatures/category.tpl' category=$subcategory}
-                {/block}
-              </li>
-            {/foreach}
-          </ul>
+        <nav class="subcategories row">
+          {foreach from=$subcategories item="subcategory"}
+            <div class="col-3 col-lg-2">
+              {block name='category_miniature'}
+                {include file='catalog/_partials/miniatures/category.tpl' category=$subcategory}
+              {/block}
+            </div>
+          {/foreach}
         </nav>
       {/if}
     </aside>
   {/block}
-
 {/block}

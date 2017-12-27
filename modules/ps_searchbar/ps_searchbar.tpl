@@ -23,14 +23,14 @@
 *  International Registered Trademark & Property of PrestaShop SA
 *}
 
-<div id="search_widget" class="search_widget d-flex ml-2 ml-lg-4" data-search-controller-url="{$search_controller_url}">
+<div id="search_widget" class="search_widget d-flex ml-2 ml-lg-auto" data-search-controller-url="{$search_controller_url}">
 	<form class="d-flex form-inline w-100" method="get" action="{$search_controller_url}">
 		<input type="hidden" name="controller" value="search">
 		<input class="mr-sm-2 form-control form-control-sm"
 			type="text" name="s"
 			placeholder="{l s='Search' d='Modules.Searchbar.Shop'}"
 			value="{$search_string}">
-		<button class="btn my-2 my-sm-0 btn-secondary btn-sm" type="submit">
+		<button class="btn my-2 my-sm-0 btn-dark btn-sm" type="submit">
 			<span class="sr-only">{l s='Search' d='Modules.Searchbar.Shop'}</span>
 			<i class="fas fa-search"></i>
 		</button>

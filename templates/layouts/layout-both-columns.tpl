@@ -31,13 +31,13 @@
     {/block}
   </head>
 
-  <body id="{$page.page_name}" class="{$page.body_classes|classnames}">
+  <body id="{$page.page_name}" class="{$page.body_classes|classnames} bg-light">
     <main id="app">
       {block name='hook_after_body_opening_tag'}
         {hook h='displayAfterBodyOpeningTag'}
       {/block}
 
-      <header id="header">
+      <header id="header" class="bg-secondary">
         {block name='header'}
           {include file='_partials/header.tpl'}
         {/block}
@@ -56,37 +56,37 @@
           {include file='_partials/breadcrumb.tpl'}
         {/block}
 
-        {block name='left_column'}
-          <div id="left-column">
-            {if $page.page_name == 'product'}
-              {hook h='displayLeftColumnProduct'}
-            {else}
-              {hook h="displayLeftColumn"}
-            {/if}
-          </div>
-        {/block}
+        <div class="row">
+          {block name='left_column'}
+            <div id="left-column" class="col-12 col-md-2 col-lg-3">
+              {if $page.page_name == 'product'}
+                {hook h='displayLeftColumnProduct'}
+              {else}
+                {hook h="displayLeftColumn"}
+              {/if}
+            </div>
+          {/block}
 
-        {block name='right_column'}
-          <div id="right-column">
-            {if $page.page_name == 'product'}
-              {hook h='displayRightColumnProduct'}
-            {else}
-              {hook h="displayRightColumn"}
-            {/if}
-          </div>
-        {/block}
+          {block name='content_wrapper'}
+            <div id="content-wrapper" class="col-12 col-md-8 col-lg-6">
+              {hook h="displayContentWrapperTop"}
+              {block name='content'}
+                <p>Hello world! This is HTML5 Boilerplate.</p>
+              {/block}
+              {hook h="displayContentWrapperBottom"}
+            </div>
+          {/block}
 
-        {block name='content_wrapper'}
-          <div id="content-wrapper" class="left-column right-column">
-            {hook h="displayContentWrapperTop"}
-            {block name='content'}
-              <p>Hello world! This is HTML5 Boilerplate.</p>
-            {/block}
-            {hook h="displayContentWrapperBottom"}
-          </div>
-        {/block}
-
-
+          {block name='right_column'}
+            <div id="right-column" class="col-12 col-md-2 col-lg-3">
+              {if $page.page_name == 'product'}
+                {hook h='displayRightColumnProduct'}
+              {else}
+                {hook h="displayRightColumn"}
+              {/if}
+            </div>
+          {/block}
+        </div>
 
         {hook h="displayWrapperBottom"}
       </b-container>

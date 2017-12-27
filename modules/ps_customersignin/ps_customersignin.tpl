@@ -1,6 +1,6 @@
-<div class="user-info">
+<div class="user-info ml-2 ml-lg-3">
   {if $logged}
-    <b-nav-item-dropdown left>
+    <b-nav-item-dropdown right>
         <template slot="button-content">
           <em class="sr-only">User</em>
           <i class="fas fa-user"></i>

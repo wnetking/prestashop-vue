@@ -490,23 +490,6 @@ label span {
   display: inline-block;
   font-size: 1rem;
 }
-#wrapper {
-  clear: both;
-}
-#content-wrapper.left-column {
-  margin-left: 25%;
-}
-#content-wrapper.right-column {
-  margin-right: 25%;
-}
-#left-column {
-  float: left;
-  width: 25%;
-}
-#right-column {
-  float: right;
-  width: 25%;
-}
 label.radio-block {
   display: block;
 }
@@ -558,9 +541,6 @@ label.radio-block {
 }
 .customizations label {
   font-weight: bold;
-}
-.menu {
-  float: left;
 }
 .menu a,
 .menu a:visited {
@@ -621,17 +601,6 @@ a.add-to-cart:hover {
 }
 .product-miniature,
 .category-miniature {
-  background-color: #fff;
-}
-.subcategories > ul > li {
-  overflow: hidden;
-  margin-bottom: 25px;
-  margin-right: 25px;
-  max-width: 300px;
-  text-align: center;
-  border: 1px solid #ccc;
-  padding: 15px;
-  flex-grow: 1;
   background-color: #fff;
 }
 .category-miniature img {
@@ -1186,6 +1155,9 @@ nav.pagination .current a {
 .blockcart img {
   max-width: 50px; }
 
+.cart-products-count {
+  margin: -15px -15px 20px; }
+
 .user-info-body {
   width: 280px; }
 
@@ -1251,6 +1223,11 @@ nav.pagination .current a {
 .list-enter-active {
   display: none;
   transition-delay: 0.2s; }
+
+.category-cover {
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: 50% 50%; }
 
 body {
   background: #fefefe; }

@@ -39,7 +39,7 @@
 </div>
 
 <div class="container">
-  <b-navbar toggleable="lg" type="light " variant="light">
+  <b-navbar toggleable="lg" type="light" class="py-lg-4">
     <b-navbar-brand href="{$urls.base_url}" class="d-lg-none">
       <img :src="shop.stores_icon"/>
       <span>{literal}{{shop.name}}{/literal}</span>
@@ -53,7 +53,9 @@
     <b-navbar-toggle target="header-top"></b-navbar-toggle>
 
     <b-collapse is-nav id="header-top" class="justify-content-end">
-      {hook h='displayTop'}
+      <b-navbar-nav class="w-100">
+        {hook h='displayTop'}
+      </b-navbar-nav>
     </b-collapse>
   </b-navbar>
 </div>

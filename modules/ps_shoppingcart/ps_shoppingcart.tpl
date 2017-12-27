@@ -1,4 +1,4 @@
-<div id="blockcart-wrapper" class="ml-auto">
+<div id="blockcart-wrapper">
   <div class="blockcart cart-preview position-relative" data-refresh-url="{$refresh_url}">
     <a class="nav-link dropdown-toggle" href="{$cart_url}"
        id="blockCartLink"
