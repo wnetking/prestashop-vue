@@ -25,11 +25,19 @@
 <section id="js-active-search-filters" class="active_filters">
   <h1 class="h3">{l s='Active filters' d='Shop.Theme.Global'}</h1>
   {if $activeFilters|count}
-    <ul>
+    <ul class="list-inline">
       {foreach from=$activeFilters item="filter"}
-        <li>{l s='%facet_label%: %facet_value%' sprintf=['%facet_label%' => $filter.facetLabel, '%facet_value%' => $filter.label] d='Shop.Theme.Catalog'} <a  class="js-search-link" href="{$filter.nextEncodedFacetsURL}">{l s='Remove' d='Shop.Theme.Actions'}</a></li>
+        <li class="list-inline-item mb-1 mr-1 bg-white py-1 px-2 border">
+          {l s='%facet_label%: %facet_value%' 
+             sprintf=['%facet_label%' => $filter.facetLabel, 
+                      '%facet_value%' => $filter.label] d='Shop.Theme.Catalog'} 
+          <a  class="js-search-link p-1" href="{$filter.nextEncodedFacetsURL}">
+            <i class="far fa-times-circle"></i>
+            <span class="sr-only">{l s='Remove' d='Shop.Theme.Actions'}</span>
+          </a>
+        </li>
       {/foreach}
     </ul>
   {/if}
-  <p><a href="{$clear_all_link}">{l s='Reset all filter' d='Shop.Theme.Actions'}</a></p>
+  <p><a href="{$clear_all_link}" data-search-url="{$clear_all_link}" class="js-search-filters-clear-all">{l s='Reset all filter' d='Shop.Theme.Actions'}</a></p>
 </section>

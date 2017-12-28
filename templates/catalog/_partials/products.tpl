@@ -22,14 +22,15 @@
  * @license   https://opensource.org/licenses/AFL-3.0 Academic Free License 3.0 (AFL-3.0)
  * International Registered Trademark & Property of PrestaShop SA
  *}
+
+ {if isset($smarty.request["from-xhr"]) }
+  <div id="ajax-products-list" data-ajax-products="{$listing.products|@json_encode}"></div>
+  {return}
+ {/if}
+
+
 <div id="js-product-list" data-module-name="listingProduct" data-module-data="{$listing.products|@json_encode}">
   <div class="products">
-    {* {foreach from=$listing.products item="product"}
-      {block name='product_miniature'}
-        {include file='catalog/_partials/miniatures/product.tpl' product=$product}
-      {/block}
-    {/foreach} *}
-
     <div class="products">
       <div is="product-miniature" v-for="product in modules.listingProduct" :product='product'></div>
     </div>
@@ -37,9 +38,5 @@
 
   {block name='pagination'}
     {include file='_partials/pagination.tpl' pagination=$listing.pagination}
-  {/block}
-
-  {block name='back_to_top'}
-    {* <div><a href="#header">{l s='Back to top' d='Shop.Theme.Actions'}</a></div> *}
   {/block}
 </div>
