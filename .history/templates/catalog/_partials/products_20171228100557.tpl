@@ -22,29 +22,24 @@
  * @license   https://opensource.org/licenses/AFL-3.0 Academic Free License 3.0 (AFL-3.0)
  * International Registered Trademark & Property of PrestaShop SA
  *}
-{extends file='catalog/listing/product-list.tpl'}
+<div id="js-product-list" data-module-name="listingProduct" data-module-data="{$listing.products|@json_encode}">
+  <div class="products">
+    {* {foreach from=$listing.products item="product"}
+      {block name='product_miniature'}
+        {include file='catalog/_partials/miniatures/product.tpl' product=$product}
+      {/block}
+    {/foreach} *}
 
-{block name='product_list_header'}
-
-  <div class="category-cover py-5 px-3 px-lg-4 mb-2" style="background-image: url({$category.image.large.url})">
-    <h3>{$category.name}</h3>
-    <div id="category-description">{$category.description nofilter}</div>
+    <div class="products">
+      <div is="product-miniature" v-for="product in modules.listingProduct" :product='product'></div>
+    </div>
   </div>
 
-
-  {block name='category_subcategories'}
-    <aside class="mb-2">
-      {if $subcategories|count}
-        <nav class="subcategories row">
-          {foreach from=$subcategories item="subcategory"}
-            <div class="col-3 col-lg-2">
-              {block name='category_miniature'}
-                {include file='catalog/_partials/miniatures/category.tpl' category=$subcategory}
-              {/block}
-            </div>
-          {/foreach}
-        </nav>
-      {/if}
-    </aside>
+  {block name='pagination'}
+    {include file='_partials/pagination.tpl' pagination=$listing.pagination}
   {/block}
-{/block}
+
+  {block name='back_to_top'}
+    <div><a href="#header">{l s='Back to top' d='Shop.Theme.Actions'}</a></div>
+  {/block}
+</div>

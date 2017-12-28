@@ -22,29 +22,14 @@
  * @license   https://opensource.org/licenses/AFL-3.0 Academic Free License 3.0 (AFL-3.0)
  * International Registered Trademark & Property of PrestaShop SA
  *}
-{extends file='catalog/listing/product-list.tpl'}
-
-{block name='product_list_header'}
-
-  <div class="category-cover py-5 px-3 px-lg-4 mb-2" style="background-image: url({$category.image.large.url})">
-    <h3>{$category.name}</h3>
-    <div id="category-description">{$category.description nofilter}</div>
+{if isset($listing.rendered_facets)}
+<div id="search_filters_wrapper" class="hidden-sm-down">
+  <div id="search_filter_controls" class="hidden-md-up">
+      <span id="_mobile_search_filters_clear_all"></span>
+      <button class="btn btn-secondary ok">
+        {l s='OK' d='Shop.Theme.Actions'}
+      </button>
   </div>
-
-
-  {block name='category_subcategories'}
-    <aside class="mb-2">
-      {if $subcategories|count}
-        <nav class="subcategories row">
-          {foreach from=$subcategories item="subcategory"}
-            <div class="col-3 col-lg-2">
-              {block name='category_miniature'}
-                {include file='catalog/_partials/miniatures/category.tpl' category=$subcategory}
-              {/block}
-            </div>
-          {/foreach}
-        </nav>
-      {/if}
-    </aside>
-  {/block}
-{/block}
+  {$listing.rendered_facets nofilter}
+</div>
+{/if}

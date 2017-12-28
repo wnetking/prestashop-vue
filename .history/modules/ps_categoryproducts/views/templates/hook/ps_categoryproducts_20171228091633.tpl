@@ -30,6 +30,11 @@
       {l s='%s other products in the same category:' sprintf=[$products|@count] d='Modules.Categoryproducts.Shop'}
     {/if}
   </h2>
+  {* <div>
+      {foreach from=$products item="product"}
+          {include file="catalog/_partials/miniatures/product.tpl" product=$product}
+      {/foreach}
+  </div> *}
 
   <carousel class="products" :per-page-custom="[[768, 3], [1024, 4], [2560, 4]]" navigation-enabled :pagination-padding="5">
     <slide v-for="product in modules.sameCategoryProduct" :key="product.id">

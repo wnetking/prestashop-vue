@@ -8,7 +8,7 @@
             <div>
               {menu nodes=$node.children depth=$node.depth}
               {if $node.image_urls|count}
-                <div class="menu-images-container d-flex">
+                <div class="menu-images-container">
                   {foreach from=$node.image_urls item=image_url}
                     <img class="img-fluid" src="{$image_url}">
                   {/foreach}

@@ -1,0 +1,56 @@
+//mixin for icons - @include addIcon('\f021', font-size, line-height, color, margin-left, margin-right, vertical-align)
+@mixin addIcon(
+  $content,
+  $font-size,
+  $line-height,
+  $color,
+  $margin-left,
+  $margin-right,
+  $vertical-align) {
+  font-family: 'FontAwesome';
+  content: $content;
+  @if $font-size != font-size {
+    font-size: $font-size;
+  }
+  @if $line-height != line-height {
+    line-height: $line-height;
+  }
+  @if $color != color {
+    color: $color;
+  }
+  @if $margin-left != margin-left {
+    margin-left: $margin-left;
+  }
+  @if $margin-right != margin-right {
+    margin-right: $margin-right;
+  }
+  @if $vertical-align != vertical-align {
+    vertical-align: $vertical-align;
+  }
+}
+
+// custom scroll bar
+@mixin custom-scroll-bar($color: $gray-300) {
+  &::-webkit-scrollbar-button {
+    width: 2px;
+    height: 0;
+    background-color: transparent;
+  }
+
+  &::-webkit-scrollbar-track {
+    background-color: transparent;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    border-radius: 0;
+    background-color: $color;
+  }
+
+  &::-webkit-scrollbar-thumb:hover {
+    background-color: darken($color, 20%);
+  }
+
+  &::-webkit-scrollbar {
+    width: 4px;
+  }
+}

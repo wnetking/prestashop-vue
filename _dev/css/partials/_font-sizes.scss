@@ -1,0 +1,5 @@
+@each $key, $size in $font-sizes {
+    .fz-#{$key}  {
+      font-size: $size;
+    }
+}
