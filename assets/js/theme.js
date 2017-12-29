@@ -125,11 +125,35 @@
 
 	var _components2 = _interopRequireDefault(_components);
 
-	__webpack_require__(30);
+	// global methods
 
-	__webpack_require__(32);
+	var _globalMethodsUpdateCart = __webpack_require__(30);
 
+	var _globalMethodsUpdateCart2 = _interopRequireDefault(_globalMethodsUpdateCart);
+
+	var _globalMethodsInitFacets = __webpack_require__(37);
+
+	var _globalMethodsInitFacets2 = _interopRequireDefault(_globalMethodsInitFacets);
+
+	var _globalMethodsShowCartModal = __webpack_require__(35);
+
+	var _globalMethodsShowCartModal2 = _interopRequireDefault(_globalMethodsShowCartModal);
+
+	var _globalMethodsHideCartModal = __webpack_require__(36);
+
+	var _globalMethodsHideCartModal2 = _interopRequireDefault(_globalMethodsHideCartModal);
+
+	// modules data init
+
+	// import styles
+
+	__webpack_require__(31);
+
+	__webpack_require__(33);
+
+	_prestashop2['default'].modules = _prestashop2['default'].modules || {};
 	_prestashop2['default'].blockcart = _prestashop2['default'].blockcart || {};
+	_prestashop2['default'].themeLoaderShow = false;
 	_prestashop2['default'].blockcart.modalData = '<h1>Hello cart</h1>';
 
 	$('[data-module-name]').each(function () {
@@ -143,92 +167,24 @@
 	(0, _filters2['default'])();
 	(0, _components2['default'])();
 
+	// init global vue app
 	new _vue2['default']({
 	  el: '#app',
 	  data: _prestashop2['default'],
 	  components: {
 	    'avatar': _vueAvatar2['default'],
+	    // VueCarousel connect from theme.yml
 	    'carousel': window.VueCarousel.Carousel,
 	    'slide': window.VueCarousel.Slide
 	  },
 	  methods: {
-	    showModal: function showModal() {
-	      this.$refs.blokcart.show();
-	    },
-	    hideModal: function hideModal() {
-	      this.$refs.blokcart.hide();
-	    }
-	  },
+	    showCartModal: _globalMethodsShowCartModal2['default'],
+	    hideCartModal: _globalMethodsHideCartModal2['default'],
+	    updateCart: _globalMethodsUpdateCart2['default'],
+	    initFacets: _globalMethodsInitFacets2['default'] },
 	  created: function created() {
-	    var _this = this;
-
-	    _prestashop2['default'].on('updateCart', function (event) {
-	      var refreshURL = $('.blockcart').data('refresh-url');
-	      var requestData = {};
-
-	      if (event && event.reason) {
-	        requestData = {
-	          id_product_attribute: event.reason.idProductAttribute,
-	          id_product: event.reason.idProduct,
-	          action: event.reason.linkAction
-	        };
-	      }
-
-	      $.post(refreshURL, requestData).then(function (resp) {
-	        $('.blockcart').replaceWith($(resp.preview).find('.blockcart'));
-
-	        if (resp.modal) {
-	          _this.showModal();
-
-	          _this.$nextTick(function () {
-	            this.blockcart.modalData = resp.modal;
-	          });
-	        }
-	      }).fail(function (resp) {
-	        _prestashop2['default'].emit('handleError', { eventType: 'updateShoppingCart', resp: resp });
-	      });
-	    });
-
-	    var parseSearchUrl = function parseSearchUrl(event) {
-	      if (event.target.dataset.searchUrl !== undefined) {
-	        return event.target.dataset.searchUrl;
-	      }
-
-	      if ($(event.target).parent()[0].dataset.searchUrl === undefined) {
-	        throw new Error('Can not parse search URL');
-	      }
-
-	      return $(event.target).parent()[0].dataset.searchUrl;
-	    };
-
-	    $('body').on('click', '.js-search-filters-clear-all', function (event) {
-	      event.preventDefault();
-	      _prestashop2['default'].emit('updateFacets', parseSearchUrl(event));
-	    });
-
-	    $('body').on('change', '#search_filters input[data-search-url]', function (event) {
-	      _prestashop2['default'].emit('updateFacets', parseSearchUrl(event));
-	    });
-
-	    $('body').on('click', '.js-search-link', function (event) {
-	      event.preventDefault();
-	      _prestashop2['default'].emit('updateFacets', $(event.target).closest('a').get(0).href);
-	    });
-
-	    _prestashop2['default'].on('updateProductList', function (data) {
-	      _this.$nextTick(function () {
-	        this.modules.listingProduct = $(data.rendered_products).filter('#ajax-products-list').data('ajax-products');
-	        updateProductListDOM(data);
-	      });
-	    });
-
-	    function updateProductListDOM(data) {
-	      $('#search_filters').replaceWith(data.rendered_facets);
-	      $('#js-active-search-filters').replaceWith(data.rendered_active_filters);
-	      $('#js-product-list-top').replaceWith(data.rendered_products_top);
-	      // $('#js-product-list').replaceWith(data.rendered_products);
-	      $('#js-product-list-bottom').replaceWith(data.rendered_products_bottom);
-	    }
+	    this.updateCart();
+	    this.initFacets();
 	  }
 	});
 
@@ -4885,10 +4841,10 @@
 	    zoomLeave: _methodsZoomLeave2['default']
 	  },
 	  updated: function updated() {
-	    // if(!this.isHover){
-	    //   this.imgBig =  this.product.cover.bySize.medium_default.url
-	    //   this.imgLarge =  this.product.cover.large.url
-	    // }
+	    if (!this.isHover) {
+	      this.imgBig = this.product.cover.bySize.medium_default.url;
+	      this.imgLarge = this.product.cover.large.url;
+	    }
 	  }
 	});
 
@@ -5000,14 +4956,152 @@
 /* 30 */
 /***/ (function(module, exports) {
 
-	// removed by extract-text-webpack-plugin
+	'use strict';
+
+	Object.defineProperty(exports, '__esModule', {
+	  value: true
+	});
+
+	exports['default'] = function () {
+	  var _this = this;
+
+	  prestashop.on('updateCart', function (event) {
+	    var refreshURL = $('.blockcart').data('refresh-url');
+	    var requestData = {};
+
+	    if (event && event.reason) {
+	      requestData = {
+	        id_product_attribute: event.reason.idProductAttribute,
+	        id_product: event.reason.idProduct,
+	        action: event.reason.linkAction
+	      };
+	    }
+
+	    $.post(refreshURL, requestData).then(function (resp) {
+	      $('.blockcart').replaceWith($(resp.preview).find('.blockcart'));
+
+	      if (resp.modal) {
+	        _this.showCartModal();
+
+	        _this.$nextTick(function () {
+	          this.blockcart.modalData = resp.modal;
+	        });
+	      }
+	    }).fail(function (resp) {
+	      prestashop.emit('handleError', { eventType: 'updateShoppingCart', resp: resp });
+	    });
+	  });
+	};
+
+	module.exports = exports['default'];
 
 /***/ }),
-/* 31 */,
-/* 32 */
+/* 31 */
 /***/ (function(module, exports) {
 
 	// removed by extract-text-webpack-plugin
+
+/***/ }),
+/* 32 */,
+/* 33 */
+/***/ (function(module, exports) {
+
+	// removed by extract-text-webpack-plugin
+
+/***/ }),
+/* 34 */,
+/* 35 */
+/***/ (function(module, exports) {
+
+	"use strict";
+
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+
+	exports["default"] = function () {
+	  this.$refs.blokcart.show();
+	};
+
+	module.exports = exports["default"];
+
+/***/ }),
+/* 36 */
+/***/ (function(module, exports) {
+
+	"use strict";
+
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+
+	exports["default"] = function () {
+	  this.$refs.blokcart.hide();
+	};
+
+	module.exports = exports["default"];
+
+/***/ }),
+/* 37 */
+/***/ (function(module, exports) {
+
+	'use strict';
+
+	Object.defineProperty(exports, '__esModule', {
+	  value: true
+	});
+
+	exports['default'] = function () {
+	  var _this = this;
+
+	  $('body').on('change', '#search_filters input[data-search-url]', function (event) {
+	    prestashop.emit('updateFacets', parseSearchUrl(event));
+	    _this.$nextTick(function () {
+	      this.themeLoaderShow = true;
+	    });
+	  });
+
+	  $('body').on('click', '.js-search-link, .js-search-filters-clear-all', function (event) {
+	    event.preventDefault();
+	    prestashop.emit('updateFacets', $(event.target).closest('a').get(0).href);
+	    _this.$nextTick(function () {
+	      this.themeLoaderShow = true;
+	    });
+	  });
+
+	  prestashop.on('updateProductList', function (data) {
+	    console.log(data);
+
+	    _this.$nextTick(function () {
+	      this.modules.listingProduct = $(data.rendered_products).filter('#ajax-products-list').data('ajax-products');
+	      updateProductListDOM(data);
+	    });
+
+	    _this.$nextTick(function () {
+	      this.themeLoaderShow = false;
+	    });
+	  });
+	};
+
+	function parseSearchUrl(event) {
+	  if (event.target.dataset.searchUrl !== undefined) {
+	    return event.target.dataset.searchUrl;
+	  }
+
+	  if ($(event.target).parent()[0].dataset.searchUrl === undefined) {
+	    throw new Error('Can not parse search URL');
+	  }
+
+	  return $(event.target).parent()[0].dataset.searchUrl;
+	}
+
+	function updateProductListDOM(data) {
+	  $('#search_filters').replaceWith(data.rendered_facets);
+	  $('#js-active-search-filters').replaceWith(data.rendered_active_filters);
+	  $('#js-product-list-top').replaceWith(data.rendered_products_top);
+	  $('#js-product-list-bottom').replaceWith(data.rendered_products_bottom);
+	}
+	module.exports = exports['default'];
 
 /***/ })
 /******/ ]);

@@ -1093,17 +1093,6 @@ nav.pagination .current {
 nav.pagination .current a {
   background-color: #fff;
 }
-.products-sort-order {
-  margin-bottom: 5px;
-}
-.products-sort-order .current {
-  font-weight: bold;
-}
-.products-sort-order a,
-.products-sort-order a:visited {
-  color: inherit;
-  padding: 5px;
-}
 #search_filters select {
   width: 60%;
 }
