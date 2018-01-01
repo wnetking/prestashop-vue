@@ -13,6 +13,10 @@ export default function() {
         }
       }
 
+      this.$nextTick(function () {
+        this.themeLoaderShow = true
+      })
+
       $.post(refreshURL, requestData).then((resp) => {
         $('.blockcart').replaceWith($(resp.preview).find('.blockcart'))
 
@@ -20,6 +24,7 @@ export default function() {
           this.showCartModal()
 
           this.$nextTick(function () {
+            this.themeLoaderShow = false
             this.blockcart.modalData = resp.modal
           })
         }

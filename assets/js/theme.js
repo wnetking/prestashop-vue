@@ -131,15 +131,15 @@
 
 	var _globalMethodsUpdateCart2 = _interopRequireDefault(_globalMethodsUpdateCart);
 
-	var _globalMethodsInitFacets = __webpack_require__(37);
+	var _globalMethodsInitFacets = __webpack_require__(31);
 
 	var _globalMethodsInitFacets2 = _interopRequireDefault(_globalMethodsInitFacets);
 
-	var _globalMethodsShowCartModal = __webpack_require__(35);
+	var _globalMethodsShowCartModal = __webpack_require__(32);
 
 	var _globalMethodsShowCartModal2 = _interopRequireDefault(_globalMethodsShowCartModal);
 
-	var _globalMethodsHideCartModal = __webpack_require__(36);
+	var _globalMethodsHideCartModal = __webpack_require__(33);
 
 	var _globalMethodsHideCartModal2 = _interopRequireDefault(_globalMethodsHideCartModal);
 
@@ -147,9 +147,9 @@
 
 	// import styles
 
-	__webpack_require__(31);
+	__webpack_require__(34);
 
-	__webpack_require__(33);
+	__webpack_require__(36);
 
 	_prestashop2['default'].modules = _prestashop2['default'].modules || {};
 	_prestashop2['default'].blockcart = _prestashop2['default'].blockcart || {};
@@ -4977,6 +4977,10 @@
 	      };
 	    }
 
+	    _this.$nextTick(function () {
+	      this.themeLoaderShow = true;
+	    });
+
 	    $.post(refreshURL, requestData).then(function (resp) {
 	      $('.blockcart').replaceWith($(resp.preview).find('.blockcart'));
 
@@ -4984,6 +4988,7 @@
 	        _this.showCartModal();
 
 	        _this.$nextTick(function () {
+	          this.themeLoaderShow = false;
 	          this.blockcart.modalData = resp.modal;
 	        });
 	      }
@@ -4997,53 +5002,7 @@
 
 /***/ }),
 /* 31 */
-/***/ (function(module, exports) {
-
-	// removed by extract-text-webpack-plugin
-
-/***/ }),
-/* 32 */,
-/* 33 */
-/***/ (function(module, exports) {
-
-	// removed by extract-text-webpack-plugin
-
-/***/ }),
-/* 34 */,
-/* 35 */
-/***/ (function(module, exports) {
-
-	"use strict";
-
-	Object.defineProperty(exports, "__esModule", {
-	  value: true
-	});
-
-	exports["default"] = function () {
-	  this.$refs.blokcart.show();
-	};
-
-	module.exports = exports["default"];
-
-/***/ }),
-/* 36 */
-/***/ (function(module, exports) {
-
-	"use strict";
-
-	Object.defineProperty(exports, "__esModule", {
-	  value: true
-	});
-
-	exports["default"] = function () {
-	  this.$refs.blokcart.hide();
-	};
-
-	module.exports = exports["default"];
-
-/***/ }),
-/* 37 */
-/***/ (function(module, exports) {
+/***/ (function(module, exports, __webpack_require__) {
 
 	'use strict';
 
@@ -5051,11 +5010,18 @@
 	  value: true
 	});
 
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
+
+	var _prestashop = __webpack_require__(12);
+
+	var _prestashop2 = _interopRequireDefault(_prestashop);
+
 	exports['default'] = function () {
 	  var _this = this;
 
 	  $('body').on('change', '#search_filters input[data-search-url]', function (event) {
-	    prestashop.emit('updateFacets', parseSearchUrl(event));
+	    _prestashop2['default'].emit('updateFacets', parseSearchUrl(event));
+
 	    _this.$nextTick(function () {
 	      this.themeLoaderShow = true;
 	    });
@@ -5063,21 +5029,20 @@
 
 	  $('body').on('click', '.js-search-link, .js-search-filters-clear-all', function (event) {
 	    event.preventDefault();
-	    prestashop.emit('updateFacets', $(event.target).closest('a').get(0).href);
+
+	    _prestashop2['default'].emit('updateFacets', $(event.target).closest('a').get(0).href);
+
 	    _this.$nextTick(function () {
 	      this.themeLoaderShow = true;
 	    });
 	  });
 
-	  prestashop.on('updateProductList', function (data) {
+	  _prestashop2['default'].on('updateProductList', function (data) {
 	    console.log(data);
 
 	    _this.$nextTick(function () {
 	      this.modules.listingProduct = $(data.rendered_products).filter('#ajax-products-list').data('ajax-products');
 	      updateProductListDOM(data);
-	    });
-
-	    _this.$nextTick(function () {
 	      this.themeLoaderShow = false;
 	    });
 	  });
@@ -5102,6 +5067,51 @@
 	  $('#js-product-list-bottom').replaceWith(data.rendered_products_bottom);
 	}
 	module.exports = exports['default'];
+
+/***/ }),
+/* 32 */
+/***/ (function(module, exports) {
+
+	"use strict";
+
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+
+	exports["default"] = function () {
+	  this.$refs.blokcart.show();
+	};
+
+	module.exports = exports["default"];
+
+/***/ }),
+/* 33 */
+/***/ (function(module, exports) {
+
+	"use strict";
+
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+
+	exports["default"] = function () {
+	  this.$refs.blokcart.hide();
+	};
+
+	module.exports = exports["default"];
+
+/***/ }),
+/* 34 */
+/***/ (function(module, exports) {
+
+	// removed by extract-text-webpack-plugin
+
+/***/ }),
+/* 35 */,
+/* 36 */
+/***/ (function(module, exports) {
+
+	// removed by extract-text-webpack-plugin
 
 /***/ })
 /******/ ]);
