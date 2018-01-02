@@ -22,7 +22,7 @@
  * @license   https://opensource.org/licenses/AFL-3.0 Academic Free License 3.0 (AFL-3.0)
  * International Registered Trademark & Property of PrestaShop SA
  *}
-<div id="search_filters" class="bg-white rounded border p-2 p-lg-4">
+<div id="search_filters" class="bg-white rounded border p-2 p-lg-4 mb-3 ">
   {foreach from=$facets item="facet" name=facet}
     {if $facet.displayed}
       <section class="facet">

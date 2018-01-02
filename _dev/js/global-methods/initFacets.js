@@ -1,6 +1,9 @@
+import prestashop from 'prestashop'
+
 export default function() {
   $('body').on('change', '#search_filters input[data-search-url]', (event) => {
     prestashop.emit('updateFacets', parseSearchUrl(event))
+
     this.$nextTick(function () {
       this.themeLoaderShow = true
     })
@@ -8,7 +11,9 @@ export default function() {
 
   $('body').on('click', '.js-search-link, .js-search-filters-clear-all', (event) => {
     event.preventDefault()
+
     prestashop.emit('updateFacets', $(event.target).closest('a').get(0).href)
+
     this.$nextTick(function () {
       this.themeLoaderShow = true
     })
@@ -20,9 +25,6 @@ export default function() {
     this.$nextTick(function () {
       this.modules.listingProduct = $(data.rendered_products).filter('#ajax-products-list').data('ajax-products')
       updateProductListDOM(data)
-    })
-
-    this.$nextTick(function () {
       this.themeLoaderShow = false
     })
   })

@@ -23,11 +23,12 @@
 *  International Registered Trademark & Property of PrestaShop SA
 *}
 
-<section>
-  <h2>{l s='Viewed products' d='Modules.Viewedproduct.Shop'}</h2>
-  <div class="products">
-    {foreach from=$products item="product"}
-      {include file="catalog/_partials/miniatures/product.tpl" product=$product}
-    {/foreach}
-  </div>
+<section data-module-name="viewedProduct" data-module-data="{$products|@json_encode}">
+  <b-card header="{l s='Viewed products' d='Modules.Viewedproduct.Shop'}" class="" body-class="p-2" header-tag="h5">
+    <carousel class="products" :per-page-custom="[[768, 3], [1024, 4], [2560, 4]]" navigation-enabled :pagination-padding="5">
+      <slide v-for="product in modules.viewedProduct" :key="product.id">
+        <div is="product-miniature" :product='product'></div>
+      </slide>
+    </carousel>
+  </b-card>
 </section>
