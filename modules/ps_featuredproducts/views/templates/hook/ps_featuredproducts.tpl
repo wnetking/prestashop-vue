@@ -27,7 +27,10 @@
   <b-card header="{l s='Popular Products' d='Shop.Theme.Catalog'}" body-class="p-2" header-tag="h5">
     <carousel class="products" :per-page-custom="[[768, 3], [1024, 4], [2560, 4]]"
         :pagination-padding="5"
-        pagination-active-color="var(--gray-dark)" pagination-color="var(--secondary)">
+        pagination-active-color="var(--gray-dark)" 
+        pagination-color="var(--secondary)"
+        navigation-next-label=""
+        navigation-prev-label="">
       <slide v-for="product in modules.featuredProduct" :key="product.id">
         <div is="product-miniature" :product='product'></div>
       </slide>

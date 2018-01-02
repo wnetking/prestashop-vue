@@ -26,7 +26,11 @@
   <b-card header="{l s='Best Sellers' d='Modules.Bestsellers.Shop'}"
           body-class="p-2"
           header-tag="h5">
-    <carousel class="products" :per-page-custom="[[768, 3], [1024, 4], [2560, 4]]" navigation-enabled :pagination-padding="5">
+    <carousel class="products" :per-page-custom="[[768, 3], [1024, 4], [2560, 4]]" 
+              :pagination-padding="5"
+              pagination-active-color="var(--gray-dark)" pagination-color="var(--secondary)"
+              navigation-next-label=""
+              navigation-prev-label="">
       <slide v-for="product in modules.bestSellers" :key="product.id">
         <div is="product-miniature" :product='product'></div>
       </slide>
