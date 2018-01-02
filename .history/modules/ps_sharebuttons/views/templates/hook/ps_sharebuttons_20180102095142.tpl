@@ -31,7 +31,7 @@
         {foreach from=$social_share_links item='social_share_link'}
           <li class="list-inline-item">
             <a href="{$social_share_link.url}"
-               class="fab fa-{if $social_share_link.class ==='googleplus'}google-plus{else}{$social_share_link.class}{/if}"
+               class="fab fa-{$social_share_link.class}"
                title="{$social_share_link.label}"
                target="_blank">
                 <span class="text-hide">

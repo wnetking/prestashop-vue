@@ -1,5 +1,6 @@
-{*
-* 2007-2016 PrestaShop
+<?php
+/*
+* 2007-2015 PrestaShop
 *
 * NOTICE OF LICENSE
 *
@@ -18,18 +19,17 @@
 * needs please refer to http://www.prestashop.com for more information.
 *
 *  @author PrestaShop SA <contact@prestashop.com>
-*  @copyright  2007-2016 PrestaShop SA
+*  @copyright  2007-2015 PrestaShop SA
 *  @license    http://opensource.org/licenses/afl-3.0.php  Academic Free License (AFL 3.0)
 *  International Registered Trademark & Property of PrestaShop SA
-*}
-<section  class="col-12 featured-products clearfix" data-module-name="bestSellers" data-module-data="{$products|@json_encode}">
-  <b-card header="{l s='Best Sellers' d='Modules.Bestsellers.Shop'}"
-          body-class="p-2"
-          header-tag="h5">
-    <carousel class="products" :per-page-custom="[[768, 3], [1024, 4], [2560, 4]]" navigation-enabled :pagination-padding="5">
-      <slide v-for="product in modules.bestSellers" :key="product.id">
-        <div is="product-miniature" :product='product'></div>
-      </slide>
-    </carousel>
-  </b-card>
-</section>
+*/
+				    	
+header("Expires: Mon, 26 Jul 1997 05:00:00 GMT");
+header("Last-Modified: ".gmdate("D, d M Y H:i:s")." GMT");
+						
+header("Cache-Control: no-store, no-cache, must-revalidate");
+header("Cache-Control: post-check=0, pre-check=0", false);
+header("Pragma: no-cache");
+						
+header("Location: ../");
+exit;

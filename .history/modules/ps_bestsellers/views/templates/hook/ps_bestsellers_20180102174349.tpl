@@ -22,31 +22,10 @@
 *  @license    http://opensource.org/licenses/afl-3.0.php  Academic Free License (AFL 3.0)
 *  International Registered Trademark & Property of PrestaShop SA
 *}
-<section class="featured-products clearfix"  data-module-name="sameCategoryProduct" data-module-data="{$products|@json_encode}">
-  {* <h2>
-    {if $products|@count == 1}
-      {l s='%s other product in the same category:' sprintf=[$products|@count] d='Modules.Categoryproducts.Shop'}
-    {else}
-      {l s='%s other products in the same category:' sprintf=[$products|@count] d='Modules.Categoryproducts.Shop'}
-    {/if}
-  </h2>
-
-  <carousel class="products" :per-page-custom="[[768, 3], [1024, 4], [2560, 4]]" navigation-enabled :pagination-padding="5">
-    <slide v-for="product in modules.sameCategoryProduct" :key="product.id">
-      <div is="product-miniature" :product='product'></div>
-    </slide>
-  </carousel> *}
-
-
-
-  <b-card header="
-    {if $products|@count == 1}
-      {l s='%s other product in the same category:' sprintf=[$products|@count] d='Modules.Categoryproducts.Shop'}
-    {else}
-      {l s='%s other products in the same category:' sprintf=[$products|@count] d='Modules.Categoryproducts.Shop'}
-    {/if}" class="" body-class="p-2" header-tag="h5">
+<section  class="col-12 featured-products clearfix" data-module-name="bestSellers" data-module-data="{$products|@json_encode}">
+  <b-card header="{l s='Best Sellers' d='Modules.Bestsellers.Shop'}" body-class="p-2" header-tag="h5">
     <carousel class="products" :per-page-custom="[[768, 3], [1024, 4], [2560, 4]]" navigation-enabled :pagination-padding="5">
-      <slide v-for="product in modules.sameCategoryProduct" :key="product.id">
+      <slide v-for="product in modules.bestSellers" :key="product.id">
         <div is="product-miniature" :product='product'></div>
       </slide>
     </carousel>

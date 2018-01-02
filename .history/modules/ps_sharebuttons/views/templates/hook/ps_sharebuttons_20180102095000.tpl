@@ -29,14 +29,12 @@
       {* <span>{l s='Share' d='Shop.Theme.Actions'}</span> *}
       <ul class="list-inline">
         {foreach from=$social_share_links item='social_share_link'}
-          <li class="list-inline-item">
+          <li class="fab fa-{$social_share_link.class} icon-gray list-inline-item">
             <a href="{$social_share_link.url}"
-               class="fab fa-{if $social_share_link.class ==='googleplus'}google-plus{else}{$social_share_link.class}{/if}"
+               class="text-hide"
                title="{$social_share_link.label}"
                target="_blank">
-                <span class="text-hide">
-                  {$social_share_link.label}
-                </span>
+                {$social_share_link.label}
               </a>
           </li>
         {/foreach}

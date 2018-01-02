@@ -23,7 +23,7 @@
 *  International Registered Trademark & Property of PrestaShop SA
 *}
 <section class="featured-products clearfix"  data-module-name="sameCategoryProduct" data-module-data="{$products|@json_encode}">
-  {* <h2>
+  <h2>
     {if $products|@count == 1}
       {l s='%s other product in the same category:' sprintf=[$products|@count] d='Modules.Categoryproducts.Shop'}
     {else}
@@ -35,7 +35,7 @@
     <slide v-for="product in modules.sameCategoryProduct" :key="product.id">
       <div is="product-miniature" :product='product'></div>
     </slide>
-  </carousel> *}
+  </carousel>
 
 
 

@@ -23,24 +23,14 @@
  * International Registered Trademark & Property of PrestaShop SA
  *}
 
-{block name='social_sharing'}
-  {if $social_share_links}
-    <div class="social-sharing">
-      {* <span>{l s='Share' d='Shop.Theme.Actions'}</span> *}
-      <ul class="list-inline">
-        {foreach from=$social_share_links item='social_share_link'}
-          <li class="list-inline-item">
-            <a href="{$social_share_link.url}"
-               class="fab fa-{if $social_share_link.class ==='googleplus'}google-plus{else}{$social_share_link.class}{/if}"
-               title="{$social_share_link.label}"
-               target="_blank">
-                <span class="text-hide">
-                  {$social_share_link.label}
-                </span>
-              </a>
-          </li>
-        {/foreach}
-      </ul>
-    </div>
-  {/if}
-{/block}
+<section class="col-12 featured-products clearfix" data-module-name="featuredProduct" data-module-data="{$products|@json_encode}">
+  <b-card header="{l s='Popular Products' d='Shop.Theme.Catalog'}" body-class="p-2" header-tag="h5">
+    <carousel class="products" :per-page-custom="[[768, 3], [1024, 4], [2560, 4]]"
+        :pagination-padding="8" pagination-size=15
+        pagination-active-color="var(--gray-dark)" pagination-color="var(--secondary)">
+      <slide v-for="product in modules.featuredProduct" :key="product.id">
+        <div is="product-miniature" :product='product'></div>
+      </slide>
+    </carousel>
+  </b-card>
+</section>
