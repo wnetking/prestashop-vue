@@ -47,7 +47,7 @@
   {/block}
 
   {block name='product_features'}
-    {if $product.grouped_features}
+    {if isset($product.grouped_features)}
       <section>
         <h3>{l s='Data sheet' d='Shop.Theme.Catalog'}</h3>
         <dl>
