@@ -143,13 +143,17 @@
 
 	var _globalMethodsHideCartModal2 = _interopRequireDefault(_globalMethodsHideCartModal);
 
+	var _coreProduct = __webpack_require__(34);
+
+	var _coreProduct2 = _interopRequireDefault(_coreProduct);
+
 	// modules data init
 
 	// import styles
 
-	__webpack_require__(34);
+	__webpack_require__(38);
 
-	__webpack_require__(36);
+	__webpack_require__(40);
 
 	_prestashop2['default'].modules = _prestashop2['default'].modules || {};
 	_prestashop2['default'].blockcart = _prestashop2['default'].blockcart || {};
@@ -181,10 +185,12 @@
 	    showCartModal: _globalMethodsShowCartModal2['default'],
 	    hideCartModal: _globalMethodsHideCartModal2['default'],
 	    updateCart: _globalMethodsUpdateCart2['default'],
-	    initFacets: _globalMethodsInitFacets2['default'] },
+	    initFacets: _globalMethodsInitFacets2['default'],
+	    productCore: _coreProduct2['default'] },
 	  created: function created() {
 	    this.updateCart();
 	    this.initFacets();
+	    this.productCore();
 	  }
 	});
 
@@ -4965,6 +4971,12 @@
 	exports['default'] = function () {
 	  var _this = this;
 
+	  $('body').on('click', '[data-button-action="add-to-cart"]', function (event) {
+	    _this.$nextTick(function () {
+	      this.themeLoaderShow = true;
+	    });
+	  });
+
 	  prestashop.on('updateCart', function (event) {
 	    var refreshURL = $('.blockcart').data('refresh-url');
 	    var requestData = {};
@@ -4976,10 +4988,6 @@
 	        action: event.reason.linkAction
 	      };
 	    }
-
-	    _this.$nextTick(function () {
-	      this.themeLoaderShow = true;
-	    });
 
 	    $.post(refreshURL, requestData).then(function (resp) {
 	      $('.blockcart').replaceWith($(resp.preview).find('.blockcart'));
@@ -5102,16 +5110,255 @@
 
 /***/ }),
 /* 34 */
+/***/ (function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	Object.defineProperty(exports, '__esModule', {
+	  value: true
+	});
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
+
+	var _prestashop = __webpack_require__(12);
+
+	var _prestashop2 = _interopRequireDefault(_prestashop);
+
+	var _refreshClickEmit = __webpack_require__(35);
+
+	var _refreshClickEmit2 = _interopRequireDefault(_refreshClickEmit);
+
+	var _refreshClickListener = __webpack_require__(36);
+
+	var _refreshClickListener2 = _interopRequireDefault(_refreshClickListener);
+
+	var _replaceAddToCartSections = __webpack_require__(42);
+
+	var _replaceAddToCartSections2 = _interopRequireDefault(_replaceAddToCartSections);
+
+	exports['default'] = function () {
+	  var _this = this;
+
+	  var updateEventName = 'customUpdateProduct';
+	  _refreshClickEmit2['default'].call(this);
+
+	  $('body').on('click', '.custom-product-refresh', _refreshClickListener2['default']);
+
+	  _prestashop2['default'].on(updateEventName, function (event) {
+	    if (typeof event.refreshUrl == 'undefined') {
+	      event.refreshUrl = true;
+	    }
+
+	    var eventType = event.eventType;
+
+	    $.post(event.reason.productUrl, { ajax: '1', action: 'refresh' }, null, 'json').then(function (resp) {
+	      // console.log(resp)
+
+	      _this.$nextTick(function () {
+	        this.modules.productPageData = $(resp.product_cover_thumbnails).filter('#ajax-product-images').data('ajax-products');
+	        this.themeLoaderShow = false;
+	      });
+
+	      $('.product-prices').replaceWith(resp.product_prices);
+	      $('.product-customization').replaceWith(resp.product_customization);
+	      $('.product-variants').replaceWith(resp.product_variants);
+	      $('.product-discounts').replaceWith(resp.product_discounts);
+	      $('.product-additional-info').replaceWith(resp.product_additional_info);
+	      $('#product-details').replaceWith(resp.product_details);
+
+	      // Replace all "add to cart" sections but the quantity input in order to keep quantity field intact i.e.
+	      // Prevent quantity input from blinking with classic theme.
+	      var $productAddToCart = undefined;
+	      $(resp.product_add_to_cart).each(function (index, value) {
+	        if ($(value).hasClass('product-add-to-cart')) {
+	          $productAddToCart = $(value);
+	        }
+	      });
+
+	      (0, _replaceAddToCartSections2['default'])($productAddToCart);
+
+	      var minimalProductQuantity = parseInt(resp.product_minimal_quantity, 10);
+	      var quantityInputSelector = '#quantity_wanted';
+	      var quantityInput = $(quantityInputSelector);
+	      var quantity_wanted = quantityInput.val();
+
+	      if (!isNaN(minimalProductQuantity) && quantity_wanted < minimalProductQuantity && eventType !== 'updatedProductQuantity') {
+	        quantityInput.attr('min', minimalProductQuantity);
+	        quantityInput.val(minimalProductQuantity);
+	      }
+
+	      if (event.refreshUrl) {
+	        window.history.pushState({
+	          id_product_attribute: resp.id_product_attribute
+	        }, undefined, resp.product_url);
+	      }
+
+	      //   prestashop.emit(updateEventName, resp)
+	    });
+	  });
+	};
+
+	module.exports = exports['default'];
+
+/***/ }),
+/* 35 */
+/***/ (function(module, exports) {
+
+	'use strict';
+
+	Object.defineProperty(exports, '__esModule', {
+	  value: true
+	});
+
+	exports['default'] = function () {
+	  var _this = this;
+
+	  var selector = '.product-variants [data-custom-product-attribute]';
+
+	  $('body').on('change', selector, function () {
+	    $("input[name$='refresh']").click();
+
+	    _this.$nextTick(function () {
+	      this.themeLoaderShow = true;
+	    });
+	  });
+	};
+
+	module.exports = exports['default'];
+
+/***/ }),
+/* 36 */
+/***/ (function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	Object.defineProperty(exports, '__esModule', {
+	  value: true
+	});
+
+	var _getRequestParameter = __webpack_require__(37);
+
+	exports['default'] = function (event, extraParameters) {
+	  event.preventDefault();
+
+	  var $productRefresh = $(this);
+	  var eventType = 'updatedProductCombination';
+	  var updateEventName = 'customUpdateProduct';
+
+	  if (typeof extraParameters !== 'undefined' && extraParameters.eventType) {
+	    eventType = extraParameters.eventType;
+	  }
+
+	  var preview = (0, _getRequestParameter.getRequestParameter)('preview');
+	  if (preview !== null) {
+	    preview = '&preview=' + preview;
+	  } else {
+	    preview = '';
+	  }
+
+	  var query = $(event.target.form).serialize() + '&ajax=1&action=productrefresh' + preview;
+	  var actionURL = $(event.target.form).attr('action');
+
+	  $.post(actionURL, query, null, 'json').then(function (resp) {
+	    prestashop.emit(updateEventName, {
+	      reason: {
+	        productUrl: resp.productUrl
+	      },
+	      refreshUrl: $productRefresh.data('url-update'),
+	      eventType: eventType,
+	      resp: resp
+	    });
+	  });
+	};
+
+	module.exports = exports['default'];
+
+/***/ }),
+/* 37 */
+/***/ (function(module, exports) {
+
+	'use strict';
+
+	Object.defineProperty(exports, '__esModule', {
+	  value: true
+	});
+	exports.getRequestParameter = getRequestParameter;
+
+	function getRequestParameter(paramName) {
+	  var vars = {};
+	  window.location.href.replace(location.hash, '').replace(/[?&]+([^=&]+)=?([^&]*)?/gi, function (m, key, value) {
+	    vars[key] = value !== undefined ? value : '';
+	  });
+	  if (paramName !== undefined) {
+	    return vars[paramName] ? vars[paramName] : null;
+	  }
+
+	  return vars;
+	}
+
+/***/ }),
+/* 38 */
 /***/ (function(module, exports) {
 
 	// removed by extract-text-webpack-plugin
 
 /***/ }),
-/* 35 */,
-/* 36 */
+/* 39 */,
+/* 40 */
 /***/ (function(module, exports) {
 
 	// removed by extract-text-webpack-plugin
+
+/***/ }),
+/* 41 */,
+/* 42 */
+/***/ (function(module, exports) {
+
+	'use strict';
+
+	Object.defineProperty(exports, '__esModule', {
+	  value: true
+	});
+	var replaceAddToCartSections = function replaceAddToCartSections(addCartHtml) {
+	  var $addToCartSnippet = $(addCartHtml);
+	  var $addProductToCart = $('.product-add-to-cart');
+
+	  function replaceAddToCartSection(replacement) {
+	    var replace = replacement.$addToCartSnippet.find(replacement.targetSelector);
+
+	    if ($(replacement.$targetParent.find(replacement.targetSelector)).length > 0) {
+	      if (replace.length > 0) {
+	        $(replacement.$targetParent.find(replacement.targetSelector)).replaceWith(replace[0].outerHTML);
+	      } else {
+	        $(replacement.$targetParent.find(replacement.targetSelector)).html('');
+	      }
+	    }
+	  }
+
+	  var productAvailabilitySelector = '.add';
+	  replaceAddToCartSection({
+	    $addToCartSnippet: $addToCartSnippet,
+	    $targetParent: $addProductToCart,
+	    targetSelector: productAvailabilitySelector
+	  });
+
+	  var productAvailabilityMessageSelector = '#product-availability';
+	  replaceAddToCartSection({
+	    $addToCartSnippet: $addToCartSnippet,
+	    $targetParent: $addProductToCart,
+	    targetSelector: productAvailabilityMessageSelector
+	  });
+
+	  var productMinimalQuantitySelector = '.product-minimal-quantity';
+	  replaceAddToCartSection({
+	    $addToCartSnippet: $addToCartSnippet,
+	    $targetParent: $addProductToCart,
+	    targetSelector: productMinimalQuantitySelector
+	  });
+	};
+
+	exports['default'] = replaceAddToCartSections;
+	module.exports = exports['default'];
 
 /***/ })
 /******/ ]);

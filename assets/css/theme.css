@@ -596,6 +596,9 @@ a.add-to-cart:hover {
   margin-right: 15px;
   margin-bottom: 25px;
 }
+.quantity {
+  max-width: 70px;
+}
 .VueCarousel .product-miniature {
   max-width: inherit;
   margin-bottom: 0;
@@ -828,6 +831,9 @@ body#checkout {
 }
 .checkout-step .step-number {
   margin-right: 5px;
+}
+.product-images {
+  overflow-x: auto;
 }
 #notifications {
   margin-top: 5px;
