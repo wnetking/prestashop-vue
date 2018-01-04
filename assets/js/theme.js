@@ -117,6 +117,14 @@
 
 	var _vueStringFilter2 = _interopRequireDefault(_vueStringFilter);
 
+	var _vuebar = __webpack_require__(43);
+
+	var _vuebar2 = _interopRequireDefault(_vuebar);
+
+	var _vImg = __webpack_require__(48);
+
+	var _vImg2 = _interopRequireDefault(_vImg);
+
 	var _filters = __webpack_require__(22);
 
 	var _filters2 = _interopRequireDefault(_filters);
@@ -143,22 +151,41 @@
 
 	var _globalMethodsHideCartModal2 = _interopRequireDefault(_globalMethodsHideCartModal);
 
+	var _globalMethodsChangeProductCoverImage = __webpack_require__(44);
+
+	var _globalMethodsChangeProductCoverImage2 = _interopRequireDefault(_globalMethodsChangeProductCoverImage);
+
+	var _globalMethodsProductZoom = __webpack_require__(45);
+
+	var _globalMethodsProductZoom2 = _interopRequireDefault(_globalMethodsProductZoom);
+
+	var _globalMethodsZoomLeave = __webpack_require__(46);
+
+	var _globalMethodsZoomLeave2 = _interopRequireDefault(_globalMethodsZoomLeave);
+
 	var _coreProduct = __webpack_require__(34);
 
 	var _coreProduct2 = _interopRequireDefault(_coreProduct);
+
+	var _globalMethodsSearchBarChange = __webpack_require__(49);
+
+	var _globalMethodsSearchBarChange2 = _interopRequireDefault(_globalMethodsSearchBarChange);
 
 	// modules data init
 
 	// import styles
 
-	__webpack_require__(38);
+	__webpack_require__(39);
 
-	__webpack_require__(40);
+	__webpack_require__(41);
 
 	_prestashop2['default'].modules = _prestashop2['default'].modules || {};
 	_prestashop2['default'].blockcart = _prestashop2['default'].blockcart || {};
 	_prestashop2['default'].themeLoaderShow = false;
-	_prestashop2['default'].blockcart.modalData = '<h1>Hello cart</h1>';
+	_prestashop2['default'].blockcart = {
+	  modalData: '<h1>Hello cart</h1>',
+	  data: {}
+	};
 
 	$('[data-module-name]').each(function () {
 	  _prestashop2['default'].modules[$(this).data('module-name')] = $(this).data('module-data');
@@ -167,6 +194,8 @@
 	_vue2['default'].use(_bootstrapVue2['default']);
 	_vue2['default'].use(_vueStringFilter2['default']);
 	_vue2['default'].use(_vueSocialSharing2['default']);
+	_vue2['default'].use(_vuebar2['default']);
+	_vue2['default'].use(_vImg2['default']);
 
 	(0, _filters2['default'])();
 	(0, _components2['default'])();
@@ -186,7 +215,11 @@
 	    hideCartModal: _globalMethodsHideCartModal2['default'],
 	    updateCart: _globalMethodsUpdateCart2['default'],
 	    initFacets: _globalMethodsInitFacets2['default'],
-	    productCore: _coreProduct2['default'] },
+	    productCore: _coreProduct2['default'],
+	    changeProductCoverImage: _globalMethodsChangeProductCoverImage2['default'],
+	    productZoom: _globalMethodsProductZoom2['default'],
+	    zoomLeave: _globalMethodsZoomLeave2['default'],
+	    searchBarChange: _globalMethodsSearchBarChange2['default'] },
 	  created: function created() {
 	    this.updateCart();
 	    this.initFacets();
@@ -4753,6 +4786,9 @@
 
 	exports['default'] = function () {
 	  _vue2['default'].filter('striphtml', _striphtml2['default']);
+	  _vue2['default'].filter('json', function (value) {
+	    return JSON.stringify(value, null, 2);
+	  });
 	};
 
 	module.exports = exports['default'];
@@ -5046,10 +5082,8 @@
 	  });
 
 	  _prestashop2['default'].on('updateProductList', function (data) {
-	    console.log(data);
-
 	    _this.$nextTick(function () {
-	      this.modules.listingProduct = $(data.rendered_products).filter('#ajax-products-list').data('ajax-products');
+	      this.modules.listingProduct = $(data.rendered_products).filter('#js-product-list').data('module-data');
 	      updateProductListDOM(data);
 	      this.themeLoaderShow = false;
 	    });
@@ -5132,7 +5166,7 @@
 
 	var _refreshClickListener2 = _interopRequireDefault(_refreshClickListener);
 
-	var _replaceAddToCartSections = __webpack_require__(42);
+	var _replaceAddToCartSections = __webpack_require__(38);
 
 	var _replaceAddToCartSections2 = _interopRequireDefault(_replaceAddToCartSections);
 
@@ -5300,20 +5334,6 @@
 /* 38 */
 /***/ (function(module, exports) {
 
-	// removed by extract-text-webpack-plugin
-
-/***/ }),
-/* 39 */,
-/* 40 */
-/***/ (function(module, exports) {
-
-	// removed by extract-text-webpack-plugin
-
-/***/ }),
-/* 41 */,
-/* 42 */
-/***/ (function(module, exports) {
-
 	'use strict';
 
 	Object.defineProperty(exports, '__esModule', {
@@ -5358,6 +5378,1036 @@
 	};
 
 	exports['default'] = replaceAddToCartSections;
+	module.exports = exports['default'];
+
+/***/ }),
+/* 39 */
+/***/ (function(module, exports) {
+
+	// removed by extract-text-webpack-plugin
+
+/***/ }),
+/* 40 */,
+/* 41 */
+/***/ (function(module, exports) {
+
+	// removed by extract-text-webpack-plugin
+
+/***/ }),
+/* 42 */,
+/* 43 */
+/***/ (function(module, exports, __webpack_require__) {
+
+	/*----------------------------------------*\
+	    Vuebar
+	\*----------------------------------------*/
+	'use strict';
+
+	;(function () {
+	    'use strict';
+
+	    /*------------------------------------*\
+	        Vuebar
+	    \*------------------------------------*/
+	    var Vuebar = {};
+	    Vuebar.install = function (Vue, options) {
+
+	        /*------------------------------------*\
+	            Create State
+	            - contains default values
+	        \*------------------------------------*/
+	        function createState(el) {
+	            el._vuebarState = {
+
+	                // config with default values that may be overwritten on directive intialization
+	                config: {
+	                    scrollThrottle: 10,
+	                    draggerThrottle: 10,
+	                    resizeRefresh: true,
+	                    observerThrottle: 100,
+	                    resizeDebounce: 100,
+	                    unselectableBody: true,
+	                    overrideFloatingScrollbar: true,
+	                    scrollingPhantomDelay: 1000,
+	                    draggingPhantomDelay: 1000,
+	                    preventParentScroll: false,
+	                    useScrollbarPseudo: false, // experimental
+
+	                    el1Class: 'vb',
+	                    el1ScrollVisibleClass: 'vb-visible',
+	                    el1ScrollInvisibleClass: 'vb-invisible',
+	                    el1ScrollingClass: 'vb-scrolling',
+	                    el1ScrollingPhantomClass: 'vb-scrolling-phantom',
+	                    el1DraggingClass: 'vb-dragging',
+	                    el1DraggingPhantomClass: 'vb-dragging-phantom',
+
+	                    el2Class: 'vb-content',
+
+	                    draggerClass: 'vb-dragger',
+	                    draggerStylerClass: 'vb-dragger-styler'
+	                },
+
+	                // reference to binding
+	                binding: null,
+
+	                // references to directive DOM elements
+	                el1: null,
+	                el2: null,
+	                dragger: null,
+
+	                // show dragger
+	                draggerEnabled: null,
+
+	                // properties computed for internal directive logic & DOM manipulations
+	                visibleArea: 0, // ratio between container height and scrollable content height
+	                scrollTop: 0, // position of content scrollTop in px
+	                barTop: 0, // position of dragger in px
+	                barHeight: 0, // height of dragger in px
+	                mouseBarOffsetY: 0, // relative position of mouse at the time of clicking on dragger
+	                barDragging: false, // when the dragger is used
+
+	                // reference to MutationObserver
+	                mutationObserver: null,
+
+	                // references to timeouts for DOM class manipulation
+	                scrollingClassTimeout: null,
+	                draggingClassTimeout: null,
+	                scrollingPhantomClassTimeout: null,
+	                draggingPhantomClassTimeout: null,
+
+	                // references to a functions we'll need when removing events
+	                barMousedown: null,
+	                documentMousemove: null,
+	                documentMouseup: null,
+	                windowResize: null,
+	                scrollHandler: null,
+	                wheelHandler: null
+
+	            };
+	            return el._vuebarState;
+	        }
+
+	        /*------------------------------------*\
+	            Get State
+	        \*------------------------------------*/
+	        function getState(el) {
+	            return el._vuebarState;
+	        }
+
+	        /*------------------------------------*\
+	            Mount Validation
+	        \*------------------------------------*/
+	        function markupValidation(el) {
+	            if (!el.firstChild) {
+	                Vue.util.warn('(Vuebar) Element 1 with v-bar directive doesn\'t have required child element 2.');
+	                return false;
+	            }
+	            return true;
+	        }
+
+	        /*------------------------------------*\
+	            Computing Properties
+	        \*------------------------------------*/
+	        function computeVisibleArea(el) {
+	            var state = getState(el);
+	            state.visibleArea = state.el2.clientHeight / state.el2.scrollHeight;
+	        }
+
+	        function computeScrollTop(el) {
+	            var state = getState(el);
+	            state.scrollTop = state.barTop * (state.el2.scrollHeight / state.el2.clientHeight);
+	        }
+
+	        function computeBarTop(el, event) {
+	            var state = getState(el);
+
+	            // if the function gets called on scroll event
+	            if (!event) {
+	                state.barTop = state.el2.scrollTop * state.visibleArea;
+	                return false;
+	            } // else the function gets called when moving dragger with mouse
+
+	            var relativeMouseY = event.clientY - state.el1.getBoundingClientRect().top;
+	            if (relativeMouseY <= state.mouseBarOffsetY) {
+	                // if bar is trying to go over top
+	                state.barTop = 0;
+	            }
+
+	            if (relativeMouseY > state.mouseBarOffsetY) {
+	                // if bar is moving between top and bottom
+	                state.barTop = relativeMouseY - state.mouseBarOffsetY;
+	            }
+
+	            if (state.barTop + state.barHeight >= state.el2.clientHeight) {
+	                // if bar is trying to go over bottom
+	                state.barTop = state.el2.clientHeight - state.barHeight;
+	            }
+	        }
+
+	        function computeBarHeight(el) {
+	            var state = getState(el);
+	            if (state.visibleArea >= 1) {
+	                state.barHeight = 0;
+	            } else {
+	                state.barHeight = state.el2.clientHeight * state.visibleArea;
+	            }
+	        }
+
+	        /*------------------------------------*\
+	            Styles & DOM
+	        \*------------------------------------*/
+	        function createDragger(el) {
+	            var state = getState(el);
+
+	            var dragger = document.createElement('div');
+	            var draggerStyler = document.createElement('div');
+
+	            dragger.className = state.config.draggerClass;
+
+	            dragger.style.position = 'absolute';
+
+	            if (!state.draggerEnabled) {
+	                dragger.style.display = 'none';
+	            }
+
+	            draggerStyler.className = state.config.draggerStylerClass;
+
+	            dragger.appendChild(draggerStyler);
+	            state.el1.appendChild(dragger);
+
+	            return dragger;
+	        }
+
+	        function updateDragger(el, options) {
+	            var options = options ? options : {};
+	            var state = getState(el);
+
+	            // setting dragger styles
+	            state.dragger.style.height = parseInt(Math.round(state.barHeight)) + 'px';
+	            state.dragger.style.top = parseInt(Math.round(state.barTop)) + 'px';
+	            //state.dragger.style.height = Math.ceil( state.barHeight ) + 'px';
+	            //state.dragger.style.top = Math.ceil( state.barTop ) + 'px';
+
+	            // scrollbar visible / invisible classes
+	            if (state.draggerEnabled && state.visibleArea < 1) {
+	                removeClass(state.el1, state.config.el1ScrollInvisibleClass);
+	                addClass(state.el1, state.config.el1ScrollVisibleClass);
+	            } else {
+	                removeClass(state.el1, state.config.el1ScrollVisibleClass);
+	                addClass(state.el1, state.config.el1ScrollInvisibleClass);
+	            }
+
+	            if (options.withScrollingClasses) {
+
+	                // add scrolling class
+	                addClass(state.el1, state.config.el1ScrollingClass);
+
+	                // remove scrolling class
+	                state.scrollingClassTimeout ? clearTimeout(state.scrollingClassTimeout) : null;
+	                state.scrollingClassTimeout = setTimeout(function () {
+	                    removeClass(state.el1, state.config.el1ScrollingClass);
+	                }, state.config.scrollThrottle + 5);
+
+	                // add phantom scrolling class
+	                addClass(state.el1, state.config.el1ScrollingPhantomClass);
+
+	                // remove phantom scrolling class
+	                state.scrollingPhantomClassTimeout ? clearTimeout(state.scrollingPhantomClassTimeout) : null;
+	                state.scrollingPhantomClassTimeout = setTimeout(function () {
+	                    removeClass(state.el1, state.config.el1ScrollingPhantomClass);
+	                }, state.config.scrollThrottle + state.config.scrollingPhantomDelay);
+	            }
+	        }
+
+	        // this is an experimental feature
+	        // - it works only on chrome and safari
+	        // - instead of hiding scrollbar by overflowing it with its parent set to overflow:hidden
+	        //   we hide scrollbar using pseudo-element selector ::-webkit-scrollbar
+	        function hideScrollbarUsingPseudoElement(el) {
+	            var state = getState(el);
+	            var idName = 'vuebar-pseudo-element-styles';
+	            var selector = '.' + state.config.el2Class + '::-webkit-scrollbar';
+	            var styleElm = document.getElementById(idName);
+	            var sheet = null;
+
+	            if (styleElm) {
+	                sheet = styleElm.sheet;
+	            } else {
+	                styleElm = document.createElement('style');
+	                styleElm.id = idName;
+	                document.head.appendChild(styleElm);
+	                sheet = styleElm.sheet;
+	            }
+
+	            // detect if there is a rule already added to the selector
+	            var ruleExists = false;
+	            for (var i = 0, l = sheet.rules.length; i < l; i++) {
+	                var rule = sheet.rules[i];
+	                if (rule.selectorText == selector) {
+	                    ruleExists = true;
+	                }
+	            }
+
+	            // if there is rule added already then don't continue
+	            if (ruleExists) {
+	                return false;
+	            }
+
+	            // insert rule
+	            // - we only need to use insertRule and don't need to use addRule at all
+	            //   because we're only targeting chrome & safari browsers
+	            if (sheet.insertRule) {
+	                sheet.insertRule(selector + '{display:none}', 0);
+	            }
+	        }
+
+	        function preventParentScroll(el, event) {
+	            var state = getState(el);
+
+	            if (state.visibleArea >= 1) {
+	                return false;
+	            }
+
+	            var scrollDist = state.el2.scrollHeight - state.el2.clientHeight;
+	            var scrollTop = state.el2.scrollTop;
+
+	            var wheelingUp = event.deltaY < 0;
+	            var wheelingDown = event.deltaY > 0;
+
+	            if (scrollTop <= 0 && wheelingUp) {
+	                event.preventDefault();
+	                return false;
+	            }
+
+	            if (scrollTop >= scrollDist && wheelingDown) {
+	                event.preventDefault();
+	                return false;
+	            }
+	        }
+
+	        function updateScroll(el) {
+	            var state = getState(el);
+	            state.el2.scrollTop = state.scrollTop;
+	        }
+
+	        /*------------------------------------*\
+	            Refresh
+	        \*------------------------------------*/
+
+	        function refreshScrollbar(el, options) {
+	            var options = options ? options : {};
+
+	            if (options.immediate) {
+	                computeVisibleArea(el);
+	                computeBarTop(el);
+	                computeBarHeight(el);
+	                updateDragger(el);
+	            }
+
+	            Vue.nextTick((function () {
+	                if (!getState(el)) {
+	                    return false;
+	                }
+	                computeVisibleArea(el);
+	                computeBarTop(el);
+	                computeBarHeight(el);
+	                updateDragger(el);
+	            }).bind(this));
+	        }
+
+	        /*------------------------------------*\
+	            Events & Handlers
+	        \*------------------------------------*/
+
+	        function scrollHandler(el) {
+	            var state = getState(el);
+	            return throttle((function (event) {
+	                computeVisibleArea(el);
+	                computeBarHeight(el); // fallback for an undetected content change
+	                if (!state.barDragging) {
+	                    computeBarTop(el);
+	                    updateDragger(el, { withScrollingClasses: true });
+	                }
+	            }).bind(this), state.config.scrollThrottle);
+	        }
+
+	        function wheelHandler(el) {
+	            return (function (event) {
+	                preventParentScroll(el, event);
+	            }).bind(this);
+	        }
+
+	        function documentMousemove(el) {
+	            var state = getState(el);
+	            return throttle((function (event) {
+	                computeBarTop(el, event);
+	                updateDragger(el);
+	                computeScrollTop(el);
+	                updateScroll(el);
+	            }).bind(this), state.config.draggerThrottle);
+	        }
+
+	        function documentMouseup(el) {
+	            var state = getState(el);
+	            return (function (event) {
+
+	                //
+	                state.barDragging = false;
+
+	                // enable user select
+	                state.el1.style.userSelect = '';
+	                state.config.unselectableBody ? compatStyle(document.body, 'UserSelect', '') : null;
+
+	                // remove dragging class
+	                removeClass(state.el1, state.config.el1DraggingClass);
+	                state.draggingPhantomClassTimeout = setTimeout(function () {
+	                    removeClass(state.el1, state.config.el1DraggingPhantomClass);
+	                }, state.config.draggingPhantomDelay);
+
+	                // remove events
+	                document.removeEventListener('mousemove', state.documentMousemove, 0);
+	                document.removeEventListener('mouseup', state.documentMouseup, 0);
+	            }).bind(this);
+	        }
+
+	        function barMousedown(el) {
+	            var state = getState(el);
+	            return (function (event) {
+
+	                // don't do nothing if it's not left mouse button
+	                if (event.which !== 1) {
+	                    return false;
+	                }
+
+	                state.barDragging = true;
+	                state.mouseBarOffsetY = event.offsetY;
+
+	                // disable user select
+	                state.el1.style.userSelect = 'none';
+	                state.config.unselectableBody ? compatStyle(document.body, 'UserSelect', 'none') : null;
+
+	                // add dragging class
+	                addClass(state.el1, state.config.el1DraggingClass);
+	                state.draggingPhantomClassTimeout ? clearTimeout(state.draggingPhantomClassTimeout) : null;
+	                addClass(state.el1, state.config.el1DraggingPhantomClass);
+
+	                // add events
+	                document.addEventListener('mousemove', state.documentMousemove, 0);
+	                document.addEventListener('mouseup', state.documentMouseup, 0);
+	            }).bind(this);
+	        }
+
+	        function windowResize(el) {
+	            var state = getState(el);
+	            return debounce((function (event) {
+	                refreshScrollbar(el);
+	            }).bind(this), state.config.resizeDebounce);
+	        }
+
+	        function initMutationObserver(el) {
+	            if (typeof MutationObserver === typeof void 0) {
+	                return null;
+	            }
+
+	            var state = getState(el);
+
+	            var observer = new MutationObserver(throttle(function (mutations) {
+	                refreshScrollbar(el);
+	            }, state.config.observerThrottle));
+
+	            observer.observe(state.el2, {
+	                childList: true,
+	                characterData: true,
+	                subtree: true
+	            });
+
+	            return observer;
+	        }
+
+	        /*------------------------------------*\
+	            Initialize Scrollbar
+	        \*------------------------------------*/
+	        function initScrollbar(el, kwargs) {
+
+	            // validate on directive bind if the markup is OK
+	            if (!markupValidation.call(this, el)) {
+	                return false;
+	            }
+
+	            // safeguard to not initialize vuebar when it's already initialized
+	            if (el._vuebarState) {
+	                // and I'm actually curious if that can happen
+	                Vue.util.warn('(Vuebar) Tried to initialize second time. If you see this please create an issue on https://github.com/DominikSerafin/vuebar with all relevent debug information. Thank you!');
+	                return false;
+	            }
+
+	            // create state
+	            var state = createState(el);
+
+	            // get options object
+	            // - it will come from directive binding (there is a 'value' property)
+	            // - or it will come from public method direct options object
+	            var options = kwargs.value ? kwargs.value : kwargs ? kwargs : {};
+
+	            // overwrite defaults with provided options
+	            for (var key in options) {
+	                state.config[key] = options[key];
+	            }
+
+	            // detect browser
+	            var browser = detectBrowser();
+
+	            // dragger enabled?
+	            var elNativeScrollbarWidth = getNativeScrollbarWidth(el.firstElementChild);
+	            var overlayScrollbar = elNativeScrollbarWidth == 0;
+	            state.draggerEnabled = !overlayScrollbar || state.config.overrideFloatingScrollbar ? 1 : 0;
+
+	            // setup scrollbar "state"
+	            state.binding = kwargs.value ? kwargs : null;
+	            state.el1 = el;
+	            state.el2 = el.firstElementChild;
+	            state.dragger = createDragger(el);
+
+	            // create and reference event listeners
+	            state.barMousedown = barMousedown(el);
+	            state.documentMousemove = documentMousemove(el);
+	            state.documentMouseup = documentMouseup(el);
+	            state.windowResize = windowResize(el);
+	            state.scrollHandler = scrollHandler(el);
+	            state.wheelHandler = wheelHandler(el);
+
+	            // initialize and reference mutation observer
+	            state.mutationObserver = initMutationObserver(el);
+
+	            // el1 styles and class
+	            addClass(state.el1, state.config.el1Class);
+	            state.el1.style.position = 'relative';
+	            state.el1.style.overflow = 'hidden';
+
+	            // el2 styles and class
+	            addClass(state.el2, state.config.el2Class);
+	            state.el2.style.display = 'block';
+	            state.el2.style.overflowX = 'hidden';
+	            state.el2.style.overflowY = 'scroll';
+	            state.el2.style.height = '100%';
+
+	            // do the magic
+	            if (state.draggerEnabled) {
+
+	                // hide original browser scrollbar using pseudo css selectors (only chrome & safari)
+	                if (state.config.useScrollbarPseudo && (browser.chrome || browser.safari)) {
+	                    state.el2.style.width = '100%';
+	                    hideScrollbarUsingPseudoElement(el);
+	                }
+
+	                // hide original browser overlay scrollbar and add padding to compensate for that
+	                else if (overlayScrollbar) {
+	                        /* state.el2.style.width = 'calc(100% + ' + 20 + 'px)';
+	                        compatStyle(state.el2, 'BoxSizing', 'border-box'); */
+	                        state.el2.style.width = '100%';
+	                        compatStyle(state.el2, 'BoxSizing', 'content-box');
+	                        state.el2.style.paddingRight = '20px';
+	                    }
+
+	                    // hide original browser scrollbar behind element edges and hidden overflow
+	                    else {
+	                            state.el2.style.width = 'calc(100% + ' + elNativeScrollbarWidth + 'px)';
+	                        }
+	            }
+
+	            // add events
+	            // - wheel event is only needed when preventParentScroll option is enabled
+	            // - resize event is only needed when resizeRefresh option is enabled
+	            state.el2.addEventListener('scroll', state.scrollHandler, 0);
+	            state.dragger.addEventListener('mousedown', state.barMousedown, 0);
+	            state.config.preventParentScroll ? state.el2.addEventListener('wheel', state.wheelHandler, 0) : null;
+	            state.config.resizeRefresh ? window.addEventListener('resize', state.windowResize, 0) : null;
+
+	            // initial calculations using refresh scrollbar
+	            refreshScrollbar(el, { immediate: true });
+	        }
+
+	        /*------------------------------------*\
+	            Destroy Scrollbar
+	        \*------------------------------------*/
+	        function destroyScrollbar(el, options) {
+	            var options = options ? options : {};
+	            var state = getState(el);
+
+	            // clear events
+	            state.dragger.removeEventListener('mousedown', state.barMousedown, 0);
+	            state.el2.removeEventListener('scroll', state.scrollHandler, 0);
+	            state.el2.removeEventListener('wheel', state.scrollHandler, 0);
+	            window.removeEventListener('resize', state.windowResize, 0);
+
+	            // disconnect mutation observer
+	            state.mutationObserver ? state.mutationObserver.disconnect() : null;
+
+	            // clear el1 classes
+	            removeClass(state.el1, state.config.el1Class);
+	            removeClass(state.el1, state.config.el1ScrollVisibleClass);
+	            removeClass(state.el1, state.config.el1ScrollInvisibleClass);
+	            removeClass(state.el1, state.config.el1ScrollingClass);
+	            removeClass(state.el1, state.config.el1ScrollingPhantomClass);
+	            removeClass(state.el1, state.config.el1DraggingClass);
+
+	            // clear el1 styles
+	            if (options.clearStyles) {
+	                state.el1.style.position = '';
+	                state.el1.style.overflow = '';
+	            }
+
+	            // clear el2 classes
+	            removeClass(state.el2, state.config.el2Class);
+
+	            // clear el2 styles
+	            if (options.clearStyles) {
+	                state.el2.style.display = '';
+	                state.el2.style.overflowX = '';
+	                state.el2.style.overflowY = '';
+	                state.el2.style.msOverflowStyle = '';
+	                state.el2.style.height = '';
+	                state.el2.style.width = '';
+	            }
+
+	            // clear dragger
+	            state.dragger.removeChild(state.dragger.firstChild);
+	            state.el1.removeChild(state.dragger);
+
+	            // clear timeouts that may be still running
+	            state.scrollingPhantomClassTimeout ? clearTimeout(state.scrollingPhantomClassTimeout) : null;
+	            state.draggingPhantomClassTimeout ? clearTimeout(state.draggingPhantomClassTimeout) : null;
+
+	            // delete state object from element
+	            delete el._vuebarState;
+	        }
+
+	        /*------------------------------------*\
+	            Public Methods Install
+	        \*------------------------------------*/
+	        function publicMethods() {
+	            return {
+	                getState: getState,
+	                initScrollbar: initScrollbar,
+	                destroyScrollbar: destroyScrollbar,
+	                refreshScrollbar: refreshScrollbar
+	            };
+	        }
+	        Vue.vuebar = publicMethods();
+	        Vue.prototype.$vuebar = publicMethods();
+
+	        /*------------------------------------*\
+	            Directive Install
+	        \*------------------------------------*/
+	        Vue.directive('bar', {
+
+	            inserted: function inserted(el, binding, vnode) {
+	                initScrollbar.call(this, el, binding);
+	            },
+
+	            componentUpdated: function componentUpdated(el, binding, vnode, oldVnode) {
+	                refreshScrollbar.call(this, el);
+	            },
+
+	            unbind: function unbind(el, binding, vnode, oldVnode) {
+	                // we shouldn't clearStyles because it actually doesn't matter that much
+	                // the element will be always deleted on unbind and its styles also
+	                // and if we do clear styles then it looks bad on transitions
+	                destroyScrollbar.call(this, el, { clearStyles: false });
+	            }
+
+	        });
+
+	        /*------------------------------------*\
+	            Debounce Helper
+	            https://remysharp.com/2010/07/21/throttling-function-calls
+	        \*------------------------------------*/
+	        function debounce(fn, delay) {
+	            var timer = null;
+	            return function () {
+	                var context = this,
+	                    args = arguments;
+	                clearTimeout(timer);
+	                timer = setTimeout(function () {
+	                    fn.apply(context, args);
+	                }, delay);
+	            };
+	        };
+
+	        /*------------------------------------*\
+	            Throttle Helper
+	            https://remysharp.com/2010/07/21/throttling-function-calls
+	        \*------------------------------------*/
+	        function throttle(fn, threshhold, scope) {
+	            threshhold || (threshhold = 250);
+	            var last, deferTimer;
+	            return function () {
+	                var context = scope || this;
+
+	                var now = +new Date(),
+	                    args = arguments;
+	                if (last && now < last + threshhold) {
+	                    // hold on to it
+	                    clearTimeout(deferTimer);
+	                    deferTimer = setTimeout(function () {
+	                        last = now;
+	                        fn.apply(context, args);
+	                    }, threshhold);
+	                } else {
+	                    last = now;
+	                    fn.apply(context, args);
+	                }
+	            };
+	        }
+
+	        /*------------------------------------*\
+	            Style Vendor Prefixes Helper
+	        \*------------------------------------*/
+	        function compatStyle(element, property, value) {
+	            element.style['webkit' + property] = value;
+	            element.style['moz' + property] = value;
+	            element.style['ms' + property] = value;
+	            element.style['o' + property] = value;
+	            element.style[property.slice(0, 1).toLowerCase() + property.substring(1)] = value;
+	        }
+
+	        /*------------------------------------*\
+	            Class Manipulation Helpers
+	            https://plainjs.com/javascript/attributes/adding-removing-and-testing-for-classes-9/
+	        \*------------------------------------*/
+	        function hasClass(el, className) {
+	            return el.classList ? el.classList.contains(className) : new RegExp('\\b' + className + '\\b').test(el.className);
+	        }
+
+	        function addClass(el, className) {
+	            if (el.classList) el.classList.add(className);else if (!hasClass(el, className)) el.className += ' ' + className;
+	        }
+
+	        function removeClass(el, className) {
+	            if (el.classList) el.classList.remove(className);else el.className = el.className.replace(new RegExp('\\b' + className + '\\b', 'g'), '');
+	        }
+
+	        /*------------------------------------*\
+	            Browser Detection Helper
+	        \*------------------------------------*/
+	        function detectBrowser() {
+
+	            // get ie version helper
+	            function getIEVersion() {
+	                var match = window.navigator.userAgent.match(/(?:MSIE |Trident\/.*; rv:)(\d+)/);
+	                return match ? parseInt(match[1]) : void 0;
+	            }
+
+	            // user agent & vendor
+	            var ua = window.navigator.userAgent;
+	            var vendor = window.navigator.vendor;
+
+	            // chrome
+	            var chrome = ua.toLowerCase().indexOf('chrome') > -1 && vendor.toLowerCase().indexOf('google') > -1;
+
+	            // edge
+	            var edge = ua.indexOf('Edge') > -1;
+
+	            // safari
+	            var safari = !!window.safari || ua.toLowerCase().indexOf('safari') > -1 && vendor.toLowerCase().indexOf('apple') > -1;
+
+	            // internet explorer
+	            var ie8 = getIEVersion() == 8;
+	            var ie9 = getIEVersion() == 9;
+	            var ie10 = getIEVersion() == 10;
+	            var ie11 = getIEVersion() == 11;
+	            var ie = ie8 || ie9 || ie10 || ie11;
+
+	            // is it mobile browser?
+	            // regex below thanks to http://detectmobilebrowsers.com/
+	            var uaOrVendor = ua || vendor || window.opera;
+	            var mobile = /(android|bb\d+|meego).+mobile|avantgo|bada\/|blackberry|blazer|compal|elaine|fennec|hiptop|iemobile|ip(hone|od)|iris|kindle|lge |maemo|midp|mmp|mobile.+firefox|netfront|opera m(ob|in)i|palm( os)?|phone|p(ixi|re)\/|plucker|pocket|psp|series(4|6)0|symbian|treo|up\.(browser|link)|vodafone|wap|windows ce|xda|xiino/i.test(uaOrVendor) || /1207|6310|6590|3gso|4thp|50[1-6]i|770s|802s|a wa|abac|ac(er|oo|s\-)|ai(ko|rn)|al(av|ca|co)|amoi|an(ex|ny|yw)|aptu|ar(ch|go)|as(te|us)|attw|au(di|\-m|r |s )|avan|be(ck|ll|nq)|bi(lb|rd)|bl(ac|az)|br(e|v)w|bumb|bw\-(n|u)|c55\/|capi|ccwa|cdm\-|cell|chtm|cldc|cmd\-|co(mp|nd)|craw|da(it|ll|ng)|dbte|dc\-s|devi|dica|dmob|do(c|p)o|ds(12|\-d)|el(49|ai)|em(l2|ul)|er(ic|k0)|esl8|ez([4-7]0|os|wa|ze)|fetc|fly(\-|_)|g1 u|g560|gene|gf\-5|g\-mo|go(\.w|od)|gr(ad|un)|haie|hcit|hd\-(m|p|t)|hei\-|hi(pt|ta)|hp( i|ip)|hs\-c|ht(c(\-| |_|a|g|p|s|t)|tp)|hu(aw|tc)|i\-(20|go|ma)|i230|iac( |\-|\/)|ibro|idea|ig01|ikom|im1k|inno|ipaq|iris|ja(t|v)a|jbro|jemu|jigs|kddi|keji|kgt( |\/)|klon|kpt |kwc\-|kyo(c|k)|le(no|xi)|lg( g|\/(k|l|u)|50|54|\-[a-w])|libw|lynx|m1\-w|m3ga|m50\/|ma(te|ui|xo)|mc(01|21|ca)|m\-cr|me(rc|ri)|mi(o8|oa|ts)|mmef|mo(01|02|bi|de|do|t(\-| |o|v)|zz)|mt(50|p1|v )|mwbp|mywa|n10[0-2]|n20[2-3]|n30(0|2)|n50(0|2|5)|n7(0(0|1)|10)|ne((c|m)\-|on|tf|wf|wg|wt)|nok(6|i)|nzph|o2im|op(ti|wv)|oran|owg1|p800|pan(a|d|t)|pdxg|pg(13|\-([1-8]|c))|phil|pire|pl(ay|uc)|pn\-2|po(ck|rt|se)|prox|psio|pt\-g|qa\-a|qc(07|12|21|32|60|\-[2-7]|i\-)|qtek|r380|r600|raks|rim9|ro(ve|zo)|s55\/|sa(ge|ma|mm|ms|ny|va)|sc(01|h\-|oo|p\-)|sdk\/|se(c(\-|0|1)|47|mc|nd|ri)|sgh\-|shar|sie(\-|m)|sk\-0|sl(45|id)|sm(al|ar|b3|it|t5)|so(ft|ny)|sp(01|h\-|v\-|v )|sy(01|mb)|t2(18|50)|t6(00|10|18)|ta(gt|lk)|tcl\-|tdg\-|tel(i|m)|tim\-|t\-mo|to(pl|sh)|ts(70|m\-|m3|m5)|tx\-9|up(\.b|g1|si)|utst|v400|v750|veri|vi(rg|te)|vk(40|5[0-3]|\-v)|vm40|voda|vulc|vx(52|53|60|61|70|80|81|83|85|98)|w3c(\-| )|webc|whit|wi(g |nc|nw)|wmlb|wonu|x700|yas\-|your|zeto|zte\-/i.test(uaOrVendor.substr(0, 4));
+
+	            // construct return object
+	            return {
+	                edge: edge,
+	                chrome: chrome,
+	                safari: safari,
+	                mobile: mobile,
+	                ie: ie,
+	                ie8: ie8,
+	                ie9: ie9,
+	                ie10: ie10,
+	                ie11: ie11
+	            };
+	        }
+
+	        /*------------------------------------*\
+	            Calculate scrollbar width in element
+	            - if the width is 0 it means the scrollbar is floated/overlayed
+	            - accepts "container" paremeter because ie & edge can have different
+	              scrollbar behaviors for different elements using '-ms-overflow-style'
+	        \*------------------------------------*/
+	        function getNativeScrollbarWidth(container) {
+	            var container = container ? container : document.body;
+
+	            var fullWidth = 0;
+	            var barWidth = 0;
+
+	            var wrapper = document.createElement('div');
+	            var child = document.createElement('div');
+
+	            wrapper.style.position = 'absolute';
+	            wrapper.style.pointerEvents = 'none';
+	            wrapper.style.bottom = '0';
+	            wrapper.style.right = '0';
+	            wrapper.style.width = '100px';
+	            wrapper.style.overflow = 'hidden';
+
+	            wrapper.appendChild(child);
+	            container.appendChild(wrapper);
+
+	            fullWidth = child.offsetWidth;
+	            wrapper.style.overflowY = 'scroll';
+	            barWidth = fullWidth - child.offsetWidth;
+
+	            container.removeChild(wrapper);
+
+	            return barWidth;
+	        }
+	    };
+
+	    /*------------------------------------*\
+	        Expose / Autoinstall
+	    \*------------------------------------*/
+	    if (true) {
+	        module.exports = Vuebar;
+	    } else if (typeof define === 'function' && define.amd) {
+	        define(function () {
+	            return Vuebar;
+	        });
+	    } else if (typeof window !== typeof void 0) {
+	        window.Vuebar = Vuebar;
+	    }
+
+	    if (typeof Vue !== typeof void 0) {
+	        Vue.use(Vuebar);
+	    }
+	})();
+
+/***/ }),
+/* 44 */
+/***/ (function(module, exports) {
+
+	"use strict";
+
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+
+	exports["default"] = function (event) {
+	  this.modules.productPageData.cover = JSON.parse(event.target.dataset.coverData);
+	};
+
+	module.exports = exports["default"];
+
+/***/ }),
+/* 45 */
+/***/ (function(module, exports) {
+
+	'use strict';
+
+	Object.defineProperty(exports, '__esModule', {
+	  value: true
+	});
+
+	exports['default'] = function (event) {
+	  var container = event.target.parentNode;
+	  var elementZoom = event.target;
+	  var x = event.offsetX == undefined ? event.layerX : event.offsetX;
+	  var y = event.offsetY == undefined ? event.layerY : event.offsetY;
+
+	  var e = {
+	    w: elementZoom.offsetWidth,
+	    h: elementZoom.offsetHeight
+	  };
+
+	  var c = {
+	    x: x / (e.w / 70),
+	    y: y / (e.h / 100)
+	  };
+
+	  elementZoom.style.opacity = 0;
+	  container.style.backgroundImage = 'url(' + elementZoom.dataset.largeImg + ')';
+	  container.style.backgroundPosition = c.x + '% ' + c.y + '%';
+	};
+
+	module.exports = exports['default'];
+
+/***/ }),
+/* 46 */
+/***/ (function(module, exports) {
+
+	'use strict';
+
+	Object.defineProperty(exports, '__esModule', {
+	  value: true
+	});
+
+	exports['default'] = function (event) {
+	  var container = event.target.parentNode;
+	  var elementZoom = event.target;
+
+	  elementZoom.style.opacity = 1;
+	  container.style.backgroundImage = '';
+	  container.style.backgroundPosition = '';
+	};
+
+	module.exports = exports['default'];
+
+/***/ }),
+/* 47 */,
+/* 48 */
+/***/ (function(module, exports, __webpack_require__) {
+
+	"use strict";
+
+	!(function (e, t) {
+	   true ? module.exports = t() : "function" == typeof define && define.amd ? define(t) : e["vue-img"] = t();
+	})(undefined, function () {
+	  "use strict";!(function () {
+	    if ("undefined" != typeof document) {
+	      var e = document.head || document.getElementsByTagName("head")[0],
+	          t = document.createElement("style"),
+	          n = ' *[data-v-5928e1c7] { -webkit-box-sizing: border-box; box-sizing: border-box; } .fullscreen-v-img[data-v-5928e1c7] { z-index: 9999; height: 100%; width: 100%; position: fixed; top: 0; left: 0; overflow: hidden; background-color: rgba(0, 0, 0, 0.7); -ms-touch-action: none; touch-action: none; } .content-v-img img[data-v-5928e1c7] { width: auto; height: auto; max-width: 100%; max-height: 100%; position: absolute; top: 0; left: 0; right: 0; bottom: 0; margin: auto; -webkit-user-select: none; -moz-user-select: none; -ms-user-select: none; user-select: none; } .header-v-img[data-v-5928e1c7] { position: absolute; width: 100%; background-color: rgba(0, 0, 0, 0.3); height: 50px; z-index: 9999; display: flex; justify-content: space-between; align-items: center; } .title-v-img[data-v-5928e1c7] { font-family: "Avenir", Helvetica, Arial, sans-serif; font-size: 18px; font-weight: 400; color: white; text-align: center; max-height: 100%; overflow: auto; } .count-v-img[data-v-5928e1c7], .buttons-v-img[data-v-5928e1c7] { width: 80px; font-family: "Avenir", Helvetica, Arial, sans-serif; } .count-v-img[data-v-5928e1c7] { font-size: 15px; color: white; margin-left: 10px; } .buttons-v-img[data-v-5928e1c7] { margin-right: 10px; text-align: right; } .buttons-v-img span path[data-v-5928e1c7] { fill: #e5e6eb; -webkit-transition: fill 0.4s ease-in-out; transition: fill 0.4s ease-in-out; } .buttons-v-img span[data-v-5928e1c7] { cursor: pointer; color: #e5e6eb; font-size: 30px; -webkit-transition: color 0.4s ease-in-out; transition: color 0.4s ease-in-out; text-decoration: none; text-align: center; } .buttons-v-img span[data-v-5928e1c7]:not(:last-child) { margin-right: 8px; } .buttons-v-img span svg[data-v-5928e1c7] { height: 20px; width: 15px; } .buttons-v-img span:hover svg path[data-v-5928e1c7] { fill: white; } .buttons-v-img span[data-v-5928e1c7]:hover { color: white; } .prev-v-img svg[data-v-5928e1c7], .next-v-img svg[data-v-5928e1c7] { margin: 5px auto; } .prev-v-img[data-v-5928e1c7], .next-v-img[data-v-5928e1c7] { color: white; width: 35px; height: 35px; position: absolute; top: 50%; margin-top: -12.5px; font-size: 15px; font-family: "Avenir", Helvetica, Arial, sans-serif; text-align: center; background-color: rgba(0, 0, 0, 0.3); z-index: 1000; opacity: 0.3; -webkit-transition: opacity 0.3s ease-in-out; transition: opacity 0.3s ease-in-out; cursor: pointer; } .prev-v-img[data-v-5928e1c7]:hover, .next-v-img[data-v-5928e1c7]:hover { opacity: 1; } .prev-v-img[data-v-5928e1c7] { left: 10px; } .next-v-img[data-v-5928e1c7] { right: 10px; } .v-img-fade-enter[data-v-5928e1c7], .v-img-fade-leave-to[data-v-5928e1c7] { opacity: 0; } .v-img-fade-enter-active[data-v-5928e1c7], .v-img-fade-leave-active[data-v-5928e1c7] { -webkit-transition: opacity 0.3s ease-in-out; transition: opacity 0.3s ease-in-out; } ';t.type = "text/css", t.styleSheet ? t.styleSheet.cssText = n : t.appendChild(document.createTextNode(n)), e.appendChild(t);
+	    }
+	  })();var e = { render: function render() {
+	      var e = this,
+	          t = e.$createElement,
+	          n = e._self._c || t;return n("transition", { attrs: { appear: "", name: "v-img-fade" } }, [e.closed ? e._e() : n("div", { staticClass: "fullscreen-v-img", on: { click: function click(t) {
+	            if (t.target !== t.currentTarget) return null;e.close(t);
+	          } } }, [n("div", { staticClass: "header-v-img" }, [n("span", { staticClass: "count-v-img" }, [e.images.length > 1 ? n("span", [e._v(e._s(e.currentImageIndex + 1) + "/" + e._s(e.images.length) + " ")]) : e._e()]), n("span", { staticClass: "title-v-img" }, [e._v(e._s(e.titles[e.currentImageIndex]))]), n("div", { staticClass: "buttons-v-img" }, [e.sourceButtons[e.currentImageIndex] ? n("span", [n("a", { attrs: { href: e.images[e.currentImageIndex], target: "_blank" } }, [n("svg", { staticStyle: { "enable-background": "new 0 0 475.078 475.077" }, attrs: { xmlns: "http://www.w3.org/2000/svg", "xmlns:xlink": "http://www.w3.org/1999/xlink", version: "1.1", id: "Capa_1", x: "0px", y: "0px", width: "512px", height: "512px", viewBox: "0 0 475.078 475.077", "xml:space": "preserve" } }, [n("path", { attrs: { d: "M467.083,318.627c-5.324-5.328-11.8-7.994-19.41-7.994H315.195l-38.828,38.827c-11.04,10.657-23.982,15.988-38.828,15.988    c-14.843,0-27.789-5.324-38.828-15.988l-38.543-38.827H27.408c-7.612,0-14.083,2.669-19.414,7.994    C2.664,323.955,0,330.427,0,338.044v91.358c0,7.614,2.664,14.085,7.994,19.414c5.33,5.328,11.801,7.99,19.414,7.99h420.266    c7.61,0,14.086-2.662,19.41-7.99c5.332-5.329,7.994-11.8,7.994-19.414v-91.358C475.078,330.427,472.416,323.955,467.083,318.627z     M360.025,414.841c-3.621,3.617-7.905,5.424-12.854,5.424s-9.227-1.807-12.847-5.424c-3.614-3.617-5.421-7.898-5.421-12.844    c0-4.948,1.807-9.236,5.421-12.847c3.62-3.62,7.898-5.431,12.847-5.431s9.232,1.811,12.854,5.431    c3.613,3.61,5.421,7.898,5.421,12.847C365.446,406.942,363.638,411.224,360.025,414.841z M433.109,414.841    c-3.614,3.617-7.898,5.424-12.848,5.424c-4.948,0-9.229-1.807-12.847-5.424c-3.613-3.617-5.42-7.898-5.42-12.844    c0-4.948,1.807-9.236,5.42-12.847c3.617-3.62,7.898-5.431,12.847-5.431c4.949,0,9.233,1.811,12.848,5.431    c3.617,3.61,5.427,7.898,5.427,12.847C438.536,406.942,436.729,411.224,433.109,414.841z", fill: "#FFFFFF" } }), n("path", { attrs: { d: "M224.692,323.479c3.428,3.613,7.71,5.421,12.847,5.421c5.141,0,9.418-1.808,12.847-5.421l127.907-127.908    c5.899-5.519,7.234-12.182,3.997-19.986c-3.23-7.421-8.847-11.132-16.844-11.136h-73.091V36.543c0-4.948-1.811-9.231-5.421-12.847    c-3.62-3.617-7.901-5.426-12.847-5.426h-73.096c-4.946,0-9.229,1.809-12.847,5.426c-3.615,3.616-5.424,7.898-5.424,12.847V164.45    h-73.089c-7.998,0-13.61,3.715-16.846,11.136c-3.234,7.801-1.903,14.467,3.999,19.986L224.692,323.479z", fill: "#FFFFFF" } })])])]) : e._e(), n("span", { on: { click: e.close } }, [e._v("×")])])]), n("transition", { attrs: { appear: "", name: "v-img-fade" } }, [e.visibleUI && 1 !== e.images.length ? n("span", { staticClass: "prev-v-img", on: { click: e.prev } }, [n("svg", { attrs: { width: "25", height: "25", viewBox: "0 0 1792 1915", xmlns: "http://www.w3.org/2000/svg" } }, [n("path", { attrs: { d: "M1664 896v128q0 53-32.5 90.5t-84.5 37.5h-704l293 294q38 36 38 90t-38 90l-75 76q-37 37-90 37-52 0-91-37l-651-652q-37-37-37-90 0-52 37-91l651-650q38-38 91-38 52 0 90 38l75 74q38 38 38 91t-38 91l-293 293h704q52 0 84.5 37.5t32.5 90.5z", fill: "#fff" } })])]) : e._e()]), n("transition", { attrs: { appear: "", name: "v-img-fade" } }, [e.visibleUI && 1 !== e.images.length ? n("span", { staticClass: "next-v-img", on: { click: e.next } }, [n("svg", { attrs: { width: "25", height: "25", viewBox: "0 0 1792 1915", xmlns: "http://www.w3.org/2000/svg" } }, [n("path", { attrs: { d: "M1600 960q0 54-37 91l-651 651q-39 37-91 37-51 0-90-37l-75-75q-38-38-38-91t38-91l293-293h-704q-52 0-84.5-37.5t-32.5-90.5v-128q0-53 32.5-90.5t84.5-37.5h704l-293-294q-38-36-38-90t38-90l75-75q38-38 90-38 53 0 91 38l651 651q37 35 37 90z", fill: "#fff" } })])]) : e._e()]), n("div", { staticClass: "content-v-img" }, [n("img", { attrs: { src: e.images[e.currentImageIndex] }, on: { click: e.next } })])], 1)]);
+	    }, staticRenderFns: [], _scopeId: "data-v-5928e1c7", data: function data() {
+	      return { images: [], titles: [], sourceButtons: [], visibleUI: !0, currentImageIndex: 0, closed: !0, uiTimeout: null, handlers: {} };
+	    }, watch: { closed: function closed(e) {
+	        e && this.handlers.closed && this.handlers.closed(), !e && this.handlers.opened && this.handlers.opened();
+	      } }, methods: { fireChangeEvent: function fireChangeEvent() {
+	        this.handlers.changed && this.handlers.changed(this.currentImageIndex);
+	      }, close: function close() {
+	        this.closed || (document.querySelector("body").classList.remove("body-fs-v-img"), this.images = [], this.currentImageIndex = 0, this.closed = !0);
+	      }, next: function next() {
+	        !this.closed && this.images.length > 1 && (this.currentImageIndex + 1 < this.images.length ? this.currentImageIndex++ : this.currentImageIndex = 0, this.fireChangeEvent());
+	      }, prev: function prev() {
+	        !this.closed && this.images.length > 1 && (this.currentImageIndex > 0 ? this.currentImageIndex-- : this.currentImageIndex = this.images.length - 1, this.fireChangeEvent());
+	      }, showUI: function showUI() {
+	        var e = this;this.closed || (clearTimeout(this.uiTimeout), this.visibleUI = !0, this.uiTimeout = setTimeout(function () {
+	          e.visibleUI = !1;
+	        }, 3500));
+	      } }, created: function created() {
+	      var e = this;window.addEventListener("keyup", function (t) {
+	        27 !== t.keyCode && 81 !== t.keyCode || e.close(), 39 !== t.keyCode && 76 !== t.keyCode || e.next(), 37 !== t.keyCode && 72 !== t.keyCode || e.prev();
+	      }), window.addEventListener("scroll", function () {
+	        e.close();
+	      }), window.addEventListener("mousemove", function () {
+	        e.showUI();
+	      });
+	    } },
+	      t = ((function () {
+	    function e(e) {
+	      this.value = e;
+	    }function t(t) {
+	      function n(a, o) {
+	        try {
+	          var r = t[a](o),
+	              s = r.value;s instanceof e ? Promise.resolve(s.value).then(function (e) {
+	            n("next", e);
+	          }, function (e) {
+	            n("throw", e);
+	          }) : i(r.done ? "return" : "normal", r.value);
+	        } catch (e) {
+	          i("throw", e);
+	        }
+	      }function i(e, t) {
+	        switch (e) {case "return":
+	            a.resolve({ value: t, done: !0 });break;case "throw":
+	            a.reject(t);break;default:
+	            a.resolve({ value: t, done: !1 });}(a = a.next) ? n(a.key, a.arg) : o = null;
+	      }var a, o;this._invoke = function (e, t) {
+	        return new Promise(function (i, r) {
+	          var s = { key: e, arg: t, resolve: i, reject: r, next: null };o ? o = o.next = s : (a = o = s, n(e, t));
+	        });
+	      }, "function" != typeof t["return"] && (this["return"] = void 0);
+	    }"function" == typeof Symbol && Symbol.asyncIterator && (t.prototype[Symbol.asyncIterator] = function () {
+	      return this;
+	    }), t.prototype.next = function (e) {
+	      return this._invoke("next", e);
+	    }, t.prototype["throw"] = function (e) {
+	      return this._invoke("throw", e);
+	    }, t.prototype["return"] = function (e) {
+	      return this._invoke("return", e);
+	    };
+	  })(), Object.assign || function (e) {
+	    for (var t = 1; t < arguments.length; t++) {
+	      var n = arguments[t];for (var i in n) Object.prototype.hasOwnProperty.call(n, i) && (e[i] = n[i]);
+	    }return e;
+	  }),
+	      n = function n(e) {
+	    if (Array.isArray(e)) {
+	      for (var t = 0, n = Array(e.length); t < e.length; t++) n[t] = e[t];return n;
+	    }return Array.from(e);
+	  },
+	      i = function i(e, t, n) {
+	    var i = "pointer",
+	        a = t.arg || null,
+	        o = void 0,
+	        r = void 0,
+	        s = e.src,
+	        c = void 0,
+	        u = {};return n.altAsTitle && (c = e.alt), o = n.openOn, r = n.sourceButton, void 0 !== t.value && (i = t.value.cursor || i, a = t.value.group || a, o = t.value.openOn || o, s = t.value.src || s, c = t.value.title || c, void 0 !== t.value.sourceButton && (r = t.value.sourceButton), u.opened = t.value.opened, u.closed = t.value.closed, u.changed = t.value.changed), e.setAttribute("data-vue-img-src", s), a && e.setAttribute("data-vue-img-group", a), c && e.setAttribute("data-vue-img-title", c), r && e.setAttribute("data-vue-img-source-button", r), s || console.error("v-img element missing src parameter."), e.style.cursor = i, { cursor: i, src: s, group: a, title: c, events: u, sourceButton: r, openOn: o };
+	  },
+	      a = function a(_a, o) {
+	    var r = _a.extend(e);o = t({ altAsTitle: !1, sourceButton: !1, openOn: "click" }, o), _a.directive("img", { update: function update(e, t, n, a) {
+	        var r = void 0,
+	            s = void 0;a.data.attrs && n.data.attrs && (s = a.data.attrs.src !== n.data.attrs.src, o.altAsTitle && (r = a.data.attrs.alt !== n.data.attrs.alt));var c = t.oldValue !== t.value;(s || r || c) && i(e, t, o);
+	      }, bind: function bind(e, t) {
+	        var s = i(e, t, o),
+	            c = window.vueImg;if (!c) {
+	          var u = document.createElement("div");u.setAttribute("id", "imageScreen"), document.querySelector("body").appendChild(u), c = window.vueImg = new r().$mount("#imageScreen");
+	        }e.addEventListener(s.openOn, function () {
+	          var t = void 0;t = e.dataset.vueImgGroup ? [].concat(n(document.querySelectorAll('img[data-vue-img-group="' + e.dataset.vueImgGroup + '"]'))) : [e], _a.set(c, "images", t.map(function (e) {
+	            return e.dataset.vueImgSrc;
+	          })), _a.set(c, "titles", t.map(function (e) {
+	            return e.dataset.vueImgTitle;
+	          })), _a.set(c, "sourceButtons", t.map(function (e) {
+	            return "true" === e.dataset.vueImgSourceButton;
+	          })), _a.set(c, "currentImageIndex", t.indexOf(e)), _a.set(c, "handlers", s.events), _a.set(c, "closed", !1);
+	        });
+	      } });
+	  };return "undefined" != typeof window && window.Vue && window.Vue.use(a), a;
+	});
+	//# sourceMappingURL=v-img.js.map
+
+/***/ }),
+/* 49 */
+/***/ (function(module, exports) {
+
+	'use strict';
+
+	Object.defineProperty(exports, '__esModule', {
+	  value: true
+	});
+
+	exports['default'] = function (event) {
+	  var minLetters = 2;
+	  var searchURL = event.target.dataset.searchControllerUrl;
+
+	  if (event.target.value.length > minLetters) {
+	    $.post(searchURL, {
+	      s: event.target.value,
+	      resultsPerPage: 30
+	    }, null, 'json').then(function (resp) {
+	      console.log($(resp.rendered_products).filter('#js-product-list').data('module-data'));
+	    }).fail(function (e) {
+	      console.log(e);
+	    });
+	  }
+	};
+
 	module.exports = exports['default'];
 
 /***/ })

@@ -632,7 +632,6 @@ a.add-to-cart:hover {
 .discount-percentage {
   display: inline-block;
   padding: 0 5px;
-  color: #fff;
   font-weight: bold;
 }
 .variant-links a,
@@ -833,7 +832,28 @@ body#checkout {
   margin-right: 5px;
 }
 .product-images {
-  overflow-x: auto;
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+}
+.product-images img {
+  margin-bottom: 5px;
+}
+.product-images img.active {
+  border-color: #000 !important;
+}
+.product-cover {
+  background-size: 150%;
+}
+.product-cover img {
+  transition: opacity 0.3s ease;
+}
+.fullscreen-v-img {
+  background-color: rgba(0,0,0,0.9) !important;
+}
+.content-v-img img {
+  background-color: #fff;
 }
 #notifications {
   margin-top: 5px;
@@ -882,17 +902,6 @@ body#checkout {
 }
 .brand-infos {
   width: 60%;
-}
-table {
-  width: 100%;
-}
-th,
-td {
-  border: 1px solid #000;
-  padding: 5px;
-}
-th {
-  background-color: #ccc;
 }
 nav.pagination ul {
   list-style: none;
@@ -1047,6 +1056,44 @@ nav.pagination .current a {
   background-size: cover;
   background-position: 50% 50%; }
 
+.vb > .vb-dragger {
+  z-index: 5;
+  width: 5px;
+  right: 0; }
+
+.vb {
+  height: 100%; }
+
+.vb-content {
+  padding-right: 5px; }
+
+.vb > .vb-dragger > .vb-dragger-styler {
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+  -webkit-transform: rotate3d(0, 0, 0, 0);
+  transform: rotate3d(0, 0, 0, 0);
+  -webkit-transition: background-color 100ms ease-out, margin 100ms ease-out, height 100ms ease-out;
+  transition: background-color 100ms ease-out, margin 100ms ease-out, height 100ms ease-out;
+  background-color: rgba(48, 121, 244, 0.1);
+  border-radius: 20px;
+  height: calc(100% - 10px);
+  display: block; }
+
+.vb.vb-scrolling-phantom > .vb-dragger > .vb-dragger-styler {
+  background-color: rgba(48, 121, 244, 0.3); }
+
+.vb > .vb-dragger:hover > .vb-dragger-styler {
+  background-color: rgba(48, 121, 244, 0.5);
+  height: 100%; }
+
+.vb.vb-dragging > .vb-dragger > .vb-dragger-styler {
+  background-color: rgba(48, 121, 244, 0.5);
+  margin: 0px;
+  height: 100%; }
+
+.vb.vb-dragging-phantom > .vb-dragger > .vb-dragger-styler {
+  background-color: rgba(48, 121, 244, 0.5); }
+
 body {
   background: #fefefe; }
 
@@ -1074,7 +1121,7 @@ body {
   .product-list-thumb::-webkit-scrollbar {
     width: 4px; }
   .product-list-thumb img {
-    max-width: 46px;
+    max-width: 40px;
     margin-bottom: 0.25rem;
     border: 1px solid #ccc; }
     .product-list-thumb img.active {
