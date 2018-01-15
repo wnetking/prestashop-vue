@@ -43,6 +43,7 @@
         "webpack": "^1.13.1"
     },
     "dependencies": {
+        "v-img": "^0.1.9",
         "vue-carousel": "^0.6.5",
         "vuebar": "0.0.17"
     }

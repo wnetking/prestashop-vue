@@ -3,20 +3,36 @@
     text-decoration none
     color text-color
     font-size 1.2em
-    padding small-padding
+    padding 15px 20px
     display block
 
   a:hover, li.current > a
+    
+    text-decoration none
+    
+
   > ul > li // top level
     display inline-block
     vertical-align top
 
+    &:hover > a,&.current > a , > a:hover
+      background-color: var(--gray-dark)
+      border-top-color var(--primary)
+      color #fff
+
+    > a
+      border-bottom 2px solid transparent
+      border-top 2px solid transparent
+      font-size 14px
+      font-weight 600      
+      text-transform uppercase
+
     > div
-      border 1px solid border-color
       display none
       position absolute
       z-index 1337
       background-color white
+      box-shadow 0 0 5px border-color
 
       &:empty
         display none !important

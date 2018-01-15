@@ -1,8 +1,10 @@
 import Vue from 'vue'
 import productMiniature from './product-miniature'
-// import productsLimit from './products-limit'
+import productSmallList from './product-small-list'
+// import cartDetailedProduct from './cart-detailed-product'
 
 export default function() {
   Vue.component('product-miniature', productMiniature)
-// Vue.component('products-limit', productsLimit)
+  Vue.component('products-small-list', productSmallList)
+  // Vue.component('cart-detailed-product', cartDetailedProduct)
 }

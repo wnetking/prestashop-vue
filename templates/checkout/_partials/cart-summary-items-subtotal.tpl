@@ -24,7 +24,11 @@
  *}
 {block name='cart_summary_items_subtotal'}
   <div id="items-subtotal">
-    <span class="js-subtotal">{$cart.summary_string}</span>
-    <span>{$cart.totals.total.amount}</span>
+    <span class="label">
+      {literal}{{modules.blockcart.totals.total.label}}{/literal}
+    </span>
+    <span class="value">
+      {literal}{{modules.blockcart.totals.total.amount}}{/literal}
+    </span>
   </div>
 {/block}

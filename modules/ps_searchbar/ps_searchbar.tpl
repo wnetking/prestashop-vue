@@ -27,13 +27,33 @@
 	<form class="d-flex form-inline w-100" method="get" action="{$search_controller_url}">
 		<input type="hidden" name="controller" value="search">
 		<input @keyup="searchBarChange"
-			class="mr-sm-2 form-control form-control-sm"
-			type="text" name="s"
+			class="mr-sm-2 form-control"
+			type="search" name="s"
 			placeholder="{l s='Search' d='Modules.Searchbar.Shop'}"
 			value="{$search_string}" data-search-controller-url="{$search_controller_url}" autocomplete="off">
-		<button class="btn my-2 my-sm-0 btn-dark btn-sm" type="submit">
+		<button class="btn my-2 my-sm-0 btn-primary" type="submit">
 			<span class="sr-only">{l s='Search' d='Modules.Searchbar.Shop'}</span>
 			<i class="fas fa-search"></i>
 		</button>
 	</form>
+	<div class="search-result" v-if='blockcart.data.length > 0 || blockcart.noResult'>
+		{* <div v-bar> *}
+			<b-card v-if="!blockcart.noResult">
+				<div class="search-info mb-1 p-1">
+					<i class="far fa-smile mr-1 fa-lg"></i>
+					{l s='We find ' d='Modules.Searchbar.Shop'} 
+					{literal}{{blockcart.data.length}}{/literal}
+					{l s=' products' d='Modules.Searchbar.Shop'}
+				</div>
+				<div is="products-small-list" 
+				 v-for="product in blockcart.data" :key="product.id" :product='product' class="mb-2"></div>
+			</b-card>
+			<b-card v-if="blockcart.noResult">
+				<div class="search-info mb-1 p-1">
+					<i class="far fa-frown mr-1 fa-lg"></i>
+					{l s='Sorry,we find nothing...' d='Modules.Searchbar.Shop'}
+				</div>
+			</b-card>	
+		{* </div>        	 *}
+	</div>
 </div>

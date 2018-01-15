@@ -6,51 +6,24 @@
     flex-grow: 1;
     min-width: 300px;
   }
-
-  .ui-widget-content{
-    top: 100% !important;
-    width: 100% !important;
-    font-size: 14px;
-    max-height: calc(100vh - 160px);
+  .search-result{
+    z-index: 1110;
+    position: absolute;
+    top: calc(100% + 5px);
+    right: 0;
+    width: 100%;
+    max-height: 300px;
+    overflow-x: hidden;
     overflow-y: auto;
-    border-radius: 0;
 
-    &::-webkit-scrollbar-button {
-      width: 2px;
-      height: 0;
-      background-color: transparent;
+    .carousel{
+      max-width: 100px;
     }
-
-    &::-webkit-scrollbar-track {
-      background-color: transparent;
-    }
-
-    &::-webkit-scrollbar-thumb {
-      border-radius: 0;
-      background-color: #ccc;
-    }
-
-    &::-webkit-scrollbar-thumb:hover {
-      background-color: darken(#ccc, 20%);
-    }
-
-    &::-webkit-scrollbar {
-      width: 4px;
-    }
-
-    img{
-      max-width: 70px;
-      border: 1px solid #ccc;
-    }
-
-    .ui-state-focus{
-      border-radius: 0;
-      background: #ccc;
-    }
-
-    .ui-menu-item{
-      list-style-image: none;
-      cursor: pointer;
-    }
+    
+    .slide{
+      > [class*="carousel-control"]{
+        // background-color: rgba(0,0,0,0.6);
+      }
+    } 
   }
 }

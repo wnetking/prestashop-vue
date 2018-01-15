@@ -25,20 +25,34 @@
 {block name='cart_detailed_totals'}
   <div class="cart-detailed-totals">
     <div class="cart-subtotals">
-      {foreach from=$cart.subtotals item="subtotal"}
-        <div class="{$subtotal.type}">
-          <span class="label">{$subtotal.label}</span>
-          <span class="value">{$subtotal.amount}</span>
-        </div>
-      {/foreach}
+      <div class="subtotal">
+        <span class="label">
+          {literal}{{ modules.blockcart.subtotals.shipping.label}}{/literal}
+        </span>
+        <span class="value">
+          {literal}{{modules.blockcart.subtotals.shipping.amount}}{/literal}
+        </span>
+        <span class="label">
+          {literal}{{modules.blockcart.subtotals.products.label}}{/literal}
+        </span>
+        <span class="value">
+          {literal}{{modules.blockcart.subtotals.products.amount}}{/literal}
+        </span>
+      </div>
     </div>
 
     <div class="cart-total">
-      <span class="label">{$cart.totals.total.label}</span>
-      <span class="value">{$cart.totals.total.amount}</span>
+      <span class="label">
+        {literal}{{modules.blockcart.totals.total.label}}{/literal}
+      </span>
+      <span class="value">
+        {literal}{{modules.blockcart.totals.total.amount}}{/literal}
+      </span>
+      {foreach from=$cart.subtotals item="subtotal"}
       {if $subtotal.type === 'shipping'}
           {hook h='displayCheckoutSubtotalDetails' subtotal=$subtotal}
       {/if}
+      {/foreach}
     </div>
   </div>
 {/block}

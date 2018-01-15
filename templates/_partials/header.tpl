@@ -39,7 +39,7 @@
 </div>
 
 <div class="container">
-  <b-navbar toggleable="lg" type="light" class="py-lg-4">
+  <b-navbar toggleable type="light" class="py-lg-4">
     <b-navbar-brand href="{$urls.base_url}" class="d-lg-none">
       <img :src="shop.stores_icon"/>
       <span>{literal}{{shop.name}}{/literal}</span>
@@ -50,7 +50,7 @@
         <img src="{$shop.logo}" alt="{$shop.name}">
       </b-navbar-brand>
     {/block}
-    <b-navbar-toggle target="header-top"></b-navbar-toggle>
+    {* <b-navbar-toggle target="header-top"></b-navbar-toggle> *}
 
     <b-collapse is-nav id="header-top" class="justify-content-end">
       <b-navbar-nav class="w-100">

@@ -20,7 +20,9 @@ export default function() {
       }
 
       $.post(refreshURL, requestData).then((resp) => {
-        $('.blockcart').replaceWith($(resp.preview).find('.blockcart'))
+        this.$nextTick(function () {
+          this.modules.blockcart = $(resp.preview).find('.blockcart').data('module-data')
+        })
 
         if (resp.modal) {
           this.showCartModal()

@@ -20,6 +20,7 @@ import productZoom from './global-methods/productZoom'
 import zoomLeave from './global-methods/zoomLeave'
 import productCore from './core/product'
 import searchBarChange from './global-methods/searchBarChange'
+import { updateCartCore } from './core/cart'
 
 // modules data init
 prestashop.modules = prestashop.modules || {}
@@ -27,7 +28,7 @@ prestashop.blockcart = prestashop.blockcart || {}
 prestashop.themeLoaderShow = false
 prestashop.blockcart = {
   modalData: '<h1>Hello cart</h1>',
-  data: {}
+  data: []
 }
 
 // import styles
@@ -66,7 +67,9 @@ new Vue({
     changeProductCoverImage,
     productZoom,
     zoomLeave,
-  searchBarChange},
+    searchBarChange,
+    updateCartCore
+  },
   created: function () {
     this.updateCart()
     this.initFacets()

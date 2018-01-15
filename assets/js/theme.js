@@ -117,74 +117,76 @@
 
 	var _vueStringFilter2 = _interopRequireDefault(_vueStringFilter);
 
-	var _vuebar = __webpack_require__(43);
+	var _vuebar = __webpack_require__(22);
 
 	var _vuebar2 = _interopRequireDefault(_vuebar);
 
-	var _vImg = __webpack_require__(48);
+	var _vImg = __webpack_require__(23);
 
 	var _vImg2 = _interopRequireDefault(_vImg);
 
-	var _filters = __webpack_require__(22);
+	var _filters = __webpack_require__(24);
 
 	var _filters2 = _interopRequireDefault(_filters);
 
-	var _components = __webpack_require__(24);
+	var _components = __webpack_require__(26);
 
 	var _components2 = _interopRequireDefault(_components);
 
 	// global methods
 
-	var _globalMethodsUpdateCart = __webpack_require__(30);
+	var _globalMethodsUpdateCart = __webpack_require__(33);
 
 	var _globalMethodsUpdateCart2 = _interopRequireDefault(_globalMethodsUpdateCart);
 
-	var _globalMethodsInitFacets = __webpack_require__(31);
+	var _globalMethodsInitFacets = __webpack_require__(34);
 
 	var _globalMethodsInitFacets2 = _interopRequireDefault(_globalMethodsInitFacets);
 
-	var _globalMethodsShowCartModal = __webpack_require__(32);
+	var _globalMethodsShowCartModal = __webpack_require__(35);
 
 	var _globalMethodsShowCartModal2 = _interopRequireDefault(_globalMethodsShowCartModal);
 
-	var _globalMethodsHideCartModal = __webpack_require__(33);
+	var _globalMethodsHideCartModal = __webpack_require__(36);
 
 	var _globalMethodsHideCartModal2 = _interopRequireDefault(_globalMethodsHideCartModal);
 
-	var _globalMethodsChangeProductCoverImage = __webpack_require__(44);
+	var _globalMethodsChangeProductCoverImage = __webpack_require__(37);
 
 	var _globalMethodsChangeProductCoverImage2 = _interopRequireDefault(_globalMethodsChangeProductCoverImage);
 
-	var _globalMethodsProductZoom = __webpack_require__(45);
+	var _globalMethodsProductZoom = __webpack_require__(38);
 
 	var _globalMethodsProductZoom2 = _interopRequireDefault(_globalMethodsProductZoom);
 
-	var _globalMethodsZoomLeave = __webpack_require__(46);
+	var _globalMethodsZoomLeave = __webpack_require__(39);
 
 	var _globalMethodsZoomLeave2 = _interopRequireDefault(_globalMethodsZoomLeave);
 
-	var _coreProduct = __webpack_require__(34);
+	var _coreProduct = __webpack_require__(40);
 
 	var _coreProduct2 = _interopRequireDefault(_coreProduct);
 
-	var _globalMethodsSearchBarChange = __webpack_require__(49);
+	var _globalMethodsSearchBarChange = __webpack_require__(45);
 
 	var _globalMethodsSearchBarChange2 = _interopRequireDefault(_globalMethodsSearchBarChange);
+
+	var _coreCart = __webpack_require__(50);
 
 	// modules data init
 
 	// import styles
 
-	__webpack_require__(39);
+	__webpack_require__(46);
 
-	__webpack_require__(41);
+	__webpack_require__(48);
 
 	_prestashop2['default'].modules = _prestashop2['default'].modules || {};
 	_prestashop2['default'].blockcart = _prestashop2['default'].blockcart || {};
 	_prestashop2['default'].themeLoaderShow = false;
 	_prestashop2['default'].blockcart = {
 	  modalData: '<h1>Hello cart</h1>',
-	  data: {}
+	  data: []
 	};
 
 	$('[data-module-name]').each(function () {
@@ -219,7 +221,9 @@
 	    changeProductCoverImage: _globalMethodsChangeProductCoverImage2['default'],
 	    productZoom: _globalMethodsProductZoom2['default'],
 	    zoomLeave: _globalMethodsZoomLeave2['default'],
-	    searchBarChange: _globalMethodsSearchBarChange2['default'] },
+	    searchBarChange: _globalMethodsSearchBarChange2['default'],
+	    updateCartCore: _coreCart.updateCartCore
+	  },
 	  created: function created() {
 	    this.updateCart();
 	    this.initFacets();
@@ -4768,636 +4772,6 @@
 /* 22 */
 /***/ (function(module, exports, __webpack_require__) {
 
-	'use strict';
-
-	Object.defineProperty(exports, '__esModule', {
-	  value: true
-	});
-
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
-
-	var _vue = __webpack_require__(14);
-
-	var _vue2 = _interopRequireDefault(_vue);
-
-	var _striphtml = __webpack_require__(23);
-
-	var _striphtml2 = _interopRequireDefault(_striphtml);
-
-	exports['default'] = function () {
-	  _vue2['default'].filter('striphtml', _striphtml2['default']);
-	  _vue2['default'].filter('json', function (value) {
-	    return JSON.stringify(value, null, 2);
-	  });
-	};
-
-	module.exports = exports['default'];
-
-/***/ }),
-/* 23 */
-/***/ (function(module, exports) {
-
-	'use strict';
-
-	Object.defineProperty(exports, '__esModule', {
-	  value: true
-	});
-
-	exports['default'] = function (value) {
-	  var div = document.createElement('div');
-	  div.innerHTML = value;
-	  var text = div.textContent || div.innerText || '';
-	  return text;
-	};
-
-	module.exports = exports['default'];
-
-/***/ }),
-/* 24 */
-/***/ (function(module, exports, __webpack_require__) {
-
-	'use strict';
-
-	Object.defineProperty(exports, '__esModule', {
-	  value: true
-	});
-
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
-
-	var _vue = __webpack_require__(14);
-
-	var _vue2 = _interopRequireDefault(_vue);
-
-	var _productMiniature = __webpack_require__(25);
-
-	var _productMiniature2 = _interopRequireDefault(_productMiniature);
-
-	// import productsLimit from './products-limit'
-
-	exports['default'] = function () {
-	  _vue2['default'].component('product-miniature', _productMiniature2['default']);
-	  // Vue.component('products-limit', productsLimit)
-	};
-
-	module.exports = exports['default'];
-
-/***/ }),
-/* 25 */
-/***/ (function(module, exports, __webpack_require__) {
-
-	'use strict';
-
-	Object.defineProperty(exports, '__esModule', {
-	  value: true
-	});
-
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
-
-	var _vue = __webpack_require__(14);
-
-	var _vue2 = _interopRequireDefault(_vue);
-
-	var _data = __webpack_require__(26);
-
-	var _data2 = _interopRequireDefault(_data);
-
-	var _methodsZoomBg = __webpack_require__(27);
-
-	var _methodsZoomBg2 = _interopRequireDefault(_methodsZoomBg);
-
-	var _methodsChangeImg = __webpack_require__(28);
-
-	var _methodsChangeImg2 = _interopRequireDefault(_methodsChangeImg);
-
-	var _methodsZoomLeave = __webpack_require__(29);
-
-	var _methodsZoomLeave2 = _interopRequireDefault(_methodsZoomLeave);
-
-	var productMiniature = _vue2['default'].extend({
-	  template: '#product-miniature-template',
-	  props: ['product'],
-	  data: _data2['default'],
-	  methods: {
-	    changeImg: _methodsChangeImg2['default'],
-	    zoomBg: _methodsZoomBg2['default'],
-	    zoomLeave: _methodsZoomLeave2['default']
-	  },
-	  updated: function updated() {
-	    if (!this.isHover) {
-	      this.imgBig = this.product.cover.bySize.medium_default.url;
-	      this.imgLarge = this.product.cover.large.url;
-	    }
-	  }
-	});
-
-	exports['default'] = productMiniature;
-	module.exports = exports['default'];
-
-/***/ }),
-/* 26 */
-/***/ (function(module, exports) {
-
-	"use strict";
-
-	Object.defineProperty(exports, "__esModule", {
-	  value: true
-	});
-
-	exports["default"] = function () {
-	  return {
-	    imgBig: this.product.cover.bySize.medium_default.url,
-	    imgLarge: this.product.cover.large.url,
-	    isHover: document.documentElement.clientWidth > 992 ? false : true,
-	    static_token: prestashop.static_token,
-	    urls: prestashop.urls,
-	    document: document,
-	    configuration: prestashop.configuration,
-	    sharePopOverId: "share-popover-" + getRandomFloat(0, 1000) + "-" + this.product.id_product + "-" + this.product.id_category_default
-	  };
-	};
-
-	function getRandomFloat(min, max) {
-	  return Math.random() * (max - min) + min;
-	}
-	module.exports = exports["default"];
-
-/***/ }),
-/* 27 */
-/***/ (function(module, exports) {
-
-	'use strict';
-
-	Object.defineProperty(exports, '__esModule', {
-	  value: true
-	});
-
-	exports['default'] = function (event) {
-	  var container = event.target.parentNode;
-	  var elementZoom = event.target;
-	  var x = event.offsetX == undefined ? event.layerX : event.offsetX;
-	  var y = event.offsetY == undefined ? event.layerY : event.offsetY;
-
-	  var e = {
-	    w: elementZoom.offsetWidth,
-	    h: elementZoom.offsetHeight
-	  };
-
-	  var c = {
-	    x: x / (e.w / 70),
-	    y: y / (e.h / 100)
-	  };
-
-	  elementZoom.style.opacity = 0;
-	  container.style.backgroundImage = 'url(' + elementZoom.dataset.largeImg + ')';
-	  container.style.backgroundPosition = c.x + '% ' + c.y + '%';
-	};
-
-	module.exports = exports['default'];
-
-/***/ }),
-/* 28 */
-/***/ (function(module, exports) {
-
-	"use strict";
-
-	Object.defineProperty(exports, "__esModule", {
-	  value: true
-	});
-
-	exports["default"] = function (event) {
-	  if (event) {
-	    this.imgBig = event.target.dataset.bigImg;
-	    this.imgLarge = event.target.dataset.largeImg;
-	  }
-	};
-
-	module.exports = exports["default"];
-
-/***/ }),
-/* 29 */
-/***/ (function(module, exports) {
-
-	'use strict';
-
-	Object.defineProperty(exports, '__esModule', {
-	  value: true
-	});
-
-	exports['default'] = function (event) {
-	  var container = event.target.parentNode;
-	  var elementZoom = event.target;
-
-	  elementZoom.style.opacity = 1;
-	  container.style.backgroundImage = '';
-	  container.style.backgroundPosition = '';
-	};
-
-	module.exports = exports['default'];
-
-/***/ }),
-/* 30 */
-/***/ (function(module, exports) {
-
-	'use strict';
-
-	Object.defineProperty(exports, '__esModule', {
-	  value: true
-	});
-
-	exports['default'] = function () {
-	  var _this = this;
-
-	  $('body').on('click', '[data-button-action="add-to-cart"]', function (event) {
-	    _this.$nextTick(function () {
-	      this.themeLoaderShow = true;
-	    });
-	  });
-
-	  prestashop.on('updateCart', function (event) {
-	    var refreshURL = $('.blockcart').data('refresh-url');
-	    var requestData = {};
-
-	    if (event && event.reason) {
-	      requestData = {
-	        id_product_attribute: event.reason.idProductAttribute,
-	        id_product: event.reason.idProduct,
-	        action: event.reason.linkAction
-	      };
-	    }
-
-	    $.post(refreshURL, requestData).then(function (resp) {
-	      $('.blockcart').replaceWith($(resp.preview).find('.blockcart'));
-
-	      if (resp.modal) {
-	        _this.showCartModal();
-
-	        _this.$nextTick(function () {
-	          this.themeLoaderShow = false;
-	          this.blockcart.modalData = resp.modal;
-	        });
-	      }
-	    }).fail(function (resp) {
-	      prestashop.emit('handleError', { eventType: 'updateShoppingCart', resp: resp });
-	    });
-	  });
-	};
-
-	module.exports = exports['default'];
-
-/***/ }),
-/* 31 */
-/***/ (function(module, exports, __webpack_require__) {
-
-	'use strict';
-
-	Object.defineProperty(exports, '__esModule', {
-	  value: true
-	});
-
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
-
-	var _prestashop = __webpack_require__(12);
-
-	var _prestashop2 = _interopRequireDefault(_prestashop);
-
-	exports['default'] = function () {
-	  var _this = this;
-
-	  $('body').on('change', '#search_filters input[data-search-url]', function (event) {
-	    _prestashop2['default'].emit('updateFacets', parseSearchUrl(event));
-
-	    _this.$nextTick(function () {
-	      this.themeLoaderShow = true;
-	    });
-	  });
-
-	  $('body').on('click', '.js-search-link, .js-search-filters-clear-all', function (event) {
-	    event.preventDefault();
-
-	    _prestashop2['default'].emit('updateFacets', $(event.target).closest('a').get(0).href);
-
-	    _this.$nextTick(function () {
-	      this.themeLoaderShow = true;
-	    });
-	  });
-
-	  _prestashop2['default'].on('updateProductList', function (data) {
-	    _this.$nextTick(function () {
-	      this.modules.listingProduct = $(data.rendered_products).filter('#js-product-list').data('module-data');
-	      updateProductListDOM(data);
-	      this.themeLoaderShow = false;
-	    });
-	  });
-	};
-
-	function parseSearchUrl(event) {
-	  if (event.target.dataset.searchUrl !== undefined) {
-	    return event.target.dataset.searchUrl;
-	  }
-
-	  if ($(event.target).parent()[0].dataset.searchUrl === undefined) {
-	    throw new Error('Can not parse search URL');
-	  }
-
-	  return $(event.target).parent()[0].dataset.searchUrl;
-	}
-
-	function updateProductListDOM(data) {
-	  $('#search_filters').replaceWith(data.rendered_facets);
-	  $('#js-active-search-filters').replaceWith(data.rendered_active_filters);
-	  $('#js-product-list-top').replaceWith(data.rendered_products_top);
-	  $('#js-product-list-bottom').replaceWith(data.rendered_products_bottom);
-	}
-	module.exports = exports['default'];
-
-/***/ }),
-/* 32 */
-/***/ (function(module, exports) {
-
-	"use strict";
-
-	Object.defineProperty(exports, "__esModule", {
-	  value: true
-	});
-
-	exports["default"] = function () {
-	  this.$refs.blokcart.show();
-	};
-
-	module.exports = exports["default"];
-
-/***/ }),
-/* 33 */
-/***/ (function(module, exports) {
-
-	"use strict";
-
-	Object.defineProperty(exports, "__esModule", {
-	  value: true
-	});
-
-	exports["default"] = function () {
-	  this.$refs.blokcart.hide();
-	};
-
-	module.exports = exports["default"];
-
-/***/ }),
-/* 34 */
-/***/ (function(module, exports, __webpack_require__) {
-
-	'use strict';
-
-	Object.defineProperty(exports, '__esModule', {
-	  value: true
-	});
-
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
-
-	var _prestashop = __webpack_require__(12);
-
-	var _prestashop2 = _interopRequireDefault(_prestashop);
-
-	var _refreshClickEmit = __webpack_require__(35);
-
-	var _refreshClickEmit2 = _interopRequireDefault(_refreshClickEmit);
-
-	var _refreshClickListener = __webpack_require__(36);
-
-	var _refreshClickListener2 = _interopRequireDefault(_refreshClickListener);
-
-	var _replaceAddToCartSections = __webpack_require__(38);
-
-	var _replaceAddToCartSections2 = _interopRequireDefault(_replaceAddToCartSections);
-
-	exports['default'] = function () {
-	  var _this = this;
-
-	  var updateEventName = 'customUpdateProduct';
-	  _refreshClickEmit2['default'].call(this);
-
-	  $('body').on('click', '.custom-product-refresh', _refreshClickListener2['default']);
-
-	  _prestashop2['default'].on(updateEventName, function (event) {
-	    if (typeof event.refreshUrl == 'undefined') {
-	      event.refreshUrl = true;
-	    }
-
-	    var eventType = event.eventType;
-
-	    $.post(event.reason.productUrl, { ajax: '1', action: 'refresh' }, null, 'json').then(function (resp) {
-	      // console.log(resp)
-
-	      _this.$nextTick(function () {
-	        this.modules.productPageData = $(resp.product_cover_thumbnails).filter('#ajax-product-images').data('ajax-products');
-	        this.themeLoaderShow = false;
-	      });
-
-	      $('.product-prices').replaceWith(resp.product_prices);
-	      $('.product-customization').replaceWith(resp.product_customization);
-	      $('.product-variants').replaceWith(resp.product_variants);
-	      $('.product-discounts').replaceWith(resp.product_discounts);
-	      $('.product-additional-info').replaceWith(resp.product_additional_info);
-	      $('#product-details').replaceWith(resp.product_details);
-
-	      // Replace all "add to cart" sections but the quantity input in order to keep quantity field intact i.e.
-	      // Prevent quantity input from blinking with classic theme.
-	      var $productAddToCart = undefined;
-	      $(resp.product_add_to_cart).each(function (index, value) {
-	        if ($(value).hasClass('product-add-to-cart')) {
-	          $productAddToCart = $(value);
-	        }
-	      });
-
-	      (0, _replaceAddToCartSections2['default'])($productAddToCart);
-
-	      var minimalProductQuantity = parseInt(resp.product_minimal_quantity, 10);
-	      var quantityInputSelector = '#quantity_wanted';
-	      var quantityInput = $(quantityInputSelector);
-	      var quantity_wanted = quantityInput.val();
-
-	      if (!isNaN(minimalProductQuantity) && quantity_wanted < minimalProductQuantity && eventType !== 'updatedProductQuantity') {
-	        quantityInput.attr('min', minimalProductQuantity);
-	        quantityInput.val(minimalProductQuantity);
-	      }
-
-	      if (event.refreshUrl) {
-	        window.history.pushState({
-	          id_product_attribute: resp.id_product_attribute
-	        }, undefined, resp.product_url);
-	      }
-
-	      //   prestashop.emit(updateEventName, resp)
-	    });
-	  });
-	};
-
-	module.exports = exports['default'];
-
-/***/ }),
-/* 35 */
-/***/ (function(module, exports) {
-
-	'use strict';
-
-	Object.defineProperty(exports, '__esModule', {
-	  value: true
-	});
-
-	exports['default'] = function () {
-	  var _this = this;
-
-	  var selector = '.product-variants [data-custom-product-attribute]';
-
-	  $('body').on('change', selector, function () {
-	    $("input[name$='refresh']").click();
-
-	    _this.$nextTick(function () {
-	      this.themeLoaderShow = true;
-	    });
-	  });
-	};
-
-	module.exports = exports['default'];
-
-/***/ }),
-/* 36 */
-/***/ (function(module, exports, __webpack_require__) {
-
-	'use strict';
-
-	Object.defineProperty(exports, '__esModule', {
-	  value: true
-	});
-
-	var _getRequestParameter = __webpack_require__(37);
-
-	exports['default'] = function (event, extraParameters) {
-	  event.preventDefault();
-
-	  var $productRefresh = $(this);
-	  var eventType = 'updatedProductCombination';
-	  var updateEventName = 'customUpdateProduct';
-
-	  if (typeof extraParameters !== 'undefined' && extraParameters.eventType) {
-	    eventType = extraParameters.eventType;
-	  }
-
-	  var preview = (0, _getRequestParameter.getRequestParameter)('preview');
-	  if (preview !== null) {
-	    preview = '&preview=' + preview;
-	  } else {
-	    preview = '';
-	  }
-
-	  var query = $(event.target.form).serialize() + '&ajax=1&action=productrefresh' + preview;
-	  var actionURL = $(event.target.form).attr('action');
-
-	  $.post(actionURL, query, null, 'json').then(function (resp) {
-	    prestashop.emit(updateEventName, {
-	      reason: {
-	        productUrl: resp.productUrl
-	      },
-	      refreshUrl: $productRefresh.data('url-update'),
-	      eventType: eventType,
-	      resp: resp
-	    });
-	  });
-	};
-
-	module.exports = exports['default'];
-
-/***/ }),
-/* 37 */
-/***/ (function(module, exports) {
-
-	'use strict';
-
-	Object.defineProperty(exports, '__esModule', {
-	  value: true
-	});
-	exports.getRequestParameter = getRequestParameter;
-
-	function getRequestParameter(paramName) {
-	  var vars = {};
-	  window.location.href.replace(location.hash, '').replace(/[?&]+([^=&]+)=?([^&]*)?/gi, function (m, key, value) {
-	    vars[key] = value !== undefined ? value : '';
-	  });
-	  if (paramName !== undefined) {
-	    return vars[paramName] ? vars[paramName] : null;
-	  }
-
-	  return vars;
-	}
-
-/***/ }),
-/* 38 */
-/***/ (function(module, exports) {
-
-	'use strict';
-
-	Object.defineProperty(exports, '__esModule', {
-	  value: true
-	});
-	var replaceAddToCartSections = function replaceAddToCartSections(addCartHtml) {
-	  var $addToCartSnippet = $(addCartHtml);
-	  var $addProductToCart = $('.product-add-to-cart');
-
-	  function replaceAddToCartSection(replacement) {
-	    var replace = replacement.$addToCartSnippet.find(replacement.targetSelector);
-
-	    if ($(replacement.$targetParent.find(replacement.targetSelector)).length > 0) {
-	      if (replace.length > 0) {
-	        $(replacement.$targetParent.find(replacement.targetSelector)).replaceWith(replace[0].outerHTML);
-	      } else {
-	        $(replacement.$targetParent.find(replacement.targetSelector)).html('');
-	      }
-	    }
-	  }
-
-	  var productAvailabilitySelector = '.add';
-	  replaceAddToCartSection({
-	    $addToCartSnippet: $addToCartSnippet,
-	    $targetParent: $addProductToCart,
-	    targetSelector: productAvailabilitySelector
-	  });
-
-	  var productAvailabilityMessageSelector = '#product-availability';
-	  replaceAddToCartSection({
-	    $addToCartSnippet: $addToCartSnippet,
-	    $targetParent: $addProductToCart,
-	    targetSelector: productAvailabilityMessageSelector
-	  });
-
-	  var productMinimalQuantitySelector = '.product-minimal-quantity';
-	  replaceAddToCartSection({
-	    $addToCartSnippet: $addToCartSnippet,
-	    $targetParent: $addProductToCart,
-	    targetSelector: productMinimalQuantitySelector
-	  });
-	};
-
-	exports['default'] = replaceAddToCartSections;
-	module.exports = exports['default'];
-
-/***/ }),
-/* 39 */
-/***/ (function(module, exports) {
-
-	// removed by extract-text-webpack-plugin
-
-/***/ }),
-/* 40 */,
-/* 41 */
-/***/ (function(module, exports) {
-
-	// removed by extract-text-webpack-plugin
-
-/***/ }),
-/* 42 */,
-/* 43 */
-/***/ (function(module, exports, __webpack_require__) {
-
 	/*----------------------------------------*\
 	    Vuebar
 	\*----------------------------------------*/
@@ -6191,78 +5565,7 @@
 	})();
 
 /***/ }),
-/* 44 */
-/***/ (function(module, exports) {
-
-	"use strict";
-
-	Object.defineProperty(exports, "__esModule", {
-	  value: true
-	});
-
-	exports["default"] = function (event) {
-	  this.modules.productPageData.cover = JSON.parse(event.target.dataset.coverData);
-	};
-
-	module.exports = exports["default"];
-
-/***/ }),
-/* 45 */
-/***/ (function(module, exports) {
-
-	'use strict';
-
-	Object.defineProperty(exports, '__esModule', {
-	  value: true
-	});
-
-	exports['default'] = function (event) {
-	  var container = event.target.parentNode;
-	  var elementZoom = event.target;
-	  var x = event.offsetX == undefined ? event.layerX : event.offsetX;
-	  var y = event.offsetY == undefined ? event.layerY : event.offsetY;
-
-	  var e = {
-	    w: elementZoom.offsetWidth,
-	    h: elementZoom.offsetHeight
-	  };
-
-	  var c = {
-	    x: x / (e.w / 70),
-	    y: y / (e.h / 100)
-	  };
-
-	  elementZoom.style.opacity = 0;
-	  container.style.backgroundImage = 'url(' + elementZoom.dataset.largeImg + ')';
-	  container.style.backgroundPosition = c.x + '% ' + c.y + '%';
-	};
-
-	module.exports = exports['default'];
-
-/***/ }),
-/* 46 */
-/***/ (function(module, exports) {
-
-	'use strict';
-
-	Object.defineProperty(exports, '__esModule', {
-	  value: true
-	});
-
-	exports['default'] = function (event) {
-	  var container = event.target.parentNode;
-	  var elementZoom = event.target;
-
-	  elementZoom.style.opacity = 1;
-	  container.style.backgroundImage = '';
-	  container.style.backgroundPosition = '';
-	};
-
-	module.exports = exports['default'];
-
-/***/ }),
-/* 47 */,
-/* 48 */
+/* 23 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -6383,7 +5686,169 @@
 	//# sourceMappingURL=v-img.js.map
 
 /***/ }),
-/* 49 */
+/* 24 */
+/***/ (function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	Object.defineProperty(exports, '__esModule', {
+	  value: true
+	});
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
+
+	var _vue = __webpack_require__(14);
+
+	var _vue2 = _interopRequireDefault(_vue);
+
+	var _striphtml = __webpack_require__(25);
+
+	var _striphtml2 = _interopRequireDefault(_striphtml);
+
+	exports['default'] = function () {
+	  _vue2['default'].filter('striphtml', _striphtml2['default']);
+	  _vue2['default'].filter('json', function (value) {
+	    return JSON.stringify(value, null, 2);
+	  });
+	};
+
+	module.exports = exports['default'];
+
+/***/ }),
+/* 25 */
+/***/ (function(module, exports) {
+
+	'use strict';
+
+	Object.defineProperty(exports, '__esModule', {
+	  value: true
+	});
+
+	exports['default'] = function (value) {
+	  var div = document.createElement('div');
+	  div.innerHTML = value;
+	  var text = div.textContent || div.innerText || '';
+	  return text;
+	};
+
+	module.exports = exports['default'];
+
+/***/ }),
+/* 26 */
+/***/ (function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	Object.defineProperty(exports, '__esModule', {
+	  value: true
+	});
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
+
+	var _vue = __webpack_require__(14);
+
+	var _vue2 = _interopRequireDefault(_vue);
+
+	var _productMiniature = __webpack_require__(27);
+
+	var _productMiniature2 = _interopRequireDefault(_productMiniature);
+
+	var _productSmallList = __webpack_require__(32);
+
+	var _productSmallList2 = _interopRequireDefault(_productSmallList);
+
+	// import cartDetailedProduct from './cart-detailed-product'
+
+	exports['default'] = function () {
+	  _vue2['default'].component('product-miniature', _productMiniature2['default']);
+	  _vue2['default'].component('products-small-list', _productSmallList2['default']);
+	  // Vue.component('cart-detailed-product', cartDetailedProduct)
+	};
+
+	module.exports = exports['default'];
+
+/***/ }),
+/* 27 */
+/***/ (function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	Object.defineProperty(exports, '__esModule', {
+	  value: true
+	});
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
+
+	var _vue = __webpack_require__(14);
+
+	var _vue2 = _interopRequireDefault(_vue);
+
+	var _data = __webpack_require__(28);
+
+	var _data2 = _interopRequireDefault(_data);
+
+	var _methodsZoomBg = __webpack_require__(29);
+
+	var _methodsZoomBg2 = _interopRequireDefault(_methodsZoomBg);
+
+	var _methodsChangeImg = __webpack_require__(30);
+
+	var _methodsChangeImg2 = _interopRequireDefault(_methodsChangeImg);
+
+	var _methodsZoomLeave = __webpack_require__(31);
+
+	var _methodsZoomLeave2 = _interopRequireDefault(_methodsZoomLeave);
+
+	var productMiniature = _vue2['default'].extend({
+	  template: '#product-miniature-template',
+	  props: ['product'],
+	  data: _data2['default'],
+	  methods: {
+	    changeImg: _methodsChangeImg2['default'],
+	    zoomBg: _methodsZoomBg2['default'],
+	    zoomLeave: _methodsZoomLeave2['default']
+	  },
+	  updated: function updated() {
+	    if (!this.isHover) {
+	      this.imgBig = this.product.cover.bySize.medium_default.url;
+	      this.imgLarge = this.product.cover.large.url;
+	    }
+	  }
+	});
+
+	exports['default'] = productMiniature;
+	module.exports = exports['default'];
+
+/***/ }),
+/* 28 */
+/***/ (function(module, exports) {
+
+	"use strict";
+
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+
+	exports["default"] = function () {
+	  return {
+	    imgBig: this.product.cover.bySize.medium_default.url,
+	    imgLarge: this.product.cover.large.url,
+	    isHover: document.documentElement.clientWidth > 992 ? false : true,
+	    static_token: prestashop.static_token,
+	    urls: prestashop.urls,
+	    document: document,
+	    configuration: prestashop.configuration,
+	    sharePopOverId: "share-popover-" + getRandomFloat(0, 1000) + "-" + this.product.id_product + "-" + this.product.id_category_default
+	  };
+	};
+
+	function getRandomFloat(min, max) {
+	  return Math.random() * (max - min) + min;
+	}
+	module.exports = exports["default"];
+
+/***/ }),
+/* 29 */
 /***/ (function(module, exports) {
 
 	'use strict';
@@ -6393,22 +5858,695 @@
 	});
 
 	exports['default'] = function (event) {
+	  var container = event.target.parentNode;
+	  var elementZoom = event.target;
+	  var x = event.offsetX == undefined ? event.layerX : event.offsetX;
+	  var y = event.offsetY == undefined ? event.layerY : event.offsetY;
+
+	  var e = {
+	    w: elementZoom.offsetWidth,
+	    h: elementZoom.offsetHeight
+	  };
+
+	  var c = {
+	    x: x / (e.w / 70),
+	    y: y / (e.h / 100)
+	  };
+
+	  elementZoom.style.opacity = 0;
+	  container.style.backgroundImage = 'url(' + elementZoom.dataset.largeImg + ')';
+	  container.style.backgroundPosition = c.x + '% ' + c.y + '%';
+	};
+
+	module.exports = exports['default'];
+
+/***/ }),
+/* 30 */
+/***/ (function(module, exports) {
+
+	"use strict";
+
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+
+	exports["default"] = function (event) {
+	  if (event) {
+	    this.imgBig = event.target.dataset.bigImg;
+	    this.imgLarge = event.target.dataset.largeImg;
+	  }
+	};
+
+	module.exports = exports["default"];
+
+/***/ }),
+/* 31 */
+/***/ (function(module, exports) {
+
+	'use strict';
+
+	Object.defineProperty(exports, '__esModule', {
+	  value: true
+	});
+
+	exports['default'] = function (event) {
+	  var container = event.target.parentNode;
+	  var elementZoom = event.target;
+
+	  elementZoom.style.opacity = 1;
+	  container.style.backgroundImage = '';
+	  container.style.backgroundPosition = '';
+	};
+
+	module.exports = exports['default'];
+
+/***/ }),
+/* 32 */
+/***/ (function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	Object.defineProperty(exports, '__esModule', {
+	  value: true
+	});
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
+
+	var _vue = __webpack_require__(14);
+
+	var _vue2 = _interopRequireDefault(_vue);
+
+	var productSmallList = _vue2['default'].extend({
+	  template: '#product-small-list',
+	  props: ['product']
+	});
+
+	exports['default'] = productSmallList;
+	module.exports = exports['default'];
+
+/***/ }),
+/* 33 */
+/***/ (function(module, exports) {
+
+	'use strict';
+
+	Object.defineProperty(exports, '__esModule', {
+	  value: true
+	});
+
+	exports['default'] = function () {
+	  var _this = this;
+
+	  $('body').on('click', '[data-button-action="add-to-cart"]', function (event) {
+	    _this.$nextTick(function () {
+	      this.themeLoaderShow = true;
+	    });
+	  });
+
+	  prestashop.on('updateCart', function (event) {
+	    var refreshURL = $('.blockcart').data('refresh-url');
+	    var requestData = {};
+
+	    if (event && event.reason) {
+	      requestData = {
+	        id_product_attribute: event.reason.idProductAttribute,
+	        id_product: event.reason.idProduct,
+	        action: event.reason.linkAction
+	      };
+	    }
+
+	    $.post(refreshURL, requestData).then(function (resp) {
+	      _this.$nextTick(function () {
+	        this.modules.blockcart = $(resp.preview).find('.blockcart').data('module-data');
+	      });
+
+	      if (resp.modal) {
+	        _this.showCartModal();
+
+	        _this.$nextTick(function () {
+	          this.themeLoaderShow = false;
+	          this.blockcart.modalData = resp.modal;
+	        });
+	      }
+	    }).fail(function (resp) {
+	      prestashop.emit('handleError', { eventType: 'updateShoppingCart', resp: resp });
+	    });
+	  });
+	};
+
+	module.exports = exports['default'];
+
+/***/ }),
+/* 34 */
+/***/ (function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	Object.defineProperty(exports, '__esModule', {
+	  value: true
+	});
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
+
+	var _prestashop = __webpack_require__(12);
+
+	var _prestashop2 = _interopRequireDefault(_prestashop);
+
+	exports['default'] = function () {
+	  var _this = this;
+
+	  $('body').on('change', '#search_filters input[data-search-url]', function (event) {
+	    _prestashop2['default'].emit('updateFacets', parseSearchUrl(event));
+
+	    _this.$nextTick(function () {
+	      this.themeLoaderShow = true;
+	    });
+	  });
+
+	  $('body').on('click', '.js-search-link, .js-search-filters-clear-all', function (event) {
+	    event.preventDefault();
+
+	    _prestashop2['default'].emit('updateFacets', $(event.target).closest('a').get(0).href);
+
+	    _this.$nextTick(function () {
+	      this.themeLoaderShow = true;
+	    });
+	  });
+
+	  _prestashop2['default'].on('updateProductList', function (data) {
+	    _this.$nextTick(function () {
+	      this.modules.listingProduct = $(data.rendered_products).filter('#js-product-list').data('module-data');
+	      updateProductListDOM(data);
+	      this.themeLoaderShow = false;
+	    });
+	  });
+	};
+
+	function parseSearchUrl(event) {
+	  if (event.target.dataset.searchUrl !== undefined) {
+	    return event.target.dataset.searchUrl;
+	  }
+
+	  if ($(event.target).parent()[0].dataset.searchUrl === undefined) {
+	    throw new Error('Can not parse search URL');
+	  }
+
+	  return $(event.target).parent()[0].dataset.searchUrl;
+	}
+
+	function updateProductListDOM(data) {
+	  $('#search_filters').replaceWith(data.rendered_facets);
+	  $('#js-active-search-filters').replaceWith(data.rendered_active_filters);
+	  $('#js-product-list-top').replaceWith(data.rendered_products_top);
+	  $('#js-product-list-bottom').replaceWith(data.rendered_products_bottom);
+	}
+	module.exports = exports['default'];
+
+/***/ }),
+/* 35 */
+/***/ (function(module, exports) {
+
+	"use strict";
+
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+
+	exports["default"] = function () {
+	  this.$refs.blokcart.show();
+	};
+
+	module.exports = exports["default"];
+
+/***/ }),
+/* 36 */
+/***/ (function(module, exports) {
+
+	"use strict";
+
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+
+	exports["default"] = function () {
+	  this.$refs.blokcart.hide();
+	};
+
+	module.exports = exports["default"];
+
+/***/ }),
+/* 37 */
+/***/ (function(module, exports) {
+
+	"use strict";
+
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+
+	exports["default"] = function (event) {
+	  this.modules.productPageData.cover = JSON.parse(event.target.dataset.coverData);
+	};
+
+	module.exports = exports["default"];
+
+/***/ }),
+/* 38 */
+/***/ (function(module, exports) {
+
+	'use strict';
+
+	Object.defineProperty(exports, '__esModule', {
+	  value: true
+	});
+
+	exports['default'] = function (event) {
+	  var container = event.target.parentNode;
+	  var elementZoom = event.target;
+	  var x = event.offsetX == undefined ? event.layerX : event.offsetX;
+	  var y = event.offsetY == undefined ? event.layerY : event.offsetY;
+
+	  var e = {
+	    w: elementZoom.offsetWidth,
+	    h: elementZoom.offsetHeight
+	  };
+
+	  var c = {
+	    x: x / (e.w / 70),
+	    y: y / (e.h / 100)
+	  };
+
+	  elementZoom.style.opacity = 0;
+	  container.style.backgroundImage = 'url(' + elementZoom.dataset.largeImg + ')';
+	  container.style.backgroundPosition = c.x + '% ' + c.y + '%';
+	};
+
+	module.exports = exports['default'];
+
+/***/ }),
+/* 39 */
+/***/ (function(module, exports) {
+
+	'use strict';
+
+	Object.defineProperty(exports, '__esModule', {
+	  value: true
+	});
+
+	exports['default'] = function (event) {
+	  var container = event.target.parentNode;
+	  var elementZoom = event.target;
+
+	  elementZoom.style.opacity = 1;
+	  container.style.backgroundImage = '';
+	  container.style.backgroundPosition = '';
+	};
+
+	module.exports = exports['default'];
+
+/***/ }),
+/* 40 */
+/***/ (function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	Object.defineProperty(exports, '__esModule', {
+	  value: true
+	});
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
+
+	var _prestashop = __webpack_require__(12);
+
+	var _prestashop2 = _interopRequireDefault(_prestashop);
+
+	var _refreshClickEmit = __webpack_require__(41);
+
+	var _refreshClickEmit2 = _interopRequireDefault(_refreshClickEmit);
+
+	var _refreshClickListener = __webpack_require__(42);
+
+	var _refreshClickListener2 = _interopRequireDefault(_refreshClickListener);
+
+	var _replaceAddToCartSections = __webpack_require__(44);
+
+	var _replaceAddToCartSections2 = _interopRequireDefault(_replaceAddToCartSections);
+
+	exports['default'] = function () {
+	  var _this = this;
+
+	  var updateEventName = 'customUpdateProduct';
+	  _refreshClickEmit2['default'].call(this);
+
+	  $('body').on('click', '.custom-product-refresh', _refreshClickListener2['default']);
+
+	  _prestashop2['default'].on(updateEventName, function (event) {
+	    if (typeof event.refreshUrl == 'undefined') {
+	      event.refreshUrl = true;
+	    }
+
+	    var eventType = event.eventType;
+
+	    $.post(event.reason.productUrl, { ajax: '1', action: 'refresh' }, null, 'json').then(function (resp) {
+	      // console.log(resp)
+
+	      _this.$nextTick(function () {
+	        this.modules.productPageData = $(resp.product_cover_thumbnails).filter('#ajax-product-images').data('ajax-products');
+	        this.themeLoaderShow = false;
+	      });
+
+	      $('.product-prices').replaceWith(resp.product_prices);
+	      $('.product-customization').replaceWith(resp.product_customization);
+	      $('.product-variants').replaceWith(resp.product_variants);
+	      $('.product-discounts').replaceWith(resp.product_discounts);
+	      $('.product-additional-info').replaceWith(resp.product_additional_info);
+	      $('#product-details').replaceWith(resp.product_details);
+
+	      // Replace all "add to cart" sections but the quantity input in order to keep quantity field intact i.e.
+	      // Prevent quantity input from blinking with classic theme.
+	      var $productAddToCart = undefined;
+	      $(resp.product_add_to_cart).each(function (index, value) {
+	        if ($(value).hasClass('product-add-to-cart')) {
+	          $productAddToCart = $(value);
+	        }
+	      });
+
+	      (0, _replaceAddToCartSections2['default'])($productAddToCart);
+
+	      var minimalProductQuantity = parseInt(resp.product_minimal_quantity, 10);
+	      var quantityInputSelector = '#quantity_wanted';
+	      var quantityInput = $(quantityInputSelector);
+	      var quantity_wanted = quantityInput.val();
+
+	      if (!isNaN(minimalProductQuantity) && quantity_wanted < minimalProductQuantity && eventType !== 'updatedProductQuantity') {
+	        quantityInput.attr('min', minimalProductQuantity);
+	        quantityInput.val(minimalProductQuantity);
+	      }
+
+	      if (event.refreshUrl) {
+	        window.history.pushState({
+	          id_product_attribute: resp.id_product_attribute
+	        }, undefined, resp.product_url);
+	      }
+
+	      //   prestashop.emit(updateEventName, resp)
+	    });
+	  });
+	};
+
+	module.exports = exports['default'];
+
+/***/ }),
+/* 41 */
+/***/ (function(module, exports) {
+
+	'use strict';
+
+	Object.defineProperty(exports, '__esModule', {
+	  value: true
+	});
+
+	exports['default'] = function () {
+	  var _this = this;
+
+	  var selector = '.product-variants [data-custom-product-attribute]';
+
+	  $('body').on('change', selector, function () {
+	    $("input[name$='refresh']").click();
+
+	    _this.$nextTick(function () {
+	      this.themeLoaderShow = true;
+	    });
+	  });
+	};
+
+	module.exports = exports['default'];
+
+/***/ }),
+/* 42 */
+/***/ (function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	Object.defineProperty(exports, '__esModule', {
+	  value: true
+	});
+
+	var _getRequestParameter = __webpack_require__(43);
+
+	exports['default'] = function (event, extraParameters) {
+	  event.preventDefault();
+
+	  var $productRefresh = $(this);
+	  var eventType = 'updatedProductCombination';
+	  var updateEventName = 'customUpdateProduct';
+
+	  if (typeof extraParameters !== 'undefined' && extraParameters.eventType) {
+	    eventType = extraParameters.eventType;
+	  }
+
+	  var preview = (0, _getRequestParameter.getRequestParameter)('preview');
+	  if (preview !== null) {
+	    preview = '&preview=' + preview;
+	  } else {
+	    preview = '';
+	  }
+
+	  var query = $(event.target.form).serialize() + '&ajax=1&action=productrefresh' + preview;
+	  var actionURL = $(event.target.form).attr('action');
+
+	  $.post(actionURL, query, null, 'json').then(function (resp) {
+	    prestashop.emit(updateEventName, {
+	      reason: {
+	        productUrl: resp.productUrl
+	      },
+	      refreshUrl: $productRefresh.data('url-update'),
+	      eventType: eventType,
+	      resp: resp
+	    });
+	  });
+	};
+
+	module.exports = exports['default'];
+
+/***/ }),
+/* 43 */
+/***/ (function(module, exports) {
+
+	'use strict';
+
+	Object.defineProperty(exports, '__esModule', {
+	  value: true
+	});
+	exports.getRequestParameter = getRequestParameter;
+
+	function getRequestParameter(paramName) {
+	  var vars = {};
+	  window.location.href.replace(location.hash, '').replace(/[?&]+([^=&]+)=?([^&]*)?/gi, function (m, key, value) {
+	    vars[key] = value !== undefined ? value : '';
+	  });
+	  if (paramName !== undefined) {
+	    return vars[paramName] ? vars[paramName] : null;
+	  }
+
+	  return vars;
+	}
+
+/***/ }),
+/* 44 */
+/***/ (function(module, exports) {
+
+	'use strict';
+
+	Object.defineProperty(exports, '__esModule', {
+	  value: true
+	});
+	var replaceAddToCartSections = function replaceAddToCartSections(addCartHtml) {
+	  var $addToCartSnippet = $(addCartHtml);
+	  var $addProductToCart = $('.product-add-to-cart');
+
+	  function replaceAddToCartSection(replacement) {
+	    var replace = replacement.$addToCartSnippet.find(replacement.targetSelector);
+
+	    if ($(replacement.$targetParent.find(replacement.targetSelector)).length > 0) {
+	      if (replace.length > 0) {
+	        $(replacement.$targetParent.find(replacement.targetSelector)).replaceWith(replace[0].outerHTML);
+	      } else {
+	        $(replacement.$targetParent.find(replacement.targetSelector)).html('');
+	      }
+	    }
+	  }
+
+	  var productAvailabilitySelector = '.add';
+	  replaceAddToCartSection({
+	    $addToCartSnippet: $addToCartSnippet,
+	    $targetParent: $addProductToCart,
+	    targetSelector: productAvailabilitySelector
+	  });
+
+	  var productAvailabilityMessageSelector = '#product-availability';
+	  replaceAddToCartSection({
+	    $addToCartSnippet: $addToCartSnippet,
+	    $targetParent: $addProductToCart,
+	    targetSelector: productAvailabilityMessageSelector
+	  });
+
+	  var productMinimalQuantitySelector = '.product-minimal-quantity';
+	  replaceAddToCartSection({
+	    $addToCartSnippet: $addToCartSnippet,
+	    $targetParent: $addProductToCart,
+	    targetSelector: productMinimalQuantitySelector
+	  });
+	};
+
+	exports['default'] = replaceAddToCartSections;
+	module.exports = exports['default'];
+
+/***/ }),
+/* 45 */
+/***/ (function(module, exports) {
+
+	'use strict';
+
+	Object.defineProperty(exports, '__esModule', {
+	  value: true
+	});
+
+	exports['default'] = function (event) {
+	  var _this = this;
+
 	  var minLetters = 2;
 	  var searchURL = event.target.dataset.searchControllerUrl;
 
 	  if (event.target.value.length > minLetters) {
-	    $.post(searchURL, {
-	      s: event.target.value,
-	      resultsPerPage: 30
-	    }, null, 'json').then(function (resp) {
-	      console.log($(resp.rendered_products).filter('#js-product-list').data('module-data'));
-	    }).fail(function (e) {
-	      console.log(e);
+	    delayCall($(this), 500, function () {
+	      $.post(searchURL, {
+	        s: event.target.value,
+	        resultsPerPage: 30
+	      }, null, 'json').then(function (resp) {
+	        _this.blockcart.data = $(resp.rendered_products).filter('#js-product-list').data('module-data');
+
+	        if ($(resp.rendered_products).filter('#js-product-list').data('module-data').length === 0) {
+	          _this.blockcart.noResult = true;
+	        }
+	      }).fail(function (e) {
+	        console.log(e);
+	      });
 	    });
+	  } else {
+	    this.blockcart.data = [];
+	    this.blockcart.noResult = false;
 	  }
 	};
 
+	function delayCall(obj, ms, fn) {
+	  return $(obj).each(function () {
+	    if (typeof this.timer == 'undefined') {
+	      // Define an array to keep track of all fields needed delays
+	      // This is in order to make this a multiple delay handling    
+	      // function
+	      this.timer = new Array();
+	    }
+	    var obj = this;
+	    if (this.timer[obj.id]) {
+	      clearTimeout(this.timer[obj.id]);
+	      delete this.timer[obj.id];
+	    }
+
+	    this.timer[obj.id] = setTimeout(function () {
+	      fn(obj);
+	    }, ms);
+	  });
+	};
 	module.exports = exports['default'];
+
+/***/ }),
+/* 46 */
+/***/ (function(module, exports) {
+
+	// removed by extract-text-webpack-plugin
+
+/***/ }),
+/* 47 */,
+/* 48 */
+/***/ (function(module, exports) {
+
+	// removed by extract-text-webpack-plugin
+
+/***/ }),
+/* 49 */,
+/* 50 */
+/***/ (function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	Object.defineProperty(exports, '__esModule', {
+	  value: true
+	});
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
+
+	var _updateCart = __webpack_require__(53);
+
+	var _updateCart2 = _interopRequireDefault(_updateCart);
+
+	exports.updateCartCore = _updateCart2['default'];
+
+/***/ }),
+/* 51 */,
+/* 52 */,
+/* 53 */
+/***/ (function(module, exports) {
+
+	'use strict';
+
+	Object.defineProperty(exports, '__esModule', {
+	    value: true
+	});
+	var promises = [];
+	var abortPreviousRequests = function abortPreviousRequests() {
+	    var promise;
+	    while (promises.length > 0) {
+	        promise = promises.pop();
+	        promise.abort();
+	    }
+	};
+	var requestData = {
+	    ajax: '1',
+	    action: 'update'
+	};
+
+	exports['default'] = function (event) {
+	    var _this = this;
+
+	    event.preventDefault();
+	    this.$nextTick(function () {
+	        this.themeLoaderShow = true;
+	    });
+	    abortPreviousRequests();
+	    $.ajax({
+	        url: event.target.href,
+	        method: 'POST',
+	        data: requestData,
+	        dataType: 'json',
+	        beforeSend: function beforeSend(jqXHR) {
+	            promises.push(jqXHR);
+	        }
+	    }).then(function (resp) {
+	        _this.$nextTick(function () {
+	            this.modules.blockcart = resp.cart;
+	            this.themeLoaderShow = false;
+	        });
+	    }).fail(function (resp) {
+	        prestashop.emit('handleError', {
+	            eventType: 'updateProductInCart',
+	            resp: resp
+	        });
+	    });
+	};
+
+	module.exports = exports['default'];
+	// cartAction: cartAction.type
 
 /***/ })
 /******/ ]);

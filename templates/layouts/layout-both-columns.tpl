@@ -99,6 +99,8 @@
     </main>
 
     {include file="vue-templates/_partials/product.tpl"}
+    {include file="vue-templates/_partials/product-small-list.tpl"}
+    {include file="vue-templates/checkout/cart-detailed-product.tpl"}
 
     {block name='javascript_bottom'}
       {include file="_partials/javascript.tpl" javascript=$javascript.bottom}

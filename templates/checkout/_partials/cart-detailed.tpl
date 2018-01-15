@@ -23,13 +23,16 @@
  * International Registered Trademark & Property of PrestaShop SA
  *}
 {block name='cart_detailed'}
-  <div class="cart-overview js-cart" data-refresh-url="{url entity='cart' params=['ajax' => 1, 'action' => 'refresh']}">
+  <div class="cart-overview js-cart" 
+       data-refresh-url="{url entity='cart' params=['ajax' => 1, 'action' => 'refresh']}">
     <div class="body">
-      <ul>
-        {foreach from=$cart.products item=product}
-          <li class="cart-item">{include file='checkout/_partials/cart-detailed-product-line.tpl' product=$product}</li>
-        {/foreach}
-      </ul>
+      <b-list-group>
+        <transition-group name="fade" mode="out-in" appear>
+          <b-list-group-item class="cart-item" v-for="product in modules.blockcart.products" :key="product.id">
+            {include file='checkout/_partials/cart-detailed-product-line.tpl'}
+          </b-list-group-item>
+        </transition-group>
+      </b-list-group>
     </div>
   </div>
 {/block}
