@@ -487,27 +487,11 @@ label.radio-block {
   padding: 5px;
   border: 1px solid #808080;
 }
-.form-footer button {
-  margin-top: 10px;
-}
 .cart-totals .label {
   font-weight: bold;
 }
 #blockcart-modal {
   color: #000;
-}
-.customizations {
-  margin-top: 5px;
-  margin-left: 15%;
-  padding: 5px;
-  border: 1px solid #808080;
-  width: 70%;
-}
-.customizations ul {
-  margin: 0;
-}
-.customizations label {
-  font-weight: bold;
 }
 .menu a,
 .menu a:visited {
@@ -605,6 +589,9 @@ a.add-to-cart:hover {
   margin-left: 15px;
   margin-right: 15px;
   margin-bottom: 25px;
+}
+.product-list-thumb {
+  max-width: 50px;
 }
 .quantity {
   max-width: 70px;
@@ -711,27 +698,20 @@ ul.product-labels li {
   font-style: inherit;
   cursor: default;
 }
-body#checkout {
-  max-width: 960px;
-  margin: auto;
-}
 .address-selector {
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
 }
 .address-selector .address-item {
-  width: 220px;
-  background-color: #d4d4d4;
   padding: 15px;
   margin-top: 30px;
+  max-width: calc(50% - 15px);
+  flex: 1 1 50%;
 }
 #checkout-cart-summary {
   float: right;
   width: 30%;
-}
-.checkout-step {
-  width: 70%;
 }
 #conditions-to-approve {
   margin-top: 5px;
@@ -743,10 +723,7 @@ body#checkout {
   list-style: none;
 }
 #conditions-to-approve ul li {
-  padding: 10px;
-  border-bottom: 1px solid #808080;
   margin-bottom: 5px;
-  width: 50%;
 }
 #conditions-to-approve ul li label {
   cursor: pointer;
@@ -755,29 +732,12 @@ body#checkout {
   padding: 5px;
   margin: 5px;
 }
-.payment-options,
-.delivery-options,
-.order-options {
-  max-width: 50%;
-}
 .order-options label {
   margin-top: 10px;
-}
-.payment-option,
-.delivery-option {
-  border-bottom: 1px solid #808080;
-  padding-left: 10px;
-  margin-top: 5px;
-  background-color: #fff;
 }
 .payment-option label,
 .delivery-option label {
   cursor: pointer;
-}
-.payment-option label span,
-.delivery-option label span {
-  text-align: center;
-  margin: 10px;
 }
 .payment-option,
 .delivery-option,
@@ -794,22 +754,6 @@ body#checkout {
 .payment-option label span,
 .delivery-option label span {
   flex-grow: 1;
-}
-#payment-confirmation button,
-#payment-confirmation label {
-  margin-top: 5px;
-  display: inline-block;
-  cursor: pointer;
-  padding: 15px;
-  margin-top: 15px;
-  background-color: #90ee90;
-  border: 1px solid #000;
-  color: #000;
-}
-#payment-confirmation button:disabled,
-#payment-confirmation label:disabled {
-  background-color: #f00;
-  cursor: default;
 }
 .payment-options .warning {
   color: #ffa500;
@@ -834,13 +778,6 @@ body#checkout {
 }
 .checkout-step.-current .content {
   display: block;
-}
-.checkout-step button.continue {
-  padding: 15px 30px 15px 30px;
-  margin-top: 10px;
-}
-.checkout-step button.continue[disabled] {
-  opacity: 0.5;
 }
 .checkout-step .step-number {
   margin-right: 5px;
@@ -990,9 +927,6 @@ nav.pagination .current a {
 .blockcart .cart-body {
   width: 280px; }
 
-.blockcart img {
-  max-width: 50px; }
-
 .cart-products-count {
   margin: -15px -15px 20px; }
 
@@ -1090,6 +1024,14 @@ nav.pagination .current a {
 body {
   background: #fefefe; }
 
+#app {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh; }
+
+#wrapper {
+  flex-grow: 1; }
+
 .product-flags span {
   margin: 0 3px; }
 
@@ -1124,15 +1066,17 @@ body {
   background-position: center center;
   background-repeat: no-repeat;
   background-color: white;
-  transition: all ease-out .3s; }
+  transition: all ease-out 0.3s; }
 
 .thumbnail-container {
   margin: -15px -15px 0; }
 
-.fade-enter-active, .fade-leave-active {
-  transition: opacity .3s; }
+.fade-enter-active,
+.fade-leave-active {
+  transition: opacity 0.3s; }
 
-.fade-enter, .fade-leave-to {
+.fade-enter,
+.fade-leave-to {
   opacity: 0; }
 /*!
  * Bootstrap v4.0.0-beta.2 (https://getbootstrap.com)

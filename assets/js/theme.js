@@ -171,15 +171,15 @@
 
 	var _globalMethodsSearchBarChange2 = _interopRequireDefault(_globalMethodsSearchBarChange);
 
-	var _coreCart = __webpack_require__(50);
+	var _coreCart = __webpack_require__(46);
 
 	// modules data init
 
 	// import styles
 
-	__webpack_require__(46);
-
 	__webpack_require__(48);
+
+	__webpack_require__(50);
 
 	_prestashop2['default'].modules = _prestashop2['default'].modules || {};
 	_prestashop2['default'].blockcart = _prestashop2['default'].blockcart || {};
@@ -5948,23 +5948,23 @@
 /* 33 */
 /***/ (function(module, exports) {
 
-	'use strict';
+	"use strict";
 
-	Object.defineProperty(exports, '__esModule', {
+	Object.defineProperty(exports, "__esModule", {
 	  value: true
 	});
 
-	exports['default'] = function () {
+	exports["default"] = function () {
 	  var _this = this;
 
-	  $('body').on('click', '[data-button-action="add-to-cart"]', function (event) {
+	  $("body").on("click", '[data-button-action="add-to-cart"]', function (event) {
 	    _this.$nextTick(function () {
 	      this.themeLoaderShow = true;
 	    });
 	  });
 
-	  prestashop.on('updateCart', function (event) {
-	    var refreshURL = $('.blockcart').data('refresh-url');
+	  prestashop.on("updateCart", function (event) {
+	    var refreshURL = $(".blockcart").data("refresh-url");
 	    var requestData = {};
 
 	    if (event && event.reason) {
@@ -5977,7 +5977,7 @@
 
 	    $.post(refreshURL, requestData).then(function (resp) {
 	      _this.$nextTick(function () {
-	        this.modules.blockcart = $(resp.preview).find('.blockcart').data('module-data');
+	        this.modules.blockcart = $(resp.preview).find(".blockcart").data("module-data");
 	      });
 
 	      if (resp.modal) {
@@ -5989,55 +5989,61 @@
 	        });
 	      }
 	    }).fail(function (resp) {
-	      prestashop.emit('handleError', { eventType: 'updateShoppingCart', resp: resp });
+	      prestashop.emit("handleError", {
+	        eventType: "updateShoppingCart",
+	        resp: resp
+	      });
 	    });
 	  });
 	};
 
-	module.exports = exports['default'];
+	module.exports = exports["default"];
 
 /***/ }),
 /* 34 */
 /***/ (function(module, exports, __webpack_require__) {
 
-	'use strict';
+	"use strict";
 
-	Object.defineProperty(exports, '__esModule', {
+	Object.defineProperty(exports, "__esModule", {
 	  value: true
 	});
 
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
 
 	var _prestashop = __webpack_require__(12);
 
 	var _prestashop2 = _interopRequireDefault(_prestashop);
 
-	exports['default'] = function () {
+	exports["default"] = function () {
 	  var _this = this;
 
-	  $('body').on('change', '#search_filters input[data-search-url]', function (event) {
-	    _prestashop2['default'].emit('updateFacets', parseSearchUrl(event));
+	  $("body").on("change", "#search_filters input[data-search-url]", function (event) {
+	    _prestashop2["default"].emit("updateFacets", parseSearchUrl(event));
 
 	    _this.$nextTick(function () {
 	      this.themeLoaderShow = true;
 	    });
 	  });
 
-	  $('body').on('click', '.js-search-link, .js-search-filters-clear-all', function (event) {
+	  $("body").on("click", ".js-search-link, .js-search-filters-clear-all", function (event) {
 	    event.preventDefault();
 
-	    _prestashop2['default'].emit('updateFacets', $(event.target).closest('a').get(0).href);
+	    _prestashop2["default"].emit("updateFacets", $(event.target).closest("a").get(0).href);
 
 	    _this.$nextTick(function () {
 	      this.themeLoaderShow = true;
 	    });
 	  });
 
-	  _prestashop2['default'].on('updateProductList', function (data) {
+	  _prestashop2["default"].on("updateProductList", function (data) {
 	    _this.$nextTick(function () {
-	      this.modules.listingProduct = $(data.rendered_products).filter('#js-product-list').data('module-data');
+	      this.modules.listingProduct = $(data.rendered_products).filter("#js-product-list").data("module-data");
 	      updateProductListDOM(data);
 	      this.themeLoaderShow = false;
+	      $("html, body").animate({
+	        scrollTop: $("#products").offset().top
+	      }, 300);
 	    });
 	  });
 	};
@@ -6048,19 +6054,19 @@
 	  }
 
 	  if ($(event.target).parent()[0].dataset.searchUrl === undefined) {
-	    throw new Error('Can not parse search URL');
+	    throw new Error("Can not parse search URL");
 	  }
 
 	  return $(event.target).parent()[0].dataset.searchUrl;
 	}
 
 	function updateProductListDOM(data) {
-	  $('#search_filters').replaceWith(data.rendered_facets);
-	  $('#js-active-search-filters').replaceWith(data.rendered_active_filters);
-	  $('#js-product-list-top').replaceWith(data.rendered_products_top);
-	  $('#js-product-list-bottom').replaceWith(data.rendered_products_bottom);
+	  $("#search_filters").replaceWith(data.rendered_facets);
+	  $("#js-active-search-filters").replaceWith(data.rendered_active_filters);
+	  $("#js-product-list-top").replaceWith(data.rendered_products_top);
+	  $("#js-product-list-bottom").replaceWith(data.rendered_products_bottom);
 	}
-	module.exports = exports['default'];
+	module.exports = exports["default"];
 
 /***/ }),
 /* 35 */
@@ -6462,20 +6468,6 @@
 
 /***/ }),
 /* 46 */
-/***/ (function(module, exports) {
-
-	// removed by extract-text-webpack-plugin
-
-/***/ }),
-/* 47 */,
-/* 48 */
-/***/ (function(module, exports) {
-
-	// removed by extract-text-webpack-plugin
-
-/***/ }),
-/* 49 */,
-/* 50 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -6486,16 +6478,14 @@
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
 
-	var _updateCart = __webpack_require__(53);
+	var _updateCart = __webpack_require__(47);
 
 	var _updateCart2 = _interopRequireDefault(_updateCart);
 
 	exports.updateCartCore = _updateCart2['default'];
 
 /***/ }),
-/* 51 */,
-/* 52 */,
-/* 53 */
+/* 47 */
 /***/ (function(module, exports) {
 
 	'use strict';
@@ -6547,6 +6537,19 @@
 
 	module.exports = exports['default'];
 	// cartAction: cartAction.type
+
+/***/ }),
+/* 48 */
+/***/ (function(module, exports) {
+
+	// removed by extract-text-webpack-plugin
+
+/***/ }),
+/* 49 */,
+/* 50 */
+/***/ (function(module, exports) {
+
+	// removed by extract-text-webpack-plugin
 
 /***/ })
 /******/ ]);
