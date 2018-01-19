@@ -1029,8 +1029,14 @@ body {
   flex-direction: column;
   min-height: 100vh; }
 
+i {
+  pointer-events: none; }
+
 #wrapper {
   flex-grow: 1; }
+
+.page-header h1:empty {
+  display: none; }
 
 .product-flags span {
   margin: 0 3px; }

@@ -22,88 +22,81 @@
  * @license   https://opensource.org/licenses/AFL-3.0 Academic Free License 3.0 (AFL-3.0)
  * International Registered Trademark & Property of PrestaShop SA
  *}
-{if $product.show_price}
-  <div class="product-prices">
-    {block name='product_price'}
-      <div class="product-price d-flex align-items-center mb-2 {if $product.has_discount}has-discount{/if}" itemprop="offers" itemscope itemtype="https://schema.org/Offer">
-        {block name='product_discount'}
-          {if $product.has_discount}
-            <div class="product-discount mr-2">
-              {hook h='displayProductPriceBlock' product=$product type="old_price"}
-              <span class="regular-price">{$product.regular_price}</span>
-            </div>
-          {/if}
-        {/block}
+ {* {literal}{{modules.productPageData.availability_date}}{/literal} *}
 
-        <link itemprop="availability" href="https://schema.org/InStock"/>
-        <span class="mb-0 mr-1 h6" itemprop="price" content="{$product.price_amount}">
-          {$product.price}
-        </span>
-
-        {if $configuration.display_taxes_label}
-          <small class="form-text text-muted mr-2 mt-0">
-            {$product.labels.tax_short}
-          </small>
-        {/if}
-
-        <meta itemprop="priceCurrency" content="{$currency.iso_code}">
-        {hook h='displayProductPriceBlock' product=$product type="price"}
-        {if $product.has_discount}
-          {if $product.discount_type === 'percentage'}
-            <span class="discount-percentage text-danger">
-              {l s='save %percentage%' d='Shop.Theme.Catalog' sprintf=['%percentage%' => $product.discount_percentage]}
-            </span>
-          {else}
-            <span class="discount-amount text-danger">
-              {l s='Save %amount%' d='Shop.Theme.Catalog' sprintf=['%amount%' => $product.discount_amount]}
-            </span>
-          {/if}
-        {/if}
-      </div>
-    {/block}
-
-    {block name='product_without_taxes'}
-      {if $priceDisplay == 2}
-        <p class="product-without-taxes">
-          {l s='%price% tax excl.' d='Shop.Theme.Catalog' sprintf=['%price%' => $product.price_tax_exc]}
-        </p>
-      {/if}
-    {/block}
-
-    {block name='product_pack_price'}
-      {if $displayPackPrice}
-        <p class="product-pack-price">
-          <span>
-            {l s='Instead of %price%' d='Shop.Theme.Catalog' sprintf=['%price%' => $noPackPrice]}
+<div class="product-prices" v-if="modules.productPageData.show_price">
+  {block name='product_price'}
+    <div class="product-price d-flex align-items-center mb-2"
+      itemprop="offers" itemscope itemtype="https://schema.org/Offer">
+      {block name='product_discount'}
+        <div class="product-discount mr-2" v-if="modules.productPageData.has_discount">
+          {hook h='displayProductPriceBlock' product=$product type="old_price"}
+          <span class="regular-price">
+            {literal}{{modules.productPageData.regular_price}}{/literal}
           </span>
-        </p>
-      {/if}
-    {/block}
+        </div>
+      {/block}
 
-    {block name='product_ecotax'}
-      {if $product.ecotax.amount > 0}
-        <p class="price-ecotax">
-          {l s='Including %amount% for ecotax' d='Shop.Theme.Catalog' sprintf=['%amount%' => $product.ecotax.value]}
-          {if $product.has_discount}
-            {l s='(not impacted by the discount)' d='Shop.Theme.Catalog'}
-          {/if}
-        </p>
-      {/if}
-    {/block}
-
-    {block name='product_unit_price'}
-      {if $displayUnitPrice}
-        <p class="product-unit-price">{l s='(%unit_price%)' d='Shop.Theme.Catalog' sprintf=['%unit_price%' => $product.unit_price_full]}</p>
-      {/if}
-    {/block}
-
-    {hook h='displayProductPriceBlock' product=$product type="weight" hook_origin='product_sheet'}
-    {hook h='displayProductPriceBlock' product=$product type="after_price"}
-
-    {if isset($product.delivery_information)}
-      <span class="delivery-information">
-        {$product.delivery_information}
+      <link itemprop="availability" href="https://schema.org/InStock"/>
+      <span class="mb-0 mr-1 h6" itemprop="price" :content="modules.productPageData.price_amount">
+        {literal}{{modules.productPageData.price}}{/literal}
       </span>
-    {/if}
-  </div>
-{/if}
+
+        <small class="form-text text-muted mr-2 mt-0" v-if="configuration.display_taxes_label">
+          {literal}{{modules.productPageData.labels.tax_short}}{/literal}
+        </small>
+
+      <meta itemprop="priceCurrency" :content="currency.iso_code">
+      {hook h='displayProductPriceBlock' type="price"}
+
+      <div v-if="modules.productPageData.has_discount">
+        <span class="discount-percentage text-danger" v-if="modules.productPageData.discount_type === 'percentage'">
+          {l s='Save ' d='Shop.Theme.Catalog'}
+          {literal}{{modules.productPageData.discount_percentage}}{/literal}
+        </span>
+        <span class="discount-amount text-danger" v-else>
+          {l s='Save' d='Shop.Theme.Catalog'}
+          {literal}{{modules.productPageData.discount_amount}}{/literal}
+        </span>
+      </div>
+    </div>
+  {/block}
+
+  {block name='product_without_taxes'}
+    <p class="product-without-taxes"  v-if="modules.priceDisplay == 2"  data-module-name="priceDisplay" data-module-data="{$priceDisplay}">
+      {literal}{{modules.productPageData.price_tax_exc}}{/literal}
+      {l s=' tax excl.' d='Shop.Theme.Catalog'}
+    </p>
+  {/block}
+
+  {block name='product_pack_price'}
+    <p class="product-pack-price" v-if="modules.displayPackPrice"  data-module-name="displayPackPrice" data-module-data="{$displayPackPrice}">
+      <span>
+        {l s='Instead of' d='Shop.Theme.Catalog'}
+      </span>
+    </p>
+  {/block}
+
+  {block name='product_ecotax'}
+      <p class="price-ecotax" v-if="modules.productPageData.ecotax.amount > 0">
+        {literal}{{modules.productPageData.ecotax.value}}{/literal}
+        {l s='including for ecotax' d='Shop.Theme.Catalog'}
+        <span v-if="modules.productPageData.has_discount">
+          {l s='(not impacted by the discount)' d='Shop.Theme.Catalog'}
+        </span>
+      </p>
+  {/block}
+
+  {block name='product_unit_price'}
+    <p class="product-unit-price" v-if="modules.displayUnitPrice"  data-module-name="displayUnitPrice" data-module-data="{$displayUnitPrice}" >
+      {literal}{{modules.productPageData.unit_price_full}}{/literal}
+    </p>
+  {/block}
+
+  {hook h='displayProductPriceBlock' type="weight" hook_origin='product_sheet'}
+  {hook h='displayProductPriceBlock' type="after_price"}
+
+  <span class="delivery-information" v-if="modules.productPageData.delivery_information">
+    {literal}{{modules.productPageData.delivery_information}}{/literal}
+  </span>
+</div>

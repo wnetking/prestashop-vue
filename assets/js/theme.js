@@ -85,9 +85,9 @@
 /* 11 */
 /***/ (function(module, exports, __webpack_require__) {
 
-	'use strict';
+	"use strict";
 
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
 
 	var _prestashop = __webpack_require__(12);
 
@@ -151,83 +151,91 @@
 
 	var _globalMethodsHideCartModal2 = _interopRequireDefault(_globalMethodsHideCartModal);
 
-	var _globalMethodsChangeProductCoverImage = __webpack_require__(37);
+	var _globalMethodsOpenQuickView = __webpack_require__(37);
+
+	var _globalMethodsOpenQuickView2 = _interopRequireDefault(_globalMethodsOpenQuickView);
+
+	var _globalMethodsChangeProductCoverImage = __webpack_require__(38);
 
 	var _globalMethodsChangeProductCoverImage2 = _interopRequireDefault(_globalMethodsChangeProductCoverImage);
 
-	var _globalMethodsProductZoom = __webpack_require__(38);
+	var _globalMethodsProductZoom = __webpack_require__(39);
 
 	var _globalMethodsProductZoom2 = _interopRequireDefault(_globalMethodsProductZoom);
 
-	var _globalMethodsZoomLeave = __webpack_require__(39);
+	var _globalMethodsZoomLeave = __webpack_require__(40);
 
 	var _globalMethodsZoomLeave2 = _interopRequireDefault(_globalMethodsZoomLeave);
 
-	var _coreProduct = __webpack_require__(40);
+	var _coreProduct = __webpack_require__(41);
 
 	var _coreProduct2 = _interopRequireDefault(_coreProduct);
 
-	var _globalMethodsSearchBarChange = __webpack_require__(45);
+	var _globalMethodsSearchBarChange = __webpack_require__(46);
 
 	var _globalMethodsSearchBarChange2 = _interopRequireDefault(_globalMethodsSearchBarChange);
 
-	var _coreCart = __webpack_require__(46);
+	var _coreCart = __webpack_require__(47);
 
 	// modules data init
 
 	// import styles
 
-	__webpack_require__(48);
+	__webpack_require__(49);
 
-	__webpack_require__(50);
+	__webpack_require__(51);
 
-	_prestashop2['default'].modules = _prestashop2['default'].modules || {};
-	_prestashop2['default'].blockcart = _prestashop2['default'].blockcart || {};
-	_prestashop2['default'].themeLoaderShow = false;
-	_prestashop2['default'].blockcart = {
-	  modalData: '<h1>Hello cart</h1>',
+	_prestashop2["default"].modules = _prestashop2["default"].modules || {};
+	_prestashop2["default"].blockcart = _prestashop2["default"].blockcart || {};
+	_prestashop2["default"].modules.productPageData = _prestashop2["default"].modules.productPageData || {};
+	_prestashop2["default"].themeLoaderShow = false;
+	_prestashop2["default"].blockcart = {
+	  modalData: "<h1>Hello cart</h1>",
 	  data: []
 	};
 
-	$('[data-module-name]').each(function () {
-	  _prestashop2['default'].modules[$(this).data('module-name')] = $(this).data('module-data');
+	$("[data-module-name]").each(function () {
+	  _prestashop2["default"].modules[$(this).data("module-name")] = $(this).data("module-data");
 	});
 
-	_vue2['default'].use(_bootstrapVue2['default']);
-	_vue2['default'].use(_vueStringFilter2['default']);
-	_vue2['default'].use(_vueSocialSharing2['default']);
-	_vue2['default'].use(_vuebar2['default']);
-	_vue2['default'].use(_vImg2['default']);
+	_vue2["default"].use(_bootstrapVue2["default"]);
+	_vue2["default"].use(_vueStringFilter2["default"]);
+	_vue2["default"].use(_vueSocialSharing2["default"]);
+	_vue2["default"].use(_vuebar2["default"]);
+	_vue2["default"].use(_vImg2["default"]);
 
-	(0, _filters2['default'])();
-	(0, _components2['default'])();
+	(0, _filters2["default"])();
+	(0, _components2["default"])();
 
 	// init global vue app
-	new _vue2['default']({
-	  el: '#app',
-	  data: _prestashop2['default'],
+	new _vue2["default"]({
+	  el: "#app",
+	  data: _prestashop2["default"],
 	  components: {
-	    'avatar': _vueAvatar2['default'],
+	    avatar: _vueAvatar2["default"],
 	    // VueCarousel connect from theme.yml
-	    'carousel': window.VueCarousel.Carousel,
-	    'slide': window.VueCarousel.Slide
+	    carousel: window.VueCarousel.Carousel,
+	    slide: window.VueCarousel.Slide
 	  },
 	  methods: {
-	    showCartModal: _globalMethodsShowCartModal2['default'],
-	    hideCartModal: _globalMethodsHideCartModal2['default'],
-	    updateCart: _globalMethodsUpdateCart2['default'],
-	    initFacets: _globalMethodsInitFacets2['default'],
-	    productCore: _coreProduct2['default'],
-	    changeProductCoverImage: _globalMethodsChangeProductCoverImage2['default'],
-	    productZoom: _globalMethodsProductZoom2['default'],
-	    zoomLeave: _globalMethodsZoomLeave2['default'],
-	    searchBarChange: _globalMethodsSearchBarChange2['default'],
-	    updateCartCore: _coreCart.updateCartCore
+	    showCartModal: _globalMethodsShowCartModal2["default"],
+	    hideCartModal: _globalMethodsHideCartModal2["default"],
+	    updateCart: _globalMethodsUpdateCart2["default"],
+	    initFacets: _globalMethodsInitFacets2["default"],
+	    productCore: _coreProduct2["default"],
+	    changeProductCoverImage: _globalMethodsChangeProductCoverImage2["default"],
+	    productZoom: _globalMethodsProductZoom2["default"],
+	    zoomLeave: _globalMethodsZoomLeave2["default"],
+	    searchBarChange: _globalMethodsSearchBarChange2["default"],
+	    updateCartCore: _coreCart.updateCartCore,
+	    openQuickView: _globalMethodsOpenQuickView2["default"],
+	    onCloseQuickView: _globalMethodsOpenQuickView.onCloseQuickView
 	  },
 	  created: function created() {
 	    this.updateCart();
 	    this.initFacets();
 	    this.productCore();
+	    this.openQuickView();
 	  }
 	});
 
@@ -5771,13 +5779,13 @@
 /* 27 */
 /***/ (function(module, exports, __webpack_require__) {
 
-	'use strict';
+	"use strict";
 
-	Object.defineProperty(exports, '__esModule', {
+	Object.defineProperty(exports, "__esModule", {
 	  value: true
 	});
 
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
 
 	var _vue = __webpack_require__(14);
 
@@ -5799,14 +5807,14 @@
 
 	var _methodsZoomLeave2 = _interopRequireDefault(_methodsZoomLeave);
 
-	var productMiniature = _vue2['default'].extend({
-	  template: '#product-miniature-template',
-	  props: ['product'],
-	  data: _data2['default'],
+	var productMiniature = _vue2["default"].extend({
+	  template: "#product-miniature-template",
+	  props: ["product"],
+	  data: _data2["default"],
 	  methods: {
-	    changeImg: _methodsChangeImg2['default'],
-	    zoomBg: _methodsZoomBg2['default'],
-	    zoomLeave: _methodsZoomLeave2['default']
+	    changeImg: _methodsChangeImg2["default"],
+	    zoomBg: _methodsZoomBg2["default"],
+	    zoomLeave: _methodsZoomLeave2["default"]
 	  },
 	  updated: function updated() {
 	    if (!this.isHover) {
@@ -5816,8 +5824,8 @@
 	  }
 	});
 
-	exports['default'] = productMiniature;
-	module.exports = exports['default'];
+	exports["default"] = productMiniature;
+	module.exports = exports["default"];
 
 /***/ }),
 /* 28 */
@@ -6109,6 +6117,55 @@
 	Object.defineProperty(exports, "__esModule", {
 	  value: true
 	});
+	exports.onCloseQuickView = onCloseQuickView;
+	var oldProductData = {};
+
+	exports["default"] = function () {
+	  var _this = this;
+
+	  $(document).on("click", "[data-link-action='quickview']", function (event) {
+	    oldProductData = Object.assign({}, _this.modules.productPageData);
+
+	    _this.$nextTick(function () {
+	      this.themeLoaderShow = true;
+	    });
+
+	    var data = {
+	      action: "quickview",
+	      id_product: event.target.dataset.idProduct,
+	      id_product_attribute: event.target.dataset.idProductAttribute
+	    };
+
+	    $.post(prestashop.urls.pages.product, data, null, "json").then(function (resp) {
+	      _this.$nextTick(function () {
+	        this.modules.productPageData = resp.product;
+	        this.themeLoaderShow = false;
+	        this.$root.$emit("bv::show::modal", "quickviewModal", "#focusThisOnClose");
+	      });
+	    }).fail(function (resp) {
+	      prestashop.emit("handleError", {
+	        eventType: "clickQuickView",
+	        resp: resp
+	      });
+	    });
+	  });
+	};
+
+	function onCloseQuickView() {
+	  this.$nextTick(function () {
+	    this.modules.productPageData = Object.assign({}, oldProductData);
+	  });
+	}
+
+/***/ }),
+/* 38 */
+/***/ (function(module, exports) {
+
+	"use strict";
+
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
 
 	exports["default"] = function (event) {
 	  this.modules.productPageData.cover = JSON.parse(event.target.dataset.coverData);
@@ -6117,7 +6174,7 @@
 	module.exports = exports["default"];
 
 /***/ }),
-/* 38 */
+/* 39 */
 /***/ (function(module, exports) {
 
 	'use strict';
@@ -6150,7 +6207,7 @@
 	module.exports = exports['default'];
 
 /***/ }),
-/* 39 */
+/* 40 */
 /***/ (function(module, exports) {
 
 	'use strict';
@@ -6171,81 +6228,79 @@
 	module.exports = exports['default'];
 
 /***/ }),
-/* 40 */
+/* 41 */
 /***/ (function(module, exports, __webpack_require__) {
 
-	'use strict';
+	"use strict";
 
-	Object.defineProperty(exports, '__esModule', {
+	Object.defineProperty(exports, "__esModule", {
 	  value: true
 	});
 
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
 
 	var _prestashop = __webpack_require__(12);
 
 	var _prestashop2 = _interopRequireDefault(_prestashop);
 
-	var _refreshClickEmit = __webpack_require__(41);
+	var _refreshClickEmit = __webpack_require__(42);
 
 	var _refreshClickEmit2 = _interopRequireDefault(_refreshClickEmit);
 
-	var _refreshClickListener = __webpack_require__(42);
+	var _refreshClickListener = __webpack_require__(43);
 
 	var _refreshClickListener2 = _interopRequireDefault(_refreshClickListener);
 
-	var _replaceAddToCartSections = __webpack_require__(44);
+	var _replaceAddToCartSections = __webpack_require__(45);
 
 	var _replaceAddToCartSections2 = _interopRequireDefault(_replaceAddToCartSections);
 
-	exports['default'] = function () {
+	exports["default"] = function () {
 	  var _this = this;
 
-	  var updateEventName = 'customUpdateProduct';
-	  _refreshClickEmit2['default'].call(this);
+	  var updateEventName = "customUpdateProduct";
+	  _refreshClickEmit2["default"].call(this);
 
-	  $('body').on('click', '.custom-product-refresh', _refreshClickListener2['default']);
+	  $("body").on("click", ".custom-product-refresh", _refreshClickListener2["default"]);
 
-	  _prestashop2['default'].on(updateEventName, function (event) {
-	    if (typeof event.refreshUrl == 'undefined') {
+	  _prestashop2["default"].on(updateEventName, function (event) {
+	    if (typeof event.refreshUrl == "undefined") {
 	      event.refreshUrl = true;
 	    }
 
 	    var eventType = event.eventType;
 
-	    $.post(event.reason.productUrl, { ajax: '1', action: 'refresh' }, null, 'json').then(function (resp) {
-	      // console.log(resp)
-
+	    $.post(event.reason.productUrl, { ajax: "1", action: "refresh" }, null, "json").then(function (resp) {
 	      _this.$nextTick(function () {
-	        this.modules.productPageData = $(resp.product_cover_thumbnails).filter('#ajax-product-images').data('ajax-products');
+	        this.modules.productPageData = $(resp.product_cover_thumbnails).filter("#ajax-product-images").data("ajax-products");
 	        this.themeLoaderShow = false;
 	      });
 
-	      $('.product-prices').replaceWith(resp.product_prices);
-	      $('.product-customization').replaceWith(resp.product_customization);
-	      $('.product-variants').replaceWith(resp.product_variants);
-	      $('.product-discounts').replaceWith(resp.product_discounts);
-	      $('.product-additional-info').replaceWith(resp.product_additional_info);
-	      $('#product-details').replaceWith(resp.product_details);
+	      // $('.product-prices').replaceWith(resp.product_prices)
+	      $(".product-customization").replaceWith(resp.product_customization);
+	      $(".product-variants").replaceWith(resp.product_variants);
+	      $(".product-discounts").replaceWith(resp.product_discounts);
+	      $(".product-additional-info").replaceWith(resp.product_additional_info);
+	      $("#product-details").replaceWith(resp.product_details);
 
 	      // Replace all "add to cart" sections but the quantity input in order to keep quantity field intact i.e.
 	      // Prevent quantity input from blinking with classic theme.
 	      var $productAddToCart = undefined;
 	      $(resp.product_add_to_cart).each(function (index, value) {
-	        if ($(value).hasClass('product-add-to-cart')) {
+	        if ($(value).hasClass("product-add-to-cart")) {
 	          $productAddToCart = $(value);
 	        }
 	      });
 
-	      (0, _replaceAddToCartSections2['default'])($productAddToCart);
+	      (0, _replaceAddToCartSections2["default"])($productAddToCart);
 
 	      var minimalProductQuantity = parseInt(resp.product_minimal_quantity, 10);
-	      var quantityInputSelector = '#quantity_wanted';
+	      var quantityInputSelector = "#quantity_wanted";
 	      var quantityInput = $(quantityInputSelector);
 	      var quantity_wanted = quantityInput.val();
 
-	      if (!isNaN(minimalProductQuantity) && quantity_wanted < minimalProductQuantity && eventType !== 'updatedProductQuantity') {
-	        quantityInput.attr('min', minimalProductQuantity);
+	      if (!isNaN(minimalProductQuantity) && quantity_wanted < minimalProductQuantity && eventType !== "updatedProductQuantity") {
+	        quantityInput.attr("min", minimalProductQuantity);
 	        quantityInput.val(minimalProductQuantity);
 	      }
 
@@ -6254,16 +6309,14 @@
 	          id_product_attribute: resp.id_product_attribute
 	        }, undefined, resp.product_url);
 	      }
-
-	      //   prestashop.emit(updateEventName, resp)
 	    });
 	  });
 	};
 
-	module.exports = exports['default'];
+	module.exports = exports["default"];
 
 /***/ }),
-/* 41 */
+/* 42 */
 /***/ (function(module, exports) {
 
 	'use strict';
@@ -6289,7 +6342,7 @@
 	module.exports = exports['default'];
 
 /***/ }),
-/* 42 */
+/* 43 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -6298,7 +6351,7 @@
 	  value: true
 	});
 
-	var _getRequestParameter = __webpack_require__(43);
+	var _getRequestParameter = __webpack_require__(44);
 
 	exports['default'] = function (event, extraParameters) {
 	  event.preventDefault();
@@ -6336,7 +6389,7 @@
 	module.exports = exports['default'];
 
 /***/ }),
-/* 43 */
+/* 44 */
 /***/ (function(module, exports) {
 
 	'use strict';
@@ -6359,7 +6412,7 @@
 	}
 
 /***/ }),
-/* 44 */
+/* 45 */
 /***/ (function(module, exports) {
 
 	'use strict';
@@ -6409,7 +6462,7 @@
 	module.exports = exports['default'];
 
 /***/ }),
-/* 45 */
+/* 46 */
 /***/ (function(module, exports) {
 
 	'use strict';
@@ -6467,7 +6520,7 @@
 	module.exports = exports['default'];
 
 /***/ }),
-/* 46 */
+/* 47 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -6478,14 +6531,14 @@
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
 
-	var _updateCart = __webpack_require__(47);
+	var _updateCart = __webpack_require__(48);
 
 	var _updateCart2 = _interopRequireDefault(_updateCart);
 
 	exports.updateCartCore = _updateCart2['default'];
 
 /***/ }),
-/* 47 */
+/* 48 */
 /***/ (function(module, exports) {
 
 	'use strict';
@@ -6539,14 +6592,14 @@
 	// cartAction: cartAction.type
 
 /***/ }),
-/* 48 */
+/* 49 */
 /***/ (function(module, exports) {
 
 	// removed by extract-text-webpack-plugin
 
 /***/ }),
-/* 49 */,
-/* 50 */
+/* 50 */,
+/* 51 */
 /***/ (function(module, exports) {
 
 	// removed by extract-text-webpack-plugin
