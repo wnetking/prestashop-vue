@@ -26,15 +26,17 @@ meta:
       description: Two columns with a small right column
 
 assets:
-  css:
-    all:
-      - id: font-awesome
   js:
     all:
       - id: vue-carousel
         path: assets/js/vue-carousel.min.js
         media: all
         priority: 0
+
+      - id: vue-js-modal.
+        path: assets/js/vue-js-modal.js
+        media: all
+        priority: 0  
 
 
 global_settings:

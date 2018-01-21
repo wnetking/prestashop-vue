@@ -23,8 +23,12 @@
  * International Registered Trademark & Property of PrestaShop SA
  *}
 {extends file='layouts/layout-both-columns.tpl'}
-
+{block name='head'}{/block}
+{block name='hook_after_body_opening_tag'}{/block}
 {block name='header'}{/block}
+{block name='notifications'}{/block}
+{block name='top-column'}{/block}
+{block name='breadcrumb'}{/block}
 {block name='left_column'}{/block}
 {block name='right_column'}{/block}
 
@@ -39,3 +43,8 @@
 {/block}
 
 {block name='footer'}{/block}
+{block name="quickview-modal"}{/block}
+{block name='vue-templates'}{/block}
+
+{block name='javascript_bottom'}{/block}
+{block name='hook_before_body_closing_tag'}{/block}

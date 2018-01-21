@@ -48,9 +48,10 @@
       {/block}
 
       <div id="wrapper" class="container">
-        {hook h="displayTopColumn"}
-
-        {hook h="displayWrapperTop"}
+        {block name='top-column'}
+          {hook h="displayTopColumn"}
+          {hook h="displayWrapperTop"}
+        {/block}
 
         {block name='breadcrumb'}
           {include file='_partials/breadcrumb.tpl'}
@@ -96,14 +97,24 @@
           {include file='_partials/footer.tpl'}
         {/block}
       </footer>
-      <b-modal id="quickviewModal" centered hide-footer @hidden="onCloseQuickView" :title="modules.productPageData.name" size="lg" lazy>
-        {include file="vue-templates/_partials/quickview.tpl"}
-      </b-modal>
+      {block name="quickview-modal"}
+        <modal name="quickviewModal" 
+          transition="nice-modal-fade"
+          @closed="onCloseQuickView"
+          height="auto"
+          width="70%"
+          :min-width="300"
+          :scrollable="true"
+          :adaptive="true">
+          {include file="vue-templates/_partials/quickview.tpl"}
+        </modal>
+      {/block}
     </main>
-
-    {include file="vue-templates/_partials/product.tpl"}
-    {include file="vue-templates/_partials/product-small-list.tpl"}
-    {include file="vue-templates/checkout/cart-detailed-product.tpl"}
+    {block name='vue-templates'}
+      {include file="vue-templates/_partials/product.tpl"}
+      {include file="vue-templates/_partials/product-small-list.tpl"}
+      {include file="vue-templates/checkout/cart-detailed-product.tpl"}
+    {/block}
 
 
     <!-- Modal Component -->

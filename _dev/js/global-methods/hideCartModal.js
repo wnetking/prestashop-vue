@@ -1,3 +1,3 @@
 export default function () {
-  this.$refs.blokcart.hide()
+  this.$modal.hide('blokcartModal')
 }

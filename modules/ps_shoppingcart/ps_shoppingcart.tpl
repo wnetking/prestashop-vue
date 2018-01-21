@@ -51,16 +51,15 @@
 </div>
 
 {if !isset($smarty.request.action) }
-<b-modal ref="blokcart" lazy hide-header>
+<modal name="blokcartModal" 
+        transition="nice-modal-fade"
+        height="auto"
+        width="70%"
+        :min-width="300"
+        :scrollable="true"
+        >
   <div v-html="blockcart.modalData">
-  </div>
-  <div slot="modal-footer" class="w-100 d-flex justify-content-end">
-    <b-btn size="sm" class="mr-auto" variant="outline-dark" @click="hideCartModal">
-      {l s='Continue shopping' d='Shop.Theme.Actions'}
-    </b-btn>
-    <b-btn size="sm" variant="outline-primary" href="{$cart_url}">
-      {l s='Proceed to checkout' d='Shop.Theme.Actions'}
-    </b-btn>
-  </div>
-</b-modal>
+  </div>      
+  
+</modal>        
 {/if}

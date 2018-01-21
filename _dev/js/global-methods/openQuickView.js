@@ -18,12 +18,12 @@ export default function() {
       .then(resp => {
         this.$nextTick(function() {
           this.modules.productPageData = resp.product;
+          this.modules.quickView.variants = $(resp.quickview_html).find('#quickview-product-variants').html();
+          this.modules.quickView.additionalInfo = $(resp.quickview_html).find('#quickview-additional-info').html();
           this.themeLoaderShow = false;
-          this.$root.$emit(
-            "bv::show::modal",
-            "quickviewModal",
-            "#focusThisOnClose"
-          );
+          this.$modal.show('quickviewModal')
+
+          console.log(resp.quickview_html)
         });
       })
       .fail(resp => {

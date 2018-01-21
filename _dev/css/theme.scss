@@ -21,6 +21,23 @@ body {
 i {
   pointer-events: none;
 }
+.pop-out-enter-active,
+.pop-out-leave-active {
+  transition: all 0.5s;
+}
+.pop-out-enter,
+.pop-out-leave-active {
+  opacity: 0;
+  transform: translateY(24px);
+}
+
+.modal-dialog {
+  pointer-events: inherit !important;
+}
+
+.modal-content {
+  pointer-events: inherit !important;
+}
 
 #wrapper {
   flex-grow: 1;

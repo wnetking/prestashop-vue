@@ -22,9 +22,7 @@
  * @license   https://opensource.org/licenses/AFL-3.0 Academic Free License 3.0 (AFL-3.0)
  * International Registered Trademark & Property of PrestaShop SA
  *}
-<div class="product-add-to-cart">
-  {if !$configuration.is_catalog}
-
+<div class="product-add-to-cart" v-if="!configuration.is_catalog && modules.productPageData.add_to_cart_url">
     <div class="d-flex">
       {block name='product_quantity'}
         <div class="product-quantity d-inline-flex align-items-center">
@@ -42,21 +40,21 @@
         </div>
       {/block}
 
-      <button class="add-to-cart btn btn-dark" type="submit" name="add" data-button-action="add-to-cart" {if !$product.add_to_cart_url}disabled{/if}>
+      <button class="add-to-cart btn btn-dark" 
+          type="submit" 
+          name="add" 
+          data-button-action="add-to-cart">
         {l s='Add to cart' d='Shop.Theme.Actions'}
       </button>
     </div>
 
     {block name='product_minimal_quantity'}
-      <p class="product-minimal-quantity">
-      {if $product.minimal_quantity > 1}
+      <p class="product-minimal-quantity" v-if="modules.productPageData.minimal_quantity > 1">
           {l
             s='The minimum purchase order quantity for the product is %quantity%.'
             d='Shop.Theme.Checkout'
-            sprintf=['%quantity%' => $product.minimal_quantity]
-          }
-      {/if}
+          }          
+          {literal}{{modules.productPageData.minimal_quantity}}{/literal}
       </p>
     {/block}
-  {/if}
 </div>

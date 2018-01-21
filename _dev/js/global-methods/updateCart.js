@@ -26,6 +26,7 @@ export default function() {
         });
 
         if (resp.modal) {
+          
           this.showCartModal();
 
           this.$nextTick(function() {

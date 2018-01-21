@@ -30,7 +30,7 @@
       itemprop="offers" itemscope itemtype="https://schema.org/Offer">
       {block name='product_discount'}
         <div class="product-discount mr-2" v-if="modules.productPageData.has_discount">
-          {hook h='displayProductPriceBlock' product=$product type="old_price"}
+          {hook h='displayProductPriceBlock' type="old_price"}
           <span class="regular-price">
             {literal}{{modules.productPageData.regular_price}}{/literal}
           </span>
@@ -63,14 +63,14 @@
   {/block}
 
   {block name='product_without_taxes'}
-    <p class="product-without-taxes"  v-if="modules.priceDisplay == 2"  data-module-name="priceDisplay" data-module-data="{$priceDisplay}">
+    <p class="product-without-taxes"  v-if="modules.priceDisplay == 2"  data-module-name="priceDisplay" data-module-data="{if isset($priceDisplay)}{$priceDisplay}{/if}">
       {literal}{{modules.productPageData.price_tax_exc}}{/literal}
       {l s=' tax excl.' d='Shop.Theme.Catalog'}
     </p>
   {/block}
 
   {block name='product_pack_price'}
-    <p class="product-pack-price" v-if="modules.displayPackPrice"  data-module-name="displayPackPrice" data-module-data="{$displayPackPrice}">
+    <p class="product-pack-price" v-if="modules.displayPackPrice"  data-module-name="displayPackPrice" data-module-data="{if isset($displayPackPrice)}{$displayPackPrice}{/if}">
       <span>
         {l s='Instead of' d='Shop.Theme.Catalog'}
       </span>
@@ -88,7 +88,7 @@
   {/block}
 
   {block name='product_unit_price'}
-    <p class="product-unit-price" v-if="modules.displayUnitPrice"  data-module-name="displayUnitPrice" data-module-data="{$displayUnitPrice}" >
+    <p class="product-unit-price" v-if="modules.displayUnitPrice"  data-module-name="displayUnitPrice" data-module-data="{if isset($displayUnitPrice)}{$displayUnitPrice}{/if}" >
       {literal}{{modules.productPageData.unit_price_full}}{/literal}
     </p>
   {/block}

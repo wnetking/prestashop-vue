@@ -33,8 +33,30 @@
         </div>
       </b-nav-item-dropdown>
   {else}
-    <b-nav-item class="login" href="{$my_account_url}" rel="nofollow" title="{l s='Log in to your customer account' d='Shop.Theme.Customeraccount'}">
-      {l s='Sign in' d='Shop.Theme.Actions'}
+    <b-nav-item class="login"
+      @click="getAuthenticationTpl"
+      href="{$my_account_url}" 
+      rel="nofollow" title="{l s='Log in to your customer account' d='Shop.Theme.Customeraccount'}">
+      <em class="sr-only">{l s='Sign in' d='Shop.Theme.Actions'}</em>
+      <i class="fas fa-user"></i>
     </b-nav-item>
+    
   {/if}
 </div>
+<modal name="singInModal" 
+        transition="nice-modal-fade"
+        height="auto"
+        width="70%"
+        :min-width="300"
+        :scrollable="true"
+        :adaptive="true">
+  <div class="row no-gutters">
+    <div class="col-md-6 bg-light d-flex login-form">
+      <div class="p-3 flex-column d-flex w-100"  v-html="modules.singIn">
+      </div>
+    </div>
+    <div class="col-md-6">
+      {hook h='displayBanner'}
+    </div>
+  </div>    
+</modal>

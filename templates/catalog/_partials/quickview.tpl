@@ -24,30 +24,19 @@
  *}
 
 <div id="quickview-resp" class="d-none">
-
-  {* <div id="quickview-product-prices">
-    {block name='product_prices'}
-      {include file='catalog/_partials/product-prices.tpl'}
-    {/block}
-  </div>
-
   <div id="quickview-product-variants">
-    <input type="hidden" name="token" value="{$static_token}">
-    <input type="hidden" name="id_product" value="{$product.id}" id="product_page_product_id">
-    <input type="hidden" name="id_customization" value="{$product.id_customization}" id="product_customization_id">
     {block name='product_variants'}
       {include file='catalog/_partials/product-variants.tpl'}
     {/block}
   </div>
 
-  <div id="quickview-product-addToCart">
-    {block name='product_add_to_cart'}
-      {include file='catalog/_partials/product-add-to-cart.tpl'}
-    {/block}
+  <div id="quickview-additional-info" class="flex-column flex-sm-row">
+    {hook h='displayProductAdditionalInfo' product=$product}
   </div>
 
-  <div id="quickview-product-footer" class="modal-footer flex-column flex-sm-row">
-    {hook h='displayProductAdditionalInfo' product=$product}
-  </div> *}
+  <div class="product-pack mb-3" data-module-name="packProduct" data-module-data="{$packItems|@json_encode}">
+  </div>
 
+  <div class="product-accessories mb-3" data-module-name="accessoriesProduct" data-module-data="{$accessories|@json_encode}">
+  </div>
 </div>

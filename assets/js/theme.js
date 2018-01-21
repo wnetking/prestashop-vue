@@ -175,6 +175,14 @@
 
 	var _globalMethodsSearchBarChange2 = _interopRequireDefault(_globalMethodsSearchBarChange);
 
+	var _globalMethodsGetAuthenticationTpl = __webpack_require__(57);
+
+	var _globalMethodsGetAuthenticationTpl2 = _interopRequireDefault(_globalMethodsGetAuthenticationTpl);
+
+	var _globalMethodsLoginFormModalEvents = __webpack_require__(58);
+
+	var _globalMethodsLoginFormModalEvents2 = _interopRequireDefault(_globalMethodsLoginFormModalEvents);
+
 	var _coreCart = __webpack_require__(47);
 
 	// modules data init
@@ -185,9 +193,15 @@
 
 	__webpack_require__(51);
 
+	__webpack_require__(55);
+
 	_prestashop2["default"].modules = _prestashop2["default"].modules || {};
 	_prestashop2["default"].blockcart = _prestashop2["default"].blockcart || {};
 	_prestashop2["default"].modules.productPageData = _prestashop2["default"].modules.productPageData || {};
+	_prestashop2["default"].modules.quickView = _prestashop2["default"].modules.quickView || {};
+	_prestashop2["default"].modules.quickView.variants = '';
+	_prestashop2["default"].modules.quickView.additionalInfo = '';
+	_prestashop2["default"].modules.singIn = '';
 	_prestashop2["default"].themeLoaderShow = false;
 	_prestashop2["default"].blockcart = {
 	  modalData: "<h1>Hello cart</h1>",
@@ -203,6 +217,7 @@
 	_vue2["default"].use(_vueSocialSharing2["default"]);
 	_vue2["default"].use(_vuebar2["default"]);
 	_vue2["default"].use(_vImg2["default"]);
+	_vue2["default"].use(window["vue-js-modal"]["default"]);
 
 	(0, _filters2["default"])();
 	(0, _components2["default"])();
@@ -229,13 +244,16 @@
 	    searchBarChange: _globalMethodsSearchBarChange2["default"],
 	    updateCartCore: _coreCart.updateCartCore,
 	    openQuickView: _globalMethodsOpenQuickView2["default"],
-	    onCloseQuickView: _globalMethodsOpenQuickView.onCloseQuickView
+	    onCloseQuickView: _globalMethodsOpenQuickView.onCloseQuickView,
+	    getAuthenticationTpl: _globalMethodsGetAuthenticationTpl2["default"],
+	    loginFormModalEvents: _globalMethodsLoginFormModalEvents2["default"]
 	  },
 	  created: function created() {
 	    this.updateCart();
 	    this.initFacets();
 	    this.productCore();
 	    this.openQuickView();
+	    this.loginFormModalEvents();
 	  }
 	});
 
@@ -5989,6 +6007,7 @@
 	      });
 
 	      if (resp.modal) {
+
 	        _this.showCartModal();
 
 	        _this.$nextTick(function () {
@@ -6080,33 +6099,34 @@
 /* 35 */
 /***/ (function(module, exports) {
 
-	"use strict";
+	'use strict';
 
-	Object.defineProperty(exports, "__esModule", {
+	Object.defineProperty(exports, '__esModule', {
 	  value: true
 	});
 
-	exports["default"] = function () {
-	  this.$refs.blokcart.show();
+	exports['default'] = function () {
+	  this.$modal.hide('quickviewModal');
+	  this.$modal.show('blokcartModal');
 	};
 
-	module.exports = exports["default"];
+	module.exports = exports['default'];
 
 /***/ }),
 /* 36 */
 /***/ (function(module, exports) {
 
-	"use strict";
+	'use strict';
 
-	Object.defineProperty(exports, "__esModule", {
+	Object.defineProperty(exports, '__esModule', {
 	  value: true
 	});
 
-	exports["default"] = function () {
-	  this.$refs.blokcart.hide();
+	exports['default'] = function () {
+	  this.$modal.hide('blokcartModal');
 	};
 
-	module.exports = exports["default"];
+	module.exports = exports['default'];
 
 /***/ }),
 /* 37 */
@@ -6139,8 +6159,12 @@
 	    $.post(prestashop.urls.pages.product, data, null, "json").then(function (resp) {
 	      _this.$nextTick(function () {
 	        this.modules.productPageData = resp.product;
+	        this.modules.quickView.variants = $(resp.quickview_html).find('#quickview-product-variants').html();
+	        this.modules.quickView.additionalInfo = $(resp.quickview_html).find('#quickview-additional-info').html();
 	        this.themeLoaderShow = false;
-	        this.$root.$emit("bv::show::modal", "quickviewModal", "#focusThisOnClose");
+	        this.$modal.show('quickviewModal');
+
+	        console.log(resp.quickview_html);
 	      });
 	    }).fail(function (resp) {
 	      prestashop.emit("handleError", {
@@ -6603,6 +6627,81 @@
 /***/ (function(module, exports) {
 
 	// removed by extract-text-webpack-plugin
+
+/***/ }),
+/* 52 */,
+/* 53 */,
+/* 54 */,
+/* 55 */
+/***/ (function(module, exports) {
+
+	// removed by extract-text-webpack-plugin
+
+/***/ }),
+/* 56 */,
+/* 57 */
+/***/ (function(module, exports) {
+
+	'use strict';
+
+	Object.defineProperty(exports, '__esModule', {
+	  value: true
+	});
+
+	exports['default'] = function (event) {
+	  event.preventDefault();
+
+	  getContent.call(this, prestashop.urls.pages.authentication);
+	};
+
+	function getContent(url) {
+	  var _this = this;
+
+	  var finalUrl = url.indexOf('?') === -1 ? url + '?content_only=1' : url + '&content_only=1';
+
+	  this.$nextTick(function () {
+	    this.themeLoaderShow = true;
+	  });
+
+	  $.get(finalUrl).then(function (resp) {
+	    _this.$nextTick(function () {
+	      this.themeLoaderShow = false;
+	      this.modules.singIn = $(resp).find("#content").html();
+	      this.$modal.show('singInModal');
+	    });
+	  }).fail(function (resp) {
+	    prestashop.emit("handleError", {
+	      eventType: "clickQuickView",
+	      resp: resp
+	    });
+	  });
+	}
+
+	exports.getContent = getContent;
+
+/***/ }),
+/* 58 */
+/***/ (function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	Object.defineProperty(exports, '__esModule', {
+	  value: true
+	});
+
+	var _getAuthenticationTpl = __webpack_require__(57);
+
+	exports['default'] = function () {
+	  var _this = this;
+
+	  $("body").on('click', '.v--modal [data-link-action="display-register-form"],\n    .v--modal .lost_password a,\n    .v--modal .go-login-page a', function (event) {
+	    event.preventDefault();
+	    // console.log(event.target)
+	    _getAuthenticationTpl.getContent.call(_this, event.target.href);
+	  });
+	};
+
+	module.exports = exports['default'];
 
 /***/ })
 /******/ ]);

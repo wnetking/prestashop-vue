@@ -30,9 +30,16 @@
   <section id="content" class="page-content page-authentication">
     {block name='register_form_container'}
       <header>
-        <h1 class="h1">{l s='Create an account' d='Shop.Theme.Customeraccount'}</h1>
-      </header>
-      <p>{l s='Already have an account?' d='Shop.Theme.Customeraccount'} <a href="{$urls.pages.authentication}">{l s='Log in instead!' d='Shop.Theme.Customeraccount'}</a></p>
+      <h3 class="h5 font-weight-normal border bg-white py-2 px-3 rounded mb-3">
+        {l s='Create an account' d='Shop.Theme.Customeraccount'}
+      </h1>
+    </header>
+      <p class="go-login-page">
+        {l s='Already have an account?' d='Shop.Theme.Customeraccount'} 
+        <a href="{$urls.pages.authentication}">
+          {l s='Log in instead!' d='Shop.Theme.Customeraccount'}
+        </a>
+      </p>
 
       {$hook_create_account_top nofilter}
       <section class="register-form">

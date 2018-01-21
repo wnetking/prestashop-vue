@@ -6,6 +6,7 @@ import SocialSharing from "vue-social-sharing";
 import Avatar from "vue-avatar";
 import VueStringFilter from "vue-string-filter";
 import Vuebar from "vuebar";
+
 import VueImg from "v-img";
 import filters from "./filters";
 import components from "./components";
@@ -22,12 +23,18 @@ import productZoom from "./global-methods/productZoom";
 import zoomLeave from "./global-methods/zoomLeave";
 import productCore from "./core/product";
 import searchBarChange from "./global-methods/searchBarChange";
+import getAuthenticationTpl from "./global-methods/getAuthenticationTpl";
+import loginFormModalEvents from "./global-methods/loginFormModalEvents";
 import { updateCartCore } from "./core/cart";
 
 // modules data init
 prestashop.modules = prestashop.modules || {};
 prestashop.blockcart = prestashop.blockcart || {};
 prestashop.modules.productPageData = prestashop.modules.productPageData || {};
+prestashop.modules.quickView = prestashop.modules.quickView || {};
+prestashop.modules.quickView.variants = '';
+prestashop.modules.quickView.additionalInfo = '';
+prestashop.modules.singIn = '';
 prestashop.themeLoaderShow = false;
 prestashop.blockcart = {
   modalData: "<h1>Hello cart</h1>",
@@ -37,8 +44,9 @@ prestashop.blockcart = {
 // import styles
 import "bootstrap/dist/css/bootstrap.css";
 import "bootstrap-vue/dist/bootstrap-vue.css";
+import "vue-js-modal/dist/styles.css";
 
-$("[data-module-name]").each(function() {
+$("[data-module-name]").each(function () {
   prestashop.modules[$(this).data("module-name")] = $(this).data("module-data");
 });
 
@@ -47,6 +55,7 @@ Vue.use(VueStringFilter);
 Vue.use(SocialSharing);
 Vue.use(Vuebar);
 Vue.use(VueImg);
+Vue.use(window["vue-js-modal"].default);
 
 filters();
 components();
@@ -73,12 +82,15 @@ new Vue({
     searchBarChange,
     updateCartCore,
     openQuickView,
-    onCloseQuickView
+    onCloseQuickView,
+    getAuthenticationTpl,
+    loginFormModalEvents
   },
-  created: function() {
+  created: function () {
     this.updateCart();
     this.initFacets();
     this.productCore();
     this.openQuickView();
+    this.loginFormModalEvents();
   }
 });

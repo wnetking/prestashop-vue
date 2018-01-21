@@ -1,3 +1,4 @@
 export default function () {
-  this.$refs.blokcart.show()
+  this.$modal.hide('quickviewModal')
+  this.$modal.show('blokcartModal')
 }
