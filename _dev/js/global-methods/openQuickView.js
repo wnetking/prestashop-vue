@@ -18,12 +18,22 @@ export default function() {
       .then(resp => {
         this.$nextTick(function() {
           this.modules.productPageData = resp.product;
-          this.modules.quickView.variants = $(resp.quickview_html).find('#quickview-product-variants').html();
-          this.modules.quickView.additionalInfo = $(resp.quickview_html).find('#quickview-additional-info').html();
+          this.modules.quickView.variants = $(resp.quickview_html)
+            .find("#quickview-product-variants")
+            .html();
+          this.modules.quickView.additionalInfo = $(resp.quickview_html)
+            .find("#quickview-additional-info")
+            .html();
+          this.modules.quickView.accessoriesProduct = $(resp.quickview_html)
+            .find(".product-accessories")
+            .data("module-data");
+          this.modules.quickView.packProduct = $(resp.quickview_html)
+            .find(".product-pack")
+            .data("module-data");
           this.themeLoaderShow = false;
-          this.$modal.show('quickviewModal')
+          this.$modal.show("quickviewModal");
 
-          console.log(resp.quickview_html)
+          console.log(resp.quickview_html);
         });
       })
       .fail(resp => {

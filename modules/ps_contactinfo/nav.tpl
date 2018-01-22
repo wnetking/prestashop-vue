@@ -22,18 +22,21 @@
  * @license   https://opensource.org/licenses/AFL-3.0 Academic Free License 3.0 (AFL-3.0)
  * International Registered Trademark & Property of PrestaShop SA
  *}
-
-<section class="mt-5 col-12 featured-products clearfix" data-module-name="featuredProduct" data-module-data="{$products|@json_encode}">
-  <b-card header="{l s='Popular Products' d='Shop.Theme.Catalog'}" body-class="p-2" header-tag="h5">
-    <carousel class="products" :per-page-custom="[[768, 3], [1024, 4], [2560, 4]]"
-        :pagination-padding="5"
-        pagination-active-color="var(--gray-dark)"
-        pagination-color="var(--secondary)"
-        navigation-next-label=""
-        navigation-prev-label="">
-      <slide v-for="product in modules.featuredProduct" :key="product.id">
-        <div is="product-miniature" :product='product'></div>
-      </slide>
-    </carousel>
-  </b-card>
-</section>
+<div id="contact-link" class="ml-auto">
+  {* {if $contact_infos.phone}
+    {* [1][/1] is for a HTML tag. *}
+    {* {l
+      s='Call us: [1]%phone%[/1]'
+      sprintf=[
+        '[1]' => '<span>',
+        '[/1]' => '</span>',
+        '%phone%' => $contact_infos.phone
+      ]
+      d='Shop.Theme.Global'
+    }
+  {else} *}
+    <a href="{$urls.pages.contact}" aria-haspopup="true" aria-expanded="false" class="nav-link">
+      <span>{l s='Contact us' d='Shop.Theme.Global'}</span>
+    </a>
+  {* {/if} *}
+</div>

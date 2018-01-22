@@ -36,7 +36,7 @@ assets:
       - id: vue-js-modal.
         path: assets/js/vue-js-modal.js
         media: all
-        priority: 0  
+        priority: 0
 
 
 global_settings:
@@ -48,20 +48,31 @@ global_settings:
       - name: displayFooterBefore
         title: displayFooterBefore
         description: Add a widget area above the footer
+
     modules_to_hook:
       displayNav:
-        - ps_shoppingcart
         - ps_languageselector
         - ps_currencyselector
-        - ps_customersignin
+        - ps_contactinfo
       displayTop:
-        - ps_mainmenu
+        - ps_searchbar
+        - ps_customersignin
+        - ps_shoppingcart
       displayHome:
         - ps_imageslider
+        - ps_specials
         - ps_featuredproducts
         - ps_banner
+        - ps_bestsellers
+      displayFooterBefore:
+        - blockreassurance
       displayFooter:
         - ps_contactinfo
+        - ps_linklist
+        - ps_customeraccountlinks
+      displayNavFullWidth:
+        - ps_mainmenu
+        - blockreassurance
 
   image_types:
     cart_default:

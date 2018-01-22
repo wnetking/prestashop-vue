@@ -22,28 +22,31 @@
  * @license   https://opensource.org/licenses/AFL-3.0 Academic Free License 3.0 (AFL-3.0)
  * International Registered Trademark & Property of PrestaShop SA
  *}
- <b-container>
-  {block name='hook_footer_before'}
-    {hook h='displayFooterBefore'}
-  {/block}
+ {block name='hook_footer_before'}
+  {hook h='displayFooterBefore'}
+{/block}
+ <div class="bg-dark text-white py-4 py-lg-5">
+  <b-container>
+    <div class="row">
+      {block name='hook_footer'}
+        {hook h='displayFooter'}
+      {/block}
+    </div>
 
-  {block name='hook_footer'}
-    {hook h='displayFooter'}
-  {/block}
-
-  {block name='hook_footer_after'}
-    {hook h='displayFooterAfter'}
-  {/block}
-
-  <div class="copyright">
-    {block name='copyright_link'}
-      <a class="_blank" href="http://www.prestashop.com" target="_blank">
-        {l s='%copyright% %year% - Ecommerce software by %prestashop%'
-        sprintf=['%prestashop%' => 'PrestaShop™', '%year%' => 'Y'|date, '%copyright%' => '©'] d='Shop.Theme.Global'}
-      </a>
+    {block name='hook_footer_after'}
+      {hook h='displayFooterAfter'}
     {/block}
-  </div>
-  <div class="progress fixed-top rounded-0" v-if="themeLoaderShow"  style="height: 5px;">
-    <div class="progress-bar progress-bar-striped bg-info progress-bar-animated rounded-0" role="progressbar" style="width: 100%" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100"></div>
-  </div>
-</b-container>
+
+    <div class="copyright text-center">
+      {block name='copyright_link'}
+        <a class="_blank" href="http://www.prestashop.com" target="_blank">
+          {l s='%copyright% %year% - Ecommerce software by %prestashop%'
+          sprintf=['%prestashop%' => 'PrestaShop™', '%year%' => 'Y'|date, '%copyright%' => '©'] d='Shop.Theme.Global'}
+        </a>
+      {/block}
+    </div>
+    <div class="progress fixed-top rounded-0" v-if="themeLoaderShow"  style="height: 5px;">
+      <div class="progress-bar progress-bar-striped bg-info progress-bar-animated rounded-0" role="progressbar" style="width: 100%" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100"></div>
+    </div>
+  </b-container>
+</div>

@@ -23,22 +23,29 @@
  * International Registered Trademark & Property of PrestaShop SA
  *}
 
-<div id="quickview-resp" class="d-none">
-  <div id="quickview-product-variants">
-    {block name='product_variants'}
-      {include file='catalog/_partials/product-variants.tpl'}
-    {/block}
-  </div>
-
-  <div id="quickview-additional-info" class="flex-column flex-sm-row">
-    {hook h='displayProductAdditionalInfo' product=$product}
-  </div>
-
-  <div class="product-pack mb-3" data-module-name="packProduct" data-module-data="{$packItems|@json_encode}">
-  </div>
-
-  <div class="product-accessories mb-3"
-    data-module-name="accessoriesProduct"
-    data-module-data="{$accessories|@json_encode}">
-  </div>
+<div id="block_myaccount_infos" class="col-md-2 links wrapper">
+  <h5 class="myaccount-title hidden-sm-down">
+    <a class="" href="{$urls.pages.my_account}" rel="nofollow">
+      {l s='Your account' d='Shop.Theme.Customeraccount'}
+    </a>
+  </h5>
+  {* <div class="title clearfix hidden-md-up" data-target="#footer_account_list" data-toggle="collapse">
+    <span class="h3">{l s='Your account' d='Shop.Theme.Customeraccount'}</span>
+    <span class="float-xs-right">
+      <span class="navbar-toggler collapse-icons">
+        <i class="material-icons add">&#xE313;</i>
+        <i class="material-icons remove">&#xE316;</i>
+      </span>
+    </span>
+  </div> *}
+  <ul id="footer_account_list" class="list-unstyled">
+    {foreach from=$my_account_urls item=my_account_url}
+        <li>
+          <a href="{$my_account_url.url}" title="{$my_account_url.title}" rel="nofollow">
+            {$my_account_url.title}
+          </a>
+        </li>
+    {/foreach}
+    {hook h='displayMyAccountBlock'}
+	</ul>
 </div>

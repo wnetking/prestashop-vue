@@ -78,26 +78,26 @@
             {block name='product_buy'}
               <form :action="urls.pages.cart" method="post" id="add-to-cart-or-refresh" class="mb-3">
                 <input type="hidden" name="token" :value="static_token">
-                <input type="hidden" name="id_product" 
-                  :value="modules.productPageData.id" 
+                <input type="hidden" name="id_product"
+                  :value="modules.productPageData.id"
                   id="product_page_product_id">
                 <input type="hidden" name="id_customization" :value="modules.productPageData.id_customization" id="product_customization_id">
                 {block name='product_prices'}
                   {include file='catalog/_partials/product-prices.tpl'}
                 {/block}
-            
+
                 <div id="quickview-product-variants" v-html="modules.quickView.variants">
                 </div>
-                
+
                 {block name='product_add_to_cart'}
                   {include file='catalog/_partials/product-add-to-cart.tpl'}
                 {/block}
-        
+
                 {block name='product_refresh'}
                   <input class="custom-product-refresh ps-hidden-by-js sr-only"
                         name="refresh" type="submit"
                         value="{l s='Refresh' d='Shop.Theme.Actions'}">
-                {/block} 
+                {/block}
               </form>
               <div v-html="modules.quickView.additionalInfo" id="quickview-additional-info" class="flex-column flex-sm-row"></div>
             {/block}
@@ -108,10 +108,8 @@
         </div>
       </div>
     </b-tab>
-    <b-tab title="{l s='Description' d='Shop.Theme.Catalog'}" >
-      {block name='product_description'}
-        {literal}{{modules.productPageData.description | striphtml}}{/literal}
-      {/block}
+    <b-tab title="{l s='Description' d='Shop.Theme.Catalog'}"
+      v-html="modules.productPageData.description">
     </b-tab>
     {block name='product_features'}
       <b-tab  title="{l s='Data sheet' d='Shop.Theme.Catalog'}" v-if="modules.productPageData.features">
@@ -132,12 +130,15 @@
         </section>
       </b-tab>
     {/block}
-    {* {if $product.is_customizable && count($product.customizations.fields)}
-      {block name='product_customization'}
-        <b-tab title="{l s='Customization' d='Shop.Theme.Catalog'}">
-          {include file='catalog/_partials/product-customization.tpl' customizations=$product.customizations}
-        </b-tab>
-      {/block}
-    {/if} *}
+    <b-tab  title="{l s='Accessories' d='Shop.Theme.Catalog'}"
+      v-if="modules.quickView.accessoriesProduct.length">
+      <div class="row">
+        <div class="col-4 mb-3"
+          v-for="product in modules.quickView.accessoriesProduct"
+          :key="Date.now() + Math.random()">
+          <div is="products-small-list" :product='product'></div>
+        </div>
+      </div>
+    </b-tab>
   </b-tabs>
 </section>

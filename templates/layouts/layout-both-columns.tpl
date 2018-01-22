@@ -92,20 +92,21 @@
         {hook h="displayWrapperBottom"}
       </div>
 
-      <footer id="footer" class="bg-dark text-white py-3 mt-3">
+      <footer id="footer" >
         {block name='footer'}
           {include file='_partials/footer.tpl'}
         {/block}
       </footer>
       {block name="quickview-modal"}
-        <modal name="quickviewModal" 
+        <modal name="quickviewModal"
           transition="nice-modal-fade"
           @closed="onCloseQuickView"
           height="auto"
-          width="70%"
+          :width="modalWidth"
           :min-width="300"
           :scrollable="true"
-          :adaptive="true">
+          :adaptive="true"
+          @before-open="getModalWidth">
           {include file="vue-templates/_partials/quickview.tpl"}
         </modal>
       {/block}

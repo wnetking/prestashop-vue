@@ -22,11 +22,11 @@
 *  @license    http://opensource.org/licenses/afl-3.0.php  Academic Free License (AFL 3.0)
 *  International Registered Trademark & Property of PrestaShop SA
 *}
-<section  class="col-12 featured-products clearfix" data-module-name="bestSellers" data-module-data="{$products|@json_encode}">
+<section  class="col-12 featured-products clearfix mb-3" data-module-name="bestSellers" data-module-data="{$products|@json_encode}">
   <b-card header="{l s='Best Sellers' d='Modules.Bestsellers.Shop'}"
           body-class="p-2"
           header-tag="h5">
-    <carousel class="products" :per-page-custom="[[768, 3], [1024, 4], [2560, 4]]" 
+    <carousel class="products" :per-page-custom="[[768, 3], [1024, 4], [2560, 4]]"
               :pagination-padding="5"
               pagination-active-color="var(--gray-dark)" pagination-color="var(--secondary)"
               navigation-next-label=""

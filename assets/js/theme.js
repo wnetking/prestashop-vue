@@ -175,23 +175,27 @@
 
 	var _globalMethodsSearchBarChange2 = _interopRequireDefault(_globalMethodsSearchBarChange);
 
-	var _globalMethodsGetAuthenticationTpl = __webpack_require__(57);
+	var _globalMethodsGetAuthenticationTpl = __webpack_require__(47);
 
 	var _globalMethodsGetAuthenticationTpl2 = _interopRequireDefault(_globalMethodsGetAuthenticationTpl);
 
-	var _globalMethodsLoginFormModalEvents = __webpack_require__(58);
+	var _globalMethodsLoginFormModalEvents = __webpack_require__(48);
 
 	var _globalMethodsLoginFormModalEvents2 = _interopRequireDefault(_globalMethodsLoginFormModalEvents);
 
-	var _coreCart = __webpack_require__(47);
+	var _coreCart = __webpack_require__(49);
+
+	var _globalMethodsModalWidth = __webpack_require__(57);
+
+	var _globalMethodsModalWidth2 = _interopRequireDefault(_globalMethodsModalWidth);
 
 	// modules data init
 
 	// import styles
 
-	__webpack_require__(49);
-
 	__webpack_require__(51);
+
+	__webpack_require__(53);
 
 	__webpack_require__(55);
 
@@ -199,10 +203,13 @@
 	_prestashop2["default"].blockcart = _prestashop2["default"].blockcart || {};
 	_prestashop2["default"].modules.productPageData = _prestashop2["default"].modules.productPageData || {};
 	_prestashop2["default"].modules.quickView = _prestashop2["default"].modules.quickView || {};
-	_prestashop2["default"].modules.quickView.variants = '';
-	_prestashop2["default"].modules.quickView.additionalInfo = '';
-	_prestashop2["default"].modules.singIn = '';
+	_prestashop2["default"].modules.quickView.variants = "";
+	_prestashop2["default"].modules.quickView.additionalInfo = "";
+	_prestashop2["default"].modules.quickView.accessoriesProduct = [];
+	_prestashop2["default"].modules.quickView.packProduct = [];
+	_prestashop2["default"].modules.singIn = "";
 	_prestashop2["default"].themeLoaderShow = false;
+	_prestashop2["default"].modalWidth = 1110;
 	_prestashop2["default"].blockcart = {
 	  modalData: "<h1>Hello cart</h1>",
 	  data: []
@@ -211,7 +218,6 @@
 	$("[data-module-name]").each(function () {
 	  _prestashop2["default"].modules[$(this).data("module-name")] = $(this).data("module-data");
 	});
-
 	_vue2["default"].use(_bootstrapVue2["default"]);
 	_vue2["default"].use(_vueStringFilter2["default"]);
 	_vue2["default"].use(_vueSocialSharing2["default"]);
@@ -246,7 +252,8 @@
 	    openQuickView: _globalMethodsOpenQuickView2["default"],
 	    onCloseQuickView: _globalMethodsOpenQuickView.onCloseQuickView,
 	    getAuthenticationTpl: _globalMethodsGetAuthenticationTpl2["default"],
-	    loginFormModalEvents: _globalMethodsLoginFormModalEvents2["default"]
+	    loginFormModalEvents: _globalMethodsLoginFormModalEvents2["default"],
+	    getModalWidth: _globalMethodsModalWidth2["default"]
 	  },
 	  created: function created() {
 	    this.updateCart();
@@ -6159,10 +6166,12 @@
 	    $.post(prestashop.urls.pages.product, data, null, "json").then(function (resp) {
 	      _this.$nextTick(function () {
 	        this.modules.productPageData = resp.product;
-	        this.modules.quickView.variants = $(resp.quickview_html).find('#quickview-product-variants').html();
-	        this.modules.quickView.additionalInfo = $(resp.quickview_html).find('#quickview-additional-info').html();
+	        this.modules.quickView.variants = $(resp.quickview_html).find("#quickview-product-variants").html();
+	        this.modules.quickView.additionalInfo = $(resp.quickview_html).find("#quickview-additional-info").html();
+	        this.modules.quickView.accessoriesProduct = $(resp.quickview_html).find(".product-accessories").data("module-data");
+	        this.modules.quickView.packProduct = $(resp.quickview_html).find(".product-pack").data("module-data");
 	        this.themeLoaderShow = false;
-	        this.$modal.show('quickviewModal');
+	        this.$modal.show("quickviewModal");
 
 	        console.log(resp.quickview_html);
 	      });
@@ -6545,6 +6554,95 @@
 
 /***/ }),
 /* 47 */
+/***/ (function(module, exports) {
+
+	'use strict';
+
+	Object.defineProperty(exports, '__esModule', {
+	  value: true
+	});
+
+	exports['default'] = function (event) {
+	  event.preventDefault();
+
+	  getContent.call(this, prestashop.urls.pages.authentication);
+	};
+
+	function getContent(url) {
+	  var _this = this;
+
+	  var finalUrl = url.indexOf('?') === -1 ? url + '?content_only=1' : url + '&content_only=1';
+
+	  this.$nextTick(function () {
+	    this.themeLoaderShow = true;
+	  });
+
+	  $.get(finalUrl).then(function (resp) {
+	    _this.$nextTick(function () {
+	      this.themeLoaderShow = false;
+	      this.modules.singIn = $(resp).find("#content").html();
+	      this.$modal.show('singInModal');
+	    });
+	  }).fail(function (resp) {
+	    prestashop.emit("handleError", {
+	      eventType: "clickQuickView",
+	      resp: resp
+	    });
+	  });
+	}
+
+	exports.getContent = getContent;
+
+/***/ }),
+/* 48 */
+/***/ (function(module, exports, __webpack_require__) {
+
+	"use strict";
+
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+
+	var _getAuthenticationTpl = __webpack_require__(47);
+
+	exports["default"] = function () {
+	  var _this = this;
+
+	  $("body").on("click", ".v--modal [data-link-action=\"display-register-form\"],\n    .v--modal .lost_password a,\n    .v--modal .go-login-page a", function (event) {
+	    event.preventDefault();
+	    _getAuthenticationTpl.getContent.call(_this, event.target.href);
+	  });
+
+	  $("body").on("submit", ".v--modal #login-form,\n    .v--modal #customer-form", function (event) {
+	    event.preventDefault();
+	    var query = $(event.target).serialize();
+
+	    _this.$nextTick(function () {
+	      this.themeLoaderShow = true;
+	    });
+
+	    $.post(event.target.action, query, null).then(function (resp) {
+	      if ($(resp).find("#header").html().trim() === "") {
+	        _this.$nextTick(function () {});
+
+	        _this.$nextTick(function () {
+	          this.themeLoaderShow = false;
+	          this.modules.singIn = $(resp).find("#content").html();
+	        });
+	      } else {
+	        _this.$nextTick(function () {
+	          this.themeLoaderShow = false;
+	        });
+	        location.reload();
+	      }
+	    });
+	  });
+	};
+
+	module.exports = exports["default"];
+
+/***/ }),
+/* 49 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -6555,14 +6653,14 @@
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
 
-	var _updateCart = __webpack_require__(48);
+	var _updateCart = __webpack_require__(50);
 
 	var _updateCart2 = _interopRequireDefault(_updateCart);
 
 	exports.updateCartCore = _updateCart2['default'];
 
 /***/ }),
-/* 48 */
+/* 50 */
 /***/ (function(module, exports) {
 
 	'use strict';
@@ -6616,13 +6714,6 @@
 	// cartAction: cartAction.type
 
 /***/ }),
-/* 49 */
-/***/ (function(module, exports) {
-
-	// removed by extract-text-webpack-plugin
-
-/***/ }),
-/* 50 */,
 /* 51 */
 /***/ (function(module, exports) {
 
@@ -6630,7 +6721,12 @@
 
 /***/ }),
 /* 52 */,
-/* 53 */,
+/* 53 */
+/***/ (function(module, exports) {
+
+	// removed by extract-text-webpack-plugin
+
+/***/ }),
 /* 54 */,
 /* 55 */
 /***/ (function(module, exports) {
@@ -6642,66 +6738,38 @@
 /* 57 */
 /***/ (function(module, exports) {
 
-	'use strict';
+	"use strict";
 
-	Object.defineProperty(exports, '__esModule', {
+	Object.defineProperty(exports, "__esModule", {
 	  value: true
 	});
 
-	exports['default'] = function (event) {
-	  event.preventDefault();
+	exports["default"] = function () {
+	  // let windowWidth = window.innerWidth;
+	  // this.$nextTick(function() {
+	  //   switch (windowWidth) {
+	  //     case windowWidth < 1200 && windowWidth > 992:
+	  //       this.modalWidth = 1110;
+	  //       break;
+	  //     case windowWidth < 992 && windowWidth > 768:
+	  //       this.modalWidth = 930;
+	  //       break;
+	  //     case windowWidth < 768 && windowWidth > 576:
+	  //       this.modalWidth = 690;
+	  //       break;
+	  //     case windowWidth < 576:
+	  //       this.modalWidth = 300;
+	  //       break;
 
-	  getContent.call(this, prestashop.urls.pages.authentication);
+	  //     default:
+	  //       this.modalWidth = 1110;
+	  //       break;
+	  //   }
+	  // });
+	  console.log(window.innerWidth);
 	};
 
-	function getContent(url) {
-	  var _this = this;
-
-	  var finalUrl = url.indexOf('?') === -1 ? url + '?content_only=1' : url + '&content_only=1';
-
-	  this.$nextTick(function () {
-	    this.themeLoaderShow = true;
-	  });
-
-	  $.get(finalUrl).then(function (resp) {
-	    _this.$nextTick(function () {
-	      this.themeLoaderShow = false;
-	      this.modules.singIn = $(resp).find("#content").html();
-	      this.$modal.show('singInModal');
-	    });
-	  }).fail(function (resp) {
-	    prestashop.emit("handleError", {
-	      eventType: "clickQuickView",
-	      resp: resp
-	    });
-	  });
-	}
-
-	exports.getContent = getContent;
-
-/***/ }),
-/* 58 */
-/***/ (function(module, exports, __webpack_require__) {
-
-	'use strict';
-
-	Object.defineProperty(exports, '__esModule', {
-	  value: true
-	});
-
-	var _getAuthenticationTpl = __webpack_require__(57);
-
-	exports['default'] = function () {
-	  var _this = this;
-
-	  $("body").on('click', '.v--modal [data-link-action="display-register-form"],\n    .v--modal .lost_password a,\n    .v--modal .go-login-page a', function (event) {
-	    event.preventDefault();
-	    // console.log(event.target)
-	    _getAuthenticationTpl.getContent.call(_this, event.target.href);
-	  });
-	};
-
-	module.exports = exports['default'];
+	module.exports = exports["default"];
 
 /***/ })
 /******/ ]);

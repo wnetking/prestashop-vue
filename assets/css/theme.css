@@ -631,6 +631,9 @@ a.add-to-cart:hover {
   padding: 0 5px;
   font-weight: bold;
 }
+.specials .product-description-short {
+  display: none;
+}
 .variant-links a,
 .variant-links a:hover {
   text-decoration: none;

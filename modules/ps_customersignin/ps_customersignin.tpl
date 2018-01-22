@@ -35,28 +35,34 @@
   {else}
     <b-nav-item class="login"
       @click="getAuthenticationTpl"
-      href="{$my_account_url}" 
+      href="{$my_account_url}"
       rel="nofollow" title="{l s='Log in to your customer account' d='Shop.Theme.Customeraccount'}">
       <em class="sr-only">{l s='Sign in' d='Shop.Theme.Actions'}</em>
       <i class="fas fa-user"></i>
     </b-nav-item>
-    
+
   {/if}
 </div>
-<modal name="singInModal" 
+{if !$logged}
+<modal name="singInModal"
         transition="nice-modal-fade"
         height="auto"
-        width="70%"
+        :width="modalWidth"
         :min-width="300"
         :scrollable="true"
-        :adaptive="true">
+        :adaptive="true"
+        @before-open="getModalWidth">
   <div class="row no-gutters">
     <div class="col-md-6 bg-light d-flex login-form">
       <div class="p-3 flex-column d-flex w-100"  v-html="modules.singIn">
       </div>
     </div>
-    <div class="col-md-6">
-      {hook h='displayBanner'}
+    <div class="col-md-6 d-flex">
+      <div class="w-100 bg-dark text-center text-secondary d-flex flex-column justify-content-center">
+        <div class="display-2 mb-4"><i class="far fa-smile mr-1 fa-lg"></i></div>
+        <h3>{l s='Welcome to our store' d='Shop.Theme.Actions'}</h3>
+      </div>
     </div>
-  </div>    
+  </div>
 </modal>
+{/if}

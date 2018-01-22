@@ -1,4 +1,5 @@
-{**
+<?php
+/**
  * 2007-2017 PrestaShop
  *
  * NOTICE OF LICENSE
@@ -21,19 +22,13 @@
  * @copyright 2007-2017 PrestaShop SA
  * @license   https://opensource.org/licenses/AFL-3.0 Academic Free License 3.0 (AFL-3.0)
  * International Registered Trademark & Property of PrestaShop SA
- *}
+ */
+header('Expires: Mon, 26 Jul 1997 05:00:00 GMT');
+header('Last-Modified: '.gmdate('D, d M Y H:i:s').' GMT');
 
-<section class="mt-5 col-12 featured-products clearfix" data-module-name="featuredProduct" data-module-data="{$products|@json_encode}">
-  <b-card header="{l s='Popular Products' d='Shop.Theme.Catalog'}" body-class="p-2" header-tag="h5">
-    <carousel class="products" :per-page-custom="[[768, 3], [1024, 4], [2560, 4]]"
-        :pagination-padding="5"
-        pagination-active-color="var(--gray-dark)"
-        pagination-color="var(--secondary)"
-        navigation-next-label=""
-        navigation-prev-label="">
-      <slide v-for="product in modules.featuredProduct" :key="product.id">
-        <div is="product-miniature" :product='product'></div>
-      </slide>
-    </carousel>
-  </b-card>
-</section>
+header('Cache-Control: no-store, no-cache, must-revalidate');
+header('Cache-Control: post-check=0, pre-check=0', false);
+header('Pragma: no-cache');
+
+header('Location: ../');
+exit;

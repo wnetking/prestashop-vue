@@ -51,15 +51,16 @@
 </div>
 
 {if !isset($smarty.request.action) }
-<modal name="blokcartModal" 
+<modal name="blokcartModal"
         transition="nice-modal-fade"
         height="auto"
-        width="70%"
+        :width="modalWidth"
         :min-width="300"
         :scrollable="true"
-        >
+        :adaptive="true"
+        @before-open="getModalWidth">
   <div v-html="blockcart.modalData">
-  </div>      
-  
-</modal>        
+  </div>
+
+</modal>
 {/if}

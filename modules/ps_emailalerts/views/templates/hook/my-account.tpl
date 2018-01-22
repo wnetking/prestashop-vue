@@ -23,17 +23,10 @@
  * International Registered Trademark & Property of PrestaShop SA
  *}
 
-<section class="mt-5 col-12 featured-products clearfix" data-module-name="featuredProduct" data-module-data="{$products|@json_encode}">
-  <b-card header="{l s='Popular Products' d='Shop.Theme.Catalog'}" body-class="p-2" header-tag="h5">
-    <carousel class="products" :per-page-custom="[[768, 3], [1024, 4], [2560, 4]]"
-        :pagination-padding="5"
-        pagination-active-color="var(--gray-dark)"
-        pagination-color="var(--secondary)"
-        navigation-next-label=""
-        navigation-prev-label="">
-      <slide v-for="product in modules.featuredProduct" :key="product.id">
-        <div is="product-miniature" :product='product'></div>
-      </slide>
-    </carousel>
-  </b-card>
-</section>
+<a class="col-lg-4 col-md-6 col-sm-6 col-xs-12" id="emailsalerts"
+   href="{url entity='module' name='ps_emailalerts' controller='account'}" title="{l s='My alerts' d='Shop.Theme.Catalog'}">
+  <span class="link-item">
+  <i class="material-icons">&#xE151;</i>
+    {l s='My alerts' d='Shop.Theme.Catalog'}
+  </span>
+</a>

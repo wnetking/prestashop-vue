@@ -23,7 +23,7 @@
 *  International Registered Trademark & Property of PrestaShop SA
 *}
 
-<section class="mb-5 col-12 col-md-3 featured-products clearfix" data-module-name="saleProducts" data-module-data="{$products|@json_encode}">
+<section class=" col-12 col-md-3 featured-products d-flex specials" data-module-name="saleProducts" data-module-data="{$products|@json_encode}">
   {* <h2 class="sr-only h1 products-section-title text-center mb-2 mb-xl-4">{l s='On sale' d='Modules.Specials.Shop'}</h2>
 
   <carousel class="products" :per-page-custom="[[768, 3], [1024, 1], [2560, 1]]"
