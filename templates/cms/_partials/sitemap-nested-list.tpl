@@ -22,32 +22,17 @@
  * @license   https://opensource.org/licenses/AFL-3.0 Academic Free License 3.0 (AFL-3.0)
  * International Registered Trademark & Property of PrestaShop SA
  *}
-{extends file='page.tpl'}
-
-{block name='page_title'}
-  {$cms_category.name}
-{/block}
-
-{block name='page_content'}
-  {block name='cms_sub_categories'}
-    {if $sub_categories}
-      <p>{l s='List of sub categories in %name%:' d='Shop.Theme.Global' sprintf=['%name%' => $cms_category.name]}</p>
-      <ul>
-        {foreach from=$sub_categories item=sub_category}
-          <li><a href="{$sub_category.link}">{$sub_category.name}</a></li>
-        {/foreach}
-      </ul>
-    {/if}
-  {/block}
-
-  {block name='cms_sub_pages'}
-    {if $cms_pages}
-      <p>{l s='List of pages in %name%:' d='Shop.Theme.Global' sprintf=['%name%' => $cms_category.name]}</p>
-      <ul>
-        {foreach from=$cms_pages item=cms_page}
-          <li><a href="{$cms_page.link}">{$cms_page.meta_title}</a></li>
-        {/foreach}
-      </ul>
-    {/if}
-  {/block}
+{block name='sitemap_item'}
+  <ul{if isset($is_nested)} class="nested"{/if}>
+    {foreach $links as $link}
+      <li>
+        <a id="{$link.id}" href="{$link.url}" title="{$link.label}">
+          {$link.label}
+        </a>
+        {if isset($link.children) && $link.children|@count > 0}
+          {include file='cms/_partials/sitemap-nested-list.tpl' links=$link.children is_nested=true}
+        {/if}
+      </li>
+    {/foreach}
+  </ul>
 {/block}

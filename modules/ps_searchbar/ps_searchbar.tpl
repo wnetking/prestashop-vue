@@ -23,7 +23,7 @@
 *  International Registered Trademark & Property of PrestaShop SA
 *}
 
-<div id="search_widget" class="search_widget d-flex ml-2 ml-lg-auto" data-search-controller-url="{$search_controller_url}">
+<div id="search_widget" class="search_widget d-flex ml-auto" data-search-controller-url="{$search_controller_url}">
 	<form class="d-flex form-inline w-100" method="get" action="{$search_controller_url}">
 		<input type="hidden" name="controller" value="search">
 		<input @keyup="searchBarChange"

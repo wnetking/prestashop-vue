@@ -41,7 +41,7 @@ assets:
 
 global_settings:
   configuration:
-    PS_QUICK_VIEW: false
+    PS_QUICK_VIEW: true
 
   hooks:
     custom_hooks:

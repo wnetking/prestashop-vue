@@ -258,14 +258,18 @@
                   </b-tab>
                 {/block}
               {/if}
+              {foreach from=$product.extraContent item=extra key=extraKey}
+                <b-tab title="{$extra.title}">
+                  <div class="{$extra.attr.class}" id="extra-{$extraKey}">
+                    {$extra.content nofilter}
+                  </div>
+                </b-tab>  
+              {/foreach}
+                          
             </b-tabs>
           </b-card>
 
-          {foreach from=$product.extraContent item=extra key=extraKey}
-            <div class="{$extra.attr.class}" id="extra-{$extraKey}">
-              {$extra.content nofilter}
-            </div>
-          {/foreach}
+          
 
           {block name='product_pack'}
             {if $packItems}

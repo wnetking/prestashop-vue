@@ -32,8 +32,8 @@ export default function() {
             .data("module-data");
           this.themeLoaderShow = false;
           this.$modal.show("quickviewModal");
-
-          console.log(resp.quickview_html);
+           
+          // console.log(resp.quickview_html);
         });
       })
       .fail(resp => {

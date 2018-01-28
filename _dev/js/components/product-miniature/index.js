@@ -6,7 +6,7 @@ import zoomLeave from "./methods/zoomLeave";
 
 var productMiniature = Vue.extend({
   template: "#product-miniature-template",
-  props: ["product"],
+  props: ["product", "type"],
   data: data,
   methods: {
     changeImg: changeImg,

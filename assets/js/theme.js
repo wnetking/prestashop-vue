@@ -185,7 +185,7 @@
 
 	var _coreCart = __webpack_require__(49);
 
-	var _globalMethodsModalWidth = __webpack_require__(57);
+	var _globalMethodsModalWidth = __webpack_require__(51);
 
 	var _globalMethodsModalWidth2 = _interopRequireDefault(_globalMethodsModalWidth);
 
@@ -193,11 +193,11 @@
 
 	// import styles
 
-	__webpack_require__(51);
+	__webpack_require__(52);
 
-	__webpack_require__(53);
+	__webpack_require__(54);
 
-	__webpack_require__(55);
+	__webpack_require__(56);
 
 	_prestashop2["default"].modules = _prestashop2["default"].modules || {};
 	_prestashop2["default"].blockcart = _prestashop2["default"].blockcart || {};
@@ -6173,7 +6173,7 @@
 	        this.themeLoaderShow = false;
 	        this.$modal.show("quickviewModal");
 
-	        console.log(resp.quickview_html);
+	        // console.log(resp.quickview_html);
 	      });
 	    }).fail(function (resp) {
 	      prestashop.emit("handleError", {
@@ -6717,27 +6717,6 @@
 /* 51 */
 /***/ (function(module, exports) {
 
-	// removed by extract-text-webpack-plugin
-
-/***/ }),
-/* 52 */,
-/* 53 */
-/***/ (function(module, exports) {
-
-	// removed by extract-text-webpack-plugin
-
-/***/ }),
-/* 54 */,
-/* 55 */
-/***/ (function(module, exports) {
-
-	// removed by extract-text-webpack-plugin
-
-/***/ }),
-/* 56 */,
-/* 57 */
-/***/ (function(module, exports) {
-
 	"use strict";
 
 	Object.defineProperty(exports, "__esModule", {
@@ -6770,6 +6749,26 @@
 	};
 
 	module.exports = exports["default"];
+
+/***/ }),
+/* 52 */
+/***/ (function(module, exports) {
+
+	// removed by extract-text-webpack-plugin
+
+/***/ }),
+/* 53 */,
+/* 54 */
+/***/ (function(module, exports) {
+
+	// removed by extract-text-webpack-plugin
+
+/***/ }),
+/* 55 */,
+/* 56 */
+/***/ (function(module, exports) {
+
+	// removed by extract-text-webpack-plugin
 
 /***/ })
 /******/ ]);

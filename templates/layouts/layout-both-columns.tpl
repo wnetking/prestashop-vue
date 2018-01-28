@@ -96,6 +96,10 @@
         {block name='footer'}
           {include file='_partials/footer.tpl'}
         {/block}
+        
+        {* {assign var="device" value=Context::getContext()} *}
+        
+        {* {$device->isTablet()|var_dump} *}
       </footer>
       {block name="quickview-modal"}
         <modal name="quickviewModal"

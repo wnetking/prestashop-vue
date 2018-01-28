@@ -37,7 +37,7 @@
       {hook h='displayFooterAfter'}
     {/block}
 
-    <div class="copyright text-center">
+    <div class="copyright text-center mt-3">
       {block name='copyright_link'}
         <a class="_blank" href="http://www.prestashop.com" target="_blank">
           {l s='%copyright% %year% - Ecommerce software by %prestashop%'

@@ -1,0 +1,18 @@
+.language_flags {display:none;}
+.flags_block img {cursor:pointer;}
+
+.flags_block {
+    position:relative;
+    clear: both;
+    z-index:300;
+}
+.flags_block .language_flags {
+    background:#FFF;
+    min-height:40px;
+    top:0px;
+    position:absolute;
+    clear:both;
+    padding:20px;
+    box-shadow: 0px 0px 5px 2px #c0c0c0;
+    border:1px solid #c3c3c3;
+}
