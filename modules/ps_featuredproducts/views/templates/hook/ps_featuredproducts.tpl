@@ -25,14 +25,14 @@
 
 <section class="mt-5 col-12 featured-products clearfix" data-module-name="featuredProduct" data-module-data="{$products|@json_encode}">
   <b-card header="{l s='Popular Products' d='Shop.Theme.Catalog'}" body-class="p-2" header-tag="h5">
-    <carousel class="products" :per-page-custom="[[768, 3], [1024, 4], [2560, 4]]"
+    <carousel class="products" :per-page-custom="[[768, 1], [1024, 1], [2560, 1]]"
         :pagination-padding="5"
         pagination-active-color="var(--gray-dark)"
         pagination-color="var(--secondary)"
         navigation-next-label=""
         navigation-prev-label="">
       <slide v-for="product in modules.featuredProduct" :key="product.id">
-        <div is="product-miniature" :product='product'></div>
+        <div is="product-miniature" :product='product' type="full-width"></div>
       </slide>
     </carousel>
   </b-card>

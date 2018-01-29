@@ -5834,7 +5834,7 @@
 
 	var productMiniature = _vue2["default"].extend({
 	  template: "#product-miniature-template",
-	  props: ["product"],
+	  props: ["product", "type"],
 	  data: _data2["default"],
 	  methods: {
 	    changeImg: _methodsChangeImg2["default"],
