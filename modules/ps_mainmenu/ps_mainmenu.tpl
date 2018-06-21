@@ -21,6 +21,7 @@
     {/if}
   {/strip}
 {/function}
+
 <div class=" border border-left-0 border-right-0 border-bottom-0 border-dark">
   <div class="container menu text-center">
     {menu nodes=$menu.children}

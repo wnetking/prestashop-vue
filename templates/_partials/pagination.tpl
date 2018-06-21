@@ -36,10 +36,10 @@
               class="page-link {['disabled' => !$page.clickable, 'js-search-link' => true]|classnames}"
             >
               {if $page.type === 'previous'}
-                <i class="fas fa-chevron-circle-left"></i>
+                <i class="fa fa-chevron-circle-left"></i>
                 <span class="sr-only">{l s='Previous' d='Shop.Theme.Actions'}</span>
               {elseif $page.type === 'next'}
-                <i class="fas fa-chevron-circle-right"></i>
+                <i class="fa fa-chevron-circle-right"></i>
                 <span class="sr-only">{l s='Next' d='Shop.Theme.Actions'}</span>
               {else}
                 {$page.page}

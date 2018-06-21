@@ -5,7 +5,7 @@
     <b-nav-item-dropdown right>
         <template slot="button-content">
           <em class="sr-only">{l s='Cart' d='Shop.Theme.Actions'}</em>
-          <i class="fas fa-shopping-basket"></i>
+          <i class="fa fa-shopping-basket"></i>
         </template>
         <div class="cart-body px-2">
           <ul class="list-group">

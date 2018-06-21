@@ -1,5 +1,5 @@
-{**
- * 2007-2017 PrestaShop
+/**
+ * 2007-2018 PrestaShop
  *
  * NOTICE OF LICENSE
  *
@@ -18,22 +18,30 @@
  * needs please refer to http://www.prestashop.com for more information.
  *
  * @author    PrestaShop SA <contact@prestashop.com>
- * @copyright 2007-2017 PrestaShop SA
+ * @copyright 2007-2018 PrestaShop SA
  * @license   https://opensource.org/licenses/AFL-3.0 Academic Free License 3.0 (AFL-3.0)
  * International Registered Trademark & Property of PrestaShop SA
- *}
+ */
 
-<section class="mt-5 col-12 featured-products" data-module-name="featuredProduct" data-module-data="{$products|@json_encode}">
-  <b-card header="{l s='Popular Products' d='Shop.Theme.Catalog'}" body-class="p-2" header-tag="h5">
-    <carousel class="products" :per-page-custom="[[768, 1], [1024, 4], [2560, 4]]"
-        :pagination-padding="5"
-        pagination-active-color="var(--gray-dark)"
-        pagination-color="var(--secondary)"
-        navigation-next-label=""
-        navigation-prev-label="">
-      <slide v-for="product in modules.featuredProduct" :key="product.id">
-        <div is="product-miniature" :product='product'></div>
-      </slide>
-    </carousel>
-  </b-card>
-</section>
+module.exports = ({env}) => ({
+  plugins: {
+    // autoprefixer: env.trim() === 'prod' ? {} : false,
+    'postcss-font-magician': {
+      foundries: ['google'],
+      aliases: {
+        'sans-serif': 'Arial'
+      }
+    },
+    'postcss-plugin-px2rem': {
+      rootValue: 14,
+      unitPrecision: 5,
+      selectorBlackList: ['container'],
+      propWhiteList: [],
+      propBlackList: [],
+      ignoreIdentifier: false,
+      replace: true,
+      mediaQuery: false,
+      minPixelValue: 5
+    }
+  }
+})

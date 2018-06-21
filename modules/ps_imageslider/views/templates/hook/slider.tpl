@@ -23,7 +23,7 @@
  * International Registered Trademark & Property of PrestaShop SA
  *}
 
-<div class="col-12 col-xl-9" data-module-name="homeslider" data-module-data="{$homeslider|@json_encode}" v-if="modules.homeslider.slides">
+<div class="col-12 mb-4" data-module-name="homeslider" data-module-data="{$homeslider|@json_encode}" v-if="modules.homeslider.slides">
   <b-carousel id="carousel"
                 style="text-shadow: 1px 1px 2px #333;"
                 controls

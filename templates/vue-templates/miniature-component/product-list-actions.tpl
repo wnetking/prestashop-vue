@@ -11,7 +11,7 @@
         class="btn btn-md btn-primary add-to-cart"
         data-button-action="add-to-cart" type="submit">
         <span class="sr-only">{l s='Add to cart' d='Shop.Theme.Actions'}</span>
-        <i class="fas fa-cart-plus"></i>
+        <i class="fa fa-cart-plus"></i>
         </b-button>
     </form>
 
@@ -42,46 +42,46 @@
             <i class="fa fa-envelope"></i> Email
             </network>
             <network network="facebook">
-            <i class="fab fa-facebook"></i> Facebook
+            <i class="fa fa-facebook"></i> Facebook
             </network>
             <network network="googleplus">
-            <i class="fab fa-google-plus"></i> Google +
+            <i class="fa fa-google-plus"></i> Google +
             </network>
             <network network="line">
-            <i class="fab fa-linode"></i> Line
+            <i class="fa fa-linode"></i> Line
             </network>
             <network network="linkedin">
-            <i class="fab fa-linkedin"></i> LinkedIn
+            <i class="fa fa-linkedin"></i> LinkedIn
             </network>
             <network network="odnoklassniki">
-            <i class="fab fa-odnoklassniki"></i> Odnoklassniki
+            <i class="fa fa-odnoklassniki"></i> Odnoklassniki
             </network>
             <network network="pinterest">
-            <i class="fab fa-pinterest"></i> Pinterest
+            <i class="fa fa-pinterest"></i> Pinterest
             </network>
             <network network="reddit">
-            <i class="fab fa-reddit"></i> Reddit
+            <i class="fa fa-reddit"></i> Reddit
             </network>
             <network network="skype">
-            <i class="fab fa-skype"></i> Skype
+            <i class="fa fa-skype"></i> Skype
             </network>
             <network network="sms">
-            <i class="fas fa-comments"></i> SMS
+            <i class="fa fa-comments"></i> SMS
             </network>
             <network network="telegram">
-            <i class="fab fa-telegram"></i> Telegram
+            <i class="fa fa-telegram"></i> Telegram
             </network>
             <network network="twitter">
-            <i class="fab fa-twitter"></i> Twitter
+            <i class="fa fa-twitter"></i> Twitter
             </network>
             <network network="vk">
-            <i class="fab fa-vk"></i> VKontakte
+            <i class="fa fa-vk"></i> VKontakte
             </network>
             <network network="weibo">
-            <i class="fab fa-weibo"></i> Weibo
+            <i class="fa fa-weibo"></i> Weibo
             </network>
             <network network="whatsapp">
-            <i class="fab fa-whatsapp"></i> Whatsapp
+            <i class="fa fa-whatsapp"></i> Whatsapp
             </network>
         </div>
         </social-sharing>

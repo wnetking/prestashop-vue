@@ -8,10 +8,10 @@
     fluid blank-color="#ccc"></b-img-lazy>
   <div class="d-flex mt-1">
     <div class="btn-group btn-group-sm ml-auto mr-auto" role="group" aria-label="Basic example">
-      <a class="btn btn-secondary fas fa-minus"
+      <a class="btn btn-secondary fa fa-minus"
       @click="updateCartCore" v-if="product.down_quantity_url" :href="product.down_quantity_url">
       </a>
-      <a class="btn btn-secondary fas fa-plus"
+      <a class="btn btn-secondary fa fa-plus"
           @click="updateCartCore"
           v-if="product.up_quantity_url && (product.quantity_available - product.quantity) > 0"
           :href="product.up_quantity_url">

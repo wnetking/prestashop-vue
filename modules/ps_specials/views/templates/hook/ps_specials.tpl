@@ -23,30 +23,14 @@
 *  International Registered Trademark & Property of PrestaShop SA
 *}
 
-<section class=" col-12 col-xl-3 featured-products d-flex specials" data-module-name="saleProducts" data-module-data="{$products|@json_encode}">
-  {* <h2 class="sr-only h1 products-section-title text-center mb-2 mb-xl-4">{l s='On sale' d='Modules.Specials.Shop'}</h2>
-
-  <carousel class="products" :per-page-custom="[[768, 3], [1024, 1], [2560, 1]]"
-      navigation-enabled
-      :pagination-size="0"
-      pagination-active-color="var(--gray-dark)" pagination-color="var(--secondary)"
-      navigation-next-label=""
-      navigation-prev-label="">
-    <slide v-for="product in modules.saleProducts" :key="product.id">
-      <div is="product-miniature" :product='product'></div>
-    </slide>
-  </carousel> *}
-
-  <b-card
-          body-class="p-2"
-          header-tag="h5">
-    <carousel class="products" :per-page-custom="[[768, 3], [1024, 1], [2560, 1]]"
-              :pagination-padding="5"
-              navigation-enabled
-              :pagination-size="0"
-              pagination-active-color="var(--gray-dark)" pagination-color="var(--secondary)"
-              navigation-next-label=""
-              navigation-prev-label="">
+<section class=" col-12 featured-products d-flex" data-module-name="saleProducts" data-module-data="{$products|@json_encode}">
+  <b-card header="{l s='Popular Products' d='Shop.Theme.Catalog'}" body-class="p-2" header-tag="h5" class="w-100">
+    <carousel class="products" :per-page-custom="[[768, 3], [1024, 4], [2560, 4]]"
+        :pagination-padding="5"
+        pagination-active-color="var(--gray-dark)"
+        pagination-color="var(--secondary)"
+        navigation-next-label=""
+        navigation-prev-label="">
       <slide v-for="product in modules.saleProducts" :key="product.id">
         <div is="product-miniature" :product='product'></div>
       </slide>

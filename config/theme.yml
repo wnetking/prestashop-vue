@@ -26,6 +26,13 @@ meta:
       description: Two columns with a small right column
 
 assets:
+  css:
+    all:
+      - id: font-awesome
+        path: ../_libraries/font-awesome/css/font-awesome.min.css
+        media: all
+        priority: 10
+
   js:
     all:
       - id: vue-carousel

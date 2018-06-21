@@ -25,6 +25,7 @@
 {block name='head_charset'}
   <meta charset="utf-8">
 {/block}
+
 {block name='head_ie_compatibility'}
   <meta http-equiv="x-ua-compatible" content="ie=edge">
 {/block}
@@ -53,8 +54,6 @@
 {block name='stylesheets'}
   {include file="_partials/stylesheets.tpl" stylesheets=$stylesheets}
 {/block}
-
-<link href="https://use.fontawesome.com/releases/v5.0.2/css/all.css" rel="stylesheet">
 
 {block name='javascript_head'}
   {include file="_partials/javascript.tpl" javascript=$javascript.head vars=$js_custom_vars}

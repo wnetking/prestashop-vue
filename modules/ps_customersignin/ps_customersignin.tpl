@@ -3,7 +3,7 @@
     <b-nav-item-dropdown right>
         <template slot="button-content">
           <em class="sr-only">User</em>
-          <i class="fas fa-user"></i>
+          <i class="fa fa-user"></i>
         </template>
         <div class="user-info-body px-3">
           <div class="d-flex align-items-center mb-2 mb-lg-4">
@@ -38,7 +38,7 @@
       href="{$my_account_url}"
       rel="nofollow" title="{l s='Log in to your customer account' d='Shop.Theme.Customeraccount'}">
       <em class="sr-only">{l s='Sign in' d='Shop.Theme.Actions'}</em>
-      <i class="fas fa-user"></i>
+      <i class="fa fa-user"></i>
     </b-nav-item>
 
   {/if}
@@ -59,7 +59,7 @@
     </div>
     <div class="col-md-6 d-flex">
       <div class="w-100 bg-dark text-center text-secondary d-flex flex-column justify-content-center">
-        <div class="display-2 mb-4"><i class="far fa-smile mr-1 fa-lg"></i></div>
+        <div class="display-2 mb-4"><i class="fa fa-smile-o mr-1 fa-lg"></i></div>
         <h3>{l s='Welcome to our store' d='Shop.Theme.Actions'}</h3>
       </div>
     </div>

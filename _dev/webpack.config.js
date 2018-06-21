@@ -23,33 +23,23 @@
  * International Registered Trademark & Property of PrestaShop SA
  */
 var webpack = require('webpack')
+const path = require('path')
 var ExtractTextPlugin = require('extract-text-webpack-plugin')
+const finder = require('fs-finder')
+const UglifyJSPlugin = require('uglifyjs-webpack-plugin')
 
-var plugins = [new webpack.DefinePlugin({
-  'process.env': {
-    NODE_ENV: '"develop"'
-  }
-})]
+module.exports = env => {
+  const production = process.env.NODE_ENV === 'development' ? true : false
 
-plugins.push(
-  new ExtractTextPlugin('../css/theme.css')
-)
-
-module.exports = [{
-  entry: [
-    './css/normalize.css',
-    './css/example.less',
-    './css/st/dev.styl',
-    './css/theme.scss',
-    './js/theme.js'
-  ],
-  output: {
-    path: '../assets/js',
-    filename: 'theme.js'
-  },
-  module: {
-    loaders: [
-      {
+  return [{
+    entry: getModulesEntries(),
+    output: {
+      path: __dirname,
+      filename: '[name]'
+    },
+    devtool: production ? 'none' : 'inline-source-map',
+    module: {
+      rules: [{
         test: /\.vue/,
         loader: 'vue-loader',
         options: {
@@ -57,48 +47,136 @@ module.exports = [{
             js: 'babel-loader'
           }
         }
-      }, {
-        test: /\.js/,
-        loader: 'babel-loader'
       },
-      {
-        test: /\.scss$/,
-        loader: ExtractTextPlugin.extract(
-          'style',
-          'css-loader?sourceMap!postcss!sass-loader?sourceMap'
-        )
-      }, {
-        test: /\.styl$/,
-        loader: ExtractTextPlugin.extract(
-          'style',
-          'css-loader?sourceMap!postcss!stylus-loader?sourceMap'
-        )
-      }, {
-        test: /\.less$/,
-        loader: ExtractTextPlugin.extract(
-          'style',
-          'css-loader?sourceMap!postcss!less-loader?sourceMap'
-        )
-      }, {
-        test: /\.css$/,
-        loader: ExtractTextPlugin.extract(
-          'style',
-          'css-loader?sourceMap!postcss-loader'
-        )
-      }, {
-        test: /.(png|woff(2)?|eot|ttf|svg)(\?[a-z0-9=\.]+)?$/,
-        loader: 'file-loader?name=../css/[hash].[ext]'
-      }]
-  },
-  plugins: plugins,
-  resolve: {
-    extensions: ['', '.js', '.scss', '.styl', '.less', '.css'],
-    alias: {
-      'vue$': 'vue/dist/vue.esm.js' // 'vue/dist/vue.common.js' for webpack 1
+        {
+          test: /\.js$/,
+          use: {
+            loader: 'babel-loader',
+            options: {
+              presets: ['es2015']
+            }
+          }
+        },
+        {
+          test: /\.scss$/,
+          use: ExtractTextPlugin.extract({
+            fallback: 'style-loader',
+            use: [{
+              loader: 'css-loader',
+              options: {
+                sourceMap: !production,
+                minimize: production
+              }
+            },
+              {
+                loader: 'postcss-loader',
+                options: {
+                  sourceMap: !production
+                }
+              },
+              {
+                loader: 'sass-loader',
+                options: {
+                  sourceMap: !production,
+                  data: '@import "css/partials/_variables";'
+                }
+              }
+            ]
+          })
+        },
+        {
+          test: /.(png|jpg|gif|woff(2)?|eot|ttf|svg)(\?[a-z0-9=\.]+)?$/,
+          use: [{
+            loader: 'file-loader',
+            options: {
+              name(file) {
+                if (file.indexOf('node_modules') >= 0) {
+                  return '../assets/css/[name].[ext]'
+                } else if (file.indexOf('modules') >= 0) {
+                  return '../[path][name].[ext]'
+                } else {
+                  return '../assets/[path][name].[ext]'
+                }
+              },
+              publicPath(file) {
+                if (file.indexOf('node_modules') >= 0) {
+                  return '../' + file
+                } else if (file.indexOf('modules') >= 0) {
+                  return '../../../' + file
+                } else {
+                  return '../' + file
+                }
+              }
+            }
+          }]
+        },
+        {
+          test: /\.css$/,
+          use: ['style-loader', 'css-loader', 'postcss-loader']
+        }
+      ]
+    },
+    externals: {
+      prestashop: 'prestashop',
+      $: '$',
+      jquery: 'jQuery',
+      VueCarousel: 'VueCarousel'
+    },
+    plugins: [
+      new ExtractTextPlugin(path.join('[name]')),
+      new webpack.ProvidePlugin({
+        Popper: ['popper.js', 'default']
+      }),
+      production ?
+        new UglifyJSPlugin({
+          sourceMap: false,
+          parallel: true,
+          uglifyOptions: {
+            ie8: false,
+            compress: true,
+            warnings: false,
+            output: {
+              comments: false,
+              beautify: false
+            }
+          }
+        }) :
+        () => {
+        }
+    ],
+    resolve: {
+      alias: {
+        'vue$': 'vue/dist/vue.esm.js' // 'vue/dist/vue.common.js' for webpack 1
+      }
     }
-  },
-  externals: {
-    prestashop: 'prestashop',
-    VueCarousel: 'VueCarousel'
+  }]
+}
+
+function getModulesEntries () {
+  let skipFiles = finder.in(__dirname).findFiles('*.*'),
+    files = finder.from(__dirname).exclude(skipFiles).exclude(['node_modules', 'modules', 'global-methods', 'filters', 'core', 'partials', 'components', 'lib', 'img', 'fonts', 'index']).findFiles('*.*'),
+    filesFromModules = finder.from(__dirname + '/modules/').exclude(['img', 'index']).findFiles('*.*'),
+    childFiles = finder.from(__dirname + '/../../..').exclude(['index']).findFiles('themeChild'),
+    childFilesFromModules = finder.from(__dirname + '/../../..').exclude(['img', 'index']).findFiles('moduleChild'),
+    entry = {}
+  for (let i = 0; i < files.length; i++) {
+    let name = files[i].replace(__dirname, '../assets').replace('scss', 'css')
+    entry[name] = files[i]
   }
-}]
+  for (let i = 0; i < filesFromModules.length; i++) {
+    let moduleName = filesFromModules[i].replace(__dirname, '..').replace('scss', 'css')
+    entry[moduleName] = filesFromModules[i]
+  }
+  for (let i = 0; i < childFiles.length; i++) {
+    let themeName = childFiles[i].match(/themes(\S+)/i)[1].replace(childFiles[i].match(/_dev(\S+)/i)[0], '')
+    let childName = '../..' + themeName + 'assets' + childFiles[i].match(/_dev(\S+)/i)[1].replace('-themeChild', '').replace('scss', 'css')
+    entry[childName] = childFiles[i]
+  }
+  for (let i = 0; i < childFilesFromModules.length; i++) {
+    let themeName = childFilesFromModules[i].match(/themes(\S+)/i)[1].replace(childFilesFromModules[i].match(/_dev(\S+)/i)[0], '')
+    let childNameModule = '../..' + themeName + childFilesFromModules[i].match(/_dev(\S+)/i)[1].replace('-moduleChild', '').replace('scss', 'css')
+    entry[childNameModule] = childFilesFromModules[i]
+  }
+
+  return entry
+}
