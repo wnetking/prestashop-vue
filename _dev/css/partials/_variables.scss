@@ -1,185 +1,172 @@
-@import "variables_color";
-@import "~bootstrap/scss/mixins";
-@import "mixins";
-
-//main settings
-$enable-shadows: true;
-$enable-gradients: true;
-$enable-hover-media-query:  false;
-
+@import 'variables_color';
+@import '~bootstrap/scss/mixins';
+@import 'mixins';
 //main colors
-$brand-primary: $green;
-$brand-secondary: $gray-600;
+$brand-primary: $red;
+$brand-secondary: $blue;
 $brand-success: $green;
 $brand-info: $cyan;
 $brand-warning: $orange;
 $brand-danger: $red;
-$body-color: $gray-600;
-$body-bg: white;
-
+$body-color: $black;
+$body-bg: $gray-300;
+$yiq-contrasted-threshold: 170;
 //fonts
-$font-family-sans-serif: 'Open Sans', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol" !default;
-$font-family-monospace:  'Podkova', "Helvetica Neue", Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace !default;
-$font-family-base: $font-family-sans-serif;
-
+$font-size-base: 0.9286rem;
+$font-family-base: 'Ubuntu', sans-serif;
+$font-custom-icon: 'FontAwesome';
 //Links
-$link-color: $gray-800;
-$link-hover-color: $gray-600;
+$link-color: $brand-secondary;
+$link-hover-color: $brand-primary;
 $link-hover-decoration: none;
-
 //font size
-$font-size-base: 0.875rem;
-$font-size-lg: 1rem;
+$font-size-lg: 1.25rem;
 $font-size-sm: 0.75rem;
 $font-weight-base: 400;
 $line-height-base: 1.286;
 $h1-font-size: 2.5rem;
-$h2-font-size: 1.750rem;
-$h3-font-size: 1.6rem;
+$h2-font-size: 1.75rem;
+$h3-font-size: 1.5rem;
 $h4-font-size: 1.5rem;
 $h5-font-size: 1.125rem;
 $h6-font-size: 1.125rem;
-
-$display1-size: 3.125rem;
+$headings-margin-bottom: 27px;
+$headings-font-weight: 600;
+$headings-line-height: 1.5;
+$headings-color: $black;
+$display1-size: 2.5rem;
 $display2-size: 2.188rem;
 $display3-size: 1.88rem;
 $display4-size: 1.25rem;
-
-$display1-weight: 600;
-$display2-weight: 600;
-$display3-weight: 600;
-$display4-weight: 600;
-
-$headings-margin-bottom: 27px;
-$headings-font-weight: bold;
-$headings-line-height: 1.5;
-$headings-color: $gray-800;
-
 //buttons
-$btn-font-weight: bold;
-$btn-border-radius: 30px;
-$btn-border-radius-sm: 20px;
-$btn-border-radius-lg: 40px;
-$btn-box-shadow: 0 0 0 1px white;
-$btn-focus-box-shadow: 0 0 2px $blue;
+$btn-font-weight: 600;
+$btn-border-radius: 2px;
+$btn-border-radius-sm: 1px;
+$btn-border-radius-lg: 5px;
+$btn-box-shadow: none;
+$btn-focus-box-shadow: none;
 $btn-active-box-shadow: none;
-$btn-transition: background-color 0.2s ease-in, box-shadow 0.2s ease-in,color 0.2s ease-in, border-color 0.2s ease-in;
-
+$btn-padding-y: 5px;
+$btn-padding-x: 10px;
 //Spacing
-$border-radius: 0;
-$border-radius-sm: 0;
-$border-radius-lg: 0;
+$border-radius: 3px;
+$border-radius-sm: 2px;
+$border-radius-lg: 5px;
 $spacer: 2rem;
-$extra-small-space: $spacer * .25;
-$small-space: $spacer * .5;
+$extra-small-space: $spacer * 0.25;
+$small-space: $spacer * 0.5;
 $medium-space: $spacer;
 $large-space: $spacer * 1.5;
 $extra-large-space: $spacer * 3;
-
 //forms
 $input-bg: $white;
 $input-btn-border-width: 1px;
-$input-border-color: $gray-500;
-$input-border-radius: 40px;
-$input-focus-border-color: $blue;
+$input-border-color: $gray-400;
+$input-focus-border-color: $brand-secondary;
 $input-focus-color: $black;
 $input-placeholder-color: $gray-600;
-$input-box-shadow: 0 0 0 1px $white;
+$input-box-shadow: none;
 $input-group-btn-border-color: initial;
-
+$input-group-addon-bg: $input-focus-border-color;
+$input-group-addon-border-color: $input-focus-border-color;
+$input-padding-y: 14px;
 $input-btn-line-height: 1.5;
-$input-btn-padding-y: 0.825rem;
+$input-btn-padding-y: 0.625rem;
 $input-btn-padding-x: 1.125rem;
-
 $input-btn-line-height-sm: 1.5;
 $input-btn-padding-y-sm: 0.5rem;
 $input-btn-padding-x-sm: 1rem;
-
 $input-btn-line-height-lg: 1.5;
 $input-btn-padding-y-lg: 1.15rem;
 $input-btn-padding-x-lg: 2.4rem;
-
 $input-height-border: $input-btn-border-width * 2 !default;
-$input-height-inner: ($font-size-sm * $input-btn-line-height) + ($input-btn-padding-y * 2) !default;
+$input-height-inner: ($font-size-sm * $input-btn-line-height) +
+  ($input-btn-padding-y * 2) !default;
 $input-height: calc(#{$input-height-inner} + #{$input-height-border}) !default;
-
 //custom forms
 $custom-control-gutter: 27px;
-$custom-control-spacer-y: 10px;
-$custom-control-spacer-x: 0;
-$custom-control-indicator-size: 1.188rem;
-$custom-control-indicator-bg: transparent;
-$custom-control-indicator-bg-size: 70% 70% !default;
-$custom-control-indicator-box-shadow: inset 0 0 0 1px $gray-200;
-$custom-control-indicator-disabled-bg: $gray-100;
-$custom-control-description-disabled-color: $gray-100;
+$custom-control-spacer-x: 20px;
+$custom-control-indicator-size: 1.429rem;
+$custom-control-indicator-bg: $white;
+$custom-control-indicator-box-shadow: inset 0 0 0 1px $gray-400;
+$custom-control-indicator-disabled-bg: $gray-200;
+$custom-control-description-disabled-color: $gray-200;
 $custom-control-indicator-checked-bg: $gray-800;
-$custom-control-indicator-focus-box-shadow: 0 0 0 1px $body-bg, 0 0 0 2px $blue;
+$custom-control-indicator-focus-box-shadow: inset 0 0 0 1px $gray-800;
 $custom-control-indicator-active-bg: $gray-800;
-$custom-select-indicator: url("data:image/svg+xml;utf8;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0idXRmLTgiPz4KPHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHhtbG5zOnhsaW5rPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5L3hsaW5rIiB2ZXJzaW9uPSIxLjEiIHZpZXdCb3g9IjAgMCAxMjkgMTI5IiBlbmFibGUtYmFja2dyb3VuZD0ibmV3IDAgMCAxMjkgMTI5IiB3aWR0aD0iMTZweCIgaGVpZ2h0PSIxNnB4Ij4KICA8Zz4KICAgIDxwYXRoIGQ9Im0xMjEuMywzNC42Yy0xLjYtMS42LTQuMi0xLjYtNS44LDBsLTUxLDUxLjEtNTEuMS01MS4xYy0xLjYtMS42LTQuMi0xLjYtNS44LDAtMS42LDEuNi0xLjYsNC4yIDAsNS44bDUzLjksNTMuOWMwLjgsMC44IDEuOCwxLjIgMi45LDEuMiAxLDAgMi4xLTAuNCAyLjktMS4ybDUzLjktNTMuOWMxLjctMS42IDEuNy00LjIgMC4xLTUuOHoiIGZpbGw9IiMwMDAwMDAiLz4KICA8L2c+Cjwvc3ZnPgo=");
-$custom-select-bg: $gray-200;
+$custom-select-indicator: url('data:image/svg+xml;utf8;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0idXRmLTgiPz4KPHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHhtbG5zOnhsaW5rPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5L3hsaW5rIiB2ZXJzaW9uPSIxLjEiIHZpZXdCb3g9IjAgMCAxMjkgMTI5IiBlbmFibGUtYmFja2dyb3VuZD0ibmV3IDAgMCAxMjkgMTI5IiB3aWR0aD0iMTZweCIgaGVpZ2h0PSIxNnB4Ij4KICA8Zz4KICAgIDxwYXRoIGQ9Im0xMjEuMywzNC42Yy0xLjYtMS42LTQuMi0xLjYtNS44LDBsLTUxLDUxLjEtNTEuMS01MS4xYy0xLjYtMS42LTQuMi0xLjYtNS44LDAtMS42LDEuNi0xLjYsNC4yIDAsNS44bDUzLjksNTMuOWMwLjgsMC44IDEuOCwxLjIgMi45LDEuMiAxLDAgMi4xLTAuNCAyLjktMS4ybDUzLjktNTMuOWMxLjctMS42IDEuNy00LjIgMC4xLTUuOHoiIGZpbGw9IiMwMDAwMDAiLz4KICA8L2c+Cjwvc3ZnPgo=');
+$custom-select-bg: $white;
 $custom-select-color: $gray-600;
-$custom-select-focus-border-color: $blue;
-// $custom-select-focus-box-shadow: none;
-
+$custom-select-focus-border-color: $gray-300;
+$custom-select-focus-box-shadow: none;
+$custom-select-height: 49px;
 //modals
 $modal-lg: 1450px;
 $modal-md: 1000px;
 $modal-sm: 500px;
-$modal-header-padding: 30px;
+$modal-header-padding: 20px;
 $modal-inner-padding: 30px;
 $modal-content-box-shadow-sm-up: none;
 $modal-content-box-shadow-xs: none;
-$modal-content-border-width: 0;
-
+$modal-content-bg: $body-bg;
+$modal-header-border-color: $gray-400;
 //dropdowns
 $dropdown-min-width: 200px;
-$dropdown-padding-y: 0;
+$dropdown-padding-y: 5px;
 $dropdown-spacer: 0;
 $dropdown-border-width: 0;
 $dropdown-bg: white;
-$dropdown-box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
+$dropdown-box-shadow: 0 5px 43px rgba(0, 0, 0, 0.11);
 $enable-shadows: true;
 $dropdown-item-padding-y: 10px;
 $dropdown-item-padding-x: 15px;
 $dropdown-link-hover-color: $gray-600;
-$dropdown-link-hover-bg: $gray-200;
+$dropdown-link-hover-bg: transparent;
 $dropdown-link-active-color: $brand-primary;
 $dropdown-link-active-bg: transparent;
+// breadcrumbs
+$breadcrumb-bg: $white;
+$breadcrumb-padding-y: 20px;
 
-//type
+//tabs
+$nav-tabs-link-active-border-color: $gray-400 $gray-400 transparent $gray-400;
+$nav-tabs-link-hover-border-color: $gray-400 $gray-400 transparent $gray-400;
 
-$list-inline-padding: 20px;
+//card
+$card-border-color: $gray-400;
 
 //grid example
 $grid-columns: 12;
 $grid-gutter-width: 30px;
-
 $grid-breakpoints: (
-  // Extra small screen / phone
-  xs: 0,
-  // Small screen / phone
-  sm: 576px,
-  // Medium screen / tablet
-  md: 768px,
-  // Large screen / desktop
-  lg: 992px,
-  // Extra large screen / wide desktop
-  xl: 1200px,
-  // Extra large screen / wide desktop
+  /* Extra small screen / phone*/ xs: 0,
+  /* Small screen / phone*/ sm: 576px,
+  /* Medium screen / tablet*/ md: 768px,
+  /* Large screen / desktop*/ lg: 992px,
+  /* Extra large screen / wide desktop*/ xl: 1200px,
+  /* Extra large screen / wide desktop*/ xxl: 1400px
 );
-
 $container-max-widths: (
-  sm: 610px,
-  md: 760px,
-  lg: 990px,
-  xl: 1170px,
+  sm: 576px,
+  md: 768px,
+  lg: 992px,
+  xl: 1200px,
+  xxl: 1392px
 );
-
-$font-sizes : (
-  20: 20px,
-  30: 30px,
-  40: 40px,
-  50: 50px,
-  60: 60px
+// Spacers
+$spacers: (
+  0: 0,
+  1: (
+    $spacer * 0.1
+  ),
+  2: (
+    $spacer * 0.2
+  ),
+  3: $spacer,
+  4: (
+    $spacer * 1.64
+  ),
+  5: (
+    $spacer * 3.57
+  )
 );

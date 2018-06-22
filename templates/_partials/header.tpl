@@ -29,7 +29,7 @@
 {/block}
 
 <div class="bg-dark">
-  <b-navbar toggleable type="dark" class="container">  
+  <b-navbar toggleable type="dark" class="container">
     <b-navbar-nav class="w-100">
       {block name='header_nav'}
           {hook h='displayNav'}
@@ -39,7 +39,7 @@
 </div>
 
 <div class="container">
-  <b-navbar toggleable type="light" class="py-lg-4">
+  <b-navbar toggleable type="light" class="py-2 py-lg-3">
     <b-navbar-brand href="{$urls.base_url}" class="d-lg-none">
       <img :src="shop.stores_icon"/>
       <span>{literal}{{shop.name}}{/literal}</span>

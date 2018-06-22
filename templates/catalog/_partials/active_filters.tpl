@@ -32,7 +32,7 @@
               sprintf=['%facet_label%' => $filter.facetLabel,
                         '%facet_value%' => $filter.label] d='Shop.Theme.Catalog'}
             <a  class="js-search-link p-1" href="{$filter.nextEncodedFacetsURL}">
-              <i class="far fa-times-circle"></i>
+              <i class="fa fa-close"></i>
               <span class="sr-only">{l s='Remove' d='Shop.Theme.Actions'}</span>
             </a>
           </li>

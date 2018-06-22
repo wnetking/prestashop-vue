@@ -34,7 +34,7 @@
       </h1>
     </header>
     {block name='login_form_container'}
-      <div class="bg-white border rounded p-3 p-xl-5">
+      <div class="bg-white border rounded p-3">
         <p>
           <a href="{$urls.pages.register}" data-link-action="display-register-form">
             {l s='No account? Create one here' d='Shop.Theme.Customeraccount'}

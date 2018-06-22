@@ -1,51 +1,52 @@
-import { getContent } from "./getAuthenticationTpl";
+import { getContent } from './getAuthenticationTpl'
 
 export default function() {
-  $("body").on(
-    "click",
-    `.v--modal [data-link-action="display-register-form"],
-    .v--modal .lost_password a,
-    .v--modal .go-login-page a`,
+  $('body').on(
+    'click',
+    `.modal [data-link-action="display-register-form"],
+    .modal .lost_password a,
+    .modal .go-login-page a`,
     event => {
-      event.preventDefault();
-      getContent.call(this, event.target.href);
+      console.log(event)
+      event.preventDefault()
+      getContent.call(this, event.target.href)
     }
-  );
+  )
 
-  $("body").on(
-    "submit",
-    `.v--modal #login-form,
-    .v--modal #customer-form`,
+  $('body').on(
+    'submit',
+    `.modal #login-form,
+    .modal #customer-form`,
     event => {
-      event.preventDefault();
-      let query = $(event.target).serialize();
+      event.preventDefault()
+      let query = $(event.target).serialize()
 
-      this.$nextTick(function() {
-        this.themeLoaderShow = true;
-      });
+      this.$nextTick(function () {
+        this.themeLoaderShow = true
+      })
 
       $.post(event.target.action, query, null).then(resp => {
         if (
           $(resp)
-            .find("#header")
+            .find('#header')
             .html()
-            .trim() === ""
+            .trim() === ''
         ) {
-          this.$nextTick(function() {});
+          this.$nextTick(function () {})
 
-          this.$nextTick(function() {
-            this.themeLoaderShow = false;
+          this.$nextTick(function () {
+            this.themeLoaderShow = false
             this.modules.singIn = $(resp)
-              .find("#content")
-              .html();
-          });
+              .find('#content')
+              .html()
+          })
         } else {
-          this.$nextTick(function() {
-            this.themeLoaderShow = false;
-          });
-          location.reload();
+          this.$nextTick(function () {
+            this.themeLoaderShow = false
+          })
+          location.reload()
         }
-      });
+      })
     }
-  );
+  )
 }

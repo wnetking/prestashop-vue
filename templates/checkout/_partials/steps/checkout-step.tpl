@@ -36,7 +36,7 @@
       <span class="step-number">{$position}.</span>
       {$title}
     </h3>
-    <div class="content mb-2 bg-white border rounded p-3 p-xl-5">
+    <div class="content mb-2 bg-white border rounded p-3">
       {block name='step_content'}DUMMY STEP CONTENT{/block}
     </div>
   </section>

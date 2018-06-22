@@ -1,5 +1,5 @@
 <div id="blockcart-modal">
-  <div class="row">
+  <div class="row no-gutters">
       <div class="col-md-6 bg-light d-flex">
         <div class="p-3 flex-column d-flex w-100">
           <div class="mt-2">
@@ -28,12 +28,12 @@
                     {$cart.subtotals.products.value}
                   </td>
                 </tr>
-                <tr>  
+                <tr>
                   <td>
                     {l s='Total shipping:' d='Shop.Theme.Checkout'}
                   </td>
                   <td class="text-right">
-                    {$cart.subtotals.shipping.value} 
+                    {$cart.subtotals.shipping.value}
                     {hook h='displayCheckoutSubtotalDetails' subtotal=$cart.subtotals.shipping}
                   </td>
                 </tr>

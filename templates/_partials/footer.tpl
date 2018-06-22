@@ -46,7 +46,7 @@
       {/block}
     </div>
     <div class="progress fixed-top rounded-0" v-if="themeLoaderShow"  style="height: 5px;">
-      <div class="progress-bar progress-bar-striped bg-info progress-bar-animated rounded-0" role="progressbar" style="width: 100%" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100"></div>
+      <div class="progress-bar progress-bar-striped bg-success progress-bar-animated rounded-0" role="progressbar" style="width: 100%" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100"></div>
     </div>
   </b-container>
 </div>

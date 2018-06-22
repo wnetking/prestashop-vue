@@ -44,25 +44,9 @@
   {/if}
 </div>
 {if !$logged}
-<modal name="singInModal"
-        transition="nice-modal-fade"
-        height="auto"
-        :width="modalWidth"
-        :min-width="300"
-        :scrollable="true"
-        :adaptive="true"
-        @before-open="getModalWidth">
-  <div class="row no-gutters">
-    <div class="col-md-6 bg-light d-flex login-form">
-      <div class="p-3 flex-column d-flex w-100"  v-html="modules.singIn">
-      </div>
+  <b-modal id="singInModal" centered hide-footer size="sm" body-class="p-0"
+    title="{l s='Welcome to our store' d='Shop.Theme.Actions'}">
+    <div class="bg-light d-flex login-form p-3 flex-column w-100"  v-html="modules.singIn">
     </div>
-    <div class="col-md-6 d-flex">
-      <div class="w-100 bg-dark text-center text-secondary d-flex flex-column justify-content-center">
-        <div class="display-2 mb-4"><i class="fa fa-smile-o mr-1 fa-lg"></i></div>
-        <h3>{l s='Welcome to our store' d='Shop.Theme.Actions'}</h3>
-      </div>
-    </div>
-  </div>
-</modal>
+  </b-modal>
 {/if}

@@ -32,7 +32,7 @@ module.exports = env => {
   const production = process.env.NODE_ENV === 'development' ? true : false
 
   return [{
-    entry: getModulesEntries(),
+    entry: getEntries(),
     output: {
       path: __dirname,
       filename: '[name]'
@@ -152,7 +152,7 @@ module.exports = env => {
   }]
 }
 
-function getModulesEntries () {
+function getEntries () {
   let skipFiles = finder.in(__dirname).findFiles('*.*'),
     files = finder.from(__dirname).exclude(skipFiles).exclude(['node_modules', 'modules', 'global-methods', 'filters', 'core', 'partials', 'components', 'lib', 'img', 'fonts', 'index']).findFiles('*.*'),
     filesFromModules = finder.from(__dirname + '/modules/').exclude(['img', 'index']).findFiles('*.*'),

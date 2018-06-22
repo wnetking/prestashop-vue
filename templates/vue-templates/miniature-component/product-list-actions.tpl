@@ -8,7 +8,7 @@
         <b-button
         variant="outline-dark"
         v-if="product.add_to_cart_url && !configuration.is_catalog || product.availability != 'last_remaining_items' && product.availability != 'available'"
-        class="btn btn-md btn-primary add-to-cart"
+        class="btn btn-md add-to-cart"
         data-button-action="add-to-cart" type="submit">
         <span class="sr-only">{l s='Add to cart' d='Shop.Theme.Actions'}</span>
         <i class="fa fa-cart-plus"></i>

@@ -25,29 +25,36 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
-h1, h2, h3, h4, h5, h6 {
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
   text-transform: uppercase;
   letter-spacing: 0;
 }
 
-h1, .h1 {
+h1,
+.h1 {
   @include media-breakpoint-up(xl) {
-    font-size: 3.750em;
+    font-size: 3.75em;
     line-height: 1.1;
   }
 }
 
-h2, .h2 {
+h2,
+.h2 {
   @include media-breakpoint-up(xl) {
-    font-size: 2.250em;
+    font-size: 2.25em;
     line-height: 1.3;
   }
 }
 
-button{
+button {
   cursor: pointer;
 
-  &:focus{
+  &:focus {
     outline: none;
     box-shadow: $input-focus-box-shadow;
   }
@@ -67,10 +74,10 @@ button{
   }
 }
 
-.btn-primary{
+.btn-primary {
   color: $white;
 
-  @include hover-focus{
+  @include hover-focus {
     color: $white;
   }
 }
@@ -82,13 +89,16 @@ button{
 ul {
   list-style: none;
   padding-left: 0;
-  .list-default, &[class^="list-default-"], &[class*=" list-default-"] {
+  .list-default,
+  &[class^='list-default-'],
+  &[class*=' list-default-'] {
     li {
       margin-bottom: 12px;
       a {
         color: $gray-600;
         text-decoration: none;
-        &:hover, &:focus {
+        &:hover,
+        &:focus {
           color: $gray-900;
         }
       }
@@ -113,7 +123,9 @@ ul {
         letter-spacing: 0.06em;
       }
     }
-    ul.list-default, ul[class^="list-default-"], ul[class*=" list-default-"] {
+    ul.list-default,
+    ul[class^='list-default-'],
+    ul[class*=' list-default-'] {
       margin-top: 12px;
     }
   }
@@ -156,7 +168,8 @@ ul {
   line-height: 1;
   color: $white;
 
-  &:hover, &:focus {
+  &:hover,
+  &:focus {
     color: $gray-600;
   }
 }
@@ -171,13 +184,14 @@ form {
   &:focus {
     + .input-group-addon {
       background-color: $gray-300;
-      transition: border-color ease-in-out 0.15s, background-color ease-in-out 0.15s;
+      transition: border-color ease-in-out 0.15s,
+        background-color ease-in-out 0.15s;
     }
   }
 }
 
-.input-group-addon{
-  i{
+.input-group-addon {
+  i {
     pointer-events: none;
   }
 }
@@ -196,7 +210,7 @@ input:-webkit-autofill {
   &.has-error {
     input,
     select {
-      border-color: theme-color("danger");
+      border-color: theme-color('danger');
     }
     .help-block {
       color: $brand-danger;
@@ -281,7 +295,8 @@ input:-webkit-autofill {
 
 .modal {
   padding: 0 !important;
-  &.modal-close-inside .close, &.modal-close-outside .close {
+  &.modal-close-inside .close,
+  &.modal-close-outside .close {
     cursor: pointer;
     outline: none;
     position: absolute;
@@ -306,7 +321,8 @@ input:-webkit-autofill {
 }
 
 .popover {
-  &.collapse, &.collapsing {
+  &.collapse,
+  &.collapsing {
     width: 200px;
     top: 100%;
   }
@@ -321,7 +337,7 @@ input:-webkit-autofill {
   align-items: center;
   margin: 0;
 
-  [data-toggle='dropdown']{
+  [data-toggle='dropdown'] {
     display: inline-block;
     padding-top: 15px;
     padding-bottom: 15px;
@@ -330,11 +346,11 @@ input:-webkit-autofill {
   > *:not(:last-child) {
     padding-right: 15px;
 
-    > *{
+    > * {
       display: inline-block;
     }
 
-    &::after{
+    &::after {
       content: '/';
       margin-left: 13px;
       display: inline-block;
@@ -353,11 +369,12 @@ input:-webkit-autofill {
       $slider-padding: 40px;
       padding: $slider-padding;
 
-      margin-left: calc((-#{$grid-gutter-width}/2) - #{$slider-padding});
-      margin-right: calc((-#{$grid-gutter-width}/2) - #{$slider-padding});
+      margin-left: calc((-#{$grid-gutter-width}/ 2) - #{$slider-padding});
+      margin-right: calc((-#{$grid-gutter-width}/ 2) - #{$slider-padding});
 
-      &::before, &::after{
-        content: "";
+      &::before,
+      &::after {
+        content: '';
         z-index: 5;
         position: absolute;
         top: 0;
@@ -365,11 +382,11 @@ input:-webkit-autofill {
         height: 100%;
         width: 50px;
       }
-      &::after{
+      &::after {
         right: -23px;
         background-color: $body-bg;
       }
-      &::before{
+      &::before {
         left: -23px;
         background-color: $body-bg;
       }
@@ -388,15 +405,18 @@ input:-webkit-autofill {
       margin-left: 0 !important;
       margin-right: 0 !important;
     }
-    .swiper-button-prev, .swiper-container-rtl .swiper-button-next {
+    .swiper-button-prev,
+    .swiper-container-rtl .swiper-button-next {
       left: 20px;
     }
-    .swiper-button-next, .swiper-container-rtl .swiper-button-prev {
+    .swiper-button-next,
+    .swiper-container-rtl .swiper-button-prev {
       right: 20px;
     }
   }
 
-  .swiper-button-prev, .swiper-button-next{
+  .swiper-button-prev,
+  .swiper-button-next {
     font-size: 20px;
   }
 }
@@ -410,7 +430,8 @@ input:-webkit-autofill {
     width: 30px;
     height: 30px;
   }
-  > a, > li {
+  > a,
+  > li {
     position: relative;
     margin: 0 3px 3px;
     display: block;
@@ -421,7 +442,8 @@ input:-webkit-autofill {
       opacity: 0;
       width: 100%;
       height: 100%;
-      &:checked + span, &:checked + .color.custom-control-indicator {
+      &:checked + span,
+      &:checked + .color.custom-control-indicator {
         border: 3px solid $gray-300;
         box-shadow: inset 0 0 0 4px white;
         color: $gray-900;
@@ -470,10 +492,12 @@ input:-webkit-autofill {
     font-weight: bold;
     line-height: 1;
     text-shadow: 0 0.0625rem 0 #fff;
-    &:hover, &:focus {
+    &:hover,
+    &:focus {
       color: $gray-900;
     }
-    span, i {
+    span,
+    i {
       position: absolute;
       top: -3px;
       margin-right: -28px;
@@ -495,7 +519,8 @@ input:-webkit-autofill {
   margin: 0 0 2px;
   a {
     color: $gray-900;
-    &:hover, &:focus {
+    &:hover,
+    &:focus {
       color: $brand-primary;
     }
   }
@@ -544,7 +569,8 @@ ul.product-flags {
   }
 }
 
-*[class^="product-prices-"], *[class*=" product-prices-"] {
+*[class^='product-prices-'],
+*[class*=' product-prices-'] {
   font-size: 14px;
   line-height: 29px;
   font-weight: bold;
@@ -590,11 +616,13 @@ ul.product-flags {
     }
   }
   &.with-discount {
-    .price, .regular-price {
+    .price,
+    .regular-price {
       margin-right: 5px;
     }
     &.product-prices-lg {
-      .price, .regular-price {
+      .price,
+      .regular-price {
         margin-right: 10px;
       }
     }
@@ -611,7 +639,8 @@ ul.product-flags {
       font-size: 20px;
     }
 
-    &:hover, &:focus {
+    &:hover,
+    &:focus {
       color: $gray-900;
     }
   }
@@ -622,12 +651,12 @@ ul.product-flags {
 }
 
 //resize styles
-div[id^="_mobile_"]:empty {
+div[id^='_mobile_']:empty {
   display: none;
 }
 
-div[id^="_mobile_"]:not(:empty) {
-  [class*='icon']{
+div[id^='_mobile_']:not(:empty) {
+  [class*='icon'] {
     animation-duration: 1s;
     animation-fill-mode: both;
     animation-name: fadeIn;
@@ -635,13 +664,13 @@ div[id^="_mobile_"]:not(:empty) {
 }
 
 @include media-breakpoint-up(md) {
-  div[id^="_mobile_"] {
+  div[id^='_mobile_'] {
     display: none;
   }
 }
 
 @include media-breakpoint-down(sm) {
-  div[id^="_desktop_"] {
+  div[id^='_desktop_'] {
     display: none;
   }
 }
@@ -674,14 +703,24 @@ div[id^="_mobile_"]:not(:empty) {
   padding-right: 0;
 }
 
-.text-underline{
+.text-underline {
   text-decoration: underline;
 }
 
-.divider-bottom{
+.divider-bottom {
   border-bottom: 2px solid $gray-500;
 }
 
-.font-family-custom{
+.font-family-custom {
   font-family: $font-family-monospace;
+}
+
+/* VueCarousel-pagination
+   ========================================================================== */
+
+.VueCarousel-pagination {
+  position: absolute;
+  top: -45px;
+  right: 0;
+  width: auto !important;
 }

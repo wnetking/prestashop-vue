@@ -1,13 +1,11 @@
 .menu {
   a {
     text-decoration: none;
-    color: text-color;
     font-size: 1.2em;
     padding: 15px 20px;
     display: block;
     &:visited {
       text-decoration: none;
-      color: text-color;
       font-size: 1.2em;
       padding: 15px 20px;
       display: block;
@@ -33,6 +31,8 @@
     }
     > {
       a {
+        color: $white;
+
         &:hover {
           background-color: var(--gray-dark);
           border-top-color: var(--primary);

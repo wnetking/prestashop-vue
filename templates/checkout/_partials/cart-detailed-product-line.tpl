@@ -17,7 +17,7 @@
             v-if="product.up_quantity_url && (product.quantity_available - product.quantity) > 0"
             :href="product.up_quantity_url">
         </a>
-        <a class="btn btn-danger remove-from-cart far fa-trash-alt"
+        <a class="btn btn-danger remove-from-cart fa fa-trash-o"
             @click="updateCartCore"
             :href="product.remove_from_cart_url">
             {* {l s='Remove' d='Shop.Theme.Actions'} *}

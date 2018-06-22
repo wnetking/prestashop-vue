@@ -50,7 +50,7 @@
               {/block}
             </div>
             <div class="col-5">
-              <div class="bg-white border rounded p-3 p-xl-5">
+              <div class="bg-white border rounded p-3">
                 {block name='cart_summary'}
                   {include file='checkout/_partials/cart-summary.tpl' cart=$cart}
                 {/block}

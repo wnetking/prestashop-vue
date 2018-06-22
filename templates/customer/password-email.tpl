@@ -31,7 +31,7 @@
 {block name='page_content_container'}
   <section id="content" class="page-content password-form">
     {block name='page_content'}
-      <form class="bg-white border rounded p-3 p-xl-5 mb-3" action="{block name='form_new_password_actionurl'}{$urls.pages.password}{/block}" method="post">
+      <form class="bg-white border rounded p-3 mb-3" action="{block name='form_new_password_actionurl'}{$urls.pages.password}{/block}" method="post">
 
         {block name='form_new_password_header'}
           <header>

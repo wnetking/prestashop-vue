@@ -56,58 +56,27 @@
 {elseif $field.type === 'radio-buttons'}
 
   {block name='form_field_item_radio'}
-    {* <label class='radio-field {if $field.required}required{/if}'>
-      <span>{$field.label}</span>
+    {block name='form_field_item_radio'}
       {foreach from=$field.availableValues item="label" key="value"}
-        <label>
-          <input
-            name="{$field.name}"
-            type="radio"
-            value="{$value}"
-            {if $field.required}required{/if}
-            {if $value eq $field.value}checked{/if}
-          >
-          {$label}
-        </label>
-      {/foreach}
-    </label> *}
-    <div>
-      <small>{$field.label}</small>
-      <div class="d-flex">
-        {foreach from=$field.availableValues item="label" key="value"}
-          <label class="radio-field custom-control custom-radio {if $field.required}required{/if}">
-            <input
-            name="{$field.name}"
-            type="radio"
-            value="1"
-            class="custom-control-input"
-            {if $field.required}required{/if}
-            {if $value eq $field.value}checked{/if}>
-            <span aria-hidden="true" class="custom-control-indicator"></span>
-            <span class="custom-control-description">
-              {$label}
-            </span>
+        <div class="custom-control custom-radio {if $field.name == "id_gender"}custom-control-inline{/if}">
+          <label>
+            <input class="custom-control-input" name="{$field.name}" type="radio" value="{$value}"{if $field.required} required{/if}{if $value eq $field.value} checked{/if}>
+            <span class="custom-control-label">{$label}</span>
           </label>
-        {/foreach}
-      </div>
-    </div>
+        </div>
+      {/foreach}
+    {/block}
+
   {/block}
 {elseif $field.type === 'checkbox'}
 
   {block name='form_field_item_checkbox'}
-    <label class="checkbox-field custom-control custom-checkbox {if $field.required}required{/if}">
-      <input
-        name="{$field.name}"
-        type="checkbox"
-        value="1"
-        class="custom-control-input"
-        {if $field.required}required{/if}
-        {if $field.value}checked{/if}>
-      <span aria-hidden="true" class="custom-control-indicator"></span>
-      <span class="custom-control-description">
-        {$field.label nofilter}
-      </span>
-    </label>
+    <div class="custom-control custom-checkbox">
+      <label>
+        <input class="custom-control-input" name="{$field.name}" type="checkbox" value="1"{if $field.value} checked="checked"{/if}{if $field.required} required{/if}>
+        <span class="custom-control-label">{$field.label nofilter}</span>
+      </label>
+    </div>
   {/block}
 
 {elseif $field.type === 'password'}

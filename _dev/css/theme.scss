@@ -1,3 +1,5 @@
+@import '~bootstrap/scss/bootstrap';
+@import 'partials/commons';
 @import 'components/product-share-btns.scss';
 @import 'components/blockcart.scss';
 @import 'components/user-info.scss';
@@ -8,11 +10,6 @@
 @import 'components/scrollbar.scss';
 @import 'components/topmenu.scss';
 
-$body-background-color: #fefefe;
-
-body {
-  background: $body-background-color;
-}
 #app {
   display: flex;
   flex-direction: column;
@@ -30,14 +27,6 @@ i {
 .pop-out-leave-active {
   opacity: 0;
   transform: translateY(24px);
-}
-
-.modal-dialog {
-  pointer-events: inherit !important;
-}
-
-.modal-content {
-  pointer-events: inherit !important;
 }
 
 #wrapper {
@@ -89,7 +78,7 @@ i {
 
   img {
     max-width: 40px;
-    margin-bottom: 0.25rem;
+    margin: 0 auto 10px;
     border: 1px solid #ccc;
 
     &.active {
@@ -103,10 +92,6 @@ i {
   background-repeat: no-repeat;
   background-color: white;
   transition: all ease-out 0.3s;
-}
-
-.thumbnail-container {
-  margin: -15px -15px 0;
 }
 
 .fade-enter-active,

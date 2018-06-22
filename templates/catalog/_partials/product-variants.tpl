@@ -53,7 +53,7 @@
       {block name='product_variants_color'}
         <ul id="group_{$id_attribute_group}" class="list-unstyled">
           {foreach from=$group.attributes key=id_attribute item=group_attribute}
-            <li class="input-container">
+            <li class="input-container mb-2">
               <label class="custom-control custom-radio">
                 <input
                   class="input-color custom-control-input"
@@ -75,8 +75,7 @@
                 >
                   <span>{$group_attribute.name}</span>
                 </span> *}
-                <span aria-hidden="true" class="custom-control-indicator"></span>
-                <span class="custom-control-description">
+                <span class="custom-control-label">
                   {$group_attribute.name}
                 </span>
               </label>

@@ -32,36 +32,55 @@
             {foreach from=$facet.filters item="filter"}
               {assign var=facet_unique_id value=10|mt_rand:1000}
               {if $filter.displayed}
-                <li>
-
-                  <label class="custom-control {if $facet.multipleSelectionAllowed}custom-checkbox{else}custom-radio{/if}">
-                    {if $facet.multipleSelectionAllowed}
+                <li class="{if isset($filter.properties.color)}list-inline-item d-inline-block{/if} mb-2">
+                  {if $facet.type == 'price'}
+                    <div class="p-1 pt-2">
+                      <input id="price-slider"{if !$_collapse} class="active"{/if} data-slidermin="{$facet.properties.min}" data-slidermax="{$facet.properties.max}" type="hidden" value="{$facet.properties.min},{$facet.properties.max}" />
+                      <a href="{$filter.nextEncodedFacetsURL}" id="price-slider-link" class="d-none search-link js-search-link" rel="nofollow"></a>
+                    </div>
+                    {break}
+                  {elseif $facet.multipleSelectionAllowed}
+                    <div class="custom-control custom-checkbox">
                       <input
+                        id="facet_input_{$_expand_id}_{$filter_key}"
+                        class="custom-control-input"
                         data-search-url="{$filter.nextEncodedFacetsURL}"
-                        class="custom-control-input {if !$js_enabled}ps-shown-by-js{/if}"
                         type="checkbox"
                         {if $filter.active } checked {/if}
                       >
-                    {else}
+                      <label class="facet-label custom-control-label{if $filter.active} active{/if}" for="facet_input_{$_expand_id}_{$filter_key}"{if isset($filter.properties.color)} style="background-color:{$filter.properties.color}"{/if}{if isset($filter.properties.texture)} style="background-image:url({$filter.properties.texture})"{/if}>
+                        <span {if !$js_enabled}class="ps-shown-by-js"{/if}>
+                          <a href="{$filter.nextEncodedFacetsURL}" class="search-link js-search-link" rel="nofollow">
+                            {$filter.label}
+                            {if $filter.magnitude}
+                              <span class="magnitude">({$filter.magnitude})</span>
+                            {/if}
+                          </a>
+                        </span>
+                      </label>
+                    </div>
+                  {else}
+                    <div class="custom-control custom-radio">
                       <input
-                        id="{$facet_unique_id}"
+                        id="facet_input_{$_expand_id}_{$filter_key}"
+                        class="custom-control-input"
                         data-search-url="{$filter.nextEncodedFacetsURL}"
-                        class="custom-control-input {if !$js_enabled}ps-shown-by-js{/if}"
                         type="radio"
                         name="filter {$facet.label}"
                         {if $filter.active } checked {/if}
                       >
-                    {/if}
-
-                    <span aria-hidden="true" class="custom-control-indicator"></span>
-                    <span class="custom-control-description">
-                      {$filter.label}
-                      {if $filter.magnitude}
-                        <span class="magnitude">{$filter.magnitude}</span>
-                      {/if}
-                    </span>
-                  </label>
-
+                      <label class="facet-label custom-control-label{if $filter.active} active{/if}" for="facet_input_{$_expand_id}_{$filter_key}">
+                        <span {if !$js_enabled}class="ps-shown-by-js"{/if}>
+                          <a href="{$filter.nextEncodedFacetsURL}" class="search-link js-search-link" rel="nofollow">
+                            {$filter.label}
+                            {if $filter.magnitude}
+                              <span class="magnitude">({$filter.magnitude})</span>
+                            {/if}
+                          </a>
+                        </span>
+                      </label>
+                    </div>
+                  {/if}
                 </li>
               {/if}
             {/foreach}

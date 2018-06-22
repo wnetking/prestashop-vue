@@ -37,7 +37,7 @@
         {hook h='displayAfterBodyOpeningTag'}
       {/block}
 
-      <header id="header" class="bg-secondary mb-3">
+      <header id="header" class="mb-3">
         {block name='header'}
           {include file='_partials/header.tpl'}
         {/block}
@@ -96,23 +96,16 @@
         {block name='footer'}
           {include file='_partials/footer.tpl'}
         {/block}
-        
+
         {* {assign var="device" value=Context::getContext()} *}
-        
+
         {* {$device->isTablet()|var_dump} *}
       </footer>
       {block name="quickview-modal"}
-        <modal name="quickviewModal"
-          transition="nice-modal-fade"
-          @closed="onCloseQuickView"
-          height="auto"
-          :width="modalWidth"
-          :min-width="300"
-          :scrollable="true"
-          :adaptive="true"
-          @before-open="getModalWidth">
+        <b-modal id="quickviewModal" body-class="p-0" lazy busy centered hide-footer size="lg" @hidden="onCloseQuickView"
+           title="{l s='Quick View' d='Shop.Theme.Actions'}">
           {include file="vue-templates/_partials/quickview.tpl"}
-        </modal>
+        </b-modal>
       {/block}
     </main>
     {block name='vue-templates'}

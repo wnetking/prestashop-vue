@@ -1,11 +1,11 @@
 <div>
-  <b-img-lazy
+  <b-img
     class="ml-auto mr-auto d-block"
     :src="product.cover.bySize.small_default.url"
     :alt="product.cover.legend"
     :width="product.cover.bySize.small_default.width"
     :height="product.cover.bySize.small_default.height"
-    fluid blank-color="#ccc"></b-img-lazy>
+    fluid blank-color="#ccc"></b-img>
   <div class="d-flex mt-1">
     <div class="btn-group btn-group-sm ml-auto mr-auto" role="group" aria-label="Basic example">
       <a class="btn btn-secondary fa fa-minus"
@@ -16,7 +16,7 @@
           v-if="product.up_quantity_url && (product.quantity_available - product.quantity) > 0"
           :href="product.up_quantity_url">
       </a>
-      <a class="btn btn-danger remove-from-cart far fa-trash-alt"
+      <a class="btn btn-danger remove-from-cart fa fa-trash-o"
           @click="updateCartCore"
           :href="product.remove_from_cart_url">
           {* {l s='Remove' d='Shop.Theme.Actions'} *}

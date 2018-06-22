@@ -22,8 +22,8 @@
   {/strip}
 {/function}
 
-<div class=" border border-left-0 border-right-0 border-bottom-0 border-dark">
-  <div class="container menu text-center">
+<div class="bg-secondary border border-left-0 border-right-0 border-bottom-0 border-dark">
+  <div class="container menu">
     {menu nodes=$menu.children}
   </div>
 </div>

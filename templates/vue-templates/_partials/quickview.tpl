@@ -2,12 +2,12 @@
   <b-tabs card>
     <b-tab active title="{l s='Variants' d='Shop.Theme.Catalog'}" >
       <div class="row">
-        <div class="col-12 col-md-6">
+        <div class="col-12 col-md-6 col-lg-5">
           {block name='product_cover_thumbnails'}
             {include file='catalog/_partials/product-cover-thumbnails.tpl'}
           {/block}
         </div>
-        <div class="col-12 col-md-6 col-lg-5">
+        <div class="col-12 col-md-6 col-lg-7">
           <div class="product-information">
             <div class="d-flex">
               {block name='product_availability'}

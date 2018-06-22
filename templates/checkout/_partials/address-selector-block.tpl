@@ -54,7 +54,7 @@
           <a  data-link-action="delete-address"
             class="btn btn-sm btn-secondary"
             href="{url entity='order' params=['id_address' => $address.id, 'deleteAddress' => true, 'token' => $token]}">
-            <i class="far fa-trash-alt"></i>
+            <i class="fa fa-trash-o"></i>
             <span class="sr-only">{l s='Delete' d='Shop.Theme.Actions'}</span>
           </a>
         {/if}

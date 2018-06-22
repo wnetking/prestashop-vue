@@ -1,4 +1,4 @@
 export default function () {
-  this.$modal.hide('quickviewModal')
-  this.$modal.show('blokcartModal')
+  this.$root.$emit('bv::hide::modal', 'quickviewModal', '#quickviewModal')
+  this.$root.$emit('bv::show::modal', 'blokcartModal', '#blokcartModal')
 }
