@@ -36,7 +36,7 @@
         <div>
           <b-img
             v-for="image in modules.productPageData.images"
-            class="img-fluid bg-white border rounded"
+            class="bg-white rounded"
             v-bind:class="{ active: (image.bySize.large_default.url === modules.productPageData.cover.bySize.large_default.url)}"
             v-on:mouseover="changeProductCoverImage"
             :src="image.small.url"

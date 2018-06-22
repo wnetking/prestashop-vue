@@ -724,3 +724,21 @@ div[id^='_mobile_']:not(:empty) {
   right: 0;
   width: auto !important;
 }
+
+/* Image container
+   ========================================================================== */
+.images-container {
+  position: relative;
+
+  .product-images {
+    position: absolute;
+    top: 0;
+    left: 0;
+
+    img {
+      &.active {
+        border: 1px solid $gray-800;
+      }
+    }
+  }
+}

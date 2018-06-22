@@ -1,9 +1,17 @@
 export default function() {
-  $('body').on('click', '[data-button-action="add-to-cart"]', event => {
+  $('body').on('click', '[data-button-action="add-to-cart"]', () => {
+    this.$nextTick(function () {
+      this.themeLoaderShow = true
+    })
+  })
+
+  $('body').on('submit', '.modal #add-to-cart-or-refresh', event => {
     event.preventDefault()
     this.$nextTick(function () {
       this.themeLoaderShow = true
     })
+
+    $('#add-to-cart-or-refresh [data-button-action="add-to-cart"]').click()
   })
 
   prestashop.on('updateCart', event => {

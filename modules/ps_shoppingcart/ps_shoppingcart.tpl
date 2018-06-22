@@ -8,14 +8,16 @@
       <i class="fa fa-shopping-basket"></i>
     </b-nav-item>
 
-    <b-modal id="blockcartModalTotal" size="sm" centered hide-footer title="{l s='Cart' d='Shop.Theme.Actions'}">
-      <div class="cart-body px-2">
-        <ul class="list-group">
-          <li class="list-group-item d-flex align-items-start"
-              v-for="product in modules.blockcart.products" :key="Date.now() + Math.random()">
-              {include file='module:ps_shoppingcart/ps_shoppingcart-product-line.tpl'}
-          </li>
-        </ul>
+    <b-modal id="blockcartModalTotal" size="sm" body-class="p-2" centered hide-footer title="{l s='Cart' d='Shop.Theme.Actions'}">
+      <div class="cart-body">
+        <div class="cart-products">
+          <ul class="list-group">
+            <li class="list-group-item d-flex align-items-start"
+                v-for="product in modules.blockcart.products" :key="Date.now() + Math.random()">
+                {include file='module:ps_shoppingcart/ps_shoppingcart-product-line.tpl'}
+            </li>
+          </ul>
+        </div>
         <div class="cart-subtotals">
           <div class="subtotal">
             <span class="label">
@@ -42,16 +44,18 @@
           </span>
         </div>
 
-        <a rel="nofollow" href="{$cart_url}" class="btn btn-outline-dark w-100 mt-3">
-          <span>{l s='Go to checkout' d='Shop.Theme.Actions'}</span>
-        </a>
+        <div slot="modal-footer" class="w-100">
+          <a rel="nofollow" href="{$cart_url}" class="btn btn-outline-dark w-100 mt-3">
+            <span>{l s='Go to checkout' d='Shop.Theme.Actions'}</span>
+          </a>
+        </div>
       </div>
     </b-modal>
   </div>
 </div>
 
 {if !isset($smarty.request.action) }
-  <b-modal id="blokcartModal" body-class="p-0" centered hide-footer title="{l s='Product successfully added' d='Shop.Theme.Actions'}">
+  <b-modal id="blokcartModal" body-class="p-0" size="lg" centered hide-footer title="{l s='Product successfully added' d='Shop.Theme.Actions'}">
     <div v-html="blockcart.modalData">
     </div>
   </b-modal>

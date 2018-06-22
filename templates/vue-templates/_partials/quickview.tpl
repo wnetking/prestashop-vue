@@ -112,7 +112,7 @@
       v-html="modules.productPageData.description">
     </b-tab>
     {block name='product_features'}
-      <b-tab  title="{l s='Data sheet' d='Shop.Theme.Catalog'}" v-if="modules.productPageData.features">
+      <b-tab  title="{l s='Data sheet' d='Shop.Theme.Catalog'}" v-if="modules.productPageData.features.length">
         <section class="product-features">
           <h3 class="sr-only">{l s='Data sheet' d='Shop.Theme.Catalog'}</h3>
           <table class="table table-bordered">

@@ -44,11 +44,6 @@ prestashop.blockcart = {
   data: []
 }
 
-// import styles
-// import 'bootstrap/dist/css/bootstrap.css'
-// import 'bootstrap-vue/dist/bootstrap-vue.css'
-// import 'vue-js-modal/dist/styles.css'
-
 $('[data-module-name]').each(function () {
   prestashop.modules[$(this).data('module-name')] = $(this).data('module-data')
 })
@@ -57,7 +52,6 @@ Vue.use(VueStringFilter)
 Vue.use(SocialSharing)
 Vue.use(Vuebar)
 Vue.use(VueImg)
-// Vue.use(window['vue-js-modal'].default)
 
 filters()
 components()
