@@ -8,7 +8,7 @@
       <i class="fa fa-shopping-basket"></i>
     </b-button>
 
-    <b-modal id="blockcartModalTotal" size="sm" body-class="p-2" hide-footer title="{l s='Cart' d='Shop.Theme.Actions'}">
+    <b-modal id="blockcartModalTotal" size="sm" body-class="p-2" title="{l s='Cart' d='Shop.Theme.Actions'}">
       <div class="cart-body" v-if="modules.blockcart.products.length">
         <div class="cart-products mb-2">
           <ul class="list-group">
@@ -51,22 +51,31 @@
           </div>
         </div>
 
-        <div slot="modal-footer" class="w-100">
-          <a rel="nofollow" href="{$cart_url}" class="btn btn-outline-dark w-100 mt-3">
-            <span>{l s='Go to checkout' d='Shop.Theme.Actions'}</span>
-          </a>
-        </div>
       </div>
       <div class="cart-body p-2" v-else>
         <h5 class="mb-0">{l s='You cart is empty!' d='Shop.Theme.Actions'}</h5>
+      </div>
+
+      <div slot="modal-footer" class="w-100" >
+        <a rel="nofollow" href="{$cart_url}" class="btn btn-outline-dark w-100" v-if="modules.blockcart.products.length">
+          <span>{l s='Go to checkout' d='Shop.Theme.Actions'}</span>
+        </a>
       </div>
     </b-modal>
   </div>
 </div>
 
 {if !isset($smarty.request.action) }
-  <b-modal id="blokcartModal" body-class="p-0" size="lg" centered hide-footer title="{l s='Product successfully added' d='Shop.Theme.Actions'}">
+  <b-modal id="blokcartModal" body-class="p-0" size="lg" centered title="{l s='Product successfully added' d='Shop.Theme.Actions'}">
     <div v-html="blockcart.modalData">
+    </div>
+    <div slot="modal-footer" class="w-100 d-flex justify-content-between">
+      <b-btn @click="$root.$emit('bv::hide::modal', 'blokcartModal', $event.target)">
+        <span>{l s='Continue shopping' d='Shop.Theme.Actions'}</span>
+      </b-btn>
+      <a rel="nofollow" href="{$cart_url}" class="btn btn-outline-dark">
+        <span>{l s='Go to checkout' d='Shop.Theme.Actions'}</span>
+      </a>
     </div>
   </b-modal>
 {/if}
