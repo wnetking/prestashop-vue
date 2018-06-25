@@ -24,6 +24,7 @@
   > ul > li {
     display: inline-block;
     vertical-align: top;
+
     &:hover > a,
     &.current > a {
       background-color: var(--gray-dark);
@@ -33,17 +34,17 @@
     > {
       a {
         color: $white;
+        border-bottom: 2px solid transparent;
+        border-top: 2px solid transparent;
+        font-size: 14px;
+        font-weight: 400;
+        text-transform: uppercase;
 
         &:hover {
           background-color: var(--gray-dark);
           border-top-color: var(--primary);
           color: #fff;
         }
-        border-bottom: 2px solid transparent;
-        border-top: 2px solid transparent;
-        font-size: 14px;
-        font-weight: 600;
-        text-transform: uppercase;
       }
       div {
         display: none;
