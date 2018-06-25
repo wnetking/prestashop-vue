@@ -47,6 +47,8 @@
         {include file='_partials/notifications.tpl'}
       {/block}
 
+      {hook h='displayTopColumnFullWidth'}
+
       <div id="wrapper" class="container">
         {block name='top-column'}
           {hook h="displayTopColumn"}

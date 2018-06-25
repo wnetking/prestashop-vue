@@ -32,12 +32,13 @@
 
     <b-popover
         ref="popover"
+        triggers="focus click"
         :target="sharePopOverId"
         :title="product.name"
         placement="top"
         >
         <social-sharing :url="product.canonical_url" inline-template>
-        <div class="product-share-btns">
+          <div class="product-share-btns">
             <network network="email">
             <i class="fa fa-envelope"></i> Email
             </network>
@@ -83,7 +84,7 @@
             <network network="whatsapp">
             <i class="fa fa-whatsapp"></i> Whatsapp
             </network>
-        </div>
+          </div>
         </social-sharing>
     </b-popover>
 </div>

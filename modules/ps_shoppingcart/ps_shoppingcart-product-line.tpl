@@ -6,23 +6,7 @@
     :width="product.cover.bySize.small_default.width"
     :height="product.cover.bySize.small_default.height"
     fluid blank-color="#ccc"></b-img>
-  <div class="d-flex mt-1">
-    <div class="btn-group btn-group-sm ml-auto mr-auto" role="group" aria-label="Basic example">
-      <a class="btn btn-secondary fa fa-minus"
-      @click="updateCartCore" v-if="product.down_quantity_url" :href="product.down_quantity_url">
-      </a>
-      <a class="btn btn-secondary fa fa-plus"
-          @click="updateCartCore"
-          v-if="product.up_quantity_url && (product.quantity_available - product.quantity) > 0"
-          :href="product.up_quantity_url">
-      </a>
-      <a class="btn btn-danger remove-from-cart fa fa-trash-o"
-          @click="updateCartCore"
-          :href="product.remove_from_cart_url">
-          {* {l s='Remove' d='Shop.Theme.Actions'} *}
-      </a>
-    </div>
-  </div>
+
 </div>
 <div class="mx-2 ml-lg-3">
   <a :href="product.url" class="product-name">
@@ -53,5 +37,21 @@
       </div>
     </div>
   </p>
-
+  <div class="d-flex mt-1">
+    <div class="btn-group btn-group-sm" role="group" aria-label="Basic example">
+      <a class="btn btn-secondary fa fa-minus"
+      @click="updateCartCore" v-if="product.down_quantity_url" :href="product.down_quantity_url">
+      </a>
+      <a class="btn btn-secondary fa fa-plus"
+          @click="updateCartCore"
+          v-if="product.up_quantity_url && (product.quantity_available - product.quantity) > 0"
+          :href="product.up_quantity_url">
+      </a>
+      <a class="btn btn-danger remove-from-cart fa fa-trash-o"
+          @click="updateCartCore"
+          :href="product.remove_from_cart_url">
+          {* {l s='Remove' d='Shop.Theme.Actions'} *}
+      </a>
+    </div>
+  </div>
 </div>

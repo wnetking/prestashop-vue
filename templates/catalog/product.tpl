@@ -123,15 +123,13 @@
                 {/block}
 
                 {block name='product_flags'}
-                  <ul class="product-flags list-inline">
+                  <div class="product-flags list-inline">
                     {foreach from=$product.flags item=flag name=flag}
-                      <li class="list-inline-item {if !$smarty.foreach.flag.last}mr-2{/if}">
-                        <span class="badge badge-info">
-                          {$flag.label}
-                        </span>
-                      </li>
+                      <span class="badge badge-info {$flag.type} mr-1">
+                        {$flag.label}
+                      </span>
                     {/foreach}
-                  </ul>
+                  </div>
                 {/block}
 
                 {block name='product_quantities'}
@@ -263,13 +261,13 @@
                   <div class="{$extra.attr.class}" id="extra-{$extraKey}">
                     {$extra.content nofilter}
                   </div>
-                </b-tab>  
+                </b-tab>
               {/foreach}
-                          
+
             </b-tabs>
           </b-card>
 
-          
+
 
           {block name='product_pack'}
             {if $packItems}
@@ -296,7 +294,7 @@
                 <b-card header="{l s='Accessories' d='Shop.Theme.Catalog'}" body-class="p-2" header-tag="h5">
                   <carousel class="products" :per-page-custom="[[768, 3], [1024, 4], [2560, 4]]"
                     :pagination-padding="5"
-                    pagination-active-color="var(--gray-dark)"
+                    pagination-active-color="var(--primary)"
                     pagination-color="var(--secondary)"
                     navigation-next-label=""
                     navigation-prev-label=""

@@ -22,21 +22,15 @@
  * @license   https://opensource.org/licenses/AFL-3.0 Academic Free License 3.0 (AFL-3.0)
  * International Registered Trademark & Property of PrestaShop SA
  *}
-<div id="contact-link" class="ml-auto">
-  {* {if $contact_infos.phone}
-    {* [1][/1] is for a HTML tag. *}
-    {* {l
-      s='Call us: [1]%phone%[/1]'
-      sprintf=[
-        '[1]' => '<span>',
-        '[/1]' => '</span>',
-        '%phone%' => $contact_infos.phone
-      ]
-      d='Shop.Theme.Global'
-    }
-  {else} *}
-    <a href="{$urls.pages.contact}" aria-haspopup="true" aria-expanded="false" class="nav-link">
+<div id="contact-link" class="mr-auto">
+  {if $contact_infos.phone}
+    <a href="tel:{$contact_infos.phone}" aria-haspopup="true" aria-expanded="false" class="btn btn-sm btn-link">
+      <i class="fa fa-phone" aria-hidden="true"></i>
+      <span>{$contact_infos.phone}</span>
+    </a>
+  {else}
+    <a href="{$urls.pages.contact}" aria-haspopup="true" aria-expanded="false" class="btn btn-link">
       <span>{l s='Contact us' d='Shop.Theme.Global'}</span>
     </a>
-  {* {/if} *}
+  {/if}
 </div>

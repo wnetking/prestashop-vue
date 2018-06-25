@@ -18,11 +18,11 @@
   </a>
 </h2>
 
-<div class="product-flags list-unstyled">
-  <b-badge v-if="product.show_availability && product.availability_message !== ''" :class='product.availability' variant="info">
+<div class="product-flags list-unstyled mb-2">
+  <b-badge v-if="product.show_availability && product.availability_message !== ''" :class="product.availability + ' mr-1'" variant="info">
       {literal}{{product.availability_message}}{/literal}
   </b-badge>
-  <b-badge variant="info" v-for="flag in product.flags" :class="flag.type" :key="flag.type">
+  <b-badge variant="info" v-for="flag in product.flags" :class="flag.type + ' mr-1'" :key="flag.type">
       {literal}{{flag.label}}{/literal}
   </b-badge>
 </div>
@@ -32,5 +32,5 @@
 </div>
 
 {include file="vue-templates/miniature-component/price.tpl"}
-{include file="vue-templates/miniature-component/product-list-actions.tpl"}
 {include file="vue-templates/miniature-component/variant-links.tpl"}
+{include file="vue-templates/miniature-component/product-list-actions.tpl"}

@@ -23,11 +23,11 @@
 *  International Registered Trademark & Property of PrestaShop SA
 *}
 <div class="language-selector">
-  <b-nav-item-dropdown text="{$current_language.name_simple}" left>
+  <b-dropdown size="sm" variant="link" text="{$current_language.name_simple}" right>
     {foreach from=$languages item=language}
       <b-dropdown-item href="{$link->getLanguageLink($language.id_lang)}">
         {$language.name_simple}
       </b-dropdown-item>
     {/foreach}
-  </b-nav-item-dropdown>
+  </b-dropdown>
 </div>

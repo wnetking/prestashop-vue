@@ -22,11 +22,10 @@
  * @license   https://opensource.org/licenses/AFL-3.0 Academic Free License 3.0 (AFL-3.0)
  * International Registered Trademark & Property of PrestaShop SA
  *}
-<div class="product-add-to-cart" v-if="!configuration.is_catalog && modules.productPageData.add_to_cart_url">
+<div class="product-add-to-cart mt-2 mb-3" v-if="!configuration.is_catalog && modules.productPageData.add_to_cart_url">
     <div class="d-flex">
       {block name='product_quantity'}
         <div class="product-quantity d-inline-flex align-items-center">
-          <label class="mr-2 mb-0" for="quantity_wanted">{l s='Quantity' d='Shop.Theme.Catalog'}</label>
           <input
             class="form-control mr-2 quantity"
             type="number"
@@ -40,9 +39,9 @@
         </div>
       {/block}
 
-      <button class="add-to-cart btn btn-dark" 
-          type="submit" 
-          name="add" 
+      <button class="add-to-cart btn btn-dark"
+          type="submit"
+          name="add"
           data-button-action="add-to-cart">
         {l s='Add to cart' d='Shop.Theme.Actions'}
       </button>
@@ -53,7 +52,7 @@
           {l
             s='The minimum purchase order quantity for the product is %quantity%.'
             d='Shop.Theme.Checkout'
-          }          
+          }
           {literal}{{modules.productPageData.minimal_quantity}}{/literal}
       </p>
     {/block}

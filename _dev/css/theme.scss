@@ -1,5 +1,6 @@
 @import '~bootstrap/scss/bootstrap';
 @import 'partials/commons';
+@import 'partials/inverse';
 @import 'components/product-share-btns.scss';
 @import 'components/blockcart.scss';
 @import 'components/user-info.scss';
@@ -39,10 +40,8 @@ i {
   }
 }
 
-.product-flags {
-  span {
-    margin: 0 3px;
-  }
+.product-miniature {
+  text-align: center;
 }
 
 .product-list-thumb {

@@ -41,7 +41,8 @@ prestashop.themeLoaderShow = false
 prestashop.modalWidth = 1110
 prestashop.blockcart = {
   modalData: '<h1>Hello cart</h1>',
-  data: []
+  data: [],
+  loading: false
 }
 
 $('[data-module-name]').each(function () {

@@ -8,9 +8,9 @@
       <i class="fa fa-shopping-basket"></i>
     </b-button>
 
-    <b-modal id="blockcartModalTotal" size="sm" body-class="p-2" centered hide-footer title="{l s='Cart' d='Shop.Theme.Actions'}">
-      <div class="cart-body">
-        <div class="cart-products">
+    <b-modal id="blockcartModalTotal" size="sm" body-class="p-2" hide-footer title="{l s='Cart' d='Shop.Theme.Actions'}">
+      <div class="cart-body" v-if="modules.blockcart.products.length">
+        <div class="cart-products mb-2">
           <ul class="list-group">
             <li class="list-group-item d-flex align-items-start"
                 v-for="product in modules.blockcart.products" :key="Date.now() + Math.random()">
@@ -18,30 +18,37 @@
             </li>
           </ul>
         </div>
-        <div class="cart-subtotals">
-          <div class="subtotal">
-            <span class="label">
-              {literal}{{ modules.blockcart.subtotals.shipping.label}}{/literal}
+
+        <div class="list-group-item">
+          <div class="cart-subtotals">
+            <div class="subtotal">
+              <p class="d-flex">
+                <span class="label mr-auto">
+                  {literal}{{ modules.blockcart.subtotals.shipping.label}} :{/literal}
+                </span>
+                <span class="value">
+                  {literal}{{modules.blockcart.subtotals.shipping.amount}} {{currency.sign}}{/literal}
+                </span>
+              </p>
+              <p class="d-flex">
+                <span class="label mr-auto">
+                  {literal}{{modules.blockcart.subtotals.products.label}} :{/literal}
+                </span>
+                <span class="value">
+                  {literal}{{modules.blockcart.subtotals.products.amount}} {{currency.sign}}{/literal}
+                </span>
+              </p>
+            </div>
+          </div>
+
+          <div class="cart-total d-flex">
+            <span class="label mr-auto">
+              {literal}{{modules.blockcart.totals.total.label}} :{/literal}
             </span>
-            <span class="value">
-              {literal}{{modules.blockcart.subtotals.shipping.amount}}{/literal}
-            </span>
-            <span class="label">
-              {literal}{{modules.blockcart.subtotals.products.label}}{/literal}
-            </span>
-            <span class="value">
-              {literal}{{modules.blockcart.subtotals.products.amount}}{/literal}
+            <span class="value text-primary">
+              {literal}{{modules.blockcart.totals.total.amount}} {{currency.sign}}{/literal}
             </span>
           </div>
-        </div>
-
-        <div class="cart-total">
-          <span class="label">
-            {literal}{{modules.blockcart.totals.total.label}}{/literal}
-          </span>
-          <span class="value">
-            {literal}{{modules.blockcart.totals.total.amount}}{/literal}
-          </span>
         </div>
 
         <div slot="modal-footer" class="w-100">
@@ -49,6 +56,9 @@
             <span>{l s='Go to checkout' d='Shop.Theme.Actions'}</span>
           </a>
         </div>
+      </div>
+      <div class="cart-body p-2" v-else>
+        <h5 class="mb-0">{l s='You cart is empty!' d='Shop.Theme.Actions'}</h5>
       </div>
     </b-modal>
   </div>

@@ -1,28 +1,58 @@
 .bg-dark {
-  a {
+  a,
+  .btn-link {
     color: $gray-600;
-    &:hover, &:focus {
+    &:hover,
+    &:focus {
       color: white;
     }
   }
-  ul[class^="list-default-"] li a, ul[class*=" list-default-"] li a {
-    &:hover, &:focus {
+
+  .dropdown-menu {
+    a {
+      &:hover,
+      &:focus {
+        color: $gray-600;
+      }
+    }
+  }
+
+  ul[class^='list-default-'] li a,
+  ul[class*=' list-default-'] li a {
+    &:hover,
+    &:focus {
       color: white;
     }
   }
-  h3 a, ul[class^="list-default-"] li .mail a, ul[class*=" list-default-"] li .mail a {
+  h3 a,
+  ul[class^='list-default-'] li .mail a,
+  ul[class*=' list-default-'] li .mail a {
     color: white;
-    &:hover, &:focus {
+    &:hover,
+    &:focus {
       color: $gray-600;
     }
   }
-  h1, .h1, h2, .h2, h3, .h3, h4, .h4, h5, .h5, h6, .h6 {
+  h1,
+  .h1,
+  h2,
+  .h2,
+  h3,
+  .h3,
+  h4,
+  .h4,
+  h5,
+  .h5,
+  h6,
+  .h6 {
     color: white;
   }
-  .form-control, .custom-select {
+  .form-control,
+  .custom-select {
     background: rgba(white, 0);
     border-color: $gray-800;
-    &:active, &:focus {
+    &:active,
+    &:focus {
       color: white;
       border-color: white;
     }
@@ -30,10 +60,12 @@
 }
 
 .bg-light {
-  .form-control, .custom-select {
+  .form-control,
+  .custom-select {
     border-color: $gray-800;
   }
-  &.definition-list dl, .definition-list dl {
+  &.definition-list dl,
+  .definition-list dl {
     dd,
     dt {
       background: white;

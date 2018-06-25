@@ -192,10 +192,10 @@ ul {
   }
 }
 
-input:-webkit-autofill {
-  -webkit-box-shadow: 0 0 0 30px $input-bg inset;
-  -webkit-text-fill-color: $gray-600 !important;
-}
+// input:-webkit-autofill {
+//   -webkit-box-shadow: 0 0 0 30px $input-bg inset;
+//   -webkit-text-fill-color: $gray-600 !important;
+// }
 
 .form-control-comment {
   font-size: 12px;
@@ -446,6 +446,7 @@ input:-webkit-autofill {
         background-image: none;
       }
     }
+    &.color,
     .color {
       width: 20px;
       height: 20px;
@@ -522,34 +523,10 @@ input:-webkit-autofill {
   }
 }
 
-ul.product-flags {
-  position: absolute;
-  left: 10px;
-  top: 10px;
-  width: 0;
-  li {
-    padding: 0 15px;
-    font-size: 14px;
-    line-height: 22px;
-    min-width: 45px;
-    color: white;
-    font-weight: bold;
-    font-family: $font-family-monospace;
-    text-transform: uppercase;
-    white-space: nowrap;
-    letter-spacing: 0.06em;
-    float: left;
-    clear: left;
-    border-radius: $btn-border-radius-sm - 5;
+.product-flags {
+  span {
+    color: $white;
 
-    // &:nth-last-child(n + 3):first-child,
-    //     &:nth-last-child(n+3):first-child ~ li {
-    //   font-size: 10px;
-    // }
-
-    &:not(:first-child) {
-      margin-top: 10px;
-    }
     &.discount {
       background: $pink;
     }
@@ -561,6 +538,10 @@ ul.product-flags {
     }
     &.pack {
       background: $brand-warning;
+    }
+
+    &.unavailable {
+      color: $gray-800;
     }
   }
 }
@@ -730,11 +711,30 @@ div[id^='_mobile_']:not(:empty) {
     position: absolute;
     top: 0;
     left: 0;
+    height: 100%;
 
     img {
+      margin-bottom: 10px;
+
       &.active {
         border: 1px solid $gray-800;
       }
     }
+  }
+}
+
+/* fullscreen-v-img
+   ========================================================================== */
+.fullscreen-v-img {
+  img {
+    background-color: $gray-300;
+  }
+}
+
+/* Carousel images
+   ========================================================================== */
+.carousel {
+  img {
+    background-color: $gray-400;
   }
 }

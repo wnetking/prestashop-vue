@@ -24,11 +24,11 @@
 *}
 
 <div class="currency-selector">
-  <b-nav-item-dropdown text="{$current_currency.iso_code} {$current_currency.sign}" left>
+  <b-dropdown size="sm" variant="link" text="{$current_currency.iso_code} {$current_currency.sign}" right>
     {foreach from=$currencies item=currency}
       <b-dropdown-item href="{$currency.url}">
         {$currency.iso_code} {$currency.sign}
       </b-dropdown-item>
     {/foreach}
-  </b-nav-item-dropdown>
+  </b-dropdown>
 </div>

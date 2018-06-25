@@ -43,7 +43,7 @@
   {/if}
 </div>
 {if !$logged}
-  <b-modal id="singInModal" centered hide-footer size="sm" body-class="p-0"
+  <b-modal id="singInModal" hide-footer size="sm" body-class="p-0"
     title="{l s='Welcome to our store' d='Shop.Theme.Actions'}">
     <div class="bg-light d-flex login-form p-3 flex-column w-100"  v-html="modules.singIn">
     </div>

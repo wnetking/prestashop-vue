@@ -31,10 +31,12 @@
 
    <b-modal id="searchModal" hide-footer size="sm" title="{l s='Search' d='Shop.Theme.Actions'}">
      <form method="get" action="{$search_controller_url}">
-       <p>
-          {l s='Please, enter you request' d='Shop.Theme.Actions'}
+       <p class="d-flex align-items-center">
+         <span>{l s='Please, enter you request' d='Shop.Theme.Actions'}</span>
+         <i v-if='blockcart.loading' class="fa fa-spinner fa-pulse ml-auto" aria-hidden="true"></i>
        </p>
        <div class="input-group">
+
          <input type="hidden" name="controller" value="search">
          <input @keyup="searchBarChange"
            class="mr-sm-2 form-control"

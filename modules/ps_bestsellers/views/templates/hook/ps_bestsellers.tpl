@@ -28,7 +28,8 @@
           header-tag="h5">
     <carousel class="products" :per-page-custom="[[768, 3], [1024, 4], [2560, 4]]"
               :pagination-padding="5"
-              pagination-active-color="var(--gray-dark)" pagination-color="var(--secondary)"
+              pagination-active-color="var(--primary)"
+              pagination-color="var(--gray-dark)"
               navigation-next-label=""
               navigation-prev-label="">
       <slide v-for="product in modules.bestSellers" :key="product.id">

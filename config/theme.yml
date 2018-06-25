@@ -52,9 +52,9 @@ global_settings:
 
     modules_to_hook:
       displayNav:
+        - ps_contactinfo
         - ps_languageselector
         - ps_currencyselector
-        - ps_contactinfo
       displayTop:
         - ps_searchbar
         - ps_customersignin
@@ -74,6 +74,7 @@ global_settings:
       displayNavFullWidth:
         - ps_mainmenu
         - blockreassurance
+      displayTopColumnFullWidth:
 
   image_types:
     cart_default:
@@ -81,20 +82,20 @@ global_settings:
       height: 80
       scope: [products]
     small_default:
-      width: 125
-      height: 125
+      width: 150
+      height: 150
       scope: [products, categories, manufacturers, suppliers]
     medium_default:
-      width: 300
-      height: 300
+      width: 350
+      height: 350
       scope: [products, categories, manufacturers, suppliers]
     large_default:
-      width: 500
-      height: 500
+      width: 800
+      height: 800
       scope: [products]
     home_default:
-      width: 250
-      height: 250
+      width: 300
+      height: 300
       scope: [products]
     category_default:
       width: 960

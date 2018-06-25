@@ -51,13 +51,11 @@
               </div>
             {/block}
             {block name='product_flags'}
-              <ul class="product-flags list-inline">
-                  <li class="list-inline-item" v-for="flag in modules.productPageData.flags">
-                    <span class="badge badge-info">
-                      {literal}{{flag.label}}{/literal}
-                    </span>
-                  </li>
-              </ul>
+              <div class="product-flags">
+                <span v-for="flag in modules.productPageData.flags" :class="flag.type + ' badge badge-info mr-1'">
+                  {literal}{{flag.label}}{/literal}
+                </span>
+              </div>
             {/block}
             {block name='product_quantities'}
               <p id="product-quantities" class="h6" v-if="modules.productPageData.show_quantities">
@@ -115,7 +113,7 @@
       <b-tab  title="{l s='Data sheet' d='Shop.Theme.Catalog'}" v-if="modules.productPageData.features.length">
         <section class="product-features">
           <h3 class="sr-only">{l s='Data sheet' d='Shop.Theme.Catalog'}</h3>
-          <table class="table table-bordered">
+          <table class="table table-striped">
             <tbody>
                 <tr v-for="feature in modules.productPageData.features">
                   <td>
