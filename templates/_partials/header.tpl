@@ -24,59 +24,31 @@
  *}
 {block name='header_banner'}
   <div class="header-banner">
-    {* {hook h='displayBanner'} *}
+    {hook h='displayBanner'}
   </div>
 {/block}
 
 <div class="bg-dark">
-  <b-navbar toggleable type="dark" class="container">
-    <b-navbar-nav class="w-100">
-      {block name='header_nav'}
-          {hook h='displayNav'}
-      {/block}
-    </b-navbar-nav>
-  </b-navbar>
+  <div class="container py-1 d-flex">
+    {block name='header_nav'}
+        {hook h='displayNav'}
+    {/block}
+  </div>
 </div>
 
-<div class="container">
-  <b-navbar toggleable type="light" class="py-2 py-lg-3">
-    <b-navbar-brand href="{$urls.base_url}" class="d-lg-none">
-      <img :src="shop.stores_icon"/>
-      <span>{literal}{{shop.name}}{/literal}</span>
-    </b-navbar-brand>
-
-    {block name='header_logo'}
-      <b-navbar-brand href="{$urls.base_url}" title="{$shop.name}" class="logo d-none d-lg-inline-block">
-        <img src="{$shop.logo}" alt="{$shop.name}">
-      </b-navbar-brand>
-    {/block}
-    {* <b-navbar-toggle target="header-top"></b-navbar-toggle> *}
-
-    <b-collapse is-nav id="header-top" class="justify-content-end">
-      <b-navbar-nav class="w-100">
-        {hook h='displayTop'}
-      </b-navbar-nav>
-    </b-collapse>
-  </b-navbar>
+<div class="container py-3">
+  <div class="row align-items-center">
+    <div class="col-12 col-sm-3">
+      {block name='header_logo'}
+        <a href="{$urls.base_url}" title="{$shop.name}" class="logo d-inline-block">
+          <img src="{$shop.logo}" alt="{$shop.name}">
+        </a>
+      {/block}
+    </div>
+    <div class="col-12 col-sm-9 d-flex justify-content-end">
+      {hook h='displayTop'}
+    </div>
+  </div>
 </div>
 
 {hook h='displayNavFullWidth'}
-
-
-{* <b-container class="pt-5">
-  <b-row class="mt-2">
-     <b-col>
-      {block name='header_top'}
-        <div class="header-top">
-          {hook h='displayTop'}
-        </div>
-
-
-
-      {/block}
-     </b-col>
-  </b-row>
-</b-container> *}
-
-
-

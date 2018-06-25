@@ -3,7 +3,7 @@
     <b-media>
         <b-carousel id="carousel"
                 slot="aside"
-                class="border"        
+                class="border"
                 controls
                 background="#ababab"
                 img-blank
@@ -12,8 +12,8 @@
                 {* img-height="480" *}
                 label-next="{l s='Next' d='Shop.Theme.Global'}"
                 label-prev="{l s='Previous' d='Shop.Theme.Global'}" >
-        <b-carousel-slide 
-            v-for="thumb in product.images" 
+        <b-carousel-slide
+            v-for="thumb in product.images"
             :key="thumb.id_image"
             :img-src="thumb.small.url"
             :img-height="thumb.small.height"
@@ -47,6 +47,6 @@
             {literal}{{variant.name}}{/literal}
         </a>
         </div>
-    
+
     </b-media>
 </script>

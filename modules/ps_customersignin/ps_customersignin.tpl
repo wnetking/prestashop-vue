@@ -33,13 +33,12 @@
         </div>
       </b-nav-item-dropdown>
   {else}
-    <b-nav-item class="login"
+    <button class="login btn btn-link"
       @click="getAuthenticationTpl"
-      href="{$my_account_url}"
       rel="nofollow" title="{l s='Log in to your customer account' d='Shop.Theme.Customeraccount'}">
       <em class="sr-only">{l s='Sign in' d='Shop.Theme.Actions'}</em>
       <i class="fa fa-user"></i>
-    </b-nav-item>
+    </button>
 
   {/if}
 </div>

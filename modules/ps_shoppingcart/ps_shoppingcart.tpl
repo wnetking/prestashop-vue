@@ -1,12 +1,12 @@
-<div id="blockcart-wrapper">
+<div id="blockcart-wrapper" class="ml-2 ml-lg-3">
   <div class="blockcart cart-preview position-relative"
       data-refresh-url="{$refresh_url}"
       data-module-name="blockcart" data-module-data="{$cart|@json_encode}">
 
-    <b-nav-item v-b-modal="'blockcartModalTotal'">
+    <b-button variant="link" v-b-modal="'blockcartModalTotal'">
       <em class="sr-only">{l s='Cart' d='Shop.Theme.Actions'}</em>
       <i class="fa fa-shopping-basket"></i>
-    </b-nav-item>
+    </b-button>
 
     <b-modal id="blockcartModalTotal" size="sm" body-class="p-2" centered hide-footer title="{l s='Cart' d='Shop.Theme.Actions'}">
       <div class="cart-body">
