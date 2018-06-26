@@ -57,7 +57,7 @@
       </div>
 
       <div slot="modal-footer" class="w-100" >
-        <a rel="nofollow" href="{$cart_url}" class="btn btn-outline-dark w-100" v-if="modules.blockcart.products.length">
+        <a rel="nofollow" href="{$cart_url}" class="btn btn-primary w-100" v-if="modules.blockcart.products.length">
           <span>{l s='Go to checkout' d='Shop.Theme.Actions'}</span>
         </a>
       </div>

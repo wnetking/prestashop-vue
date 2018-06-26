@@ -23,9 +23,15 @@
  * International Registered Trademark & Property of PrestaShop SA
  *}
 {block name='header'}
-  <header id="header" class="py-3 py-xl-5 mb-xl-4">
-    <a href="{$urls.base_url}">
-      <img src="{$shop.logo}" alt="{$shop.name}">
-    </a>
+  <header id="header" class="row py-3 mb-xl-4">
+    <div class="col-12 col-md-4">
+      <a href="{$urls.base_url}">
+        <img src="{$shop.logo}" alt="{$shop.name}">
+      </a>
+    </div>
+    <div class="col-12 col-md-8 d-flex">
+      {hook h='displayCheckoutTop'}
+    </div>
   </header>
+
 {/block}

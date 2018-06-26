@@ -26,7 +26,7 @@
   {hook h='displayFooterBefore'}
 {/block}
  <div class="bg-dark text-white py-4 py-lg-5">
-  <b-container>
+  <div class="container">
     <div class="row">
       {block name='hook_footer'}
         {hook h='displayFooter'}
@@ -48,5 +48,5 @@
     <div class="progress fixed-top rounded-0" v-if="themeLoaderShow"  style="height: 10px; z-index: 10000;">
       <div class="progress-bar progress-bar-striped bg-primary progress-bar-animated rounded-0" role="progressbar" style="width: 100%" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100"></div>
     </div>
-  </b-container>
+  </div>
 </div>

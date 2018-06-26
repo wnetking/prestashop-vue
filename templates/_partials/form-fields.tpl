@@ -104,14 +104,16 @@
 {else}
 
   {block name='form_field_item_other'}
-    <label {if $field.required}class="required"{/if}>
-      <small class="mb-1">{$field.label}</small>
-      <input
-        class="form-control"
-        name="{$field.name}"
-        type="{$field.type}"
-        value="{$field.value}" {if $field.required}required{/if}>
-    </label>
+    <div>
+      <label {if $field.required}class="required "{/if}>
+        <small class="mb-1">{$field.label}</small>
+        <input
+          class="form-control"
+          name="{$field.name}"
+          type="{$field.type}"
+          value="{$field.value}" {if $field.required}required{/if}>
+      </label>
+    <div>
   {/block}
 
 {/if}

@@ -17,6 +17,8 @@ export default function() {
     $.post(prestashop.urls.pages.product, data, null, 'json')
       .then(resp => {
         this.$nextTick(function () {
+          console.log(resp.quickview_html)
+
           this.modules.productPageData = resp.product
           this.modules.quickView.variants = $(resp.quickview_html)
             .find('#quickview-product-variants')

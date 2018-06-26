@@ -1,6 +1,6 @@
 <div class="user-info ml-2 ml-lg-3">
   {if $logged}
-    <b-nav-item-dropdown right>
+    <b-dropdown right variant="link">
         <template slot="button-content">
           <em class="sr-only">User</em>
           <i class="fa fa-user"></i>
@@ -31,7 +31,7 @@
             {l s='Sign out' d='Shop.Theme.Actions'}
           </a>
         </div>
-      </b-nav-item-dropdown>
+      </b-dropdown>
   {else}
     <button class="login btn btn-link"
       @click="getAuthenticationTpl"

@@ -22,23 +22,11 @@
 *  @license    http://opensource.org/licenses/afl-3.0.php  Academic Free License (AFL 3.0)
 *  International Registered Trademark & Property of PrestaShop SA
 *}
+{if isset($quickview)}
+  <p>Quickview</p>
+{/if}
+
 <section class="mb-3 featured-products clearfix"  data-module-name="sameCategoryProduct" data-module-data="{$products|@json_encode}">
-  {* <h2>
-    {if $products|@count == 1}
-      {l s='%s other product in the same category:' sprintf=[$products|@count] d='Modules.Categoryproducts.Shop'}
-    {else}
-      {l s='%s other products in the same category:' sprintf=[$products|@count] d='Modules.Categoryproducts.Shop'}
-    {/if}
-  </h2>
-
-  <carousel class="products" :per-page-custom="[[768, 3], [1024, 4], [2560, 4]]" navigation-enabled :pagination-padding="5">
-    <slide v-for="product in modules.sameCategoryProduct" :key="product.id">
-      <div is="product-miniature" :product='product'></div>
-    </slide>
-  </carousel> *}
-
-
-
   <b-card header="
     {if $products|@count == 1}
       {l s='%s other product in the same category:' sprintf=[$products|@count] d='Modules.Categoryproducts.Shop'}

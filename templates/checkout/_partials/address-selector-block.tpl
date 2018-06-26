@@ -24,31 +24,31 @@
  *}
 {block name='address_selector_blocks'}
   {foreach $addresses as $address}
-    <article id="{$name|classname}-address-{$address.id}" class="address-item bg-light border rounded">
+    <article id="{$name|classname}-address-{$address.id}" class="address-item bg-light border rounded p-3">
       <header class="h6">
         {$address.alias}
       </header>
 
-      <label class="radio-block custom-control custom-radio">
+      <div class="custom-control custom-radio mb-2">
           <input
             class="custom-control-input"
             type="radio"
             value="{$address.id}"
             name="{$name}"
+            id="address_{$address.id}"
             {if $address.id == $selected}checked{/if}
           >
-        <span aria-hidden="true" class="custom-control-indicator"></span>
-        <span class="custom-control-description">
-          {$address.formatted nofilter}
-        </span>
-      </label>
+          <label class="custom-control-label" for="address_{$address.id}">
+              {$address.formatted nofilter}
+          </label>
+      </div>
 
       <footer>
         {if $interactive}
           <a  data-link-action="edit-address"
             class="btn btn-sm btn-secondary"
             href="{url entity='order' params=['id_address' => $address.id, 'editAddress' => $type, 'token' => $token]}">
-            <i class="far fa-edit"></i>
+            <i class="fa fa-edit"></i>
             <span class="sr-only">{l s='Edit' d='Shop.Theme.Actions'}</span>
           </a>
           <a  data-link-action="delete-address"
@@ -63,7 +63,7 @@
   {/foreach}
   {if $interactive}
     <p>
-      <button class="ps-hidden-by-js" type="submit">{l s='Save' d='Shop.Theme.Actions'}</button>
+      <button class="ps-hidden-by-js invisible" type="submit">{l s='Save' d='Shop.Theme.Actions'}</button>
     </p>
   {/if}
 {/block}

@@ -75,6 +75,8 @@ global_settings:
         - ps_mainmenu
         - blockreassurance
       displayTopColumnFullWidth:
+      displayCheckoutTop:
+        - ps_searchbar
 
   image_types:
     cart_default:

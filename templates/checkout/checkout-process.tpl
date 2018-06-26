@@ -22,9 +22,11 @@
  * @license   https://opensource.org/licenses/AFL-3.0 Academic Free License 3.0 (AFL-3.0)
  * International Registered Trademark & Property of PrestaShop SA
  *}
-{foreach from=$steps item="step" key="index"}
-  {render identifier = $step.identifier
-          position = ($index + 1)
-          ui = $step.ui
-  }
-{/foreach}
+
+  {foreach from=$steps item="step" key="index"}
+    {render identifier = $step.identifier
+            position = ($index + 1)
+            ui = $step.ui
+    }
+  {/foreach}
+

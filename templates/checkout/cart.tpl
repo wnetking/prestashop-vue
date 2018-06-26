@@ -36,7 +36,7 @@
           {include file='checkout/_partials/cart-detailed.tpl' cart=$cart}
         {/block}
         {block name='continue_shopping'}
-          <a href="{$urls.pages.index}" class="btn btn-secondary mt-3">
+          <a href="{$urls.pages.index}" class="btn btn-secondary mt-3 mb-3">
             {l s='Continue shopping' d='Shop.Theme.Actions'}
           </a>
         {/block}

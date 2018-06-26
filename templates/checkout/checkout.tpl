@@ -46,7 +46,9 @@
           <div class="row">
             <div class="col-7">
               {block name='cart_summary'}
-                {render file='checkout/checkout-process.tpl' ui=$checkout_process}
+                <div role="tablist">
+                  {render file='checkout/checkout-process.tpl' ui=$checkout_process}
+                </div>
               {/block}
             </div>
             <div class="col-5">
@@ -59,11 +61,11 @@
           </div>
         </section>
       {/block}
-
-      {* {block name='footer'}
-        {include file='checkout/_partials/footer.tpl'}
-      {/block} *}
     </div>
+
+    {block name='footer'}
+      {include file='checkout/_partials/footer.tpl'}
+    {/block}
 
     {block name='javascript_bottom'}
       {include file="_partials/javascript.tpl" javascript=$javascript.bottom}

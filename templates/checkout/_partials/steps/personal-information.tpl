@@ -3,15 +3,16 @@
 {block name='step_content'}
   {if $customer.is_logged && !$customer.is_guest}
     <p class="identity">
-      {l s='Connected as %first_name% %last_name%.' sprintf=['%first_name%' => $customer.firstname, '%last_name%' => $customer.lastname] d='Shop.Theme.Customeraccount'}
+      {l s='Connected as %first_name% %last_name%.'
+        sprintf=['%first_name%' => $customer.firstname, '%last_name%' => $customer.lastname] d='Shop.Theme.Customeraccount'}
     </p>
     <p>
       {l
         s='Not you? [1]Log out[/1]'
         d='Shop.Theme.Customeraccount'
         sprintf=[
-          '[1]' => "<a href='{$urls.actions.logout}'>",
-          '[/1]' => "</a>"
+          '[1]' => "<div class='mt-2'><a href='{$urls.actions.logout}' class='btn btn-outline-primary'>",
+          '[/1]' => "</a></div>"
         ]
       }
     </p>

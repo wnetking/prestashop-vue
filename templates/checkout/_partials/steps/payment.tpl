@@ -15,31 +15,20 @@
       <ul>
         {foreach from=$conditions_to_approve item="condition" key="condition_name"}
           <li>
-            {* <input  id    = "conditions_to_approve[{$condition_name}]"
-                    name  = "conditions_to_approve[{$condition_name}]"
-                    required
-                    type  = "checkbox"
-                    value = "1"
-                    class = "ps-shown-by-js"
-            >
-            <label for="conditions_to_approve[{$condition_name}]">
-              {$condition nofilter}
-            </label> *}
+            <div class="custom-control custom-checkbox">
+              <input
+                class="custom-control-input ps-shown-by-js"
+                id = "conditions_to_approve[{$condition_name}]"
+                name = "conditions_to_approve[{$condition_name}]"
+                required
+                type = "checkbox"
+                value = "1"
+              >
+              <label class="custom-control-label" for="conditions_to_approve[{$condition_name}]">
+                  {$condition nofilter}
+              </label>
+            </div>
 
-            <label class="radio-block custom-control custom-checkbox">
-                <input
-                  class="custom-control-input ps-shown-by-js"
-                  id = "conditions_to_approve[{$condition_name}]"
-                  name = "conditions_to_approve[{$condition_name}]"
-                  required
-                  type = "checkbox"
-                  value = "1"
-                >
-              <span aria-hidden="true" class="custom-control-indicator"></span>
-              <span class="custom-control-description">
-                {$condition nofilter}
-              </span>
-            </label>
           </li>
         {/foreach}
       </ul>
@@ -49,59 +38,39 @@
   <div class="payment-options mb-3">
     {foreach from=$payment_options item="module_options"}
       {foreach from=$module_options item="option"}
-        <div>
-          <div id="{$option.id}-container" class="payment-option">
-
-            {* This is the way an option should be selected when Javascript is enabled *}
-            {* <input
-              class="ps-shown-by-js"
+        <div id="{$option.id}-container" class="payment-option">
+          <div class="custom-control custom-radio mb-2">
+            <input
+              class="custom-control-input"
               id="{$option.id}"
               type="radio"
               name="payment-option"
               required {if $selected_payment_option == $option.id} checked {/if}
-              >
-            <label for="{$option.id}">
-              <span>{$option.call_to_action_text}</span>
-              {if $option.logo}
-                <img src="{$option.logo}">
-              {/if}
-            </label> *}
-
-            <label class="ps-shown-by-js custom-control custom-radio">
-              <input
-                class="custom-control-input"
-                id="{$option.id}"
-                type="radio"
-                name="payment-option"
-                required {if $selected_payment_option == $option.id} checked {/if}
-              >
-            <span aria-hidden="true" class="custom-control-indicator"></span>
-            <span class="custom-control-description">
-              <span>{$option.call_to_action_text}</span>
-              {if $option.logo}
-                <img src="{$option.logo}">
-              {/if}
-            </span>
-          </label>
-
-            <form method="GET" class="ps-hidden-by-js">
-              {if $option.id === $selected_payment_option}
-                {l s='Selected' d='Shop.Theme.Checkout'}
-              {else}
-                <button class="ps-hidden-by-js" type="submit" name="select_payment_option" value="{$option.id}">
-                  {l s='Choose' d='Shop.Theme.Actions'}
-                </button>
-              {/if}
-            </form>
-
+            >
+            <label class="ps-shown-by-js custom-control-label" for="{$option.id}">
+                <span>{$option.call_to_action_text}</span>
+                {if $option.logo}
+                  <img src="{$option.logo}">
+                {/if}
+            </label>
           </div>
+
+          <form method="GET" class="ps-hidden-by-js">
+            {if $option.id === $selected_payment_option}
+              {l s='Selected' d='Shop.Theme.Checkout'}
+            {else}
+              <button class="ps-hidden-by-js" type="submit" name="select_payment_option" value="{$option.id}">
+                {l s='Choose' d='Shop.Theme.Actions'}
+              </button>
+            {/if}
+          </form>
+
         </div>
 
         {if $option.additionalInformation}
           <div
             id="{$option.id}-additional-information"
-            class="mb-3 p-2 p-xl-3 bg-light border rounded js-additional-information {if $option.id != $selected_payment_option} ps-hidden {/if}"
-          >
+            class="mb-3 p-2 p-xl-3 bg-light border rounded js-additional-information {if $option.id != $selected_payment_option} ps-hidden {/if}">
             {$option.additionalInformation nofilter}
           </div>
         {/if}

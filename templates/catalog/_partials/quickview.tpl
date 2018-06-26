@@ -34,9 +34,6 @@
     {hook h='displayProductAdditionalInfo' product=$product}
   </div>
 
-  <div class="product-pack mb-3" data-module-name="packProduct" data-module-data="{$packItems|@json_encode}">
-  </div>
-
   <div class="product-accessories mb-3"
     data-module-name="accessoriesProduct"
     data-module-data="{$accessories|@json_encode}">

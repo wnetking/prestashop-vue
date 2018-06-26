@@ -23,8 +23,13 @@
  * International Registered Trademark & Property of PrestaShop SA
  *}
 {block name='footer'}
-  <footer id="footer">
-    Simplified footer
+  <footer id="footer" class="bg-dark text-center py-3 py-lg-4 mt-3">
+    {block name='copyright_link'}
+      <a class="_blank" href="http://www.prestashop.com" target="_blank">
+        {l s='%copyright% %year% - Ecommerce software by %prestashop%'
+        sprintf=['%prestashop%' => 'PrestaShop™', '%year%' => 'Y'|date, '%copyright%' => '©'] d='Shop.Theme.Global'}
+      </a>
+    {/block}
   </footer>
 {/block}
 

@@ -49,11 +49,16 @@
                   <img src="{$field.image.small.url}">
                   <a class="remove-image" href="{$field.remove_image_url}" rel="nofollow">{l s='Remove Image' d='Shop.Theme.Actions'}</a>
                 {/if}
-                <div class="custom-file b-form-file">
-                  <input id="customFile" class="custom-file-input" {if $field.required} required {/if} type="file" name="{$field.input_name}">
-                  <label class="custom-file-control" for="customFile">{l s='Choose file' d='Shop.Theme.Actions'}</label>
+
+                <div class="input-group w-50">
+                  <div class="input-group-prepend">
+                    <span class="input-group-text py-0" id="formats">{l s='.png .jpg .gif' d='Shop.Forms.Help'}</span>
+                  </div>
+                  <div class="custom-file">
+                    <input type="file" class="custom-file-input" aria-describedby="formats" id="customFile" {if $field.required} required {/if} name="{$field.input_name}">
+                    <label class="custom-file-label" for="customFile">{l s='Choose file' d='Shop.Theme.Actions'}</label>
+                  </div>
                 </div>
-                <small class="form-text text-muted">{l s='.png .jpg .gif' d='Shop.Forms.Help'}</small>
               {/if}
             </li>
           {/foreach}

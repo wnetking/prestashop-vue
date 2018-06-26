@@ -42,24 +42,25 @@
             {foreach from=$delivery_options item=carrier key=carrier_id}
               <div>
                 <div class="delivery-option mb-2 p-2 p-xl-3 bg-light border rounded">
-                  <label class="custom-control custom-radio ">
+                  <div class="custom-control custom-radio">
                       <input
                         id="delivery_option_{$carrier.id}"
                         class="custom-control-input"
                         type="radio"
                         value="{$carrier_id}"
+                        id="delivery_{$id_address}"
                         name="delivery_option[{$id_address}]"
                         {if $delivery_option == $carrier_id} checked{/if}
                       >
 
-                    <span aria-hidden="true" class="custom-control-indicator"></span>
-                    <span class="custom-control-description">
-                      <span>{$carrier.label}</span>
-                      {if $carrier.logo}
-                        <img src="{$carrier.logo}" alt="{$carrier.name}" class="d-block">
-                      {/if}
-                    </span>
-                  </label>
+                    <label class="custom-control-label" for="delivery_{$id_address}">
+                        <span>{$carrier.label}</span>
+                        {if $carrier.logo}
+                          <img src="{$carrier.logo}" alt="{$carrier.name}" class="d-block">
+                        {/if}
+                    </label>
+                  </div>
+
                   {$carrier.extraContent nofilter}
                 </div>
               </div>

@@ -16,7 +16,7 @@ $font-size-base: 0.9286rem;
 $font-family-base: 'Ubuntu', sans-serif;
 $font-custom-icon: 'FontAwesome';
 //Links
-$link-color: $brand-secondary;
+$link-color: lighten($blue, 25%);
 $link-hover-color: $brand-primary;
 $link-hover-decoration: none;
 //font size
@@ -67,8 +67,8 @@ $input-focus-color: $black;
 $input-placeholder-color: $gray-600;
 $input-box-shadow: none;
 $input-group-btn-border-color: initial;
-$input-group-addon-bg: $input-focus-border-color;
-$input-group-addon-border-color: $input-focus-border-color;
+$input-group-addon-bg: $gray-300;
+$input-group-addon-border-color: $gray-400;
 $input-padding-y: 14px;
 $input-btn-line-height: 1.5;
 $input-btn-padding-y: 0.625rem;

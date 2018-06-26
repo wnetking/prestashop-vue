@@ -23,7 +23,7 @@
  * International Registered Trademark & Property of PrestaShop SA
  *}
 {block name='step'}
-  <section id="{$identifier}"
+  {* <section id="{$identifier}"
     class="{[
       'checkout-step' => true,
       '-current' => $step_is_current,
@@ -31,13 +31,27 @@
       '-complete' => $step_is_complete,
       'js-current-step' => $step_is_current
     ]|classnames}"
-  >
-    <h3 class="h4 p-2 bg-white border rounded">
+  > *}
+    <b-card no-body class="mb-1">
+      <b-card-header header-tag="header" class="p-1" role="tab">
+        <b-btn class="text-left" block href="#" v-b-toggle="'{$identifier}'" {if !$step_is_reachable}disabled{/if} variant="{if $step_is_complete}success{else}light{/if}">
+          <span class="step-number">{$position}.</span> {$title}
+        </b-btn>
+      </b-card-header>
+
+      <b-collapse id="{$identifier}" {if $step_is_complete}visible{/if} accordion="checkout" role="tabpanel">
+        <b-card-body>
+          {block name='step_content'}DUMMY STEP CONTENT{/block}
+        </b-card-body>
+      </b-collapse>
+    </b-card>
+
+    {* <h3 class="h4 p-2 bg-white border rounded">
       <span class="step-number">{$position}.</span>
       {$title}
     </h3>
     <div class="content mb-2 bg-white border rounded p-3">
       {block name='step_content'}DUMMY STEP CONTENT{/block}
-    </div>
-  </section>
+    </div> *}
+  {* </section> *}
 {/block}
