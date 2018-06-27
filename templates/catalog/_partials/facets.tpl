@@ -30,15 +30,14 @@
         {if $facet.widgetType !== 'dropdown'}
           <ul>
             {foreach from=$facet.filters item="filter"}
-              {assign var=facet_unique_id value=10|mt_rand:1000}
+              {assign var=_expand_id value=10|mt_rand:1000}
+              {assign var=filter_key value=10|mt_rand:1000}
               {if $filter.displayed}
-                <li class="{if isset($filter.properties.color)}list-inline-item d-inline-block{/if} mb-2">
+                <li class="{if isset($filter.properties.color)}{/if} mb-2">
                   {if $facet.type == 'price'}
-                    <div class="p-1 pt-2">
-                      <input id="price-slider"{if !$_collapse} class="active"{/if} data-slidermin="{$facet.properties.min}" data-slidermax="{$facet.properties.max}" type="hidden" value="{$facet.properties.min},{$facet.properties.max}" />
-                      <a href="{$filter.nextEncodedFacetsURL}" id="price-slider-link" class="d-none search-link js-search-link" rel="nofollow"></a>
-                    </div>
-                    {break}
+                    <a href="{$filter.nextEncodedFacetsURL}" id="price-slider-link" class="search-link js-search-link" rel="nofollow">
+                      <i class="fa fa-circle mr-1" aria-hidden="true"></i> {$filter.label}
+                    </a>
                   {elseif $facet.multipleSelectionAllowed}
                     <div class="custom-control custom-checkbox">
                       <input
@@ -48,12 +47,21 @@
                         type="checkbox"
                         {if $filter.active } checked {/if}
                       >
-                      <label class="facet-label custom-control-label{if $filter.active} active{/if}" for="facet_input_{$_expand_id}_{$filter_key}"{if isset($filter.properties.color)} style="background-color:{$filter.properties.color}"{/if}{if isset($filter.properties.texture)} style="background-image:url({$filter.properties.texture})"{/if}>
+                      <label class="facet-label custom-control-label{if $filter.active} active{/if}" for="facet_input_{$_expand_id}_{$filter_key}">
                         <span {if !$js_enabled}class="ps-shown-by-js"{/if}>
-                          <a href="{$filter.nextEncodedFacetsURL}" class="search-link js-search-link" rel="nofollow">
+                          <a href="{$filter.nextEncodedFacetsURL}" class="search-link js-search-link {if isset($filter.properties.color) || isset($filter.properties.texture)}d-flex align-items-center{/if}" rel="nofollow">
                             {$filter.label}
                             {if $filter.magnitude}
                               <span class="magnitude">({$filter.magnitude})</span>
+                            {/if}
+                            {if isset($filter.properties.color) || isset($filter.properties.texture)}
+                              <span class="color-indicator rounded-circle border ml-1" {if isset($filter.properties.color)}
+                                style="background-color:{$filter.properties.color}"
+                              {/if}
+                              {if isset($filter.properties.texture)}
+                                style="background-image:url({$filter.properties.texture})"
+                              {/if}>
+                              </span>
                             {/if}
                           </a>
                         </span>

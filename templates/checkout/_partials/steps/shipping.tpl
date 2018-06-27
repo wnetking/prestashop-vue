@@ -48,12 +48,11 @@
                         class="custom-control-input"
                         type="radio"
                         value="{$carrier_id}"
-                        id="delivery_{$id_address}"
                         name="delivery_option[{$id_address}]"
                         {if $delivery_option == $carrier_id} checked{/if}
                       >
 
-                    <label class="custom-control-label" for="delivery_{$id_address}">
+                    <label class="custom-control-label" for="delivery_option_{$carrier.id}">
                         <span>{$carrier.label}</span>
                         {if $carrier.logo}
                           <img src="{$carrier.logo}" alt="{$carrier.name}" class="d-block">

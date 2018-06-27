@@ -24,7 +24,7 @@
  *}
 {block name='address_selector_blocks'}
   {foreach $addresses as $address}
-    <article id="{$name|classname}-address-{$address.id}" class="address-item bg-light border rounded p-3">
+    <article id="{$name|classname}-address-{$address.id}" class="address-item bg-light border rounded p-3 col-12 col-md-6">
       <header class="h6">
         {$address.alias}
       </header>

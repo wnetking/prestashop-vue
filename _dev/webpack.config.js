@@ -29,7 +29,8 @@ const finder = require('fs-finder')
 const UglifyJSPlugin = require('uglifyjs-webpack-plugin')
 
 module.exports = env => {
-  const production = process.env.NODE_ENV === 'development' ? true : false
+  console.log(env, process.env.NODE_ENV)
+  const production = process.env.NODE_ENV === 'production' ? true : false
 
   return [{
     entry: getEntries(),
@@ -142,7 +143,12 @@ module.exports = env => {
           }
         }) :
         () => {
+        },
+      new webpack.DefinePlugin({
+        'process.env': {
+          NODE_ENV: production ? JSON.stringify('production') : JSON.stringify('development')
         }
+      })
     ],
     resolve: {
       alias: {

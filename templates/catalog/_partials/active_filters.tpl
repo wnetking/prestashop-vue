@@ -22,7 +22,7 @@
  * @license   https://opensource.org/licenses/AFL-3.0 Academic Free License 3.0 (AFL-3.0)
  * International Registered Trademark & Property of PrestaShop SA
  *}
-<section id="js-active-search-filters" class="active_filters">
+<section id="js-active-search-filters" class="active_filters mb-3">
   {if $activeFilters|count}
     <div class="d-flex align-items-center px-2 py-1 bg-white border rounded">
       <ul class="list-inline mb-0">

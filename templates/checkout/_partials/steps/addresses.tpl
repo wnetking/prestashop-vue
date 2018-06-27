@@ -27,6 +27,7 @@
 {block name='step_content'}
   <div class="js-address-form">
     <form
+
       method="POST"
       action="{$urls.pages.order}"
       data-refresh-url="{url entity='order' params=['ajax' => 1, 'action' => 'addressForm']}"
@@ -56,14 +57,16 @@
         }
       </div>
     {elseif $customer.addresses|count > 0}
-      <div id="delivery-addresses" class="address-selector js-address-selector">
-        {include  file='checkout/_partials/address-selector-block.tpl'
-                  addresses=$customer.addresses
-                  name="id_address_delivery"
-                  selected=$id_address_delivery
-                  type="delivery"
-                  interactive=(!$show_delivery_address_form and !$show_invoice_address_form)
-        }
+      <div id="delivery-addresses" class="address-selector js-address-selector container-fluid mb-2">
+        <div class="row">
+          {include  file='checkout/_partials/address-selector-block.tpl'
+          addresses=$customer.addresses
+          name="id_address_delivery"
+          selected=$id_address_delivery
+          type="delivery"
+          interactive=(!$show_delivery_address_form and !$show_invoice_address_form)
+          }
+        </div>
       </div>
 
       <a href="{$new_address_delivery_url}">{l s='Add a new address' d='Shop.Theme.Actions'}</a>

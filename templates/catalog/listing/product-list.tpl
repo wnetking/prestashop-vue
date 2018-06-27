@@ -46,7 +46,7 @@
           {include file='catalog/_partials/products.tpl' listing=$listing}
         {/block}
 
-        <div id="js-product-list-bottom">
+        <div id="js-product-list-bottom" class="mb-3">
           {block name='product_list_bottom'}
             {include file='catalog/_partials/products-bottom.tpl' listing=$listing}
           {/block}

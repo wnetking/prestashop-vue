@@ -24,14 +24,16 @@
         </small>
       </p>
     {/if}
-  {elseif $show_login_form}
-    <a href="{$urls.pages.order}">{l s='No account?' d='Shop.Theme.Customeraccount'}</a>
-    {render file='checkout/_partials/login-form.tpl' ui=$login_form}
   {else}
-    <a data-link-action="show-login-form" href="{$urls.pages.order_login}">
-      {l s='Already have an account?' d='Shop.Theme.Customeraccount'}
-    </a>
-    {render file='checkout/_partials/customer-form.tpl'
-            ui=$register_form guest_allowed=$guest_allowed}
+    <b-card no-body>
+      <b-tabs card>
+        <b-tab title="{l s='Log in' d='Shop.Theme.Customeraccount'}" active>
+          {render file='checkout/_partials/login-form.tpl' ui=$login_form}
+        </b-tab>
+        <b-tab title="{l s='Sing in' d='Shop.Theme.Customeraccount'}" >
+          {render file='checkout/_partials/customer-form.tpl' ui=$register_form guest_allowed=$guest_allowed}
+        </b-tab>
+      </b-tabs>
+    </b-card>
   {/if}
 {/block}

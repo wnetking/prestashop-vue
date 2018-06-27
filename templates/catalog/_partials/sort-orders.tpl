@@ -22,16 +22,14 @@
  * @license   https://opensource.org/licenses/AFL-3.0 Academic Free License 3.0 (AFL-3.0)
  * International Registered Trademark & Property of PrestaShop SA
  *}
-<div class="products-sort-order">
-  <div class="btn-group" role="group" aria-label="Basic example">
-    {foreach from=$sort_orders item=sort_order}
-      <a
-        class="btn btn-outline-light btn-sm border text-dark {['active' => $sort_order.current, 'js-search-link' => true]|classnames}"
-        href="{$sort_order.url}"
-        rel="nofollow"
-      >
-        {$sort_order.label}
-       </a>
-    {/foreach}
-  </div>
+<div class="products-sort-order" data-module-name="sortOrders" data-module-data="{$sort_orders|@json_encode}">
+  <b-dropdown variant="light" size="sm">
+    <template slot="button-content">
+      <span v-for="item in modules.sortOrders" v-if="item.current">{literal}{{item.label}}{/literal}</span>
+    </template>
+
+    <b-dropdown-item v-for="item in modules.sortOrders" :href="item.url" class="js-search-link">
+      {literal}{{item.label}}{/literal}
+    </b-dropdown-item>
+  </b-dropdown>
 </div>

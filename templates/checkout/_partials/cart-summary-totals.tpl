@@ -22,23 +22,24 @@
  * @license   https://opensource.org/licenses/AFL-3.0 Academic Free License 3.0 (AFL-3.0)
  * International Registered Trademark & Property of PrestaShop SA
  *}
-<div class="cart-summary-totals">
+<div class="cart-summary-totals mt-3 bg-light border rounded p-3">
   {block name='cart_summary_body'}
     <div id="cart-summary">
       {foreach from=$cart.subtotals item="subtotal"}
-        <div class="{$subtotal.type}">
-          <span class="label">{$subtotal.label}</span>
-          <span class="value">{$subtotal.value}</span>
-
-        </div>
+        {if $subtotal.type}
+          <div class="{$subtotal.type} d-flex mb-2">
+            <span class="label mr-auto">{$subtotal.label}</span>
+            <span class="value">{$subtotal.value}</span>
+          </div>
+        {/if}
       {/foreach}
     </div>
   {/block}
 
   {block name='cart_summary_totals'}
-    <div class="cart-summary-totals">
-      <span class="label">{$cart.totals.total.label}</span>
-      <span class="value">{$cart.totals.total.value}</span>
+    <div class="cart-summary-totals d-flex">
+      <span class="label mr-auto">{$cart.totals.total.label}</span>
+      <span class="value text-primary">{$cart.totals.total.value}</span>
     </div>
   {/block}
 </div>

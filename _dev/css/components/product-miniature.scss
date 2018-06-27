@@ -1,0 +1,17 @@
+.products:not(.VueCarousel) {
+  @include make-row();
+
+  > .product-miniature {
+    margin-bottom: 20px;
+    @include make-col-ready();
+    @include make-col(6);
+
+    @include media-breakpoint-up(md) {
+      @include make-col(3);
+    }
+
+    @include media-breakpoint-up(xl) {
+      @include make-col(4);
+    }
+  }
+}

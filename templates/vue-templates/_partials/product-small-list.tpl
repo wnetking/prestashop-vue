@@ -40,13 +40,15 @@
             </div>
         </div>
 
-        <div class="variant-links links-small">
+        <div v-if="!withQuantity" class="variant-links links-small">
         <a v-for="variant in product.main_variants" :href="variant.url"
             :class="variant.type"
             v-bind:style="{literal}{backgroundColor: variant.html_color_code}{/literal}">
             <span class="sr-only">{literal}{{variant.name}}{/literal}</span>
         </a>
         </div>
-
+        <span v-if="withQuantity">
+          {l s='Quantity' d='Shop.Theme.Actions'}: {literal}{{product.quantity}}{/literal}
+        </span>
     </b-media>
 </script>

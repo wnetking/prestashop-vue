@@ -22,7 +22,7 @@
  * @license   https://opensource.org/licenses/AFL-3.0 Academic Free License 3.0 (AFL-3.0)
  * International Registered Trademark & Property of PrestaShop SA
  *}
-<section id="js-checkout-summary" class="js-cart js-checkout-summary" data-refresh-url="{url entity='cart' params=['ajax' => 1]}">
+<section id="js-checkout-summary" class="js-cart js-checkout-summary " data-refresh-url="{url entity='cart' params=['ajax' => 1]}">
   {block name='hook_checkout_summary_top'}
     {hook h='displayCheckoutSummaryTop'}
   {/block}
@@ -35,12 +35,9 @@
   {/block}
 
   {block name='cart_summary_product_list'}
-    <div id="cart-summary-product-list">
-      <ul class="list-unstyled">
-        {foreach from=$cart.products item=product}
-          <li>{include file='checkout/_partials/cart-summary-product-line.tpl' product=$product}</li>
-        {/foreach}
-      </ul>
+    <div id="cart-summary-product-list" data-module-name="cartSummaryProducts" data-module-data="{$cart.products|@json_encode}">
+      <div is="products-small-list"
+          v-for="product in modules.cartSummaryProducts" :key="product.id" with-quantity="true" :product='product' class="mb-2"></div>
     </div>
   {/block}
 

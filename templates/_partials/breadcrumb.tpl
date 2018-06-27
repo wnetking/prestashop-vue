@@ -22,7 +22,7 @@
  * @license   https://opensource.org/licenses/AFL-3.0 Academic Free License 3.0 (AFL-3.0)
  * International Registered Trademark & Property of PrestaShop SA
  *}
-<nav aria-label="breadcrumb" role="navigation" data-depth="{$breadcrumb.count}" v-if="!page.body_classes['page-index'] && !page.body_classes['page-cart'] && !page.body_classes['page-customer-account']">
+<nav aria-label="breadcrumb" role="navigation" data-depth="{$breadcrumb.count}" v-if="!page.body_classes['page-index'] && !page.body_classes['page-cart'] && !page.body_classes['page-customer-account'] && !page.body_classes['page-order-confirmation']">
   <ol class="breadcrumb border bg-white" itemscope itemtype="http://schema.org/BreadcrumbList">
     {foreach from=$breadcrumb.links item=path name=breadcrumb}
       {block name='breadcrumb_item'}

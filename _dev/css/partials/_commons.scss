@@ -262,7 +262,10 @@ ul {
   color: $brand-success;
   display: inline-block;
   padding: 0 0.8125rem;
-  margin-right: 1.563rem;
+}
+
+.color-indicator {
+  @include size(15px, 15px);
 }
 
 .definition-list {
@@ -735,7 +738,7 @@ div[id^='_mobile_']:not(:empty) {
    ========================================================================== */
 
 .vb {
-  width: calc(100% + 4px);
+  // width: calc(100% + 4px);
 }
 /* Carousel images
    ========================================================================== */

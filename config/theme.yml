@@ -75,6 +75,7 @@ global_settings:
         - ps_mainmenu
         - blockreassurance
       displayTopColumnFullWidth:
+      displayOrderConfirmation2:
       displayCheckoutTop:
         - ps_searchbar
 

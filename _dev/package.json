@@ -4,8 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "b": "set NODE_ENV=prod && webpack --progress --env.production",
-    "w": "webpack --progress --colors --watch --env.dev",
+    "b": "set NODE_ENV=production&& webpack --progress --env.production",
+    "w": "set NODE_ENV=development&& webpack --progress --colors --watch --env.dev",
     "d": "webpack --progress --colors --debug --devtool source-map --output-pathinfo --display-chunks --watch"
   },
   "author": "PrestaShop",

@@ -52,7 +52,7 @@
               {/block}
             </div>
             <div class="col-5">
-              <div class="bg-white border rounded p-3">
+              <div class="bg-white border rounded border p-3">
                 {block name='cart_summary'}
                   {include file='checkout/_partials/cart-summary.tpl' cart=$cart}
                 {/block}
@@ -65,6 +65,12 @@
 
     {block name='footer'}
       {include file='checkout/_partials/footer.tpl'}
+    {/block}
+
+    {block name='vue-templates'}
+      {include file="vue-templates/_partials/product.tpl"}
+      {include file="vue-templates/_partials/product-small-list.tpl"}
+      {include file="vue-templates/checkout/cart-detailed-product.tpl"}
     {/block}
 
     {block name='javascript_bottom'}

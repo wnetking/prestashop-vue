@@ -63,6 +63,11 @@
   .form-control,
   .custom-select {
     border-color: $gray-800;
+
+    &:active,
+    &:focus {
+      border-color: $input-border-color;
+    }
   }
   &.definition-list dl,
   .definition-list dl {

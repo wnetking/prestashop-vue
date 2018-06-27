@@ -50,18 +50,38 @@
       {/block}
 
       {block name='order_details'}
-        <div id="order-details" class="col-md-4">
-          <h3>{l s='Order details' d='Shop.Theme.Checkout'}:</h3>
-          <ul>
-            <li>{l s='Order reference: %reference%' d='Shop.Theme.Checkout' sprintf=['%reference%' => $order.details.reference]}</li>
-            <li>{l s='Payment method: %method%' d='Shop.Theme.Checkout' sprintf=['%method%' => $order.details.payment]}</li>
+        <div id="order-details" class="col-12">
+          <h3>
+            <i aria-hidden="true" class="fa fa-info done"></i>
+            {l s='Order details' d='Shop.Theme.Checkout'}
+          </h3>
+          <table class="table w-100 mb-4 bg-white">
+            <tr>
+              <td>
+                {l s='Order reference:' d='Shop.Theme.Checkout'}
+              </td>
+              <td class="text-right">{$order.details.reference}</td>
+            </tr>
+
+            <tr>
+              <td>
+                {l s='Payment method:' d='Shop.Theme.Checkout'}
+              </td>
+              <td class="text-right">{$order.details.payment}</td>
+            </tr>
+
             {if !$order.details.is_virtual}
-              <li>
-                {l s='Shipping method: %method%' d='Shop.Theme.Checkout' sprintf=['%method%' => $order.carrier.name]}<br>
-                <em>{$order.carrier.delay}</em>
-              </li>
+              <tr>
+                <td>
+                  {l s='Shipping method:' d='Shop.Theme.Checkout'}
+                  <em>{$order.carrier.delay}</em>
+                </td>
+                <td class="text-right">
+                  {$order.carrier.name}
+                </td>
+              </tr>
             {/if}
-          </ul>
+          </table>
         </div>
       {/block}
 
@@ -69,7 +89,7 @@
   </section>
   {block name='hook_payment_return'}
     {if ! empty($HOOK_PAYMENT_RETURN)}
-      <section id="content-hook_payment_return" class="definition-list bg-light p-3 mb-4">
+      <section id="content-hook_payment_return" class="definition-list mb-3">
         {$HOOK_PAYMENT_RETURN nofilter}
       </section>
     {/if}

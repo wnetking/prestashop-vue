@@ -29,6 +29,8 @@
     <p>{l s='There is 1 product.' d='Shop.Theme.Catalog'}</p>
   {/if}
 
+
+
   <div class="d-flex align-items-center p-2 bg-white border rounded">
     {block name='sort_by'}
       {include file='catalog/_partials/sort-orders.tpl' sort_orders=$listing.sort_orders}

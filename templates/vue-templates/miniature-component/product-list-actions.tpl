@@ -32,7 +32,6 @@
 
     <b-popover
         ref="popover"
-        triggers="focus click"
         :target="sharePopOverId"
         :title="product.name"
         placement="top"

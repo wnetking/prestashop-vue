@@ -28,14 +28,14 @@
 
     {block name='order_confirmation_table'}
       {foreach from=$products item=product}
-        <div class="bg-light p-3">
-          <div class="order-line row">
-            <div class="col-sm-2 col-3">
+        <div class="bg-white border rounded p-2 mb-2">
+          <div class="order-line row align-items-center">
+            <div class="col-sm-1 col-3">
             <span class="product-thumbnail">
               <img class="img-fluid" src="{$product.cover.medium.url}"/>
             </span>
             </div>
-            <div class="col-sm-4 col-9 details">
+            <div class="col-sm-5 col-9 details">
               {if $add_product_link}<a href="{$product.url}" target="_blank">{/if}
                 <span>{$product.name}</span>
               {if $add_product_link}</a>{/if}
@@ -84,17 +84,16 @@
               <div class="row">
                 <div class="col-5 text-smright text-xsleft">{$product.price}</div>
                 <div class="col-2">{$product.quantity}</div>
-                <div class="col-5 text-xsright bold">{$product.total}</div>
+                <div class="col-5 text-right font-weight-bold">{$product.total}</div>
               </div>
             </div>
           </div>
         </div>
-        <hr>
       {/foreach}
-      <table class="w-100 mb-4">
+      <table class="table w-100 mb-4 bg-white">
         {foreach $subtotals as $subtotal}
           {if $subtotal.type !== 'tax'}
-            <tr>
+            <tr class="p-3">
               <td>{$subtotal.label}</td>
               <td class="text-right">{$subtotal.value}</td>
             </tr>
@@ -108,7 +107,7 @@
         {/if}
         <tr class="font-weight-bold">
           <td><span class="text-uppercase">{$totals.total.label}</span> {$labels.tax_short}</td>
-          <td class="text-right">{$totals.total.value}</td>
+          <td class="text-right text-primary">{$totals.total.value}</td>
         </tr>
       </table>
     {/block}
