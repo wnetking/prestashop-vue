@@ -747,3 +747,9 @@ div[id^='_mobile_']:not(:empty) {
     background-color: $gray-400;
   }
 }
+
+.modal-dialog.modal-lg{
+  @include media-breakpoint-between(sm, md) {
+    max-width: calc(100vw - #{$grid-gutter-width * 2})
+  }  
+}

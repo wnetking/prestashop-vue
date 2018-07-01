@@ -25,10 +25,10 @@
 <div class="products-sort-order" data-module-name="sortOrders" data-module-data="{$sort_orders|@json_encode}">
   <b-dropdown variant="light" size="sm">
     <template slot="button-content">
-      <span v-for="item in modules.sortOrders" v-if="item.current">{literal}{{item.label}}{/literal}</span>
+      <span v-for="item in modules.sortOrders" v-if="item.current" >{literal}{{item.label}}{/literal}</span>
     </template>
 
-    <b-dropdown-item v-for="item in modules.sortOrders" :href="item.url" class="js-search-link">
+    <b-dropdown-item v-for="(item, index) in modules.sortOrders" :href="item.url" :key="index" class="js-search-link">
       {literal}{{item.label}}{/literal}
     </b-dropdown-item>
   </b-dropdown>

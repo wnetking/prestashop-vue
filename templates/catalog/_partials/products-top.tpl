@@ -23,11 +23,12 @@
  * International Registered Trademark & Property of PrestaShop SA
  *}
 <div id="js-product-list-top" class="products-selection mb-2">
-  {if $listing.pagination.total_items|count > 0}
-    <p>{l s='There are %product_count% products.' d='Shop.Theme.Catalog' sprintf=['%product_count%' => $listing.pagination.total_items]}</p>
+  {if $listing.pagination.total_items|intval > 0}
+      <p>{l s='There are %product_count% products.' d='Shop.Theme.Catalog' sprintf=['%product_count%' => $listing.pagination.total_items]}</p>
   {else}
-    <p>{l s='There is 1 product.' d='Shop.Theme.Catalog'}</p>
+      <p>{l s='There is 1 product.' d='Shop.Theme.Catalog'}</p>
   {/if}
+
 
 
 

@@ -52,6 +52,10 @@ i {
   overflow: hidden;
   overflow-y: auto;
   background-color: #fff;
+  
+  @include media-breakpoint-up(md) {
+    position: absolute;
+  }
 
   &::-webkit-scrollbar-button {
     width: 2px;

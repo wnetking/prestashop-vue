@@ -1,7 +1,7 @@
 
 <script type="text/x-template" id="product-miniature-template">
   <article :data-type="type" class="product-miniature js-product-miniature"
-    @mouseover="isHover = true" @mouseleave="isHover = false"
+    @mouseenter="changeVisibility" @mouseleave="changeVisibility"
     :data-id-product="product.id_product"
     :data-id-product-attribute="product.id_product_attribute"
     itemscope itemtype="http://schema.org/Product">

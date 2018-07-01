@@ -35,7 +35,7 @@ module.exports = ({env}) => ({
     'postcss-plugin-px2rem': {
       rootValue: 14,
       unitPrecision: 5,
-      selectorBlackList: ['container'],
+      selectorBlackList: ['container', 'modal'],
       propWhiteList: [],
       propBlackList: [],
       ignoreIdentifier: false,

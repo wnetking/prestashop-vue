@@ -31,7 +31,7 @@ export default function() {
 
       // $('.product-prices').replaceWith(resp.product_prices)
       $(".product-customization").replaceWith(resp.product_customization);
-      $(".product-variants").replaceWith(resp.product_variants);
+      $(".product-variants-custom").replaceWith(resp.product_variants);
       $(".product-discounts").replaceWith(resp.product_discounts);
       $(".product-additional-info").replaceWith(resp.product_additional_info);
       $("#product-details").replaceWith(resp.product_details);

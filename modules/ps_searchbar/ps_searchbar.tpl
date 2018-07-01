@@ -23,7 +23,7 @@
 *  International Registered Trademark & Property of PrestaShop SA
 *}
 
-<div id="search_widget" class="search_widget d-flex ml-auto" data-search-controller-url="{$search_controller_url}">
+<div id="search_widget" class="search_widget d-flex ml-sm-auto" data-search-controller-url="{$search_controller_url}">
   <b-button variant="link" v-b-modal="'searchModal'">
     <em class="sr-only">{l s='Search' d='Shop.Theme.Actions'}</em>
     <i class="fa fa-search"></i>

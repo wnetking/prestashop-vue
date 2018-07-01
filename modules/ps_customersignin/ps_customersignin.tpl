@@ -5,7 +5,7 @@
           <em class="sr-only">User</em>
           <i class="fa fa-user"></i>
         </template>
-        <div class="user-info-body px-3">
+        <div class="user-info-body p-3">
           <div class="d-flex align-items-center mb-2 mb-lg-4">
             <avatar username="{$customerName}" background-color="#000"></avatar>
             <h5 class="ml-2">{$customerName}</h5>

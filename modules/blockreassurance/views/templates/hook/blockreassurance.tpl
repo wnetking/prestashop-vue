@@ -27,7 +27,7 @@
     <div class="container">
       <ul class="row list-unstyled mb-0">
         {foreach from=$elements item=element}
-          <li class="col d-flex align-items-center justify-content-center py-2">
+          <li class="col-12 col-sm d-flex align-items-center justify-content-center py-2">
             <img src="{$element.image}" alt="{$element.text|escape:'quotes'}" class="mr-2"/> <span>{$element.text}</span>
           </li>
         {/foreach}

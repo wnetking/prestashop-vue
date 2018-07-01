@@ -63,19 +63,20 @@
       </div>
     </b-modal>
   </div>
-</div>
 
-{if !isset($smarty.request.action) }
-  <b-modal id="blokcartModal" body-class="p-0" size="lg" centered title="{l s='Product successfully added' d='Shop.Theme.Actions'}">
-    <div v-html="blockcart.modalData">
-    </div>
-    <div slot="modal-footer" class="w-100 d-flex justify-content-between">
-      <b-btn @click="$root.$emit('bv::hide::modal', 'blokcartModal', $event.target)">
-        <span>{l s='Continue shopping' d='Shop.Theme.Actions'}</span>
-      </b-btn>
-      <a rel="nofollow" href="{$cart_url}" class="btn btn-outline-dark">
-        <span>{l s='Go to checkout' d='Shop.Theme.Actions'}</span>
-      </a>
-    </div>
-  </b-modal>
-{/if}
+
+  {if !isset($smarty.request.action)}
+    <b-modal id="blokcartModal" body-class="p-0" size="lg" centered title="{l s='Product successfully added' d='Shop.Theme.Actions'}">
+      <div v-html="blockcart.modalData">
+      </div>
+      <div slot="modal-footer" class="w-100 d-flex justify-content-between">
+        <b-btn @click="$root.$emit('bv::hide::modal', 'blokcartModal', $event.target)">
+          <span>{l s='Continue shopping' d='Shop.Theme.Actions'}</span>
+        </b-btn>
+        <a rel="nofollow" href="{$cart_url}" class="btn btn-outline-dark">
+          <span>{l s='Go to checkout' d='Shop.Theme.Actions'}</span>
+        </a>
+      </div>
+    </b-modal>
+  {/if}
+</div>

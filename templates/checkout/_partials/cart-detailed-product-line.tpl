@@ -14,7 +14,7 @@
         </a>
         <a class="btn btn-secondary fa fa-plus"
             @click="updateCartCore"
-            v-if="product.up_quantity_url && (product.quantity_available - product.quantity) > 0"
+            v-if="product.up_quantity_url && (product.stock_quantity - product.quantity) > 0"
             :href="product.up_quantity_url">
         </a>
         <a class="btn btn-danger remove-from-cart fa fa-trash-o"
@@ -39,7 +39,7 @@
       <br>
     </small>
 
-    <div class="customizations" v-if="product.customizations.length">
+    <div class="customizations" v-if="product.customizations">
       <div v-for="customization in product.customizations">
         <a  @click="updateCartCore" :href="customization.remove_from_cart_url" class="remove-from-cart btn btn-link btn-sm" rel="nofollow">{l s='Remove' d="Shop.Theme.Actions"}</a>
         <span class="product-quantity">

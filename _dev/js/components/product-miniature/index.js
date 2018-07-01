@@ -9,10 +9,24 @@ var productMiniature = Vue.extend({
   props: ['product', 'type'],
   data: data,
   methods: {
-    changeImg: changeImg,
-    zoomBg: zoomBg,
-    zoomLeave: zoomLeave
+    changeImg,
+    zoomBg,
+    zoomLeave,
+    changeVisibility(visability){
+      if(document.documentElement.clientWidth > 992){
+        this.isHover = this.isHover ? false: true
+      }
+    },
+    onresizeCheck(){
+      if(document.documentElement.clientWidth > 992){
+        this.isHover = this.isHover ? false: true
+      }
+    } 
   },
+  created(){
+    $(window).on('resize', this.onresizeCheck)
+  },
+
   updated() {
     if (!this.isHover) {
       this.imgBig = this.product.cover.bySize.medium_default.url

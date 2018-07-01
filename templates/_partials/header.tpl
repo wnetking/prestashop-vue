@@ -36,16 +36,16 @@
   </div>
 </div>
 
-<div class="container py-3">
+<div class="container py-sm-3">
   <div class="row align-items-center">
-    <div class="col-12 col-sm-3">
+    <div class="col-12 col-sm-3 text-center text-sm-left mb-2 mt-2 my-sm-0">
       {block name='header_logo'}
         <a href="{$urls.base_url}" title="{$shop.name}" class="logo d-inline-block">
           <img src="{$shop.logo}" alt="{$shop.name}">
         </a>
       {/block}
     </div>
-    <div class="col-12 col-sm-9 d-flex justify-content-end">
+    <div class="col-12 col-sm-9 d-flex justify-content-center justify-content-sm-end">
       {hook h='displayTop'}
     </div>
   </div>

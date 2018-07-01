@@ -1,4 +1,6 @@
 export default function (event) {
+  if(document.documentElement.clientWidth < 992) return;
+   
   let container = event.target.parentNode
   let elementZoom = event.target
   var x = event.offsetX == undefined ? event.layerX : event.offsetX

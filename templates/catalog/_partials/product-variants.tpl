@@ -22,7 +22,7 @@
  * @license   https://opensource.org/licenses/AFL-3.0 Academic Free License 3.0 (AFL-3.0)
  * International Registered Trademark & Property of PrestaShop SA
  *}
-<div class="product-variants">
+<div class="product-variants-custom">
   {foreach from=$groups key=id_attribute_group item=group}
 
     <label class="d-block mt-2 mb-1" for="group_{$id_attribute_group}">
